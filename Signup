@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up | Gear Radar Digital Solutions</title>
+<meta name="description" content="Sign up for the Gear Radar AI assistant, AI Job Hunter or a bundle. English and Arabic.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://www.gearradar.co.uk/signup.html">
+<meta name="theme-color" content="#0B1220">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1220'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E8B64C' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='8' fill='none' stroke='%23E8B64C' stroke-width='4' opacity='.6'/%3E%3Cpath d='M32 32 L46 18' stroke='%23F5CD6E' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='3.5' fill='%23F5CD6E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B1220; --ink-2:#111B2F; --ink-3:#1A2640;
+  --gold:#E8B64C; --gold-2:#F5CD6E; --gold-soft:rgba(232,182,76,.12);
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#E8ECF4; --on-ink-muted:#9AA6BC; --ok:#22C55E; --err:#b91c1c;
+  --radius:18px;
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.container{width:min(880px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-head);line-height:1.2;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0;line-height:1.4}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:.97rem;border:1px solid transparent;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-2)}
+.btn-line{background:transparent;border-color:var(--line);color:var(--text)}
+.btn-line:hover{border-color:var(--gold)}
+.btn[disabled]{opacity:.6;cursor:wait}
+
+/* Header */
+header{background:var(--ink);color:var(--on-ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--white);font-family:'Sora',sans-serif;font-weight:700;font-size:1.05rem}
+.brand svg{width:36px;height:36px;flex:none}
+.lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'Cairo','Inter',sans-serif}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.intro{background:var(--ink);color:var(--on-ink);padding:26px 0 90px}
+.intro h1{color:var(--white);font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:8px}
+.intro p{color:var(--on-ink-muted);max-width:620px}
+.back{display:inline-flex;gap:6px;align-items:center;color:var(--on-ink-muted);font-size:.9rem;margin-bottom:18px}
+.back:hover{color:var(--gold)}
+html[dir="rtl"] .back svg{transform:scaleX(-1)}
+
+/* Form */
+main{margin-top:-60px;padding-bottom:80px}
+form,.done{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:0 20px 50px -30px rgba(11,18,32,.35)}
+fieldset{border:0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-bottom:28px;margin-bottom:28px;border-bottom:1px solid var(--line)}
+fieldset:last-of-type{border-bottom:0;margin-bottom:0}
+legend{grid-column:1/-1;font-family:var(--font-head);font-weight:700;font-size:1.15rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+legend .n{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--gold);display:inline-grid;place-items:center;font-size:.85rem;flex:none}
+.field{display:grid;gap:6px;align-content:start}
+.full{grid-column:1/-1}
+label,.label{font-size:.88rem;font-weight:600}
+.opt{font-weight:400;color:var(--muted)}
+.hint{font-size:.82rem;color:var(--muted)}
+input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--text);transition:border-color .2s,background .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);background:var(--white)}
+input[type="tel"],input[type="email"]{direction:ltr}
+html[dir="rtl"] input[type="tel"],html[dir="rtl"] input[type="email"]{text-align:right}
+.invalid input,.invalid select,input.invalid,select.invalid{border-color:var(--err);background:#fef2f2}
+.err-text{font-size:.82rem;color:var(--err);display:none}
+.invalid .err-text{display:block}
+
+/* Plan picker */
+.plans{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.plan{position:relative}
+.plan input{position:absolute;top:0;left:0;opacity:0;pointer-events:none}
+.plan label{display:grid;gap:2px;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);cursor:pointer;height:100%;transition:border-color .2s,background .2s}
+.plan label:hover{border-color:#d8c79c}
+.plan input:checked + label{border-color:var(--gold);background:#FFF9EC;box-shadow:0 0 0 3px var(--gold-soft)}
+.plan input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+.plan .cat{font-size:.72rem;font-weight:600;color:#8a6412;text-transform:uppercase;letter-spacing:.06em}
+html[lang="ar"] .plan .cat{letter-spacing:0;font-size:.78rem}
+.plan .nm{font-family:var(--font-head);font-weight:700;font-size:1rem}
+.plan .pr{font-size:.9rem;color:var(--muted)}
+.plan .pr b{color:var(--text);font-size:1.05rem}
+.plan .best{position:absolute;top:-9px;inset-inline-end:12px;background:var(--ink);color:var(--gold);font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:999px}
+.billing{grid-column:1/-1;display:inline-flex;gap:4px;padding:4px;background:var(--paper);border:1px solid var(--line);border-radius:999px;justify-self:start}
+.billing button{border:0;background:transparent;padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.88rem;color:var(--muted)}
+.billing button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.billing .save{color:#15803d;font-weight:600}
+.billing button[aria-pressed="true"] .save{color:var(--gold-2)}
+.summary{grid-column:1/-1;background:var(--paper);border:1px dashed #d8c79c;border-radius:14px;padding:14px 18px;font-size:.92rem}
+.summary b{font-weight:600}
+.summary ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;color:var(--muted);font-size:.86rem}
+.summary li::before{content:"✓ ";color:#B8871F;font-weight:700}
+
+/* Channel */
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;grid-column:1/-1}
+.choice > div{position:relative}
+.choice input{position:absolute;top:0;left:0;opacity:0;pointer-events:none}
+.choice label{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);cursor:pointer;font-weight:600}
+.choice input:checked + label{border-color:var(--gold);background:#FFF9EC}
+.choice input:disabled + label{opacity:.45;cursor:not-allowed}
+.choice input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+.choice svg{width:24px;height:24px;flex:none}
+.choice small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
+
+/* File */
+.drop{grid-column:1/-1;border:2px dashed var(--line);border-radius:14px;padding:22px;text-align:center;background:var(--paper);cursor:pointer;transition:border-color .2s}
+.drop:hover,.drop.over{border-color:var(--gold)}
+.drop.has{border-style:solid;border-color:#86c59b;background:#f0fdf4}
+.drop svg{width:30px;height:30px;margin:0 auto 8px;color:#B8871F}
+.drop b{display:block}
+.drop.invalid-drop{border-color:var(--err);background:#fef2f2}
+
+/* Areas */
+.areas{grid-column:1/-1;display:grid;gap:10px}
+.area{display:grid;grid-template-columns:1.4fr 1fr auto;gap:10px;align-items:center}
+.rm{background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;cursor:pointer;color:var(--muted);font-size:1.2rem}
+.rm:hover{border-color:var(--err);color:var(--err)}
+.add{justify-self:start;background:none;border:0;color:#8a6412;font-weight:600;cursor:pointer;padding:4px 0}
+.add:hover{text-decoration:underline}
+.add[hidden]{display:none}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;font-weight:500}
+.check input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--ink)}
+.check a{text-decoration:underline}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.note{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;background:#EFF6FF;border:1px solid #BFDBFE;color:#1e3a8a;border-radius:12px;padding:12px 14px;font-size:.88rem}
+.note svg{width:18px;height:18px;flex:none;margin-top:3px}
+.foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px}
+.status{font-size:.92rem;font-weight:500}
+.status.err{color:var(--err)}
+.section-hide{display:none !important}
+
+/* Done */
+.done{text-align:center;padding:48px 34px}
+.done .tick{width:64px;height:64px;border-radius:50%;background:#dcfce7;color:#15803d;display:grid;place-items:center;margin:0 auto 18px}
+.done .tick svg{width:32px;height:32px}
+.done h2{font-size:1.6rem;margin-bottom:10px}
+.done p{color:var(--muted);max-width:520px;margin:0 auto 10px}
+.ref{display:inline-block;font-family:'Sora',monospace;font-weight:700;letter-spacing:.08em;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:6px 14px;margin:8px 0 18px;direction:ltr}
+.next{text-align:start;max-width:460px;margin:18px auto 26px;display:grid;gap:10px;list-style:none;counter-reset:n}
+.next li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem}
+.next li::before{counter-increment:n;content:counter(n);width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--ink);font-weight:700;font-size:.8rem;display:grid;place-items:center;flex:none}
+
+footer{background:#070C17;color:var(--on-ink-muted);padding:28px 0;font-size:.85rem}
+footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a:hover{color:var(--gold)}
+
+@media (max-width:720px){
+  form,.done{padding:22px}
+  fieldset{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr 1fr}
+  .choice{grid-template-columns:1fr}
+  .area{grid-template-columns:1fr 1fr auto}
+}
+@media (max-width:420px){
+  .plans{grid-template-columns:1fr}
+  .area{grid-template-columns:1fr auto}
+  .area select{grid-column:1;grid-row:2}
+  .area .rm{grid-row:1/3;grid-column:2}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand" aria-label="Gear Radar Digital Solutions">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#16223a"/><circle cx="32" cy="32" r="18" fill="none" stroke="#E8B64C" stroke-width="3.5"/><circle cx="32" cy="32" r="8" fill="none" stroke="#E8B64C" stroke-width="3.5" opacity=".55"/><path d="M32 32 L46 18" stroke="#F5CD6E" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="32" r="3.5" fill="#F5CD6E"/></svg>
+      <span>Gear Radar</span>
+    </a>
+    <button class="lang" id="langToggle" type="button" aria-label="Switch language">العربية</button>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="container">
+    <a href="index.html#pricing" class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg><span data-i18n="back">Back to plans</span></a>
+    <h1 data-i18n="title">Set up your account</h1>
+    <p data-i18n="lead">Takes about 3 minutes. We review every signup and email you your activation link within one working day.</p>
+  </div>
+</section>
+
+<main class="container">
+<form id="signup" novalidate>
+  <!-- 1. Plan -->
+  <fieldset>
+    <legend><span class="n">1</span><span data-i18n="l_plan">Choose your plan</span></legend>
+    <div class="billing" role="group" aria-label="Billing">
+      <button type="button" data-billing="monthly" aria-pressed="true" data-i18n="monthly">Monthly</button>
+      <button type="button" data-billing="annual" aria-pressed="false"><span data-i18n="annual">Annual</span> · <span class="save" data-i18n="save">2 months free</span></button>
+    </div>
+    <div class="plans" id="plans"></div>
+    <div class="summary" id="summary" aria-live="polite"></div>
+  </fieldset>
+
+  <!-- 2. About you -->
+  <fieldset>
+    <legend><span class="n">2</span><span data-i18n="l_you">About you</span></legend>
+    <div class="field"><label for="full_name" data-i18n="f_name">Full name</label><input id="full_name" autocomplete="name" maxlength="120" required><span class="err-text" data-i18n="e_name">Please enter your name.</span></div>
+    <div class="field"><label for="email" data-i18n="f_email">Email</label><input id="email" type="email" autocomplete="email" maxlength="160" required><span class="err-text" data-i18n="e_email">Please enter a valid email.</span></div>
+    <div class="field"><label for="country" data-i18n="f_country">Country you live in</label>
+      <select id="country" autocomplete="country">
+        <option value="United Kingdom" data-i18n="c_gb">United Kingdom</option>
+        <option value="United States" data-i18n="c_us">United States</option>
+        <option value="Canada" data-i18n="c_ca">Canada</option>
+        <option value="United Arab Emirates" data-i18n="c_ae">United Arab Emirates</option>
+        <option value="Saudi Arabia" data-i18n="c_sa">Saudi Arabia</option>
+        <option value="Qatar" data-i18n="c_qa">Qatar</option>
+        <option value="Kuwait" data-i18n="c_kw">Kuwait</option>
+        <option value="Bahrain" data-i18n="c_bh">Bahrain</option>
+        <option value="Oman" data-i18n="c_om">Oman</option>
+        <option value="Other" data-i18n="c_other">Other</option>
+      </select>
+    </div>
+    <div class="field"><label for="language" data-i18n="f_lang">Messages in</label>
+      <select id="language"><option value="en">English</option><option value="ar">العربية</option></select>
+    </div>
+  </fieldset>
+
+  <!-- 3. Channel -->
+  <fieldset>
+    <legend><span class="n">3</span><span data-i18n="l_channel">Where should we message you?</span></legend>
+    <div class="choice" id="channelBox">
+      <div><input type="radio" name="channel" id="ch_tg" value="telegram" checked><label for="ch_tg"><svg viewBox="0 0 24 24" fill="#229ED9"><path d="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6.2 13.2l-4.9-1.5c-1-.3-1.1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3z"/></svg><span>Telegram<small data-i18n="tg_hint">We'll send you a one-tap link to connect</small></span></label></div>
+      <div><input type="radio" name="channel" id="ch_wa" value="whatsapp"><label for="ch_wa"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span>WhatsApp<small id="waHint" data-i18n="wa_hint">Messages from our business number</small></span></label></div>
+    </div>
+    <div class="field full section-hide" id="waField"><label for="wa_number" data-i18n="f_wa">WhatsApp number, with country code</label><input id="wa_number" type="tel" autocomplete="tel" placeholder="+44 7700 900123" maxlength="20"><span class="err-text" data-i18n="e_wa">Please enter your full number with country code, e.g. +44 7700 900123.</span></div>
+  </fieldset>
+
+  <!-- 4. Assistant -->
+  <fieldset id="assistantSet">
+    <legend><span class="n" data-step="assistant">4</span><span data-i18n="l_assistant">Your assistant</span></legend>
+    <div class="field"><label for="google_email"><span data-i18n="f_google">Google account for Gmail &amp; Calendar</span></label><input id="google_email" type="email" maxlength="160" placeholder="you@gmail.com"><span class="hint" data-i18n="h_google">Leave blank to use your email above. You'll approve access with Google when you activate.</span><span class="err-text" data-i18n="e_google">Please enter a valid Google email.</span></div>
+    <div class="field"><label for="city"><span data-i18n="f_city">Home city</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="city" maxlength="80"><span class="hint" data-i18n="h_city">For weather and travel times in your morning brief.</span></div>
+    <div class="field full"><label for="timezone" data-i18n="f_tz">Time zone</label><select id="timezone"></select></div>
+  </fieldset>
+
+  <!-- 5. Jobs -->
+  <fieldset id="jobsSet">
+    <legend><span class="n" data-step="jobs">5</span><span data-i18n="l_jobs">Your job search</span></legend>
+    <div class="drop full" id="drop" tabindex="0" role="button" aria-describedby="dropHint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9 15l3-3 3 3"/></svg>
+      <b id="dropText" data-i18n="drop">Upload your CV (PDF)</b>
+      <span class="hint" id="dropHint" data-i18n="drop_hint">Click or drag a PDF here · max 5 MB</span>
+      <input type="file" id="cv" accept="application/pdf,.pdf" hidden>
+    </div>
+    <span class="err-text full" id="cvErr" data-i18n="e_cv" style="margin-top:-8px">Please upload your CV as a PDF under 5 MB.</span>
+    <div class="field full"><label for="titles" data-i18n="f_titles">Job titles you want</label><input id="titles" maxlength="400" placeholder="Facilities Manager, Operations Manager"><span class="hint" id="titlesHint"></span><span class="err-text" data-i18n="e_titles">Please add at least one job title.</span></div>
+    <div class="field full"><span class="label" data-i18n="f_areas">Where you want to work</span><span class="hint" id="areasHint"></span></div>
+    <div class="areas" id="areas"></div>
+    <button type="button" class="add full" id="addArea" data-i18n="add_area">+ Add another city</button>
+    <span class="err-text full" id="areasErr" data-i18n="e_areas">Please add at least one city.</span>
+    <label class="check full"><input type="checkbox" id="remote" checked><span data-i18n="f_remote">Also show remote jobs</span></label>
+    <div class="field"><label for="min_salary"><span data-i18n="f_salary">Minimum salary per year</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="min_salary" type="number" min="0" step="1000" inputmode="numeric"></div>
+    <div class="field"><label for="currency" data-i18n="f_currency">Currency</label>
+      <select id="currency"><option>GBP</option><option>USD</option><option>CAD</option><option>AED</option><option>SAR</option><option>QAR</option><option>KWD</option><option>BHD</option><option>OMR</option></select>
+    </div>
+  </fieldset>
+
+  <!-- Finish -->
+  <fieldset>
+    <legend><span class="n" id="lastStep">6</span><span data-i18n="l_finish">Confirm</span></legend>
+    <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span data-i18n="no_charge">No payment today. We're in early access: we'll confirm your plan by email before anything is charged.</span></div>
+    <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" tabindex="-1" autocomplete="off"></div>
+    <label class="check full" id="consentWrap"><input type="checkbox" id="consent"><span data-i18n-html="consent">I agree that Gear Radar may store and process my details (including my CV, if uploaded) to provide this service, as described in the <a href="privacy.html" target="_blank">privacy notice</a>.</span></label>
+    <span class="err-text full" id="consentErr" data-i18n="e_consent">Please tick the box to continue.</span>
+    <div class="foot full">
+      <button class="btn btn-gold" type="submit" id="submit" data-i18n="submit">Send my signup</button>
+      <span class="status" id="status" role="status" aria-live="polite"></span>
+    </div>
+  </fieldset>
+</form>
+
+<div class="done section-hide" id="done" tabindex="-1">
+  <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <h2 data-i18n="d_title">We've got your signup</h2>
+  <p data-i18n="d_ref">Your reference</p>
+  <div class="ref" id="ref">—</div>
+  <ol class="next">
+    <li data-i18n="d_1">We've emailed you a confirmation. Check your spam folder if you don't see it.</li>
+    <li data-i18n="d_2">We review your details and set up your account within one working day.</li>
+    <li id="d3" data-i18n="d_3tg">You get an activation link. One tap opens Telegram and connects your account.</li>
+  </ol>
+  <a class="btn btn-line" href="index.html" data-i18n="d_home">Back to Gear Radar</a>
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span id="year">2026</span> Gear Radar Digital Solutions</span>
+    <span><a href="privacy.html" data-i18n="privacy">Privacy</a> · <a href="mailto:info@gearradar.co.uk">info@gearradar.co.uk</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-signup';
+  var SB_URL = 'https://nrkydwotserhniczcgqs.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ya3lkd290c2VyaG5pY3pjZ3FzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyMzU0MzMsImV4cCI6MjEwNTgxMTQzM30.6v1fSTrg00Wj7JM0B18aBfwYzNPngv5y4uaf-HmsYq0'; // public anon key: can only upload into signup-files/incoming
+  var MAX_CV = 5 * 1024 * 1024;
+
+  // Plan catalogue (keep in sync with index.html pricing and the n8n Intake workflow)
+  var PLANS = [
+    { key:'basic',        service:'butler',     cat:'cat_butler', name:'Butler Basic', m:9,  y:90,  assistant:true,  jobs:false, wa:false, titles:0,  areas:0, feats:['pf_basic1','pf_basic2','pf_basic3'] },
+    { key:'pro',          service:'butler',     cat:'cat_butler', name:'Butler Pro',   m:19, y:190, assistant:true,  jobs:false, wa:true,  titles:0,  areas:0, feats:['pf_pro1','pf_pro2','pf_pro3'] },
+    { key:'premium',      service:'bundle',     cat:'cat_bundle', name:'Premium',      m:39, y:390, assistant:true,  jobs:true,  wa:true,  titles:6,  areas:3, feats:['pf_prem1','pf_prem2','pf_prem3'], best:true },
+    { key:'jobs_starter', service:'job_hunter', cat:'cat_jobs',   name:'Jobs Starter', m:12, y:120, assistant:false, jobs:true,  wa:true,  titles:3,  areas:1, feats:['pf_js1','pf_js2','pf_js3'] },
+    { key:'jobs_pro',     service:'job_hunter', cat:'cat_jobs',   name:'Jobs Pro',     m:29, y:290, assistant:false, jobs:true,  wa:true,  titles:6,  areas:3, feats:['pf_jp1','pf_jp2','pf_jp3'] },
+    { key:'executive',    service:'bundle',     cat:'cat_bundle', name:'Executive',    m:59, y:590, assistant:true,  jobs:true,  wa:true,  titles:10, areas:3, feats:['pf_ex1','pf_ex2','pf_ex3'] }
+  ];
+  var AREA_COUNTRIES = ['gb','us','ca','ae','sa','qa','kw','bh','om'];
+
+  var EN = {
+    back:'Back to plans', title:'Set up your account', lead:'Takes about 3 minutes. We review every signup and email you your activation link within one working day.',
+    l_plan:'Choose your plan', monthly:'Monthly', annual:'Annual', save:'2 months free',
+    cat_butler:'Assistant', cat_jobs:'Job Hunter', cat_bundle:'Both', best:'Best value',
+    per_m:'/month', per_y:'/year', billed_y:'billed yearly',
+    pf_basic1:'Assistant on Telegram', pf_basic2:'30 messages a day', pf_basic3:'Gmail, Calendar & reminders',
+    pf_pro1:'Telegram or WhatsApp', pf_pro2:'150 messages a day', pf_pro3:'Voice notes, PDFs & morning brief',
+    pf_prem1:'Everything in Butler Pro', pf_prem2:'Everything in Jobs Pro', pf_prem3:'Ask your assistant about your jobs',
+    pf_js1:'3 job titles, 1 city', pf_js2:'Daily digest of matches', pf_js3:'10 tailored CVs a month',
+    pf_jp1:'6 job titles, 3 cities', pf_jp2:'Instant alerts or daily digest', pf_jp3:'40 tailored CVs + 20 cover letters',
+    pf_ex1:'250 assistant messages a day', pf_ex2:'10 job titles, 3 cities', pf_ex3:'100 tailored CVs + 60 cover letters',
+    l_you:'About you', f_name:'Full name', f_email:'Email', f_country:'Country you live in', f_lang:'Messages in',
+    c_gb:'United Kingdom', c_us:'United States', c_ca:'Canada', c_ae:'United Arab Emirates', c_sa:'Saudi Arabia', c_qa:'Qatar', c_kw:'Kuwait', c_bh:'Bahrain', c_om:'Oman', c_other:'Other',
+    e_name:'Please enter your name.', e_email:'Please enter a valid email.',
+    l_channel:'Where should we message you?', tg_hint:"We'll send you a one-tap link to connect", wa_hint:'Messages from our business number', wa_hint_basic:'Available from Butler Pro', wa_hint_digest:'One daily digest from our business number',
+    f_wa:'WhatsApp number, with country code', e_wa:'Please enter your full number with country code, e.g. +44 7700 900123.',
+    l_assistant:'Your assistant', f_google:'Google account for Gmail & Calendar', h_google:"Leave blank to use your email above. You'll approve access with Google when you activate.", e_google:'Please enter a valid Google email.',
+    f_city:'Home city', optional:'(optional)', h_city:'For weather and travel times in your morning brief.', f_tz:'Time zone',
+    l_jobs:'Your job search', drop:'Upload your CV (PDF)', drop_hint:'Click or drag a PDF here · max 5 MB', e_cv:'Please upload your CV as a PDF under 5 MB.',
+    f_titles:'Job titles you want', h_titles:'Separate with commas · up to {n}', e_titles:'Please add at least one job title.',
+    f_areas:'Where you want to work', h_areas:'Up to {n}', h_areas1:'1 city on this plan', add_area:'+ Add another city', e_areas:'Please add at least one city.', city_ph:'City, e.g. Manchester', remove:'Remove',
+    f_remote:'Also show remote jobs', f_salary:'Minimum salary per year', f_currency:'Currency',
+    l_finish:'Confirm', no_charge:"No payment today. We're in early access: we'll confirm your plan by email before anything is charged.",
+    consent:'I agree that Gear Radar may store and process my details (including my CV, if uploaded) to provide this service, as described in the <a href="privacy.html" target="_blank">privacy notice</a>.',
+    e_consent:'Please tick the box to continue.', submit:'Send my signup',
+    s_check:'Please check the highlighted fields.', s_upload:'Uploading your CV…', s_sending:'Sending…', s_err:'Something went wrong. Please try again, or message us on WhatsApp: +44 7442 309417.', s_uperr:"We couldn't upload your CV. Please try again, or try a smaller PDF.",
+    d_title:"We've got your signup", d_ref:'Your reference', d_1:"We've emailed you a confirmation. Check your spam folder if you don't see it.", d_2:'We review your details and set up your account within one working day.',
+    d_3tg:'You get an activation link. One tap opens Telegram and connects your account.', d_3wa:'You get a WhatsApp message from our business number to activate your account.', d_dup:"We already have a signup from you for this service, so we didn't create a new one. Your reference is below.",
+    d_home:'Back to Gear Radar', privacy:'Privacy'
+  };
+  var AR = {
+    back:'العودة للباقات', title:'جهّز حسابك', lead:'يستغرق حوالي 3 دقائق. نراجع كل طلب ونرسل لك رابط التفعيل بالبريد خلال يوم عمل واحد.',
+    l_plan:'اختر باقتك', monthly:'شهري', annual:'سنوي', save:'شهران مجاناً',
+    cat_butler:'المساعد', cat_jobs:'صائد الوظائف', cat_bundle:'الاثنان معاً', best:'الأفضل قيمة',
+    per_m:'/شهرياً', per_y:'/سنوياً', billed_y:'تُدفع سنوياً',
+    pf_basic1:'المساعد على تيليجرام', pf_basic2:'30 رسالة يومياً', pf_basic3:'Gmail والتقويم والتذكيرات',
+    pf_pro1:'تيليجرام أو واتساب', pf_pro2:'150 رسالة يومياً', pf_pro3:'الرسائل الصوتية وملفات PDF والملخص الصباحي',
+    pf_prem1:'كل مزايا Butler Pro', pf_prem2:'كل مزايا Jobs Pro', pf_prem3:'اسأل مساعدك عن وظائفك',
+    pf_js1:'3 مسميات وظيفية، مدينة واحدة', pf_js2:'ملخص يومي بالوظائف المناسبة', pf_js3:'10 سير ذاتية مخصصة شهرياً',
+    pf_jp1:'6 مسميات، 3 مدن', pf_jp2:'تنبيهات فورية أو ملخص يومي', pf_jp3:'40 سيرة مخصصة + 20 خطاب تقديم',
+    pf_ex1:'250 رسالة للمساعد يومياً', pf_ex2:'10 مسميات، 3 مدن', pf_ex3:'100 سيرة مخصصة + 60 خطاب تقديم',
+    l_you:'معلوماتك', f_name:'الاسم الكامل', f_email:'البريد الإلكتروني', f_country:'بلد الإقامة', f_lang:'لغة الرسائل',
+    c_gb:'المملكة المتحدة', c_us:'الولايات المتحدة', c_ca:'كندا', c_ae:'الإمارات', c_sa:'السعودية', c_qa:'قطر', c_kw:'الكويت', c_bh:'البحرين', c_om:'عُمان', c_other:'أخرى',
+    e_name:'يرجى إدخال اسمك.', e_email:'يرجى إدخال بريد إلكتروني صحيح.',
+    l_channel:'أين نراسلك؟', tg_hint:'نرسل لك رابطاً للربط بضغطة واحدة', wa_hint:'رسائل من رقمنا التجاري', wa_hint_basic:'متاح من باقة Butler Pro', wa_hint_digest:'ملخص يومي واحد من رقمنا التجاري',
+    f_wa:'رقم واتساب مع رمز الدولة', e_wa:'يرجى إدخال رقمك كاملاً مع رمز الدولة، مثل ‎+44 7700 900123.',
+    l_assistant:'مساعدك', f_google:'حساب Google للبريد والتقويم', h_google:'اتركه فارغاً لاستخدام بريدك أعلاه. ستوافق على الوصول من Google عند التفعيل.', e_google:'يرجى إدخال بريد Google صحيح.',
+    f_city:'مدينة السكن', optional:'(اختياري)', h_city:'لحالة الطقس وأوقات الطريق في الملخص الصباحي.', f_tz:'المنطقة الزمنية',
+    l_jobs:'بحثك عن وظيفة', drop:'ارفع سيرتك الذاتية (PDF)', drop_hint:'اضغط أو اسحب ملف PDF هنا · حتى 5 ميغابايت', e_cv:'يرجى رفع سيرتك الذاتية بصيغة PDF وبحجم أقل من 5 ميغابايت.',
+    f_titles:'المسميات الوظيفية التي تبحث عنها', h_titles:'افصل بينها بفاصلة · حتى {n}', e_titles:'يرجى إضافة مسمى وظيفي واحد على الأقل.',
+    f_areas:'أين تريد أن تعمل؟', h_areas:'حتى {n}', h_areas1:'مدينة واحدة في هذه الباقة', add_area:'+ أضف مدينة أخرى', e_areas:'يرجى إضافة مدينة واحدة على الأقل.', city_ph:'المدينة، مثل دبي', remove:'حذف',
+    f_remote:'اعرض أيضاً وظائف العمل عن بُعد', f_salary:'أقل راتب سنوي', f_currency:'العملة',
+    l_finish:'التأكيد', no_charge:'لا يوجد دفع اليوم. نحن في مرحلة الإطلاق المبكر، وسنؤكد باقتك بالبريد قبل أي خصم.',
+    consent:'أوافق على أن تحفظ Gear Radar بياناتي وتعالجها (بما فيها سيرتي الذاتية إن رفعتها) لتقديم هذه الخدمة، كما هو موضح في <a href="privacy.html" target="_blank">إشعار الخصوصية</a>.',
+    e_consent:'يرجى الموافقة للمتابعة.', submit:'أرسل طلبي',
+    s_check:'يرجى مراجعة الحقول المحددة.', s_upload:'جارٍ رفع سيرتك الذاتية…', s_sending:'جارٍ الإرسال…', s_err:'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب: ‎+44 7442 309417.', s_uperr:'تعذّر رفع سيرتك الذاتية. حاول مرة أخرى أو جرّب ملفاً أصغر.',
+    d_title:'وصلنا طلبك', d_ref:'رقم طلبك', d_1:'أرسلنا لك بريد تأكيد. راجع مجلد الرسائل غير المرغوبة إن لم تجده.', d_2:'نراجع بياناتك ونجهّز حسابك خلال يوم عمل واحد.',
+    d_3tg:'يصلك رابط تفعيل، وبضغطة واحدة يفتح تيليجرام ويربط حسابك.', d_3wa:'تصلك رسالة واتساب من رقمنا التجاري لتفعيل حسابك.', d_dup:'لدينا طلب سابق منك لهذه الخدمة، لذلك لم ننشئ طلباً جديداً. رقم طلبك بالأسفل.',
+    d_home:'العودة إلى Gear Radar', privacy:'الخصوصية'
+  };
+  var COUNTRY_NAMES = {
+    en:{gb:'UK',us:'USA',ca:'Canada',ae:'UAE',sa:'Saudi Arabia',qa:'Qatar',kw:'Kuwait',bh:'Bahrain',om:'Oman'},
+    ar:{gb:'بريطانيا',us:'أمريكا',ca:'كندا',ae:'الإمارات',sa:'السعودية',qa:'قطر',kw:'الكويت',bh:'البحرين',om:'عُمان'}
+  };
+  var COUNTRY_TO_CODE = {'United Kingdom':'gb','United States':'us','Canada':'ca','United Arab Emirates':'ae','Saudi Arabia':'sa','Qatar':'qa','Kuwait':'kw','Bahrain':'bh','Oman':'om'};
+  var CURRENCY_BY_CODE = {gb:'GBP',us:'USD',ca:'CAD',ae:'AED',sa:'SAR',qa:'QAR',kw:'KWD',bh:'BHD',om:'OMR'};
+
+  var $ = function(id){ return document.getElementById(id); };
+  var params = new URLSearchParams(location.search);
+  var lang = 'en', billing = params.get('billing') === 'annual' ? 'annual' : 'monthly';
+  var planKey = params.get('plan');
+  if (!PLANS.some(function(p){ return p.key === planKey; })) planKey = 'premium';
+  var cvFile = null;
+
+  function t(k){ var d = lang === 'ar' ? AR : EN; return d[k] != null ? d[k] : (EN[k] || ''); }
+  function plan(){ return PLANS.filter(function(p){ return p.key === planKey; })[0]; }
+  function money(n){ return '$' + n; }
+
+  // ---------- Rendering ----------
+  function renderPlans(){
+    var box = $('plans'); box.innerHTML = '';
+    PLANS.forEach(function(p){
+      var wrap = document.createElement('div'); wrap.className = 'plan';
+      var price = billing === 'annual' ? money(p.y) + '<span>' + t('per_y') + '</span>' : money(p.m) + '<span>' + t('per_m') + '</span>';
+      wrap.innerHTML = '<input type="radio" name="plan" id="p_' + p.key + '" value="' + p.key + '"' + (p.key === planKey ? ' checked' : '') + '>' +
+        '<label for="p_' + p.key + '"><span class="cat">' + t(p.cat) + '</span><span class="nm">' + p.name + '</span><span class="pr"><b>' + price + '</b></span></label>' +
+        (p.best ? '<span class="best">' + t('best') + '</span>' : '');
+      box.appendChild(wrap);
+    });
+    box.querySelectorAll('input').forEach(function(i){ i.addEventListener('change', function(){ planKey = i.value; update(); }); });
+  }
+  function renderSummary(){
+    var p = plan();
+    var line = billing === 'annual'
+      ? '<b>' + p.name + '</b> · ' + money(p.y) + t('per_y') + ' <span class="hint">(' + t('billed_y') + ')</span>'
+      : '<b>' + p.name + '</b> · ' + money(p.m) + t('per_m');
+    $('summary').innerHTML = line + '<ul>' + p.feats.map(function(f){ return '<li>' + t(f) + '</li>'; }).join('') + '</ul>';
+  }
+  function areaRow(label, code){
+    var row = document.createElement('div'); row.className = 'area';
+    var names = COUNTRY_NAMES[lang];
+    row.innerHTML = '<input class="a-label" maxlength="80" placeholder="' + t('city_ph') + '" aria-label="' + t('city_ph') + '">' +
+      '<select class="a-country" aria-label="Country">' + AREA_COUNTRIES.map(function(c){ return '<option value="' + c + '">' + names[c] + '</option>'; }).join('') + '</select>' +
+      '<button type="button" class="rm" aria-label="' + t('remove') + '">×</button>';
+    row.querySelector('.a-label').value = label || '';
+    row.querySelector('.a-country').value = code || COUNTRY_TO_CODE[$('country').value] || 'gb';
+    row.querySelector('.rm').addEventListener('click', function(){ if ($('areas').children.length > 1) { row.remove(); syncAreas(); } else { row.querySelector('.a-label').value = ''; } });
+    return row;
+  }
+  function syncAreas(){
+    var p = plan(), box = $('areas');
+    var max = p.areas || 1;
+    while (box.children.length > max) box.lastElementChild.remove();
+    if (!box.children.length) box.appendChild(areaRow());
+    $('addArea').hidden = box.children.length >= max;
+    box.querySelectorAll('.rm').forEach(function(b){ b.style.visibility = box.children.length > 1 ? 'visible' : 'hidden'; });
+    $('areasHint').textContent = max === 1 ? t('h_areas1') : t('h_areas').replace('{n}', max);
+  }
+  function update(){
+    var p = plan();
+    $('assistantSet').classList.toggle('section-hide', !p.assistant);
+    $('jobsSet').classList.toggle('section-hide', !p.jobs);
+    // step numbers
+    var n = 4;
+    if (p.assistant) $('assistantSet').querySelector('.n').textContent = n++;
+    if (p.jobs) $('jobsSet').querySelector('.n').textContent = n++;
+    $('lastStep').textContent = n;
+    // channel rules
+    var wa = $('ch_wa');
+    wa.disabled = !p.wa;
+    if (!p.wa && wa.checked) { $('ch_tg').checked = true; }
+    $('waHint').textContent = !p.wa ? t('wa_hint_basic') : (p.jobs && !p.assistant ? t('wa_hint_digest') : t('wa_hint'));
+    $('waField').classList.toggle('section-hide', !wa.checked);
+    $('titlesHint').textContent = t('h_titles').replace('{n}', p.titles || 3);
+    syncAreas();
+    renderSummary();
+    try { history.replaceState(null, '', '?plan=' + planKey + '&billing=' + billing + (lang === 'ar' ? '&lang=ar' : '')); } catch(e) {}
+  }
+  function applyLang(l){
+    lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){ el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    $('langToggle').textContent = l === 'ar' ? 'English' : 'العربية';
+    $('language').value = l;
+    // keep typed areas while re-rendering country names
+    var saved = Array.prototype.map.call($('areas').children, function(r){ return [r.querySelector('.a-label').value, r.querySelector('.a-country').value]; });
+    $('areas').innerHTML = '';
+    saved.forEach(function(s){ $('areas').appendChild(areaRow(s[0], s[1])); });
+    if (cvFile) $('dropText').textContent = cvFile.name;
+    renderPlans(); update();
+    try { localStorage.setItem('gr_lang', l); } catch(e) {}
+  }
+
+  // ---------- Time zones ----------
+  (function(){
+    var zones = ['Europe/London','America/New_York','America/Chicago','America/Denver','America/Los_Angeles','America/Toronto','America/Vancouver','Asia/Dubai','Asia/Riyadh','Asia/Qatar','Asia/Kuwait','Asia/Bahrain','Asia/Muscat','Africa/Cairo','Africa/Khartoum'];
+    var mine = 'Europe/London';
+    try { mine = Intl.DateTimeFormat().resolvedOptions().timeZone || mine; } catch(e) {}
+    if (zones.indexOf(mine) < 0) zones.unshift(mine);
+    $('timezone').innerHTML = zones.map(function(z){ return '<option value="' + z + '">' + z.replace(/_/g, ' ') + '</option>'; }).join('');
+    $('timezone').value = mine;
+  })();
+
+  // ---------- Events ----------
+  document.querySelectorAll('[data-billing]').forEach(function(b){
+    b.setAttribute('aria-pressed', b.getAttribute('data-billing') === billing);
+    b.addEventListener('click', function(){
+      billing = b.getAttribute('data-billing');
+      document.querySelectorAll('[data-billing]').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+      renderPlans(); update();
+    });
+  });
+  document.querySelectorAll('input[name="channel"]').forEach(function(r){ r.addEventListener('change', update); });
+  $('addArea').addEventListener('click', function(){ $('areas').appendChild(areaRow()); syncAreas(); $('areas').lastElementChild.querySelector('input').focus(); });
+  $('country').addEventListener('change', function(){
+    var code = COUNTRY_TO_CODE[$('country').value];
+    if (code && CURRENCY_BY_CODE[code]) $('currency').value = CURRENCY_BY_CODE[code];
+    var first = $('areas').querySelector('.area');
+    if (code && first && !first.querySelector('.a-label').value) first.querySelector('.a-country').value = code;
+  });
+  $('langToggle').addEventListener('click', function(){ applyLang(lang === 'ar' ? 'en' : 'ar'); });
+  // Clear an error as soon as the person edits that field
+  $('signup').addEventListener('input', function(e){
+    var f = e.target.closest('.field'); if (f) f.classList.remove('invalid');
+    if (e.target.classList.contains('a-label')) { e.target.classList.remove('invalid'); $('areasErr').style.display = 'none'; }
+    if (e.target.id === 'consent') $('consentErr').style.display = 'none';
+  });
+
+  // CV drop zone
+  var drop = $('drop'), fileInput = $('cv');
+  function setFile(f){
+    drop.classList.remove('invalid-drop');
+    if (!f) return;
+    var isPdf = f.type === 'application/pdf' || /\.pdf$/i.test(f.name);
+    if (!isPdf || f.size > MAX_CV) { cvFile = null; drop.classList.remove('has'); drop.classList.add('invalid-drop'); $('dropText').textContent = t('drop'); $('cvErr').style.display = 'block'; return; }
+    cvFile = f; drop.classList.add('has'); $('dropText').textContent = f.name; $('cvErr').style.display = 'none';
+  }
+  drop.addEventListener('click', function(){ fileInput.click(); });
+  drop.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+  fileInput.addEventListener('change', function(){ setFile(fileInput.files[0]); });
+  ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function(e){ setFile(e.dataTransfer.files[0]); });
+
+  // ---------- Validation ----------
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function mark(el, bad){ var f = el.closest('.field') || el; f.classList.toggle('invalid', bad); return bad; }
+  function collect(){
+    var p = plan(), bad = [];
+    var name = $('full_name').value.trim(), email = $('email').value.trim().toLowerCase();
+    if (mark($('full_name'), name.length < 2)) bad.push($('full_name'));
+    if (mark($('email'), !EMAIL.test(email))) bad.push($('email'));
+    var channel = $('ch_wa').checked ? 'whatsapp' : 'telegram';
+    var waDigits = $('wa_number').value.replace(/\D/g, '').replace(/^00/, '');
+    if (channel === 'whatsapp' && mark($('wa_number'), !/^\d{8,15}$/.test(waDigits))) bad.push($('wa_number'));
+    if (channel !== 'whatsapp') mark($('wa_number'), false);
+    var payload = {};
+    if (p.assistant) {
+      var g = $('google_email').value.trim().toLowerCase() || email;
+      if (mark($('google_email'), !EMAIL.test(g) && $('google_email').value.trim() !== '')) bad.push($('google_email'));
+      payload.google_email = g; payload.timezone = $('timezone').value; payload.city = $('city').value.trim();
+    }
+    if (p.jobs) {
+      var titles = $('titles').value.split(/[,،\n]/).map(function(s){ return s.trim(); }).filter(Boolean).slice(0, p.titles);
+      if (mark($('titles'), !titles.length)) bad.push($('titles'));
+      var areas = Array.prototype.map.call($('areas').children, function(r){ return { label: r.querySelector('.a-label').value.trim(), country: r.querySelector('.a-country').value }; }).filter(function(a){ return a.label; });
+      $('areasErr').style.display = areas.length ? 'none' : 'block';
+      $('areas').querySelectorAll('.a-label').forEach(function(i, idx){ i.classList.toggle('invalid', !areas.length && idx === 0); });
+      if (!areas.length) bad.push($('areas').querySelector('.a-label'));
+      if (!cvFile) { drop.classList.add('invalid-drop'); $('cvErr').style.display = 'block'; bad.push(drop); }
+      payload.target_titles = titles; payload.areas = areas;
+      payload.allow_remote = $('remote').checked;
+      var sal = Number($('min_salary').value);
+      payload.min_salary = sal > 0 ? sal : null; payload.salary_currency = $('currency').value;
+    }
+    var consent = $('consent').checked;
+    $('consentErr').style.display = consent ? 'none' : 'block';
+    if (!consent) bad.push($('consent'));
+    return { bad: bad, body: {
+      service: p.service, plan: p.key, billing: billing,
+      full_name: name, email: email, country: $('country').value, language: $('language').value,
+      channel: channel, whatsapp_number: channel === 'whatsapp' ? waDigits : '',
+      payload: payload, website: $('website').value
+    } };
+  }
+
+  function uuid(){
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+  }
+  function uploadCv(){
+    var d = new Date(), day = d.getUTCFullYear() + ('0' + (d.getUTCMonth() + 1)).slice(-2) + ('0' + d.getUTCDate()).slice(-2);
+    var path = 'incoming/' + day + '/' + uuid() + '.pdf';
+    return fetch(SB_URL + '/storage/v1/object/signup-files/' + path, {
+      method: 'POST',
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/pdf', 'x-upsert': 'false' },
+      body: cvFile
+    }).then(function(r){ if (!r.ok) throw new Error('upload ' + r.status); return path; });
+  }
+
+  var status = $('status'), btn = $('submit');
+  function setStatus(k, cls){ status.textContent = k ? t(k) : ''; status.className = 'status ' + (cls || ''); }
+
+  // Map server-side validation errors back to fields
+  var SERVER_FIELDS = { full_name:'full_name', email:'email', whatsapp_number:'wa_number', channel_not_in_plan:'wa_number', google_email:'google_email', target_titles:'titles' };
+
+  $('signup').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var c = collect();
+    if (c.bad.length) { setStatus('s_check', 'err'); var first = c.bad[0]; (first.focus ? first : first.querySelector('input')).focus(); return; }
+    btn.disabled = true;
+    var step = plan().jobs ? (setStatus('s_upload'), uploadCv().catch(function(e){ e.upload = true; throw e; })) : Promise.resolve(null);
+    step.then(function(path){
+      if (path) c.body.payload.cv_file = path;
+      setStatus('s_sending');
+      return fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(c.body) });
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, j: j }; });
+    }).then(function(res){
+      if (!res.ok || !res.j.ok) {
+        var errs = (res.j && res.j.errors) || [];
+        errs.forEach(function(e){ if (SERVER_FIELDS[e]) mark($(SERVER_FIELDS[e]), true); if (e === 'cv_file') drop.classList.add('invalid-drop'); if (e === 'areas') $('areasErr').style.display = 'block'; });
+        throw new Error('rejected');
+      }
+      showDone(res.j);
+    }).catch(function(e){
+      setStatus(e && e.upload ? 's_uperr' : (e && e.message === 'rejected' ? 's_check' : 's_err'), 'err');
+    }).then(function(){ btn.disabled = false; });
+  });
+
+  function showDone(j){
+    $('ref').textContent = j.ref || '—';
+    $('d3').textContent = t($('ch_wa').checked ? 'd_3wa' : 'd_3tg');
+    if (j.duplicate) $('done').querySelector('p').textContent = t('d_dup');
+    $('signup').classList.add('section-hide');
+    $('done').classList.remove('section-hide');
+    $('done').focus();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ---------- Init ----------
+  $('year').textContent = new Date().getFullYear();
+  var initial = params.get('lang');
+  if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch(e) { initial = 'en'; } }
+  $('areas').appendChild(areaRow());
+  applyLang(initial === 'ar' ? 'ar' : 'en');
+})();
+</script>
+</body>
+</html>
