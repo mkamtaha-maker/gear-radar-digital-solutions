@@ -171,6 +171,20 @@ section{padding:100px 0}
 .price-foot b{color:var(--text)}
 .price-note{margin-top:14px;font-size:.84rem;color:var(--muted);text-align:center}
 
+
+/* Business (one-off) pricing */
+.biz-head{margin:64px 0 26px;text-align:center}
+.biz-head h3{font-size:clamp(1.4rem,2.6vw,1.9rem);margin:10px 0 8px}
+.biz-head p{color:var(--muted);max-width:640px;margin-inline:auto}
+.biz-group{margin-top:22px;border:1px solid var(--line);border-radius:22px;background:var(--paper);padding:22px}
+.biz-group > h4{font-family:var(--font-head);font-size:1.1rem;margin:0 0 4px}
+.biz-group > p{color:var(--muted);font-size:.92rem;margin-bottom:14px}
+.biz-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pcard.oneoff.star{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.pcard .once{font-size:.82rem;color:var(--muted)}
+.pcard .addon{font-size:.82rem;font-weight:600;color:#8a6412}
+@media (max-width:980px){.biz-cards{grid-template-columns:1fr}}
+
 /* Steps */
 .steps-wrap{background:var(--paper)}
 .steps-wrap .step{background:var(--white)}
@@ -376,7 +390,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s2_b4">Every site is checked by us before it goes live, and easy to update later</span></li>
         </ul>
         <p class="for" data-i18n-html="s2_for"><b>Ideal for:</b> shops, salons, trades, clinics and restaurants.</p>
-        <a href="#contact" class="btn btn-dark" data-service="Business Website" data-i18n="ask">Ask about this</a>
+        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
       </article>
 
       <!-- 3. QR Catalogue -->
@@ -394,7 +408,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s3_b4">Change prices any time — no reprinting</span></li>
         </ul>
         <p class="for" data-i18n-html="s3_for"><b>Ideal for:</b> cafés, restaurants, takeaways and retail.</p>
-        <a href="#contact" class="btn btn-dark" data-service="Smart QR Catalogue" data-i18n="ask">Ask about this</a>
+        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
       </article>
 
       <!-- 4. Job Hunter -->
@@ -495,7 +509,67 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       <p data-i18n-html="b2b">For universities, charities and employers: <b>Job Hunter for groups from $8 per person a month</b> (20 people minimum), with a weekly progress report.</p>
       <a href="#contact" class="btn btn-dark" data-service="AI Job Hunter" data-i18n="b2b_cta">Talk to us</a>
     </div>
-    <p class="price-note" data-i18n="pr_note">Prices in US dollars. Websites and QR catalogues are one-off projects, quoted after a free consultation.</p>
+
+    <div class="biz-head reveal">
+      <span class="eyebrow" data-i18n="biz_eyebrow">For your business</span>
+      <h3 data-i18n="biz_title">Websites and QR menus — pay once</h3>
+      <p data-i18n="biz_lead">Send us your details online, we build it and check it before it goes live. Hosting on our link is included.</p>
+    </div>
+    <div class="biz-group reveal">
+      <h4 data-i18n="s2_title">Websites for Businesses</h4>
+      <p data-i18n="biz_web_sub">A mobile-friendly page that turns visitors into calls and WhatsApp messages.</p>
+      <div class="biz-cards">
+          <div class="pcard oneoff">
+            <h4>Website Starter</h4>
+            <div class="amount"><b>$149</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b1">One-page site, one language</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b2">Services & prices, opening hours</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b3">Call button, hosting included</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=web_basic" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff star">
+            <h4>Website Pro</h4>
+            <div class="amount"><b>$249</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p1">Logo + gallery of up to 8 photos</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p2">Google Map & WhatsApp button</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p3">Arabic + English, 4 colour themes</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=web_pro" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff">
+            <h4>Website Premium</h4>
+            <div class="amount"><b>$249</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon" data-i18n="web_addon">+ $19/month care plan</div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m1">Everything in Website Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m2">Up to 4 content updates a month, done by us</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m3">Priority support</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=web_premium" data-i18n="start">Get started</a>
+          </div>
+      </div>
+    </div>
+    <div class="biz-group reveal">
+      <h4 data-i18n="s3_title">Smart QR Catalogue</h4>
+      <p data-i18n="biz_qr_sub">Your menu, services or products behind one QR code — update prices without reprinting.</p>
+      <div class="biz-cards">
+          <div class="pcard oneoff">
+            <h4>QR Starter</h4>
+            <div class="amount"><b>$79</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b1">Menu or catalogue page, one language</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b2">QR code + printable table card</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b3">Change prices any time with your edit code</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=qr_basic" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff star">
+            <h4>QR Pro</h4>
+            <div class="amount"><b>$129</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p1">Logo and item photos</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p2">Order or book on WhatsApp</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p3">Arabic + English, 6 themes, live search</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=qr_pro" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff">
+            <h4>QR Premium</h4>
+            <div class="amount"><b>$129</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon" data-i18n="qr_addon">+ $9/month care plan</div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m1">Everything in QR Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m2">We update your menu for you (up to 4 a month)</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m3">Priority support</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=qr_premium" data-i18n="start">Get started</a>
+          </div>
+      </div>
+    </div>
+    <p class="price-note" data-i18n="pr_note">Prices in US dollars. Early access: no payment is taken at signup — we confirm your plan by email before anything is charged.</p>
   </div>
 </section>
 
@@ -536,7 +610,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     </div>
     <div class="faq">
       <details class="reveal"><summary data-i18n="q1">Do I need any technical knowledge?</summary><p data-i18n="a1">No. We do the setup. If you can use WhatsApp or Telegram, you can use what we build.</p></details>
-      <details class="reveal"><summary data-i18n="q2">How much does it cost?</summary><p data-i18n-html="a2">The assistant and job hunter are monthly plans from $9 — see <a href="#pricing" style="text-decoration:underline">Pricing</a>. Websites and QR catalogues are one-off projects: after a free consultation we send a clear quote with no hidden costs.</p></details>
+      <details class="reveal"><summary data-i18n="q2">How much does it cost?</summary><p data-i18n-html="a2">The assistant and job hunter are monthly plans from $9. Websites start at $149 and QR menus at $79, paid once. See <a href="#pricing" style="text-decoration:underline">Pricing</a> for everything included.</p></details>
       <details class="reveal"><summary data-i18n="q3">Is my data safe?</summary><p data-i18n="a3">The assistant only accesses the accounts you choose to connect, and asks before taking any action on your behalf. You can disconnect at any time.</p></details>
       <details class="reveal"><summary data-i18n="q4">How long does setup take?</summary><p data-i18n="a4">Websites and QR catalogues are usually ready within a few days of receiving your details. We'll give you a timeline for other services when we quote.</p></details>
       <details class="reveal"><summary data-i18n="q5">Do you work with clients outside Manchester?</summary><p data-i18n="a5">Yes. Everything is set up remotely, so we can work with you wherever you are.</p></details>
@@ -664,8 +738,34 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     pf_prem1:'كل مزايا Butler Pro', pf_prem2:'كل مزايا Jobs Pro', pf_prem3:'اسأل مساعدك عن وظائفك', pf_prem4:'الوظائف الجديدة في ملخصك الصباحي',
     pf_ex1:'كل مزايا Premium', pf_ex2:'250 رسالة للمساعد يومياً', pf_ex3:'10 مسميات وظيفية في 3 مدن', pf_ex4:'100 سيرة مخصصة + 60 خطاب تقديم شهرياً',
     b2b:'للجامعات والجمعيات وجهات العمل: <b>صائد الوظائف للمجموعات من 8$ للشخص شهرياً</b> (20 شخصاً كحد أدنى)، مع تقرير أسبوعي بالتقدم.',
-    b2b_cta:'تواصل معنا', pr_note:'الأسعار بالدولار الأمريكي. المواقع والكتالوجات الذكية مشاريع لمرة واحدة، نحدد سعرها بعد استشارة مجانية.',
+    b2b_cta:'تواصل معنا', pr_note:'الأسعار بالدولار الأمريكي. في مرحلة الإطلاق المبكر لا يتم أي دفع عند التسجيل — نؤكد باقتك بالبريد قبل أي خصم.',
     per_mo_eq:'أي {x}$ شهرياً',
+    oneoff:'لمرة واحدة',
+    biz_eyebrow:'لنشاطك التجاري',
+    biz_title:'مواقع وقوائم QR — تدفع مرة واحدة',
+    biz_lead:'أرسل لنا بياناتك أونلاين، ونبنيها ونراجعها قبل النشر. الاستضافة على رابطنا مشمولة.',
+    biz_web_sub:'صفحة مناسبة للجوال تحوّل الزوار إلى مكالمات ورسائل واتساب.',
+    biz_qr_sub:'قائمتك أو خدماتك أو منتجاتك خلف رمز QR واحد — غيّر الأسعار بدون إعادة طباعة.',
+    wf_b1:'موقع من صفحة واحدة بلغة واحدة',
+    wf_b2:'الخدمات والأسعار وساعات العمل',
+    wf_b3:'زر اتصال، والاستضافة مشمولة',
+    wf_p1:'الشعار ومعرض حتى 8 صور',
+    wf_p2:'خريطة Google وزر واتساب',
+    wf_p3:'عربي + إنجليزي، 4 ألوان',
+    wf_m1:'كل مزايا Website Pro',
+    wf_m2:'حتى 4 تحديثات للمحتوى شهرياً ننفذها نحن',
+    wf_m3:'دعم بأولوية',
+    web_addon:'+ 19$ شهرياً لخطة الرعاية',
+    qf_b1:'صفحة قائمة أو كتالوج بلغة واحدة',
+    qf_b2:'رمز QR + كرت طاولة للطباعة',
+    qf_b3:'غيّر الأسعار أي وقت بكود التعديل',
+    qf_p1:'الشعار وصور الأصناف',
+    qf_p2:'الطلب أو الحجز عبر واتساب',
+    qf_p3:'عربي + إنجليزي، 6 ثيمات، بحث مباشر',
+    qf_m1:'كل مزايا QR Pro',
+    qf_m2:'نحدّث قائمتك بدلاً عنك (حتى 4 مرات شهرياً)',
+    qf_m3:'دعم بأولوية',
+    qr_addon:'+ 9$ شهرياً لخطة الرعاية',
     custom_title:'تحتاج أتمتة شيء آخر؟',
     custom_text:'المتابعات، الحجوزات، التقارير، تنبيهات العملاء… إذا كنت تكرر المهمة مرة بعد مرة، فغالباً نستطيع أتمتتها. أخبرنا عنها وسنقول لك بصراحة إن كانت تستحق.',
     custom_cta:'أخبرنا بفكرتك',
@@ -680,7 +780,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     w4_t:'قريبون ومتاحون', w4_p:'مقرّنا في مانشستر الكبرى. راسلنا على واتساب وتحدّث مع الشخص الذي بنى نظامك.',
     faq_eyebrow:'أسئلة', faq_title:'الأسئلة الشائعة',
     q1:'هل أحتاج أي خبرة تقنية؟', a1:'لا. نحن نتولى الإعداد. إذا كنت تستخدم واتساب أو تيليجرام، ستستخدم ما نبنيه بسهولة.',
-    q2:'كم التكلفة؟', a2:'المساعد وصائد الوظائف باقات شهرية تبدأ من 9$ — راجع <a href="#pricing" style="text-decoration:underline">الأسعار</a>. أما المواقع والكتالوجات الذكية فمشاريع لمرة واحدة: بعد استشارة مجانية نرسل لك عرض سعر واضحاً بدون تكاليف مخفية.',
+    q2:'كم التكلفة؟', a2:'المساعد وصائد الوظائف باقات شهرية تبدأ من 9$. المواقع تبدأ من 149$ وقوائم QR من 79$ تدفع مرة واحدة. راجع <a href="#pricing" style="text-decoration:underline">الأسعار</a> لكل التفاصيل.',
     q3:'هل بياناتي آمنة؟', a3:'المساعد يصل فقط إلى الحسابات التي تختار ربطها، ويستأذنك قبل أي إجراء نيابةً عنك. ويمكنك فصلها في أي وقت.',
     q4:'كم يستغرق التجهيز؟', a4:'المواقع والكتالوجات الذكية تكون جاهزة عادةً خلال أيام قليلة من استلام بياناتك. أما الخدمات الأخرى فنحدد مدتها مع عرض السعر.',
     q5:'هل تعملون مع عملاء خارج مانشستر؟', a5:'نعم. كل شيء يتم عن بُعد، لذلك نعمل معك أينما كنت.',
@@ -730,7 +830,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
   // Pricing: monthly / annual toggle and signup links
   var bill = 'monthly';
   function renderPrices(){
-    document.querySelectorAll('.pcard').forEach(function(c){
+    document.querySelectorAll('.pcard:not(.oneoff)').forEach(function(c){
       var m = +c.getAttribute('data-m'), y = +c.getAttribute('data-y'), key = c.getAttribute('data-plan');
       var annual = bill === 'annual';
       c.querySelector('.p-amt').textContent = '$' + (annual ? y : m);
