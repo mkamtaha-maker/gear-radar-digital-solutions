@@ -130,8 +130,50 @@ section{padding:100px 0}
 .custom h3{color:var(--white);font-size:1.3rem;margin-bottom:6px}
 .custom p{color:var(--on-ink-muted);max-width:640px}
 
+
+/* Pricing */
+.pricing-wrap{background:var(--white)}
+.bill-toggle{display:inline-flex;gap:4px;padding:4px;background:var(--paper);border:1px solid var(--line);border-radius:999px;margin-top:22px}
+.bill-toggle button{border:0;background:transparent;padding:9px 18px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--muted)}
+.bill-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.bill-toggle .save{color:#15803d}
+.bill-toggle button[aria-pressed="true"] .save{color:var(--gold-2)}
+.price-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.pgroup{border-radius:22px;padding:22px;background:var(--paper);border:1px solid var(--line);display:grid;gap:14px;align-content:start}
+.pgroup.feature{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.pgroup-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pgroup-head h3{font-size:1.05rem}
+.pgroup.feature .pgroup-head h3{color:var(--white)}
+.pgroup-head .tag{white-space:nowrap}
+.pgroup.feature .tag{background:var(--gold);color:var(--ink)}
+.pcard{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.pgroup.feature .pcard{background:var(--ink-2);border-color:rgba(255,255,255,.08)}
+.pgroup.feature .pcard.star{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.pcard h4{font-family:var(--font-head);font-size:1.1rem}
+.pgroup.feature .pcard h4{color:var(--white)}
+.pcard .amount{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.pcard .amount b{font-family:'Sora',sans-serif;font-size:2rem;line-height:1;letter-spacing:-.02em}
+.pgroup.feature .pcard .amount b{color:var(--gold-2)}
+.pcard .amount span{color:var(--muted);font-size:.88rem}
+.pgroup.feature .pcard .amount span{color:var(--on-ink-muted)}
+.pcard .per-note:empty{display:none}
+.pcard .per-note{font-size:.8rem;color:#15803d;font-weight:600;min-height:1.2em}
+.pgroup.feature .pcard .per-note{color:#86efac}
+.pcard ul{list-style:none;display:grid;gap:7px;font-size:.9rem}
+.pcard li{display:flex;gap:8px;align-items:flex-start}
+.pcard li svg{width:16px;height:16px;color:#B8871F;flex:none;margin-top:4px}
+.pgroup.feature .pcard li svg{color:var(--gold)}
+.pcard .btn{margin-top:auto;padding:11px 18px;font-size:.92rem;align-self:stretch}
+.pgroup.feature .btn-dark{background:var(--gold);color:var(--ink)}
+.pgroup.feature .btn-dark:hover{background:var(--gold-2)}
+.price-foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:26px;padding:22px 26px;border:1px dashed #d8c79c;border-radius:18px;background:var(--paper)}
+.price-foot p{color:var(--muted);font-size:.93rem;max-width:720px}
+.price-foot b{color:var(--text)}
+.price-note{margin-top:14px;font-size:.84rem;color:var(--muted);text-align:center}
+
 /* Steps */
-.steps-wrap{background:var(--white)}
+.steps-wrap{background:var(--paper)}
+.steps-wrap .step{background:var(--white)}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
 .step{padding:30px;border-radius:var(--radius);border:1px solid var(--line);background:var(--paper);position:relative}
 .step .num{font-family:'Sora',sans-serif;font-weight:700;font-size:.85rem;color:var(--ink);background:var(--gold);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-bottom:18px}
@@ -176,7 +218,7 @@ label span.opt{font-weight:400;color:var(--muted)}
 input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--text);transition:border-color .2s,background .2s}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);background:var(--white)}
 textarea{min-height:130px;resize:vertical}
-.hp{position:absolute;inset-inline-start:-10000px;width:1px;height:1px;overflow:hidden}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--muted)}
 .consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--ink)}
 .consent a{color:var(--text);text-decoration:underline}
@@ -204,6 +246,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
 @media (max-width:980px){
   .hero-grid{grid-template-columns:1fr;gap:48px}
   .services{grid-template-columns:1fr}
+  .price-groups{grid-template-columns:1fr;max-width:560px;margin-inline:auto}
   .steps{grid-template-columns:1fr}
   .why{grid-template-columns:repeat(2,1fr)}
   .contact-grid{grid-template-columns:1fr}
@@ -236,6 +279,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     </a>
     <nav class="nav-links" aria-label="Main">
       <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
       <a href="#how" data-i18n="nav_how">How it works</a>
       <a href="#why" data-i18n="nav_why">Why us</a>
       <a href="#faq" data-i18n="nav_faq">FAQ</a>
@@ -249,7 +293,8 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
   </div>
   <div class="mobile-menu container" id="mobileMenu">
     <a href="#services" data-i18n="nav_services">Services</a>
-    <a href="#how" data-i18n="nav_how">How it works</a>
+    <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+      <a href="#how" data-i18n="nav_how">How it works</a>
     <a href="#why" data-i18n="nav_why">Why us</a>
     <a href="#faq" data-i18n="nav_faq">FAQ</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
@@ -313,7 +358,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b4">Reminders, voice notes and PDF summaries</span></li>
         </ul>
         <p class="for" data-i18n-html="s1_for"><b>Ideal for:</b> busy owners, managers and consultants.</p>
-        <a href="#contact" class="btn btn-dark" data-service="AI Executive Assistant" data-i18n="ask">Ask about this</a>
+        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
       </article>
 
       <!-- 2. Websites -->
@@ -359,15 +404,15 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <span class="tag" data-i18n="tag_job">For job seekers</span>
         </div>
         <h3 data-i18n="s4_title">AI Job Hunter</h3>
-        <p class="sub" data-i18n="s4_sub">Stop scrolling job boards. Get the roles that actually fit your CV, sent to your phone.</p>
+        <p class="sub" data-i18n="s4_sub">Stop scrolling job boards. Get the roles that actually fit your CV, sent to your Telegram or WhatsApp.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b1">Checks new UK job listings three times a day</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b1">Searches thousands of job sites across the UK, USA, Canada and the Gulf</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b2">Filters by your location, job type and remote or hybrid options</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b3">AI scores each job against your CV and explains the gaps</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b4">Tailored CV points for each match — never invented experience</span></li>
         </ul>
-        <p class="for" data-i18n-html="s4_for"><b>Ideal for:</b> professionals looking for their next role in the UK.</p>
-        <a href="#contact" class="btn btn-dark" data-service="AI Job Hunter" data-i18n="ask">Ask about this</a>
+        <p class="for" data-i18n-html="s4_for"><b>Ideal for:</b> professionals looking for their next role at home or abroad.</p>
+        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
       </article>
     </div>
 
@@ -378,6 +423,79 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       </div>
       <a href="#contact" class="btn btn-gold" data-service="Custom Automation" data-i18n="custom_cta">Tell us your idea</a>
     </div>
+  </div>
+</section>
+
+
+<section id="pricing" class="pricing-wrap">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="pr_eyebrow">Pricing</span>
+      <h2 data-i18n="pr_title">Simple monthly plans</h2>
+      <p data-i18n="pr_lead">Pick the assistant, the job hunter, or both together for less. Cancel any time.</p>
+      <div class="bill-toggle" role="group" aria-label="Billing period">
+        <button type="button" data-bill="monthly" aria-pressed="true" data-i18n="monthly">Monthly</button>
+        <button type="button" data-bill="annual" aria-pressed="false"><span data-i18n="annual">Annual</span> · <span class="save" data-i18n="save">2 months free</span></button>
+      </div>
+    </div>
+    <div class="price-groups">
+      <div class="pgroup reveal">
+        <div class="pgroup-head"><h3 data-i18n="g_butler">AI Executive Assistant</h3></div>
+        <div class="pcard" data-plan="basic" data-m="9" data-y="90">
+          <h4>Butler Basic</h4>
+          <div class="amount"><b class="p-amt">$9</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic1">Assistant on Telegram</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic2">30 messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic3">Gmail, Google Calendar &amp; reminders</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=basic&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+        <div class="pcard" data-plan="pro" data-m="19" data-y="190">
+          <h4>Butler Pro</h4>
+          <div class="amount"><b class="p-amt">$19</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro1">Telegram or WhatsApp</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro2">150 messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro3">Voice notes &amp; PDF summaries</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro4">Daily morning brief</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=pro&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+      </div>
+      <div class="pgroup reveal">
+        <div class="pgroup-head"><h3 data-i18n="g_jobs">AI Job Hunter</h3></div>
+        <div class="pcard" data-plan="jobs_starter" data-m="12" data-y="120">
+          <h4>Jobs Starter</h4>
+          <div class="amount"><b class="p-amt">$12</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_js1">3 job titles in 1 city</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_js2">Daily digest of your best matches</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_js3">10 tailored CVs a month</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=jobs_starter&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+        <div class="pcard" data-plan="jobs_pro" data-m="29" data-y="290">
+          <h4>Jobs Pro</h4>
+          <div class="amount"><b class="p-amt">$29</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_jp1">6 job titles across 3 cities</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_jp2">Instant alerts or a daily digest</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_jp3">40 tailored CVs + 20 cover letters a month</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=jobs_pro&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+      </div>
+      <div class="pgroup feature reveal">
+        <div class="pgroup-head"><h3 data-i18n="g_both">Both together</h3><span class="tag" data-i18n="best">Best value</span></div>
+        <div class="pcard star" data-plan="premium" data-m="39" data-y="390">
+          <h4>Premium</h4>
+          <div class="amount"><b class="p-amt">$39</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_prem1">Everything in Butler Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_prem2">Everything in Jobs Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_prem3">Ask your assistant about your jobs</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_prem4">New jobs in your morning brief</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=premium&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+        <div class="pcard" data-plan="executive" data-m="59" data-y="590">
+          <h4>Executive</h4>
+          <div class="amount"><b class="p-amt">$59</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_ex1">Everything in Premium</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_ex2">250 assistant messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_ex3">10 job titles across 3 cities</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_ex4">100 tailored CVs + 60 cover letters a month</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=executive&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+      </div>
+    </div>
+    <div class="price-foot reveal">
+      <p data-i18n-html="b2b">For universities, charities and employers: <b>Job Hunter for groups from $8 per person a month</b> (20 people minimum), with a weekly progress report.</p>
+      <a href="#contact" class="btn btn-dark" data-service="AI Job Hunter" data-i18n="b2b_cta">Talk to us</a>
+    </div>
+    <p class="price-note" data-i18n="pr_note">Prices in US dollars. Websites and QR catalogues are one-off projects, quoted after a free consultation.</p>
   </div>
 </section>
 
@@ -418,7 +536,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     </div>
     <div class="faq">
       <details class="reveal"><summary data-i18n="q1">Do I need any technical knowledge?</summary><p data-i18n="a1">No. We do the setup. If you can use WhatsApp or Telegram, you can use what we build.</p></details>
-      <details class="reveal"><summary data-i18n="q2">How much does it cost?</summary><p data-i18n="a2">It depends on what you need. After a free consultation we'll send you a clear quote with no hidden costs.</p></details>
+      <details class="reveal"><summary data-i18n="q2">How much does it cost?</summary><p data-i18n-html="a2">The assistant and job hunter are monthly plans from $9 — see <a href="#pricing" style="text-decoration:underline">Pricing</a>. Websites and QR catalogues are one-off projects: after a free consultation we send a clear quote with no hidden costs.</p></details>
       <details class="reveal"><summary data-i18n="q3">Is my data safe?</summary><p data-i18n="a3">The assistant only accesses the accounts you choose to connect, and asks before taking any action on your behalf. You can disconnect at any time.</p></details>
       <details class="reveal"><summary data-i18n="q4">How long does setup take?</summary><p data-i18n="a4">Websites and QR catalogues are usually ready within a few days of receiving your details. We'll give you a timeline for other services when we quote.</p></details>
       <details class="reveal"><summary data-i18n="q5">Do you work with clients outside Manchester?</summary><p data-i18n="a5">Yes. Everything is set up remotely, so we can work with you wherever you are.</p></details>
@@ -474,6 +592,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       <a href="#top" class="brand" style="color:#fff"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:32px;height:32px"><rect width="64" height="64" rx="14" fill="#16223a"/><circle cx="32" cy="32" r="18" fill="none" stroke="#E8B64C" stroke-width="3.5"/><path d="M32 32 L46 18" stroke="#F5CD6E" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="32" r="3.5" fill="#F5CD6E"/></svg><span>Gear Radar</span></a>
       <nav class="foot-links" aria-label="Footer">
         <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
         <a href="#faq" data-i18n="nav_faq">FAQ</a>
         <a href="#contact" data-i18n="nav_contact">Contact</a>
         <a href="privacy.html" data-i18n="privacy">Privacy</a>
@@ -527,13 +646,26 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     s3_b4:'غيّر الأسعار في أي وقت — بدون إعادة طباعة',
     s3_for:'<b>مناسب لـ:</b> المقاهي والمطاعم ومحلات الوجبات والتجزئة.',
     s4_title:'صائد الوظائف الذكي',
-    s4_sub:'توقّف عن تصفح مواقع الوظائف. تصلك الوظائف المناسبة لسيرتك الذاتية على جوالك.',
-    s4_b1:'يفحص إعلانات الوظائف الجديدة في بريطانيا ثلاث مرات يومياً',
+    s4_sub:'توقّف عن تصفح مواقع الوظائف. تصلك الوظائف المناسبة لسيرتك الذاتية على تيليجرام أو واتساب.',
+    s4_b1:'يبحث في آلاف مواقع التوظيف في بريطانيا وأمريكا وكندا والخليج',
     s4_b2:'يفلتر حسب موقعك ونوع الوظيفة وخيارات العمل عن بُعد أو الهجين',
     s4_b3:'يقيّم الذكاء الاصطناعي كل وظيفة مقابل سيرتك ويشرح النواقص',
     s4_b4:'نقاط مخصصة لسيرتك لكل وظيفة — بدون اختلاق أي خبرة',
-    s4_for:'<b>مناسب لـ:</b> المهنيين الباحثين عن وظيفتهم القادمة في بريطانيا.',
+    s4_for:'<b>مناسب لـ:</b> المهنيين الباحثين عن وظيفتهم القادمة داخل بلدهم أو خارجه.',
     ask:'اسأل عن هذه الخدمة',
+    nav_pricing:'الأسعار', see_plans:'شاهد الباقات', start:'ابدأ الآن',
+    pr_eyebrow:'الأسعار', pr_title:'باقات شهرية بسيطة', pr_lead:'اختر المساعد، أو صائد الوظائف، أو الاثنين معاً بسعر أقل. يمكنك الإلغاء في أي وقت.',
+    monthly:'شهري', annual:'سنوي', save:'شهران مجاناً', per_m:'/شهرياً', per_y:'/سنوياً',
+    g_butler:'المساعد التنفيذي الذكي', g_jobs:'صائد الوظائف الذكي', g_both:'الاثنان معاً', best:'الأفضل قيمة',
+    pf_basic1:'المساعد على تيليجرام', pf_basic2:'30 رسالة يومياً', pf_basic3:'Gmail وتقويم Google والتذكيرات',
+    pf_pro1:'تيليجرام أو واتساب', pf_pro2:'150 رسالة يومياً', pf_pro3:'الرسائل الصوتية وتلخيص ملفات PDF', pf_pro4:'ملخص صباحي يومي',
+    pf_js1:'3 مسميات وظيفية في مدينة واحدة', pf_js2:'ملخص يومي بأفضل الوظائف المناسبة', pf_js3:'10 سير ذاتية مخصصة شهرياً',
+    pf_jp1:'6 مسميات وظيفية في 3 مدن', pf_jp2:'تنبيهات فورية أو ملخص يومي', pf_jp3:'40 سيرة مخصصة + 20 خطاب تقديم شهرياً',
+    pf_prem1:'كل مزايا Butler Pro', pf_prem2:'كل مزايا Jobs Pro', pf_prem3:'اسأل مساعدك عن وظائفك', pf_prem4:'الوظائف الجديدة في ملخصك الصباحي',
+    pf_ex1:'كل مزايا Premium', pf_ex2:'250 رسالة للمساعد يومياً', pf_ex3:'10 مسميات وظيفية في 3 مدن', pf_ex4:'100 سيرة مخصصة + 60 خطاب تقديم شهرياً',
+    b2b:'للجامعات والجمعيات وجهات العمل: <b>صائد الوظائف للمجموعات من 8$ للشخص شهرياً</b> (20 شخصاً كحد أدنى)، مع تقرير أسبوعي بالتقدم.',
+    b2b_cta:'تواصل معنا', pr_note:'الأسعار بالدولار الأمريكي. المواقع والكتالوجات الذكية مشاريع لمرة واحدة، نحدد سعرها بعد استشارة مجانية.',
+    per_mo_eq:'أي {x}$ شهرياً',
     custom_title:'تحتاج أتمتة شيء آخر؟',
     custom_text:'المتابعات، الحجوزات، التقارير، تنبيهات العملاء… إذا كنت تكرر المهمة مرة بعد مرة، فغالباً نستطيع أتمتتها. أخبرنا عنها وسنقول لك بصراحة إن كانت تستحق.',
     custom_cta:'أخبرنا بفكرتك',
@@ -548,7 +680,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     w4_t:'قريبون ومتاحون', w4_p:'مقرّنا في مانشستر الكبرى. راسلنا على واتساب وتحدّث مع الشخص الذي بنى نظامك.',
     faq_eyebrow:'أسئلة', faq_title:'الأسئلة الشائعة',
     q1:'هل أحتاج أي خبرة تقنية؟', a1:'لا. نحن نتولى الإعداد. إذا كنت تستخدم واتساب أو تيليجرام، ستستخدم ما نبنيه بسهولة.',
-    q2:'كم التكلفة؟', a2:'حسب احتياجك. بعد الاستشارة المجانية نرسل لك عرض سعر واضحاً بدون تكاليف مخفية.',
+    q2:'كم التكلفة؟', a2:'المساعد وصائد الوظائف باقات شهرية تبدأ من 9$ — راجع <a href="#pricing" style="text-decoration:underline">الأسعار</a>. أما المواقع والكتالوجات الذكية فمشاريع لمرة واحدة: بعد استشارة مجانية نرسل لك عرض سعر واضحاً بدون تكاليف مخفية.',
     q3:'هل بياناتي آمنة؟', a3:'المساعد يصل فقط إلى الحسابات التي تختار ربطها، ويستأذنك قبل أي إجراء نيابةً عنك. ويمكنك فصلها في أي وقت.',
     q4:'كم يستغرق التجهيز؟', a4:'المواقع والكتالوجات الذكية تكون جاهزة عادةً خلال أيام قليلة من استلام بياناتك. أما الخدمات الأخرى فنحدد مدتها مع عرض السعر.',
     q5:'هل تعملون مع عملاء خارج مانشستر؟', a5:'نعم. كل شيء يتم عن بُعد، لذلك نعمل معك أينما كنت.',
@@ -561,7 +693,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     f_send:'أرسل الرسالة', privacy:'الخصوصية', rights:'جميع الحقوق محفوظة.',
     msg_sending:'جارٍ الإرسال…', msg_ok:'شكراً! وصلتنا رسالتك، وأرسلنا لك بريد تأكيد.', msg_err:'تعذّر الإرسال. حاول مرة أخرى أو راسلنا على واتساب.', msg_invalid:'يرجى إدخال الاسم وبريد إلكتروني صحيح ورسالة، والموافقة على إشعار الخصوصية.'
   };
-  var EN_EXTRA = { msg_sending:'Sending…', msg_ok:'Thank you! We\'ve got your message and sent you a confirmation email.', msg_err:'Something went wrong. Please try again or message us on WhatsApp.', msg_invalid:'Please add your name, a valid email and a message, and tick the privacy box.' };
+  var EN_EXTRA = { per_y:'/year', per_mo_eq:'= ${x}/month', msg_sending:'Sending…', msg_ok:'Thank you! We\'ve got your message and sent you a confirmation email.', msg_err:'Something went wrong. Please try again or message us on WhatsApp.', msg_invalid:'Please add your name, a valid email and a message, and tick the privacy box.' };
 
   var nodes = document.querySelectorAll('[data-i18n],[data-i18n-html]');
   var EN = {};
@@ -593,6 +725,30 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
   } catch(e) {}
   if (initial === 'ar') apply('ar');
   document.getElementById('langToggle').addEventListener('click', function(){ apply(lang === 'ar' ? 'en' : 'ar'); });
+
+
+  // Pricing: monthly / annual toggle and signup links
+  var bill = 'monthly';
+  function renderPrices(){
+    document.querySelectorAll('.pcard').forEach(function(c){
+      var m = +c.getAttribute('data-m'), y = +c.getAttribute('data-y'), key = c.getAttribute('data-plan');
+      var annual = bill === 'annual';
+      c.querySelector('.p-amt').textContent = '$' + (annual ? y : m);
+      var per = c.querySelector('.p-per'); per.setAttribute('data-i18n', annual ? 'per_y' : 'per_m'); per.textContent = t(annual ? 'per_y' : 'per_m');
+      var eq = (y / 12).toFixed(2).replace(/\.00$/, '');
+      c.querySelector('.per-note').textContent = annual ? t('per_mo_eq').replace('{x}', eq) : '';
+      c.querySelector('.p-go').href = 'signup.html?plan=' + key + '&billing=' + bill + (lang === 'ar' ? '&lang=ar' : '');
+    });
+  }
+  document.querySelectorAll('[data-bill]').forEach(function(b){
+    b.addEventListener('click', function(){
+      bill = b.getAttribute('data-bill');
+      document.querySelectorAll('[data-bill]').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+      renderPrices();
+    });
+  });
+  document.getElementById('langToggle').addEventListener('click', renderPrices);
+  renderPrices();
 
   // Header style on scroll
   var header = document.querySelector('header');
