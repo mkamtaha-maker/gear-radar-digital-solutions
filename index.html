@@ -179,6 +179,9 @@ section{padding:100px 0}
 .biz-group{margin-top:22px;border:1px solid var(--line);border-radius:22px;background:var(--paper);padding:22px}
 .biz-group > h4{font-family:var(--font-head);font-size:1.1rem;margin:0 0 4px}
 .biz-group > p{color:var(--muted);font-size:.92rem;margin-bottom:14px}
+.demo-link{margin:-6px 0 16px;font-size:.92rem}
+.demo-link a{color:#8a6412;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.demo-link a:hover{color:var(--ink)}
 .biz-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .pcard.oneoff.star{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
 .pcard .once{font-size:.82rem;color:var(--muted)}
@@ -518,6 +521,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     <div class="biz-group reveal">
       <h4 data-i18n="s2_title">Websites for Businesses</h4>
       <p data-i18n="biz_web_sub">A mobile-friendly page that turns visitors into calls and WhatsApp messages.</p>
+      <div class="demo-link"><a href="https://mkamtaha-maker.github.io/cedar-barbers-demo-9kyrxe/" target="_blank" rel="noopener" data-i18n="demo_web">See a sample website (fictional barber shop) →</a></div>
       <div class="biz-cards">
           <div class="pcard oneoff">
             <h4>Website Starter</h4>
@@ -545,6 +549,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     <div class="biz-group reveal">
       <h4 data-i18n="s3_title">Smart QR Catalogue</h4>
       <p data-i18n="biz_qr_sub">Your menu, services or products behind one QR code — update prices without reprinting.</p>
+      <div class="demo-link"><a href="https://menu.gearradar.co.uk/demo-cafe/" target="_blank" rel="noopener" data-i18n="demo_qr">Try a sample QR menu (fictional café) →</a></div>
       <div class="biz-cards">
           <div class="pcard oneoff">
             <h4>QR Starter</h4>
@@ -746,6 +751,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     biz_lead:'أرسل لنا بياناتك أونلاين، ونبنيها ونراجعها قبل النشر. الاستضافة على رابطنا مشمولة.',
     biz_web_sub:'صفحة مناسبة للجوال تحوّل الزوار إلى مكالمات ورسائل واتساب.',
     biz_qr_sub:'قائمتك أو خدماتك أو منتجاتك خلف رمز QR واحد — غيّر الأسعار بدون إعادة طباعة.',
+    demo_web:'شاهد موقعاً تجريبياً (لصالون حلاقة وهمي) ←', demo_qr:'جرّب قائمة QR تجريبية (لمقهى وهمي) ←',
     wf_b1:'موقع من صفحة واحدة بلغة واحدة',
     wf_b2:'الخدمات والأسعار وساعات العمل',
     wf_b3:'زر اتصال، والاستضافة مشمولة',
@@ -895,5 +901,6 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
 </script>
+<script src="chat.js" defer></script>
 </body>
 </html>
