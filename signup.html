@@ -133,6 +133,19 @@ html[lang="ar"] .plan .cat{letter-spacing:0;font-size:.78rem}
 .status{font-size:.92rem;font-weight:500}
 .status.err{color:var(--err)}
 .section-hide{display:none !important}
+.groups{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.groups button{border:1.5px solid var(--line);background:var(--paper);padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--text)}
+.groups button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--white)}
+.plans.three{grid-template-columns:repeat(3,1fr)}
+.plan .add{display:block;font-size:.78rem;color:#8a6412;font-weight:600}
+.pro-note{grid-column:1/-1;font-size:.85rem;color:#8a6412;background:#FFF9EC;border:1px dashed #d8c79c;border-radius:12px;padding:10px 14px}
+.files{display:grid;gap:6px}
+.files input[type=file]{padding:10px;background:var(--white)}
+.prefix{display:flex;align-items:stretch;direction:ltr}
+.prefix span{display:flex;align-items:center;padding:0 10px;border:1px solid var(--line);border-inline-end:0;border-radius:12px 0 0 12px;background:#efece4;color:var(--muted);font-size:.85rem;white-space:nowrap}
+.prefix input{border-radius:0 12px 12px 0}
+textarea{min-height:110px;resize:vertical}
+@media (max-width:620px){.plans.three{grid-template-columns:1fr}}
 
 /* Done */
 .done{text-align:center;padding:48px 34px}
@@ -188,6 +201,11 @@ footer a:hover{color:var(--gold)}
   <!-- 1. Plan -->
   <fieldset>
     <legend><span class="n">1</span><span data-i18n="l_plan">Choose your plan</span></legend>
+    <div class="groups" role="group" aria-label="Service">
+      <button type="button" data-group="subs" data-i18n="g_subs">Assistant &amp; Job Hunter</button>
+      <button type="button" data-group="web" data-i18n="g_web">Business website</button>
+      <button type="button" data-group="qr" data-i18n="g_qr">QR menu / catalogue</button>
+    </div>
     <div class="billing" role="group" aria-label="Billing">
       <button type="button" data-billing="monthly" aria-pressed="true" data-i18n="monthly">Monthly</button>
       <button type="button" data-billing="annual" aria-pressed="false"><span data-i18n="annual">Annual</span> · <span class="save" data-i18n="save">2 months free</span></button>
@@ -221,7 +239,7 @@ footer a:hover{color:var(--gold)}
   </fieldset>
 
   <!-- 3. Channel -->
-  <fieldset>
+  <fieldset id="channelSet">
     <legend><span class="n">3</span><span data-i18n="l_channel">Where should we message you?</span></legend>
     <div class="choice" id="channelBox">
       <div><input type="radio" name="channel" id="ch_tg" value="telegram" checked><label for="ch_tg"><svg viewBox="0 0 24 24" fill="#229ED9"><path d="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6.2 13.2l-4.9-1.5c-1-.3-1.1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3z"/></svg><span>Telegram<small data-i18n="tg_hint">We'll send you a one-tap link to connect</small></span></label></div>
@@ -258,6 +276,47 @@ footer a:hover{color:var(--gold)}
     <div class="field"><label for="currency" data-i18n="f_currency">Currency</label>
       <select id="currency"><option>GBP</option><option>USD</option><option>CAD</option><option>AED</option><option>SAR</option><option>QAR</option><option>KWD</option><option>BHD</option><option>OMR</option></select>
     </div>
+  </fieldset>
+
+
+  <!-- Website -->
+  <fieldset id="webSet">
+    <legend><span class="n">4</span><span data-i18n="l_web">Your website</span></legend>
+    <div class="field"><label for="w_name" data-i18n="f_biz">Business name</label><input id="w_name" maxlength="120"><span class="err-text" data-i18n="e_biz">Please enter your business name.</span></div>
+    <div class="field"><label for="w_activity"><span data-i18n="f_activity">What you do</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="w_activity" maxlength="120" placeholder="Barber shop, dental clinic, bakery…"></div>
+    <div class="field full"><label for="w_desc"><span data-i18n="f_desc">Short description</span> <span class="opt" data-i18n="optional">(optional)</span></label><textarea id="w_desc" maxlength="2000"></textarea></div>
+    <div class="field full"><label for="w_services" data-i18n="f_services">Services and prices (one per line)</label><textarea id="w_services" maxlength="4000" placeholder="Haircut - £15&#10;Beard trim - £8"></textarea><span class="err-text" data-i18n="e_services">Please add at least one service.</span></div>
+    <div class="field"><label for="w_hours"><span data-i18n="f_hours">Opening hours</span> <span class="opt" data-i18n="optional">(optional)</span></label><textarea id="w_hours" maxlength="300" placeholder="Mon–Fri 9:00–18:00"></textarea></div>
+    <div class="field"><label for="w_phone" data-i18n="f_phone">Phone (Call button)</label><input id="w_phone" type="tel" maxlength="30"></div>
+    <div class="field"><label for="w_lang" data-i18n="f_sitelang">Website language</label><select id="w_lang"><option value="en">English</option><option value="ar">العربية</option><option value="both" class="pro-opt" data-i18n="both">Arabic + English</option></select></div>
+    <div class="pro-note full" id="w_note" data-i18n="pro_note_web">Logo, photos, Google Map, WhatsApp button and colour themes come with Website Pro and Premium.</div>
+    <div class="field pro-only"><label for="w_wa" data-i18n="f_wabtn">WhatsApp number (for the WhatsApp button)</label><input id="w_wa" type="tel" maxlength="20" placeholder="447700900123"></div>
+    <div class="field pro-only"><label for="w_palette" data-i18n="f_palette">Colour theme</label><select id="w_palette"><option>Modern Blue</option><option>Emerald Green</option><option>Luxury Dark &amp; Gold</option><option>Vibrant Orange &amp; Purple</option></select></div>
+    <div class="field full pro-only"><label for="w_address" data-i18n="f_address">Address (for Google Maps)</label><input id="w_address" maxlength="200"></div>
+    <div class="field pro-only files"><label for="w_logo" data-i18n="f_logo">Logo (optional)</label><input id="w_logo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span></div>
+    <div class="field pro-only files"><label for="w_photos" data-i18n="f_photos8">Photos (up to 8)</label><input id="w_photos" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span><span class="err-text" data-i18n="e_files">Please use JPG, PNG or WebP images under 5 MB (too many files?).</span></div>
+  </fieldset>
+
+  <!-- QR -->
+  <fieldset id="qrSet">
+    <legend><span class="n">4</span><span data-i18n="l_qr">Your QR menu or catalogue</span></legend>
+    <div class="field"><label for="q_name" data-i18n="f_biz">Business name</label><input id="q_name" maxlength="120"><span class="err-text" data-i18n="e_biz">Please enter your business name.</span></div>
+    <div class="field"><label for="q_type" data-i18n="f_btype">Type</label><select id="q_type"><option value="menu" data-i18n="bt_menu">Restaurant / café menu</option><option value="services" data-i18n="bt_services">Services (salon, clinic, repair…)</option><option value="products" data-i18n="bt_products">Shop / products catalogue</option></select></div>
+    <div class="field full"><label for="q_slug" data-i18n="f_slug">Your page link</label><div class="prefix"><span>menu.gearradar.co.uk/</span><input id="q_slug" maxlength="40" placeholder="tasty-burger" autocapitalize="off" spellcheck="false"></div><span class="hint" data-i18n="h_slug">English letters, numbers and hyphens only. This link stays the same forever.</span><span class="err-text" data-i18n="e_slug">Use at least 3 characters: a–z, 0–9 and hyphens.</span></div>
+    <div class="field"><label for="q_phone" data-i18n="f_phone2">Phone number</label><input id="q_phone" type="tel" maxlength="30"><span class="err-text" data-i18n="e_phone">Please enter a phone number.</span></div>
+    <div class="field"><label for="q_currency" data-i18n="f_currency">Currency</label><select id="q_currency"><option>GBP</option><option>USD</option><option>EUR</option><option>AED</option><option>SAR</option><option>QAR</option><option>KWD</option><option>BHD</option><option>JOD</option><option>EGP</option><option>CAD</option><option>AUD</option></select></div>
+    <div class="field"><label for="q_lang" data-i18n="f_pagelang">Page language</label><select id="q_lang"><option value="en">English</option><option value="ar">العربية</option><option value="both" class="pro-opt" data-i18n="both">Arabic + English</option></select></div>
+    <label class="check" style="align-self:end"><input type="checkbox" id="q_stand" checked><span data-i18n="f_stand">Include a printable table card</span></label>
+    <div class="field full"><label for="q_items_en" data-i18n="f_items_en">Items in English (one per line)</label><textarea id="q_items_en" maxlength="8000" dir="ltr" placeholder="# Burgers&#10;Double Beef Burger - 8.50 - with special sauce&#10;Chicken Burger - 7.00"></textarea><span class="hint" data-i18n="h_items">Name - Price - Description. Start a line with # for a section title.</span><span class="err-text" data-i18n="e_items">Please add your items in English or Arabic.</span></div>
+    <div class="field full"><label for="q_items_ar" data-i18n="f_items_ar">Items in Arabic (one per line)</label><textarea id="q_items_ar" maxlength="8000" dir="rtl" placeholder="# برغر&#10;برغر لحم دبل - 8.50 - مع صلصة خاصة"></textarea></div>
+    <div class="field full"><label for="q_desc"><span data-i18n="f_desc">Short description</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="q_desc" maxlength="300"></div>
+    <div class="pro-note full" id="q_note" data-i18n="pro_note_qr">Logo, item photos, WhatsApp ordering, both languages, themes and live search come with QR Pro and Premium.</div>
+    <div class="field pro-only"><label for="q_wa" data-i18n="f_waorder">WhatsApp number (for orders / bookings)</label><input id="q_wa" type="tel" maxlength="20" placeholder="447700900123"></div>
+    <div class="field pro-only"><label for="q_theme" data-i18n="f_theme">Theme</label><select id="q_theme"><option>Warm Cream &amp; Amber</option><option>Dark Luxury &amp; Gold</option><option>Fresh Olive &amp; Sage</option><option>Bold Charcoal &amp; Crimson</option><option>Modern Minimalist Slate</option><option>Pastel Rose &amp; Vanilla</option></select></div>
+    <div class="field pro-only"><label for="q_layout" data-i18n="f_layout">Layout</label><select id="q_layout"><option>Modern Cards</option><option>Classic Line Menu</option><option>Compact Dot-Leader</option></select></div>
+    <div class="field pro-only files"><label for="q_logo" data-i18n="f_logo">Logo (optional)</label><input id="q_logo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span></div>
+    <div class="field full pro-only files"><label for="q_photos" data-i18n="f_itemphotos">Item photos (optional)</label><input id="q_photos" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="hint" data-i18n="h_itemphotos">Name each photo exactly like the item in English, e.g. Chicken Burger.jpg · max 5 MB each</span><span class="err-text" data-i18n="e_files">Please use JPG, PNG or WebP images under 5 MB (too many files?).</span></div>
+    <div class="field full"><label for="q_foot"><span data-i18n="f_footer">Note at the bottom of the page</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="q_foot" maxlength="300" dir="auto" placeholder="Please tell our staff about any allergies."></div>
   </fieldset>
 
   <!-- Finish -->
@@ -309,12 +368,43 @@ footer a:hover{color:var(--gold)}
     { key:'premium',      service:'bundle',     cat:'cat_bundle', name:'Premium',      m:39, y:390, assistant:true,  jobs:true,  wa:true,  titles:6,  areas:3, feats:['pf_prem1','pf_prem2','pf_prem3'], best:true },
     { key:'jobs_starter', service:'job_hunter', cat:'cat_jobs',   name:'Jobs Starter', m:12, y:120, assistant:false, jobs:true,  wa:true,  titles:3,  areas:1, feats:['pf_js1','pf_js2','pf_js3'] },
     { key:'jobs_pro',     service:'job_hunter', cat:'cat_jobs',   name:'Jobs Pro',     m:29, y:290, assistant:false, jobs:true,  wa:true,  titles:6,  areas:3, feats:['pf_jp1','pf_jp2','pf_jp3'] },
-    { key:'executive',    service:'bundle',     cat:'cat_bundle', name:'Executive',    m:59, y:590, assistant:true,  jobs:true,  wa:true,  titles:10, areas:3, feats:['pf_ex1','pf_ex2','pf_ex3'] }
+    { key:'executive',    service:'bundle',     cat:'cat_bundle', name:'Executive',    m:59, y:590, assistant:true,  jobs:true,  wa:true,  titles:10, areas:3, feats:['pf_ex1','pf_ex2','pf_ex3'] },
+    { key:'web_basic',   service:'website',  group:'web', cat:'cat_web', name:'Website Starter', once:149, feats:['wf_b1','wf_b2','wf_b3'] },
+    { key:'web_pro',     service:'website',  group:'web', cat:'cat_web', name:'Website Pro',     once:249, feats:['wf_p1','wf_p2','wf_p3'], best:true },
+    { key:'web_premium', service:'website',  group:'web', cat:'cat_web', name:'Website Premium', once:249, add:19, feats:['wf_m1','wf_m2','wf_m3'] },
+    { key:'qr_basic',    service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Starter',      once:79,  feats:['qf_b1','qf_b2','qf_b3'] },
+    { key:'qr_pro',      service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Pro',          once:129, feats:['qf_p1','qf_p2','qf_p3'], best:true },
+    { key:'qr_premium',  service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Premium',      once:129, add:9,  feats:['qf_m1','qf_m2','qf_m3'] }
   ];
+  PLANS.forEach(function(p){ if (!p.group) p.group = 'subs'; });
+  var DEFAULT_PLAN = { subs:'premium', web:'web_pro', qr:'qr_pro' };
+  var MAX_IMG = 5 * 1024 * 1024;
   var AREA_COUNTRIES = ['gb','us','ca','ae','sa','qa','kw','bh','om'];
 
   var EN = {
-    back:'Back to plans', title:'Set up your account', lead:'Takes about 3 minutes. We review every signup and email you your activation link within one working day.',
+    back:'Back to plans', title:'Set up your account',
+    g_subs:'Assistant & Job Hunter', g_web:'Business website', g_qr:'QR menu / catalogue',
+    cat_web:'Website', cat_qr:'QR menu', once:'one-off', addon:'+ ${n}/month',
+    wf_b1:'One-page site, one language', wf_b2:'Services & prices, opening hours', wf_b3:'Call button, hosting included',
+    wf_p1:'Logo + gallery of up to 8 photos', wf_p2:'Google Map & WhatsApp button', wf_p3:'Arabic + English, 4 colour themes',
+    wf_m1:'Everything in Website Pro', wf_m2:'Up to 4 content updates a month, done by us', wf_m3:'Priority support',
+    qf_b1:'Menu or catalogue page, one language', qf_b2:'QR code + printable table card', qf_b3:'Change prices any time with your edit code',
+    qf_p1:'Logo and item photos', qf_p2:'Order or book on WhatsApp', qf_p3:'Arabic + English, 6 themes, live search',
+    qf_m1:'Everything in QR Pro', qf_m2:'We update your menu for you (up to 4 a month)', qf_m3:'Priority support',
+    l_web:'Your website', l_qr:'Your QR menu or catalogue', f_biz:'Business name', e_biz:'Please enter your business name.',
+    f_activity:'What you do', f_desc:'Short description', f_services:'Services and prices (one per line)', e_services:'Please add at least one service.',
+    f_hours:'Opening hours', f_phone:'Phone (Call button)', f_sitelang:'Website language', both:'Arabic + English',
+    pro_note_web:'Logo, photos, Google Map, WhatsApp button and colour themes come with Website Pro and Premium.',
+    f_wabtn:'WhatsApp number (for the WhatsApp button)', f_palette:'Colour theme', f_address:'Address (for Google Maps)',
+    f_logo:'Logo (optional)', h_img:'JPG, PNG or WebP · max 5 MB', f_photos8:'Photos (up to 8)', e_files:'Please use JPG, PNG or WebP images under 5 MB (too many files?).',
+    f_btype:'Type', bt_menu:'Restaurant / café menu', bt_services:'Services (salon, clinic, repair…)', bt_products:'Shop / products catalogue',
+    f_slug:'Your page link', h_slug:'English letters, numbers and hyphens only. This link stays the same forever.', e_slug:'Use at least 3 characters: a–z, 0–9 and hyphens.',
+    f_phone2:'Phone number', e_phone:'Please enter a phone number.', f_pagelang:'Page language', f_stand:'Include a printable table card',
+    f_items_en:'Items in English (one per line)', h_items:'Name - Price - Description. Start a line with # for a section title.', e_items:'Please add your items in English or Arabic.',
+    f_items_ar:'Items in Arabic (one per line)', pro_note_qr:'Logo, item photos, WhatsApp ordering, both languages, themes and live search come with QR Pro and Premium.',
+    f_waorder:'WhatsApp number (for orders / bookings)', f_theme:'Theme', f_layout:'Layout', f_itemphotos:'Item photos (optional)',
+    h_itemphotos:'Name each photo exactly like the item in English, e.g. Chicken Burger.jpg · max 5 MB each', f_footer:'Note at the bottom of the page',
+    s_upimg:'Uploading your images…', d_3web:'We build your site and check it ourselves, then email you the link, Client ID and Edit Code (usually within one working day).', d_3qr:'Your page, QR code and printable table card are emailed to you within minutes of approval.', lead:'Takes about 3 minutes. We review every signup and email you your activation link within one working day.',
     l_plan:'Choose your plan', monthly:'Monthly', annual:'Annual', save:'2 months free',
     cat_butler:'Assistant', cat_jobs:'Job Hunter', cat_bundle:'Both', best:'Best value',
     per_m:'/month', per_y:'/year', billed_y:'billed yearly',
@@ -344,7 +434,29 @@ footer a:hover{color:var(--gold)}
     d_home:'Back to Gear Radar', privacy:'Privacy'
   };
   var AR = {
-    back:'العودة للباقات', title:'جهّز حسابك', lead:'يستغرق حوالي 3 دقائق. نراجع كل طلب ونرسل لك رابط التفعيل بالبريد خلال يوم عمل واحد.',
+    back:'العودة للباقات', title:'جهّز حسابك',
+    g_subs:'المساعد وصائد الوظائف', g_web:'موقع لنشاطك', g_qr:'قائمة / كتالوج QR',
+    cat_web:'موقع', cat_qr:'قائمة QR', once:'لمرة واحدة', addon:'+ {n}$ شهرياً',
+    wf_b1:'موقع من صفحة واحدة بلغة واحدة', wf_b2:'الخدمات والأسعار وساعات العمل', wf_b3:'زر اتصال، والاستضافة مشمولة',
+    wf_p1:'الشعار ومعرض حتى 8 صور', wf_p2:'خريطة Google وزر واتساب', wf_p3:'عربي + إنجليزي، 4 ألوان',
+    wf_m1:'كل مزايا Website Pro', wf_m2:'حتى 4 تحديثات للمحتوى شهرياً ننفذها نحن', wf_m3:'دعم بأولوية',
+    qf_b1:'صفحة قائمة أو كتالوج بلغة واحدة', qf_b2:'رمز QR + كرت طاولة للطباعة', qf_b3:'غيّر الأسعار أي وقت بكود التعديل',
+    qf_p1:'الشعار وصور الأصناف', qf_p2:'الطلب أو الحجز عبر واتساب', qf_p3:'عربي + إنجليزي، 6 ثيمات، بحث مباشر',
+    qf_m1:'كل مزايا QR Pro', qf_m2:'نحدّث قائمتك بدلاً عنك (حتى 4 مرات شهرياً)', qf_m3:'دعم بأولوية',
+    l_web:'موقعك', l_qr:'قائمتك أو كتالوجك بالـ QR', f_biz:'اسم النشاط', e_biz:'يرجى إدخال اسم النشاط.',
+    f_activity:'مجال النشاط', f_desc:'وصف مختصر', f_services:'الخدمات والأسعار (سطر لكل خدمة)', e_services:'يرجى إضافة خدمة واحدة على الأقل.',
+    f_hours:'ساعات العمل', f_phone:'رقم الهاتف (زر الاتصال)', f_sitelang:'لغة الموقع', both:'عربي + إنجليزي',
+    pro_note_web:'الشعار والصور وخريطة Google وزر واتساب والألوان متاحة في Website Pro و Premium.',
+    f_wabtn:'رقم واتساب (لزر واتساب)', f_palette:'الألوان', f_address:'العنوان (لخريطة Google)',
+    f_logo:'الشعار (اختياري)', h_img:'JPG أو PNG أو WebP · حتى 5 ميغابايت', f_photos8:'صور (حتى 8)', e_files:'استخدم صور JPG أو PNG أو WebP أقل من 5 ميغابايت (أو قلّل عدد الملفات).',
+    f_btype:'النوع', bt_menu:'قائمة مطعم / مقهى', bt_services:'خدمات (صالون، عيادة، صيانة…)', bt_products:'كتالوج منتجات / متجر',
+    f_slug:'رابط صفحتك', h_slug:'حروف إنجليزية وأرقام وشرطات فقط. الرابط يبقى ثابتاً دائماً.', e_slug:'3 أحرف على الأقل: a–z و 0–9 والشرطة.',
+    f_phone2:'رقم الهاتف', e_phone:'يرجى إدخال رقم الهاتف.', f_pagelang:'لغة الصفحة', f_stand:'أضف كرت طاولة للطباعة',
+    f_items_en:'الأصناف بالإنجليزي (سطر لكل صنف)', h_items:'الاسم - السعر - الوصف. ابدأ السطر بـ # لعنوان قسم.', e_items:'يرجى إضافة الأصناف بالعربي أو الإنجليزي.',
+    f_items_ar:'الأصناف بالعربي (سطر لكل صنف)', pro_note_qr:'الشعار وصور الأصناف والطلب عبر واتساب واللغتين والثيمات والبحث متاحة في QR Pro و Premium.',
+    f_waorder:'رقم واتساب (للطلبات / الحجوزات)', f_theme:'الثيم', f_layout:'طريقة العرض', f_itemphotos:'صور الأصناف (اختياري)',
+    h_itemphotos:'سمِّ كل صورة باسم الصنف بالإنجليزي، مثل Chicken Burger.jpg · حتى 5 ميغابايت لكل صورة', f_footer:'ملاحظة أسفل الصفحة',
+    s_upimg:'جارٍ رفع الصور…', d_3web:'نبني موقعك ونراجعه بأنفسنا، ثم نرسل لك الرابط ورقم العميل وكود التعديل بالبريد (عادةً خلال يوم عمل واحد).', d_3qr:'تصلك الصفحة ورمز QR وكرت الطاولة بالبريد خلال دقائق من الموافقة.', lead:'يستغرق حوالي 3 دقائق. نراجع كل طلب ونرسل لك رابط التفعيل بالبريد خلال يوم عمل واحد.',
     l_plan:'اختر باقتك', monthly:'شهري', annual:'سنوي', save:'شهران مجاناً',
     cat_butler:'المساعد', cat_jobs:'صائد الوظائف', cat_bundle:'الاثنان معاً', best:'الأفضل قيمة',
     per_m:'/شهرياً', per_y:'/سنوياً', billed_y:'تُدفع سنوياً',
@@ -389,14 +501,18 @@ footer a:hover{color:var(--gold)}
 
   function t(k){ var d = lang === 'ar' ? AR : EN; return d[k] != null ? d[k] : (EN[k] || ''); }
   function plan(){ return PLANS.filter(function(p){ return p.key === planKey; })[0]; }
+  function group(){ return plan().group; }
+  function tier(){ return String(planKey).replace(/^(web|qr)_/, ''); }
   function money(n){ return '$' + n; }
 
   // ---------- Rendering ----------
   function renderPlans(){
     var box = $('plans'); box.innerHTML = '';
-    PLANS.forEach(function(p){
+    box.classList.toggle('three', group() !== 'subs');
+    PLANS.filter(function(p){ return p.group === group(); }).forEach(function(p){
       var wrap = document.createElement('div'); wrap.className = 'plan';
-      var price = billing === 'annual' ? money(p.y) + '<span>' + t('per_y') + '</span>' : money(p.m) + '<span>' + t('per_m') + '</span>';
+      var price = p.once ? money(p.once) + ' <span>' + t('once') + '</span>' + (p.add ? '<span class="add">' + t('addon').replace('{n}', p.add) + '</span>' : '')
+        : (billing === 'annual' ? money(p.y) + '<span>' + t('per_y') + '</span>' : money(p.m) + '<span>' + t('per_m') + '</span>');
       wrap.innerHTML = '<input type="radio" name="plan" id="p_' + p.key + '" value="' + p.key + '"' + (p.key === planKey ? ' checked' : '') + '>' +
         '<label for="p_' + p.key + '"><span class="cat">' + t(p.cat) + '</span><span class="nm">' + p.name + '</span><span class="pr"><b>' + price + '</b></span></label>' +
         (p.best ? '<span class="best">' + t('best') + '</span>' : '');
@@ -406,7 +522,7 @@ footer a:hover{color:var(--gold)}
   }
   function renderSummary(){
     var p = plan();
-    var line = billing === 'annual'
+    var line = p.once ? '<b>' + p.name + '</b> · ' + money(p.once) + ' ' + t('once') + (p.add ? ' ' + t('addon').replace('{n}', p.add) : '') : billing === 'annual'
       ? '<b>' + p.name + '</b> · ' + money(p.y) + t('per_y') + ' <span class="hint">(' + t('billed_y') + ')</span>'
       : '<b>' + p.name + '</b> · ' + money(p.m) + t('per_m');
     $('summary').innerHTML = line + '<ul>' + p.feats.map(function(f){ return '<li>' + t(f) + '</li>'; }).join('') + '</ul>';
@@ -432,13 +548,23 @@ footer a:hover{color:var(--gold)}
     $('areasHint').textContent = max === 1 ? t('h_areas1') : t('h_areas').replace('{n}', max);
   }
   function update(){
-    var p = plan();
+    var p = plan(), g = group(), basic = tier() === 'basic';
+    document.querySelectorAll('[data-group]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-group') === g); });
+    document.querySelector('.billing').classList.toggle('section-hide', g !== 'subs');
+    $('channelSet').classList.toggle('section-hide', g !== 'subs');
     $('assistantSet').classList.toggle('section-hide', !p.assistant);
     $('jobsSet').classList.toggle('section-hide', !p.jobs);
+    $('webSet').classList.toggle('section-hide', g !== 'web');
+    $('qrSet').classList.toggle('section-hide', g !== 'qr');
+    document.querySelectorAll('.pro-only').forEach(function(el){ el.classList.toggle('section-hide', basic); });
+    $('w_note').classList.toggle('section-hide', !basic); $('q_note').classList.toggle('section-hide', !basic);
+    document.querySelectorAll('.pro-opt').forEach(function(o){ o.disabled = basic; if (basic && o.selected) o.parentNode.value = 'en'; });
     // step numbers
-    var n = 4;
+    var n = g === 'subs' ? 4 : 3;
     if (p.assistant) $('assistantSet').querySelector('.n').textContent = n++;
     if (p.jobs) $('jobsSet').querySelector('.n').textContent = n++;
+    if (g === 'web') $('webSet').querySelector('.n').textContent = n++;
+    if (g === 'qr') $('qrSet').querySelector('.n').textContent = n++;
     $('lastStep').textContent = n;
     // channel rules
     var wa = $('ch_wa');
@@ -447,9 +573,9 @@ footer a:hover{color:var(--gold)}
     $('waHint').textContent = !p.wa ? t('wa_hint_basic') : (p.jobs && !p.assistant ? t('wa_hint_digest') : t('wa_hint'));
     $('waField').classList.toggle('section-hide', !wa.checked);
     $('titlesHint').textContent = t('h_titles').replace('{n}', p.titles || 3);
-    syncAreas();
+    if (p.jobs) syncAreas();
     renderSummary();
-    try { history.replaceState(null, '', '?plan=' + planKey + '&billing=' + billing + (lang === 'ar' ? '&lang=ar' : '')); } catch(e) {}
+    try { history.replaceState(null, '', '?plan=' + planKey + (g === 'subs' ? '&billing=' + billing : '') + (lang === 'ar' ? '&lang=ar' : '')); } catch(e) {}
   }
   function applyLang(l){
     lang = l;
@@ -488,6 +614,10 @@ footer a:hover{color:var(--gold)}
     });
   });
   document.querySelectorAll('input[name="channel"]').forEach(function(r){ r.addEventListener('change', update); });
+  document.querySelectorAll('[data-group]').forEach(function(b){
+    b.addEventListener('click', function(){ planKey = DEFAULT_PLAN[b.getAttribute('data-group')]; renderPlans(); update(); });
+  });
+  $('q_slug').addEventListener('input', function(){ var v = this.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''); if (v !== this.value) this.value = v; });
   $('addArea').addEventListener('click', function(){ $('areas').appendChild(areaRow()); syncAreas(); $('areas').lastElementChild.querySelector('input').focus(); });
   $('country').addEventListener('change', function(){
     var code = COUNTRY_TO_CODE[$('country').value];
@@ -529,7 +659,7 @@ footer a:hover{color:var(--gold)}
     if (mark($('email'), !EMAIL.test(email))) bad.push($('email'));
     var channel = $('ch_wa').checked ? 'whatsapp' : 'telegram';
     var waDigits = $('wa_number').value.replace(/\D/g, '').replace(/^00/, '');
-    if (channel === 'whatsapp' && mark($('wa_number'), !/^\d{8,15}$/.test(waDigits))) bad.push($('wa_number'));
+    if (p.group === 'subs' && channel === 'whatsapp' && mark($('wa_number'), !/^\d{8,15}$/.test(waDigits))) bad.push($('wa_number'));
     if (channel !== 'whatsapp') mark($('wa_number'), false);
     var payload = {};
     if (p.assistant) {
@@ -550,13 +680,53 @@ footer a:hover{color:var(--gold)}
       var sal = Number($('min_salary').value);
       payload.min_salary = sal > 0 ? sal : null; payload.salary_currency = $('currency').value;
     }
+    var files = null;
+    function imgList(input, max){
+      var list = Array.prototype.slice.call(input.files || []);
+      var okList = list.filter(function(f){ return /^image\/(jpeg|png|webp)$/.test(f.type) && f.size <= MAX_IMG; });
+      var bad = okList.length !== list.length || list.length > max;
+      mark(input, bad);
+      return bad ? null : okList;
+    }
+    if (p.group === 'web') {
+      var wn = $('w_name').value.trim(), ws = $('w_services').value.trim();
+      if (mark($('w_name'), wn.length < 2)) bad.push($('w_name'));
+      if (mark($('w_services'), ws.length < 3)) bad.push($('w_services'));
+      payload = { business_name: wn, activity: $('w_activity').value.trim(), description: $('w_desc').value.trim(), services: ws,
+        hours: $('w_hours').value.trim(), phone: $('w_phone').value.trim(), site_language: $('w_lang').value };
+      if (tier() !== 'basic') {
+        payload.whatsapp = $('w_wa').value.replace(/\D/g, ''); payload.palette = $('w_palette').value; payload.address = $('w_address').value.trim();
+        var wl = imgList($('w_logo'), 1), wp = imgList($('w_photos'), 8);
+        if (!wl) bad.push($('w_logo')); if (!wp) bad.push($('w_photos'));
+        files = { logo: (wl || [])[0] || null, photos: wp || [] };
+      }
+    }
+    if (p.group === 'qr') {
+      var qn = $('q_name').value.trim(), slug = $('q_slug').value.trim(), qp = $('q_phone').value.trim();
+      var ie = $('q_items_en').value.trim(), ia = $('q_items_ar').value.trim();
+      if (mark($('q_name'), qn.length < 2)) bad.push($('q_name'));
+      if (mark($('q_slug'), !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length < 3)) bad.push($('q_slug'));
+      if (mark($('q_phone'), qp.replace(/\D/g, '').length < 6)) bad.push($('q_phone'));
+      if (mark($('q_items_en'), !ie && !ia)) bad.push($('q_items_en'));
+      payload = { business_name: qn, business_type: $('q_type').value, slug: slug, phone: qp, currency: $('q_currency').value,
+        language: $('q_lang').value, items_en: ie, items_ar: ia, description: $('q_desc').value.trim(),
+        footer_note_en: /[\u0600-\u06FF]/.test($('q_foot').value) ? '' : $('q_foot').value.trim(),
+        footer_note_ar: /[\u0600-\u06FF]/.test($('q_foot').value) ? $('q_foot').value.trim() : '',
+        include_stand: $('q_stand').checked };
+      if (tier() !== 'basic') {
+        payload.whatsapp = $('q_wa').value.replace(/\D/g, ''); payload.theme = $('q_theme').value; payload.layout = $('q_layout').value;
+        var ql = imgList($('q_logo'), 1), qph = imgList($('q_photos'), 40);
+        if (!ql) bad.push($('q_logo')); if (!qph) bad.push($('q_photos'));
+        files = { logo: (ql || [])[0] || null, photos: qph || [] };
+      }
+    }
     var consent = $('consent').checked;
     $('consentErr').style.display = consent ? 'none' : 'block';
     if (!consent) bad.push($('consent'));
-    return { bad: bad, body: {
-      service: p.service, plan: p.key, billing: billing,
+    return { bad: bad, files: files, body: {
+      service: p.service, plan: p.key, billing: p.group === 'subs' ? billing : (p.add ? 'monthly' : 'one_off'),
       full_name: name, email: email, country: $('country').value, language: $('language').value,
-      channel: channel, whatsapp_number: channel === 'whatsapp' ? waDigits : '',
+      channel: p.group === 'subs' ? channel : 'email', whatsapp_number: p.group === 'subs' && channel === 'whatsapp' ? waDigits : '',
       payload: payload, website: $('website').value
     } };
   }
@@ -575,20 +745,42 @@ footer a:hover{color:var(--gold)}
     }).then(function(r){ if (!r.ok) throw new Error('upload ' + r.status); return path; });
   }
 
+  function uploadImage(file){
+    var d = new Date(), day = d.getUTCFullYear() + ('0' + (d.getUTCMonth() + 1)).slice(-2) + ('0' + d.getUTCDate()).slice(-2);
+    var ext = file.type === 'image/png' ? 'png' : (file.type === 'image/webp' ? 'webp' : 'jpg');
+    var base = String(file.name || 'image').replace(/\.[^.]+$/, '').normalize('NFKD').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'image';
+    var path = 'incoming/' + day + '/' + uuid() + '/' + base + '.' + ext;
+    return fetch(SB_URL + '/storage/v1/object/signup-files/' + path, {
+      method: 'POST',
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': file.type, 'x-upsert': 'false' },
+      body: file
+    }).then(function(r){ if (!r.ok) throw new Error('upload ' + r.status); return path; });
+  }
+  function uploadImages(files){
+    if (!files || (!files.logo && !files.photos.length)) return Promise.resolve(null);
+    setStatus('s_upimg');
+    var out = { logo_file: '', photo_files: [] };
+    var chain = files.logo ? uploadImage(files.logo).then(function(p){ out.logo_file = p; }) : Promise.resolve();
+    files.photos.forEach(function(f){ chain = chain.then(function(){ return uploadImage(f).then(function(p){ out.photo_files.push(p); }); }); });
+    return chain.then(function(){ return out; });
+  }
+
   var status = $('status'), btn = $('submit');
   function setStatus(k, cls){ status.textContent = k ? t(k) : ''; status.className = 'status ' + (cls || ''); }
 
   // Map server-side validation errors back to fields
-  var SERVER_FIELDS = { full_name:'full_name', email:'email', whatsapp_number:'wa_number', channel_not_in_plan:'wa_number', google_email:'google_email', target_titles:'titles' };
+  var SERVER_FIELDS = { full_name:'full_name', email:'email', whatsapp_number:'wa_number', channel_not_in_plan:'wa_number', google_email:'google_email', target_titles:'titles', slug:'q_slug', items:'q_items_en', services:'w_services', phone:'q_phone' };
 
   $('signup').addEventListener('submit', function(ev){
     ev.preventDefault();
     var c = collect();
     if (c.bad.length) { setStatus('s_check', 'err'); var first = c.bad[0]; (first.focus ? first : first.querySelector('input')).focus(); return; }
     btn.disabled = true;
-    var step = plan().jobs ? (setStatus('s_upload'), uploadCv().catch(function(e){ e.upload = true; throw e; })) : Promise.resolve(null);
-    step.then(function(path){
-      if (path) c.body.payload.cv_file = path;
+    var step = plan().jobs ? (setStatus('s_upload'), uploadCv().catch(function(e){ e.upload = true; throw e; }))
+      : uploadImages(c.files).catch(function(e){ e.upload = true; throw e; });
+    step.then(function(res){
+      if (typeof res === 'string') c.body.payload.cv_file = res;
+      else if (res) { c.body.payload.logo_file = res.logo_file; c.body.payload.photo_files = res.photo_files; }
       setStatus('s_sending');
       return fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(c.body) });
     }).then(function(r){
@@ -596,7 +788,7 @@ footer a:hover{color:var(--gold)}
     }).then(function(res){
       if (!res.ok || !res.j.ok) {
         var errs = (res.j && res.j.errors) || [];
-        errs.forEach(function(e){ if (SERVER_FIELDS[e]) mark($(SERVER_FIELDS[e]), true); if (e === 'cv_file') drop.classList.add('invalid-drop'); if (e === 'areas') $('areasErr').style.display = 'block'; });
+        errs.forEach(function(e){ if (e === 'business_name') mark($(group() === 'qr' ? 'q_name' : 'w_name'), true); if (SERVER_FIELDS[e]) mark($(SERVER_FIELDS[e]), true); if (e === 'cv_file') drop.classList.add('invalid-drop'); if (e === 'areas') $('areasErr').style.display = 'block'; });
         throw new Error('rejected');
       }
       showDone(res.j);
@@ -607,7 +799,7 @@ footer a:hover{color:var(--gold)}
 
   function showDone(j){
     $('ref').textContent = j.ref || '—';
-    $('d3').textContent = t($('ch_wa').checked ? 'd_3wa' : 'd_3tg');
+    $('d3').textContent = t(group() === 'web' ? 'd_3web' : (group() === 'qr' ? 'd_3qr' : ($('ch_wa').checked ? 'd_3wa' : 'd_3tg')));
     if (j.duplicate) $('done').querySelector('p').textContent = t('d_dup');
     $('signup').classList.add('section-hide');
     $('done').classList.remove('section-hide');
