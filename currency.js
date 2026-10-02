@@ -69,7 +69,11 @@
   }
   function renderAll() {
     Array.prototype.forEach.call(document.querySelectorAll(SEL), render);
-    var note = document.getElementById('fx-note');
+    ar = (document.documentElement.lang || '').toLowerCase().indexOf('ar') === 0;
+    var note = document.getElementById('fx-note-text') || (function () {
+      var n = document.getElementById('fx-note'); if (!n) return null;
+      var sp = document.createElement('span'); sp.id = 'fx-note-text'; n.appendChild(sp); return sp;
+    })();
     if (note) note.innerHTML = currency === 'USD' ? '' : (ar
       ? 'الأسعار محوّلة تقريبياً من الدولار الأمريكي بسعر صرف اليوم. <a href="https://www.exchangerate-api.com" rel="noopener" target="_blank">Rates by Exchange Rate API</a>'
       : 'Approximate prices, converted from US dollars at today\'s rate. <a href="https://www.exchangerate-api.com" rel="noopener" target="_blank">Rates by Exchange Rate API</a>');
@@ -83,26 +87,48 @@
     try { renderAll(); } finally { setTimeout(function () { busy = false; }, 0); }
   });
 
+  // Picker goes in the top bar next to the language button; the "approximate" note sits above the plans.
   function addPicker() {
     var firstCard = document.querySelector('.pcard');
     if (!firstCard) return;
-    var group = firstCard.closest('.pgroup') || firstCard.parentNode;
-    var box = document.createElement('div');
-    box.style.cssText = 'display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 18px;font-size:14px;';
-    var label = document.createElement('label');
-    label.textContent = ar ? 'العملة:' : 'Currency:';
-    label.setAttribute('for', 'fx-select');
+    var grid = (firstCard.closest('.pgroup') || firstCard).parentNode;
+
     var sel = document.createElement('select');
     sel.id = 'fx-select';
-    sel.style.cssText = 'padding:6px 10px;border-radius:8px;border:1px solid rgba(127,127,127,.4);font:inherit;background:transparent;color:inherit;';
+    sel.setAttribute('aria-label', 'Currency');
     CURRENCIES.forEach(function (c) { var o = document.createElement('option'); o.value = c; o.textContent = c; o.style.color = '#0B1220'; sel.appendChild(o); });
     sel.value = currency;
     sel.addEventListener('change', function () { currency = sel.value; store(STORE_CUR, currency); renderAll(); });
-    var note = document.createElement('span');
+
+    // Find the language toggle in the header (the button that says "العربية" / "English").
+    var bar = document.querySelector('header') || document.querySelector('nav');
+    var langBtn = null;
+    if (bar) {
+      Array.prototype.some.call(bar.querySelectorAll('a, button'), function (el) {
+        var t = (el.textContent || '').trim();
+        if (t === 'العربية' || t === 'English' || t === 'EN' || t === 'AR') { langBtn = el; return true; }
+        return false;
+      });
+    }
+    if (langBtn) {
+      sel.style.cssText = 'appearance:none;-webkit-appearance:none;cursor:pointer;font:inherit;font-size:14px;font-weight:600;'
+        + 'color:inherit;background:transparent;border:1px solid rgba(255,255,255,.35);border-radius:999px;'
+        + 'padding:9px 30px 9px 16px;margin-inline-end:10px;line-height:1.2;'
+        + 'background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2710%27 height=%276%27%3E%3Cpath d=%27M1 1l4 4 4-4%27 fill=%27none%27 stroke=%27%23ffffff%27 stroke-width=%271.6%27/%3E%3C/svg%3E");'
+        + 'background-repeat:no-repeat;background-position:right 13px center;';
+      var cs = window.getComputedStyle(langBtn);
+      if (cs.color) sel.style.color = cs.color;
+      langBtn.parentNode.insertBefore(sel, langBtn);
+    } else {
+      // No header button found: put the picker above the plans instead.
+      sel.style.cssText = 'padding:6px 10px;border-radius:8px;border:1px solid rgba(127,127,127,.4);font:inherit;margin-inline-end:10px;';
+    }
+
+    var note = document.createElement('p');
     note.id = 'fx-note';
-    note.style.cssText = 'opacity:.7;font-size:12.5px;';
-    box.appendChild(label); box.appendChild(sel); box.appendChild(note);
-    group.parentNode.insertBefore(box, group);
+    note.style.cssText = 'text-align:center;opacity:.7;font-size:12.5px;margin:0 0 16px;';
+    if (!langBtn) { note.style.textAlign = 'start'; note.insertBefore(sel, null); }
+    grid.parentNode.insertBefore(note, grid);
   }
 
   function start() {
@@ -110,6 +136,8 @@
     Array.prototype.forEach.call(document.querySelectorAll(SEL), function (el) {
       mo.observe(el, { childList: true, characterData: true, subtree: true });
     });
+    // Update the note's language when the visitor switches between English and Arabic.
+    new MutationObserver(function () { if (rates) renderAll(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang', 'dir'] });
     getRates().then(function (r) {
       rates = r;
       if (!rates[currency]) currency = 'USD';
@@ -117,7 +145,7 @@
       renderAll();
     }).catch(function () {
       currency = 'USD';
-      var s = document.getElementById('fx-select'); if (s) s.parentNode.style.display = 'none';
+      var s = document.getElementById('fx-select'); if (s) s.style.display = 'none';
     });
   }
 
