@@ -1,226 +1,906 @@
-/* Gear Radar website chat — talks to the same sales assistant as our WhatsApp number.
-   Include once per page:  <script src="chat.js" defer></script>  */
-(function () {
-  'use strict';
-  if (window.__grChat) return;
-  window.__grChat = true;
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gear Radar Digital Solutions | AI Assistants, Websites &amp; Automation – Manchester</title>
+<meta name="description" content="Gear Radar builds AI personal assistants on Telegram and WhatsApp, websites for small businesses, smart QR menus and an AI job hunter. Manchester, UK. English &amp; Arabic.">
+<link rel="canonical" href="https://www.gearradar.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gear Radar Digital Solutions – AI that works while you do">
+<meta property="og:description" content="AI assistants, business websites, smart QR menus and job-hunting automation. Set up for you, in English and Arabic.">
+<meta property="og:url" content="https://www.gearradar.co.uk/">
+<meta name="theme-color" content="#15171C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20120%20120%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2226%22%20fill%3D%22%2315171C%22%2F%3E%3Cg%20fill%3D%22%23FF8A50%22%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(45%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(90%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(135%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(180%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(225%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(270%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(315%2060%2060)%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%2234%22%20fill%3D%22%23FF8A50%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%2224%22%20fill%3D%22%2315171C%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22%23FF8A50%22%20stroke-width%3D%222%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M60%2060L77%2043%22%20stroke%3D%22%23FACC15%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%223.5%22%20fill%3D%22%23FACC15%22%2F%3E%3Ccircle%20cx%3D%2272%22%20cy%3D%2270%22%20r%3D%222.5%22%20fill%3D%22%23FACC15%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Gear Radar Digital Solutions","url":"https://www.gearradar.co.uk/","email":"info@gearradar.co.uk","telephone":"+447442309417","address":{"@type":"PostalAddress","addressLocality":"Manchester","addressCountry":"GB"},"areaServed":"GB","knowsLanguage":["en","ar"]}
+</script>
+<style>
+:root{
+  --ink:#15171C; --ink-2:#1B1E25; --ink-3:#22252D;
+  --gold:#FF8A50; --gold-2:#FACC15; --gold-soft:rgba(255,138,80,.14);
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#F5F5F4; --on-ink-muted:#A8A29E; --ok:#22C55E;
+  --radius:18px; --shadow:0 20px 50px -24px rgba(21,23,28,.35);
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.container{width:min(1160px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-head);line-height:1.15;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0;line-height:1.35}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor;border-radius:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:600;font-size:.97rem;border:1px solid transparent;cursor:pointer;transition:transform .2s,background .2s,border-color .2s,color .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-2)}
+.btn-ghost{border-color:rgba(232,236,244,.25);color:var(--on-ink)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-dark{background:var(--ink);color:var(--white)}
+.btn-dark:hover{background:var(--ink-3)}
+.btn svg{width:18px;height:18px}
+.skip{position:absolute;inset-inline-start:-9999px}
+.skip:focus{inset-inline-start:16px;top:16px;z-index:100;background:var(--gold);color:var(--ink);padding:8px 14px;border-radius:8px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
 
-  var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-chat';
-  var WA = 'https://wa.me/447442309417';
-  var MAX_LEN = 800;
+/* Header */
+header{position:fixed;inset-inline:0;top:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(21,23,28,.88);backdrop-filter:blur(12px);border-color:rgba(255,255,255,.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--white);font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem}
+.brand small{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:.68rem;letter-spacing:.14em;color:var(--on-ink-muted);text-transform:uppercase}
+.brand svg{width:38px;height:38px;flex:none}
+.nav-links{display:flex;gap:28px;color:var(--on-ink-muted);font-size:.93rem;font-weight:500}
+.nav-links a:hover{color:var(--white)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'Cairo','Inter',sans-serif}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.nav .btn{padding:10px 18px;font-size:.9rem}
+.menu-btn{display:none;background:none;border:0;color:var(--white);cursor:pointer;padding:6px}
+.menu-btn svg{width:26px;height:26px}
+.mobile-menu{display:none}
 
-  var T = {
-    en: {
-      open: 'Chat with us', title: 'Gear Radar assistant', sub: 'Usually replies in seconds',
-      hello: 'Hi! 👋 I can help you choose the right plan: AI assistant, Job Hunter, a business website or a QR menu. What are you looking for?',
-      ph: 'Type your message…', send: 'Send', close: 'Close chat',
-      chips: ['See prices', 'QR menu for my business', 'A website for my business', 'AI personal assistant'],
-      err: 'Sorry, something went wrong. Please try again, or message us on WhatsApp.',
-      wa: 'WhatsApp us instead', note: 'Chats are saved so we can follow up. See our <a href="privacy.html">privacy notice</a>.'
-    },
-    ar: {
-      open: 'تحدّث معنا', title: 'مساعد Gear Radar', sub: 'يرد عادةً خلال ثوانٍ',
-      hello: 'أهلاً! 👋 أقدر أساعدك تختار الباقة المناسبة: مساعد ذكي، صائد الوظائف، موقع لنشاطك أو قائمة QR. عن ماذا تبحث؟',
-      ph: 'اكتب رسالتك…', send: 'إرسال', close: 'إغلاق المحادثة',
-      chips: ['الأسعار', 'قائمة QR لنشاطي', 'موقع لنشاطي', 'مساعد شخصي ذكي'],
-      err: 'عذراً، حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب.',
-      wa: 'راسلنا على واتساب', note: 'نحفظ المحادثة لنتابع معك. راجع <a href="privacy.html">سياسة الخصوصية</a>.'
-    }
+/* Hero */
+.hero{background:radial-gradient(1200px 600px at 85% -10%,rgba(255,138,80,.16),transparent 60%),radial-gradient(900px 500px at -10% 110%,rgba(90,100,130,.20),transparent 60%),var(--ink);color:var(--on-ink);padding:150px 0 110px;overflow:hidden;position:relative}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 70% 30%,#000 20%,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.3rem,5vw,3.9rem);color:var(--white);margin:18px 0 20px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{font-size:1.14rem;color:var(--on-ink-muted);max-width:560px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-points{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:34px;font-size:.9rem;color:var(--on-ink-muted)}
+.hero-points span{display:inline-flex;align-items:center;gap:8px}
+.hero-points svg{width:16px;height:16px;color:var(--gold)}
+
+/* Chat mock */
+.phone{background:linear-gradient(180deg,#22252D,#1B1E25);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:18px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);max-width:400px;margin-inline:auto;width:100%}
+.phone-top{display:flex;align-items:center;gap:12px;padding:4px 6px 14px;border-bottom:1px solid rgba(255,255,255,.06)}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center;color:var(--gold)}
+.avatar svg{width:20px;height:20px}
+.phone-top b{display:block;color:var(--white);font-size:.95rem}
+.phone-top small{color:var(--ok);font-size:.78rem}
+.chat{display:flex;flex-direction:column;gap:10px;padding:16px 4px 6px;font-size:.9rem}
+.msg{max-width:84%;padding:10px 14px;border-radius:16px;line-height:1.45;opacity:0;transform:translateY(8px);animation:pop .5s forwards}
+.msg.me{align-self:flex-end;background:var(--gold);color:var(--ink);border-end-end-radius:4px}
+.msg.bot{align-self:flex-start;background:#2B2F38;color:var(--on-ink);border-end-start-radius:4px}
+.msg.bot b{color:var(--gold-2);font-weight:600}
+.msg:nth-child(1){animation-delay:.2s}.msg:nth-child(2){animation-delay:.9s}.msg:nth-child(3){animation-delay:1.6s}.msg:nth-child(4){animation-delay:2.3s}
+.chip-row{display:flex;gap:8px;margin-top:8px}
+.chip{font-size:.78rem;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--on-ink)}
+.chip.yes{background:rgba(34,197,94,.18);color:#86efac}
+@keyframes pop{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.msg{animation:none;opacity:1;transform:none}.btn:hover{transform:none}html{scroll-behavior:auto}}
+
+/* Sections */
+section{padding:100px 0}
+.section-head{max-width:700px;margin-bottom:54px}
+.section-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:14px 0 14px}
+.section-head p{color:var(--muted);font-size:1.07rem}
+.center{text-align:center;margin-inline:auto}
+.center .eyebrow{justify-content:center}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:34px;display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s,border-color .3s}
+.card:hover{box-shadow:var(--shadow);transform:translateY(-3px);border-color:#D6D3D1}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+.icon{width:52px;height:52px;border-radius:14px;background:var(--ink);color:var(--gold);display:grid;place-items:center;flex:none}
+.icon svg{width:26px;height:26px}
+.tag{font-size:.75rem;font-weight:600;color:#C2410C;background:#FFEDE3;padding:5px 11px;border-radius:999px}
+.card h3{font-size:1.35rem;margin-bottom:8px}
+.card .sub{color:var(--muted);margin-bottom:18px}
+.card ul{list-style:none;display:grid;gap:9px;margin-bottom:26px;font-size:.95rem}
+.card li{display:flex;gap:10px;align-items:flex-start}
+.card li svg{width:18px;height:18px;color:#F2702F;flex:none;margin-top:3px}
+.card .btn{margin-top:auto;align-self:flex-start}
+.card .for{font-size:.86rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:16px;margin-bottom:20px}
+.card .for b{color:var(--text)}
+
+.custom{margin-top:24px;background:var(--ink);color:var(--on-ink);border-radius:var(--radius);padding:34px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.custom h3{color:var(--white);font-size:1.3rem;margin-bottom:6px}
+.custom p{color:var(--on-ink-muted);max-width:640px}
+
+
+/* Pricing */
+.pricing-wrap{background:var(--white)}
+.bill-toggle{display:inline-flex;gap:4px;padding:4px;background:var(--paper);border:1px solid var(--line);border-radius:999px;margin-top:22px}
+.bill-toggle button{border:0;background:transparent;padding:9px 18px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--muted)}
+.bill-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.bill-toggle .save{color:#15803d}
+.bill-toggle button[aria-pressed="true"] .save{color:var(--gold-2)}
+.price-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.pgroup{border-radius:22px;padding:22px;background:var(--paper);border:1px solid var(--line);display:grid;gap:14px;align-content:start}
+.pgroup.feature{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.pgroup-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pgroup-head h3{font-size:1.05rem}
+.pgroup.feature .pgroup-head h3{color:var(--white)}
+.pgroup-head .tag{white-space:nowrap}
+.pgroup.feature .tag{background:var(--gold);color:var(--ink)}
+.pcard{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.pgroup.feature .pcard{background:var(--ink-2);border-color:rgba(255,255,255,.08)}
+.pgroup.feature .pcard.star{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.pcard h4{font-family:var(--font-head);font-size:1.1rem}
+.pgroup.feature .pcard h4{color:var(--white)}
+.pcard .amount{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.pcard .amount b{font-family:'Sora',sans-serif;font-size:2rem;line-height:1;letter-spacing:-.02em}
+.pgroup.feature .pcard .amount b{color:var(--gold-2)}
+.pcard .amount span{color:var(--muted);font-size:.88rem}
+.pgroup.feature .pcard .amount span{color:var(--on-ink-muted)}
+.pcard .per-note:empty{display:none}
+.pcard .per-note{font-size:.8rem;color:#15803d;font-weight:600;min-height:1.2em}
+.pgroup.feature .pcard .per-note{color:#86efac}
+.pcard ul{list-style:none;display:grid;gap:7px;font-size:.9rem}
+.pcard li{display:flex;gap:8px;align-items:flex-start}
+.pcard li svg{width:16px;height:16px;color:#F2702F;flex:none;margin-top:4px}
+.pgroup.feature .pcard li svg{color:var(--gold)}
+.pcard .btn{margin-top:auto;padding:11px 18px;font-size:.92rem;align-self:stretch}
+.pgroup.feature .btn-dark{background:var(--gold);color:var(--ink)}
+.pgroup.feature .btn-dark:hover{background:var(--gold-2)}
+.price-foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:26px;padding:22px 26px;border:1px dashed #F3C9B0;border-radius:18px;background:var(--paper)}
+.price-foot p{color:var(--muted);font-size:.93rem;max-width:720px}
+.price-foot b{color:var(--text)}
+.price-note{margin-top:14px;font-size:.84rem;color:var(--muted);text-align:center}
+
+
+/* Business (one-off) pricing */
+.biz-head{margin:64px 0 26px;text-align:center}
+.biz-head h3{font-size:clamp(1.4rem,2.6vw,1.9rem);margin:10px 0 8px}
+.biz-head p{color:var(--muted);max-width:640px;margin-inline:auto}
+.biz-group{margin-top:22px;border:1px solid var(--line);border-radius:22px;background:var(--paper);padding:22px}
+.biz-group > h4{font-family:var(--font-head);font-size:1.1rem;margin:0 0 4px}
+.biz-group > p{color:var(--muted);font-size:.92rem;margin-bottom:14px}
+.demo-link{margin:-6px 0 16px;font-size:.92rem}
+.demo-link a{color:#C2410C;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.demo-link a:hover{color:var(--ink)}
+.biz-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pcard.oneoff.star{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.pcard .once{font-size:.82rem;color:var(--muted)}
+.pcard .addon{font-size:.82rem;font-weight:600;color:#C2410C}
+@media (max-width:980px){.biz-cards{grid-template-columns:1fr}}
+
+/* Steps */
+.steps-wrap{background:var(--paper)}
+.steps-wrap .step{background:var(--white)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+.step{padding:30px;border-radius:var(--radius);border:1px solid var(--line);background:var(--paper);position:relative}
+.step .num{font-family:'Sora',sans-serif;font-weight:700;font-size:.85rem;color:var(--ink);background:var(--gold);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-bottom:18px}
+.step h3{font-size:1.15rem;margin-bottom:8px}
+.step p{color:var(--muted);font-size:.96rem}
+
+/* Why */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.why-item{padding:26px;border-radius:var(--radius);background:var(--white);border:1px solid var(--line)}
+.why-item .icon{width:44px;height:44px;border-radius:12px;margin-bottom:16px}
+.why-item .icon svg{width:22px;height:22px}
+.why-item h3{font-size:1.05rem;margin-bottom:6px}
+.why-item p{color:var(--muted);font-size:.93rem}
+
+/* FAQ */
+.faq-wrap{background:var(--white)}
+.faq{max-width:800px;margin-inline:auto;display:grid;gap:12px}
+details{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:0 22px}
+summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:600;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;color:#F2702F;transition:transform .2s;flex:none}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 20px;color:var(--muted)}
+
+/* Contact */
+.contact{background:var(--ink);color:var(--on-ink)}
+.contact .section-head h2{color:var(--white)}
+.contact .section-head p{color:var(--on-ink-muted)}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:start}
+.direct{display:grid;gap:14px}
+.direct a,.direct div{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:16px;background:var(--ink-2);border:1px solid rgba(255,255,255,.06);transition:border-color .2s}
+.direct a:hover{border-color:var(--gold)}
+.direct .icon{width:44px;height:44px;border-radius:12px;background:var(--gold-soft)}
+.direct .icon svg{width:22px;height:22px}
+.direct small{display:block;color:var(--on-ink-muted);font-size:.8rem}
+.direct b{color:var(--white);font-weight:600;direction:ltr;unicode-bidi:isolate}
+form.enquiry{background:var(--white);color:var(--text);border-radius:22px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:.86rem;font-weight:600}
+label span.opt{font-weight:400;color:var(--muted)}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--text);transition:border-color .2s,background .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);background:var(--white)}
+textarea{min-height:130px;resize:vertical}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--muted)}
+.consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--ink)}
+.consent a{color:var(--text);text-decoration:underline}
+.form-foot{grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.form-status{font-size:.92rem;font-weight:500}
+.form-status.ok{color:#15803d}.form-status.err{color:#b91c1c}
+.btn[disabled]{opacity:.6;cursor:wait;transform:none}
+
+/* Footer */
+footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-size:.9rem}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a:hover{color:var(--gold)}
+.copy{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.06);font-size:.82rem}
+
+.wa-float{position:fixed;inset-inline-end:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);transition:transform .2s}
+.wa-float:hover{transform:scale(1.07)}
+.wa-float svg{width:30px;height:30px;color:#fff}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* Responsive */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .services{grid-template-columns:1fr}
+  .price-groups{grid-template-columns:1fr;max-width:560px;margin-inline:auto}
+  .steps{grid-template-columns:1fr}
+  .why{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr}
+  .nav-links,.nav .btn-gold{display:none}
+  .menu-btn{display:block}
+  .mobile-menu.open{display:grid;gap:4px;padding:8px 0 20px;background:rgba(21,23,28,.97)}
+  .mobile-menu a{padding:12px 16px;color:var(--on-ink);border-radius:10px}
+  .mobile-menu a:hover{background:var(--ink-3)}
+  header:has(.mobile-menu.open){background:rgba(21,23,28,.97)}
+}
+@media (max-width:620px){
+  section{padding:72px 0}
+  .hero{padding:118px 0 80px}
+  .why{grid-template-columns:1fr}
+  .card,.custom,form.enquiry{padding:24px}
+  form.enquiry{grid-template-columns:1fr}
+  .hero-ctas .btn{flex:1 1 100%}
+  .brand small{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<header id="top">
+  <div class="container nav">
+    <a href="#top" class="brand" aria-label="Gear Radar Digital Solutions">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg>
+      <span>Gear Radar<small>Digital Solutions</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+      <a href="#how" data-i18n="nav_how">How it works</a>
+      <a href="#why" data-i18n="nav_why">Why us</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="lang" id="langToggle" type="button" aria-label="Switch language">العربية</button>
+      <a href="#contact" class="btn btn-gold" data-i18n="cta_call">Book a free call</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-menu container" id="mobileMenu">
+    <a href="#services" data-i18n="nav_services">Services</a>
+    <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+      <a href="#how" data-i18n="nav_how">How it works</a>
+    <a href="#why" data-i18n="nav_why">Why us</a>
+    <a href="#faq" data-i18n="nav_faq">FAQ</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow" data-i18n="hero_eyebrow">AI automation for small businesses</span>
+      <h1 data-i18n="hero_title">AI that works <em>while you do.</em></h1>
+      <p class="lead" data-i18n="hero_lead">We build personal AI assistants, business websites and smart tools that save you hours every week — set up for you, reviewed by a person, in English and Arabic.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-gold"><span data-i18n="cta_consult">Get a free consultation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flip"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://wa.me/447442309417" target="_blank" rel="noopener" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg><span data-i18n="cta_whatsapp">WhatsApp us</span></a>
+      </div>
+      <div class="hero-points">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pt1">Done-for-you setup</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pt2">English &amp; Arabic</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pt3">UK-based support</span></span>
+      </div>
+    </div>
+
+    <div class="phone" aria-label="Example conversation with the AI assistant" role="img">
+      <div class="phone-top">
+        <div class="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M9 14h.01M15 14h.01"/></svg></div>
+        <div><b data-i18n="chat_name">Your AI Assistant</b><small data-i18n="chat_status">online · Telegram / WhatsApp</small></div>
+      </div>
+      <div class="chat">
+        <div class="msg me" data-i18n="chat1">What's on tomorrow?</div>
+        <div class="msg bot" data-i18n-html="chat2">You have <b>3 meetings</b>. First one 9:30 with Sarah. Rain expected from 8am — leave 10 minutes early. ☔</div>
+        <div class="msg me" data-i18n="chat3">Reply to Sarah: I'll bring the proposal.</div>
+        <div class="msg bot"><span data-i18n="chat4">Here's the draft. Shall I send it?</span><div class="chip-row"><span class="chip yes" data-i18n="chat_yes">✓ Send</span><span class="chip" data-i18n="chat_no">Edit</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="svc_eyebrow">What we do</span>
+      <h2 data-i18n="svc_title">Four ways we save you time</h2>
+      <p data-i18n="svc_lead">Each service is set up and looked after by us. You don't need any technical skills — just tell us what you need.</p>
+    </div>
+
+    <div class="services">
+      <!-- 1. Executive Assistant -->
+      <article class="card reveal">
+        <div class="card-top">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <span class="tag" data-i18n="tag_popular">Most popular</span>
+        </div>
+        <h3 data-i18n="s1_title">AI Executive Assistant</h3>
+        <p class="sub" data-i18n="s1_sub">A personal assistant that lives in your Telegram or WhatsApp and handles your email and diary.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b1">Reads and summarises your Gmail, drafts replies and sends them only after you confirm</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b2">Books, moves and checks Google Calendar events</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b3">Daily morning brief with your schedule, weather and route suggestions</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b4">Reminders, voice notes and PDF summaries</span></li>
+        </ul>
+        <p class="for" data-i18n-html="s1_for"><b>Ideal for:</b> busy owners, managers and consultants.</p>
+        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
+      </article>
+
+      <!-- 2. Websites -->
+      <article class="card reveal">
+        <div class="card-top">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></div>
+          <span class="tag" data-i18n="tag_fast">Fast turnaround</span>
+        </div>
+        <h3 data-i18n="s2_title">Websites for Businesses</h3>
+        <p class="sub" data-i18n="s2_sub">A clean, mobile-friendly website that turns visitors into calls and WhatsApp messages.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s2_b1">Services and prices, photo gallery, opening hours and Google Maps</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s2_b2">WhatsApp and Call Now buttons on every screen</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s2_b3">English, Arabic or both — with a language switch</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s2_b4">Every site is checked by us before it goes live, and easy to update later</span></li>
+        </ul>
+        <p class="for" data-i18n-html="s2_for"><b>Ideal for:</b> shops, salons, trades, clinics and restaurants.</p>
+        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
+      </article>
+
+      <!-- 3. QR Catalogue -->
+      <article class="card reveal">
+        <div class="card-top">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></div>
+          <span class="tag" data-i18n="tag_rest">For restaurants &amp; shops</span>
+        </div>
+        <h3 data-i18n="s3_title">Smart QR Catalogue</h3>
+        <p class="sub" data-i18n="s3_sub">Your menu or product list as a beautiful mobile page — one scan away.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s3_b1">Items with photos, descriptions and prices</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s3_b2">Order or book straight on WhatsApp</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s3_b3">Your QR code plus a printable table stand</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s3_b4">Change prices any time — no reprinting</span></li>
+        </ul>
+        <p class="for" data-i18n-html="s3_for"><b>Ideal for:</b> cafés, restaurants, takeaways and retail.</p>
+        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
+      </article>
+
+      <!-- 4. Job Hunter -->
+      <article class="card reveal">
+        <div class="card-top">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8 11h6M11 8v6"/></svg></div>
+          <span class="tag" data-i18n="tag_job">For job seekers</span>
+        </div>
+        <h3 data-i18n="s4_title">AI Job Hunter</h3>
+        <p class="sub" data-i18n="s4_sub">Stop scrolling job boards. Get the roles that actually fit your CV, sent to your Telegram or WhatsApp.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b1">Searches thousands of job sites across the UK, USA, Canada and the Gulf</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b2">Filters by your location, job type and remote or hybrid options</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b3">AI scores each job against your CV and explains the gaps</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b4">Tailored CV points for each match — never invented experience</span></li>
+        </ul>
+        <p class="for" data-i18n-html="s4_for"><b>Ideal for:</b> professionals looking for their next role at home or abroad.</p>
+        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
+      </article>
+    </div>
+
+    <div class="custom reveal">
+      <div>
+        <h3 data-i18n="custom_title">Need something else automated?</h3>
+        <p data-i18n="custom_text">Follow-ups, bookings, reports, lead alerts… if you do it again and again, we can probably automate it. Tell us about the task and we'll tell you honestly if it's worth it.</p>
+      </div>
+      <a href="#contact" class="btn btn-gold" data-service="Custom Automation" data-i18n="custom_cta">Tell us your idea</a>
+    </div>
+  </div>
+</section>
+
+
+<section id="pricing" class="pricing-wrap">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="pr_eyebrow">Pricing</span>
+      <h2 data-i18n="pr_title">Simple monthly plans</h2>
+      <p data-i18n="pr_lead">Pick the assistant, the job hunter, or both together for less. Cancel any time.</p>
+      <div class="bill-toggle" role="group" aria-label="Billing period">
+        <button type="button" data-bill="monthly" aria-pressed="true" data-i18n="monthly">Monthly</button>
+        <button type="button" data-bill="annual" aria-pressed="false"><span data-i18n="annual">Annual</span> · <span class="save" data-i18n="save">2 months free</span></button>
+      </div>
+    </div>
+    <div class="price-groups">
+      <div class="pgroup reveal">
+        <div class="pgroup-head"><h3 data-i18n="g_butler">AI Executive Assistant</h3></div>
+        <div class="pcard" data-plan="basic" data-m="9" data-y="90">
+          <h4>Butler Basic</h4>
+          <div class="amount"><b class="p-amt">$9</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic1">Assistant on Telegram</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic2">30 messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic3">Gmail, Google Calendar &amp; reminders</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=basic&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+        <div class="pcard" data-plan="pro" data-m="19" data-y="190">
+          <h4>Butler Pro</h4>
+          <div class="amount"><b class="p-amt">$19</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro1">Telegram or WhatsApp</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro2">150 messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro3">Voice notes &amp; PDF summaries</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro4">Daily morning brief</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=pro&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+      </div>
+      <div class="pgroup reveal">
+        <div class="pgroup-head"><h3 data-i18n="g_jobs">AI Job Hunter</h3></div>
+        <div class="pcard" data-plan="jobs_starter" data-m="12" data-y="120">
+          <h4>Jobs Starter</h4>
+          <div class="amount"><b class="p-amt">$12</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_js1">3 job titles in 1 city</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_js2">Daily digest of your best matches</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_js3">10 tailored CVs a month</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=jobs_starter&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+        <div class="pcard" data-plan="jobs_pro" data-m="29" data-y="290">
+          <h4>Jobs Pro</h4>
+          <div class="amount"><b class="p-amt">$29</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_jp1">6 job titles across 3 cities</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_jp2">Instant alerts or a daily digest</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_jp3">40 tailored CVs + 20 cover letters a month</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=jobs_pro&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+      </div>
+      <div class="pgroup feature reveal">
+        <div class="pgroup-head"><h3 data-i18n="g_both">Both together</h3><span class="tag" data-i18n="best">Best value</span></div>
+        <div class="pcard star" data-plan="premium" data-m="39" data-y="390">
+          <h4>Premium</h4>
+          <div class="amount"><b class="p-amt">$39</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_prem1">Everything in Butler Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_prem2">Everything in Jobs Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_prem3">Ask your assistant about your jobs</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_prem4">New jobs in your morning brief</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=premium&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+        <div class="pcard" data-plan="executive" data-m="59" data-y="590">
+          <h4>Executive</h4>
+          <div class="amount"><b class="p-amt">$59</b><span class="p-per" data-i18n="per_m">/month</span></div>
+          <div class="per-note"></div>
+          <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_ex1">Everything in Premium</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_ex2">250 assistant messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_ex3">10 job titles across 3 cities</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_ex4">100 tailored CVs + 60 cover letters a month</span></li></ul>
+          <a class="btn btn-dark p-go" href="signup.html?plan=executive&amp;billing=monthly" data-i18n="start">Get started</a>
+        </div>
+      </div>
+    </div>
+    <div class="price-foot reveal">
+      <p data-i18n-html="b2b">For universities, charities and employers: <b>Job Hunter for groups from $8 per person a month</b> (20 people minimum), with a weekly progress report.</p>
+      <a href="#contact" class="btn btn-dark" data-service="AI Job Hunter" data-i18n="b2b_cta">Talk to us</a>
+    </div>
+
+    <div class="biz-head reveal">
+      <span class="eyebrow" data-i18n="biz_eyebrow">For your business</span>
+      <h3 data-i18n="biz_title">Websites and QR menus — pay once</h3>
+      <p data-i18n="biz_lead">Send us your details online, we build it and check it before it goes live. Hosting on our link is included.</p>
+    </div>
+    <div class="biz-group reveal">
+      <h4 data-i18n="s2_title">Websites for Businesses</h4>
+      <p data-i18n="biz_web_sub">A mobile-friendly page that turns visitors into calls and WhatsApp messages.</p>
+      <div class="demo-link"><a href="https://mkamtaha-maker.github.io/cedar-barbers-demo-9kyrxe/" target="_blank" rel="noopener" data-i18n="demo_web">See a sample website (fictional barber shop) →</a></div>
+      <div class="biz-cards">
+          <div class="pcard oneoff">
+            <h4>Website Starter</h4>
+            <div class="amount"><b>$149</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b1">One-page site, one language</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b2">Services & prices, opening hours</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b3">Call button, hosting included</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=web_basic" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff star">
+            <h4>Website Pro</h4>
+            <div class="amount"><b>$249</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p1">Logo + gallery of up to 8 photos</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p2">Google Map & WhatsApp button</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p3">Arabic + English, 4 colour themes</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=web_pro" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff">
+            <h4>Website Premium</h4>
+            <div class="amount"><b>$249</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon" data-i18n="web_addon">+ $19/month care plan</div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m1">Everything in Website Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m2">Up to 4 content updates a month, done by us</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m3">Priority support</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=web_premium" data-i18n="start">Get started</a>
+          </div>
+      </div>
+    </div>
+    <div class="biz-group reveal">
+      <h4 data-i18n="s3_title">Smart QR Catalogue</h4>
+      <p data-i18n="biz_qr_sub">Your menu, services or products behind one QR code — update prices without reprinting.</p>
+      <div class="demo-link"><a href="https://menu.gearradar.co.uk/demo-cafe/" target="_blank" rel="noopener" data-i18n="demo_qr">Try a sample QR menu (fictional café) →</a></div>
+      <div class="biz-cards">
+          <div class="pcard oneoff">
+            <h4>QR Starter</h4>
+            <div class="amount"><b>$79</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b1">Menu or catalogue page, one language</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b2">QR code + printable table card</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b3">Change prices any time with your edit code</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=qr_basic" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff star">
+            <h4>QR Pro</h4>
+            <div class="amount"><b>$129</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p1">Logo and item photos</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p2">Order or book on WhatsApp</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p3">Arabic + English, 6 themes, live search</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=qr_pro" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff">
+            <h4>QR Premium</h4>
+            <div class="amount"><b>$129</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon" data-i18n="qr_addon">+ $9/month care plan</div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m1">Everything in QR Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m2">We update your menu for you (up to 4 a month)</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m3">Priority support</span></li></ul>
+            <a class="btn btn-dark" href="signup.html?plan=qr_premium" data-i18n="start">Get started</a>
+          </div>
+      </div>
+    </div>
+    <p class="price-note" data-i18n="pr_note">Prices in US dollars. Early access: no payment is taken at signup — we confirm your plan by email before anything is charged.</p>
+  </div>
+</section>
+
+<section id="how" class="steps-wrap">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="how_eyebrow">How it works</span>
+      <h2 data-i18n="how_title">From first chat to live in three steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">1</div><h3 data-i18n="st1_t">Free consultation</h3><p data-i18n="st1_p">A short call or WhatsApp chat to understand your business and what's taking up your time.</p></div>
+      <div class="step reveal"><div class="num">2</div><h3 data-i18n="st2_t">We build and you approve</h3><p data-i18n="st2_p">We set everything up and show you a preview. Nothing goes live until you're happy with it.</p></div>
+      <div class="step reveal"><div class="num">3</div><h3 data-i18n="st3_t">Go live, with support</h3><p data-i18n="st3_p">We launch it, show you how to use it and stay on hand for changes and questions.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="why_eyebrow">Why Gear Radar</span>
+      <h2 data-i18n="why_title">Smart technology, with a person behind it</h2>
+    </div>
+    <div class="why">
+      <div class="why-item reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-4 1.5M4 5v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></div><h3 data-i18n="w1_t">You stay in control</h3><p data-i18n="w1_p">Our AI asks before it sends an email or changes your diary. Websites are reviewed before they go live.</p></div>
+      <div class="why-item reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 12h8M5 16h11"/><path d="M17 13l3 3-3 3"/></svg></div><h3 data-i18n="w2_t">English &amp; Arabic</h3><p data-i18n="w2_p">Everything we build can speak to your customers in English, Arabic or both.</p></div>
+      <div class="why-item reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3 data-i18n="w3_t">Real time saved</h3><p data-i18n="w3_p">We focus on the repetitive work that eats your week, so you get hours back — not another app to learn.</p></div>
+      <div class="why-item reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3 data-i18n="w4_t">Local and reachable</h3><p data-i18n="w4_p">Based in Greater Manchester. Message us on WhatsApp and talk to the person who built your system.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq-wrap">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="faq_eyebrow">Questions</span>
+      <h2 data-i18n="faq_title">Frequently asked questions</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary data-i18n="q1">Do I need any technical knowledge?</summary><p data-i18n="a1">No. We do the setup. If you can use WhatsApp or Telegram, you can use what we build.</p></details>
+      <details class="reveal"><summary data-i18n="q2">How much does it cost?</summary><p data-i18n-html="a2">The assistant and job hunter are monthly plans from $9. Websites start at $149 and QR menus at $79, paid once. See <a href="#pricing" style="text-decoration:underline">Pricing</a> for everything included.</p></details>
+      <details class="reveal"><summary data-i18n="q3">Is my data safe?</summary><p data-i18n="a3">The assistant only accesses the accounts you choose to connect, and asks before taking any action on your behalf. You can disconnect at any time.</p></details>
+      <details class="reveal"><summary data-i18n="q4">How long does setup take?</summary><p data-i18n="a4">Websites and QR catalogues are usually ready within a few days of receiving your details. We'll give you a timeline for other services when we quote.</p></details>
+      <details class="reveal"><summary data-i18n="q5">Do you work with clients outside Manchester?</summary><p data-i18n="a5">Yes. Everything is set up remotely, so we can work with you wherever you are.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="c_eyebrow">Contact</span>
+      <h2 data-i18n="c_title">Let's talk about your business</h2>
+      <p data-i18n="c_lead">Send us a message and we'll reply within one working day. Prefer to chat? WhatsApp is the quickest way to reach us.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="direct reveal">
+        <a href="https://wa.me/447442309417" target="_blank" rel="noopener"><span class="icon"><svg viewBox="0 0 24 24" fill="#FF8A50"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></span><span><small data-i18n="c_wa">WhatsApp</small><b>+44 7442 309417</b></span></a>
+        <a href="tel:+447442309417"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small data-i18n="c_phone">Phone</small><b>+44 7442 309417</b></span></a>
+        <a href="mailto:info@gearradar.co.uk"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><small data-i18n="c_email">Email</small><b>info@gearradar.co.uk</b></span></a>
+        <div><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><small data-i18n="c_loc">Location</small><b data-i18n="c_loc_v">Manchester, UK</b></span></div>
+      </div>
+
+      <form class="enquiry reveal" id="enquiryForm" novalidate>
+        <div class="field"><label for="f_name" data-i18n="f_name">Full name</label><input id="f_name" name="full_name" autocomplete="name" required maxlength="120"></div>
+        <div class="field"><label for="f_email" data-i18n="f_email">Email</label><input id="f_email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+        <div class="field"><label for="f_phone"><span data-i18n="f_phone">Phone / WhatsApp</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="f_phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></div>
+        <div class="field"><label for="f_biz"><span data-i18n="f_biz">Business name</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="f_biz" name="business" autocomplete="organization" maxlength="160"></div>
+        <div class="field full"><label for="f_service" data-i18n="f_service">I'm interested in</label>
+          <select id="f_service" name="service">
+            <option value="AI Executive Assistant" data-i18n="s1_title">AI Executive Assistant</option>
+            <option value="Business Website" data-i18n="s2_title">Websites for Businesses</option>
+            <option value="Smart QR Catalogue" data-i18n="s3_title">Smart QR Catalogue</option>
+            <option value="AI Job Hunter" data-i18n="s4_title">AI Job Hunter</option>
+            <option value="Custom Automation" data-i18n="opt_custom">Something else / custom automation</option>
+          </select>
+        </div>
+        <div class="field full"><label for="f_msg" data-i18n="f_msg">How can we help?</label><textarea id="f_msg" name="message" required maxlength="2000"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="f_website">Website</label><input id="f_website" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="consent"><input type="checkbox" id="f_consent" required><span data-i18n-html="f_consent">I agree that Gear Radar may use these details to reply to my enquiry, as described in the <a href="privacy.html">privacy notice</a>.</span></label>
+        <div class="form-foot">
+          <button class="btn btn-gold" type="submit" id="f_submit" data-i18n="f_send">Send message</button>
+          <span class="form-status" id="f_status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a href="#top" class="brand" style="color:#fff"><svg viewBox="0 0 120 120" aria-hidden="true" style="width:32px;height:32px"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg><span>Gear Radar</span></a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+        <a href="privacy.html" data-i18n="privacy">Privacy</a>
+      </nav>
+    </div>
+ <p class="copy">© <span id="year">2026</span> Gear Radar Digital Solutions · Manchester, UK · <span data-i18n="rights">All rights reserved.</span> · <a href="/privacy.html" style="color:inherit">Privacy Policy</a> · <a href="/terms.html" style="color:inherit">Terms of Service</a></p>  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/447442309417" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+
+<script>
+(function(){
+  var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-enquiry';
+
+  var AR = {
+    skip:'تخطَّ إلى المحتوى',
+    nav_services:'خدماتنا', nav_how:'كيف نعمل', nav_why:'لماذا نحن', nav_faq:'الأسئلة الشائعة', nav_contact:'تواصل معنا',
+    cta_call:'احجز مكالمة مجانية', cta_consult:'احصل على استشارة مجانية', cta_whatsapp:'راسلنا على واتساب',
+    hero_eyebrow:'أتمتة بالذكاء الاصطناعي للأعمال الصغيرة',
+    hero_title:'ذكاء اصطناعي يعمل <em>بينما تنشغل بعملك.</em>',
+    hero_lead:'نبني لك مساعدين شخصيين بالذكاء الاصطناعي، ومواقع للأعمال، وأدوات ذكية توفّر عليك ساعات كل أسبوع — نجهّزها لك، ويراجعها شخص حقيقي، بالعربية والإنجليزية.',
+    pt1:'نجهّز كل شيء عنك', pt2:'عربي وإنجليزي', pt3:'دعم من المملكة المتحدة',
+    chat_name:'مساعدك الذكي', chat_status:'متصل · تيليجرام / واتساب',
+    chat1:'ما جدولي غداً؟',
+    chat2:'عندك <b>3 اجتماعات</b>. أولها الساعة 9:30 مع سارة. يُتوقع مطر من الساعة 8 — اخرج قبل موعدك بعشر دقائق. ☔',
+    chat3:'رد على سارة: سأحضر العرض معي.',
+    chat4:'هذه المسودة. أرسلها؟', chat_yes:'✓ أرسل', chat_no:'تعديل',
+    svc_eyebrow:'ماذا نقدّم', svc_title:'أربع طرق نوفّر بها وقتك',
+    svc_lead:'كل خدمة نجهّزها ونتابعها بأنفسنا. لا تحتاج أي خبرة تقنية — فقط أخبرنا بما تحتاجه.',
+    tag_popular:'الأكثر طلباً', tag_fast:'تسليم سريع', tag_rest:'للمطاعم والمحلات', tag_job:'للباحثين عن عمل',
+    s1_title:'المساعد التنفيذي الذكي',
+    s1_sub:'مساعد شخصي يعيش في تيليجرام أو واتساب ويتولى بريدك ومواعيدك.',
+    s1_b1:'يقرأ بريد Gmail ويلخّصه، ويكتب الردود ولا يرسلها إلا بعد موافقتك',
+    s1_b2:'يحجز مواعيد Google Calendar ويعدّلها ويراجعها',
+    s1_b3:'ملخص صباحي يومي بجدولك والطقس واقتراحات الطريق',
+    s1_b4:'تذكيرات، وتفريغ الرسائل الصوتية، وتلخيص ملفات PDF',
+    s1_for:'<b>مناسب لـ:</b> أصحاب الأعمال والمديرين والمستشارين المشغولين.',
+    s2_title:'مواقع إلكترونية للأعمال',
+    s2_sub:'موقع أنيق ومناسب للجوال يحوّل الزوار إلى مكالمات ورسائل واتساب.',
+    s2_b1:'الخدمات والأسعار، معرض صور، ساعات العمل وخرائط Google',
+    s2_b2:'زر واتساب وزر اتصل الآن في كل الصفحات',
+    s2_b3:'بالعربية أو الإنجليزية أو الاثنتين — مع زر لتبديل اللغة',
+    s2_b4:'نراجع كل موقع قبل نشره، ويسهل تحديثه لاحقاً',
+    s2_for:'<b>مناسب لـ:</b> المحلات والصالونات والحِرف والعيادات والمطاعم.',
+    s3_title:'الكتالوج الذكي بالـ QR',
+    s3_sub:'قائمة طعامك أو منتجاتك كصفحة جوال أنيقة — بمسحة واحدة.',
+    s3_b1:'المنتجات بالصور والوصف والأسعار',
+    s3_b2:'الطلب أو الحجز مباشرة عبر واتساب',
+    s3_b3:'رمز QR خاص بك مع ستاند طاولة جاهز للطباعة',
+    s3_b4:'غيّر الأسعار في أي وقت — بدون إعادة طباعة',
+    s3_for:'<b>مناسب لـ:</b> المقاهي والمطاعم ومحلات الوجبات والتجزئة.',
+    s4_title:'صائد الوظائف الذكي',
+    s4_sub:'توقّف عن تصفح مواقع الوظائف. تصلك الوظائف المناسبة لسيرتك الذاتية على تيليجرام أو واتساب.',
+    s4_b1:'يبحث في آلاف مواقع التوظيف في بريطانيا وأمريكا وكندا والخليج',
+    s4_b2:'يفلتر حسب موقعك ونوع الوظيفة وخيارات العمل عن بُعد أو الهجين',
+    s4_b3:'يقيّم الذكاء الاصطناعي كل وظيفة مقابل سيرتك ويشرح النواقص',
+    s4_b4:'نقاط مخصصة لسيرتك لكل وظيفة — بدون اختلاق أي خبرة',
+    s4_for:'<b>مناسب لـ:</b> المهنيين الباحثين عن وظيفتهم القادمة داخل بلدهم أو خارجه.',
+    ask:'اسأل عن هذه الخدمة',
+    nav_pricing:'الأسعار', see_plans:'شاهد الباقات', start:'ابدأ الآن',
+    pr_eyebrow:'الأسعار', pr_title:'باقات شهرية بسيطة', pr_lead:'اختر المساعد، أو صائد الوظائف، أو الاثنين معاً بسعر أقل. يمكنك الإلغاء في أي وقت.',
+    monthly:'شهري', annual:'سنوي', save:'شهران مجاناً', per_m:'/شهرياً', per_y:'/سنوياً',
+    g_butler:'المساعد التنفيذي الذكي', g_jobs:'صائد الوظائف الذكي', g_both:'الاثنان معاً', best:'الأفضل قيمة',
+    pf_basic1:'المساعد على تيليجرام', pf_basic2:'30 رسالة يومياً', pf_basic3:'Gmail وتقويم Google والتذكيرات',
+    pf_pro1:'تيليجرام أو واتساب', pf_pro2:'150 رسالة يومياً', pf_pro3:'الرسائل الصوتية وتلخيص ملفات PDF', pf_pro4:'ملخص صباحي يومي',
+    pf_js1:'3 مسميات وظيفية في مدينة واحدة', pf_js2:'ملخص يومي بأفضل الوظائف المناسبة', pf_js3:'10 سير ذاتية مخصصة شهرياً',
+    pf_jp1:'6 مسميات وظيفية في 3 مدن', pf_jp2:'تنبيهات فورية أو ملخص يومي', pf_jp3:'40 سيرة مخصصة + 20 خطاب تقديم شهرياً',
+    pf_prem1:'كل مزايا Butler Pro', pf_prem2:'كل مزايا Jobs Pro', pf_prem3:'اسأل مساعدك عن وظائفك', pf_prem4:'الوظائف الجديدة في ملخصك الصباحي',
+    pf_ex1:'كل مزايا Premium', pf_ex2:'250 رسالة للمساعد يومياً', pf_ex3:'10 مسميات وظيفية في 3 مدن', pf_ex4:'100 سيرة مخصصة + 60 خطاب تقديم شهرياً',
+    b2b:'للجامعات والجمعيات وجهات العمل: <b>صائد الوظائف للمجموعات من 8$ للشخص شهرياً</b> (20 شخصاً كحد أدنى)، مع تقرير أسبوعي بالتقدم.',
+    b2b_cta:'تواصل معنا', pr_note:'الأسعار بالدولار الأمريكي. في مرحلة الإطلاق المبكر لا يتم أي دفع عند التسجيل — نؤكد باقتك بالبريد قبل أي خصم.',
+    per_mo_eq:'أي {x}$ شهرياً',
+    oneoff:'لمرة واحدة',
+    biz_eyebrow:'لنشاطك التجاري',
+    biz_title:'مواقع وقوائم QR — تدفع مرة واحدة',
+    biz_lead:'أرسل لنا بياناتك أونلاين، ونبنيها ونراجعها قبل النشر. الاستضافة على رابطنا مشمولة.',
+    biz_web_sub:'صفحة مناسبة للجوال تحوّل الزوار إلى مكالمات ورسائل واتساب.',
+    biz_qr_sub:'قائمتك أو خدماتك أو منتجاتك خلف رمز QR واحد — غيّر الأسعار بدون إعادة طباعة.',
+    demo_web:'شاهد موقعاً تجريبياً (لصالون حلاقة وهمي) ←', demo_qr:'جرّب قائمة QR تجريبية (لمقهى وهمي) ←',
+    wf_b1:'موقع من صفحة واحدة بلغة واحدة',
+    wf_b2:'الخدمات والأسعار وساعات العمل',
+    wf_b3:'زر اتصال، والاستضافة مشمولة',
+    wf_p1:'الشعار ومعرض حتى 8 صور',
+    wf_p2:'خريطة Google وزر واتساب',
+    wf_p3:'عربي + إنجليزي، 4 ألوان',
+    wf_m1:'كل مزايا Website Pro',
+    wf_m2:'حتى 4 تحديثات للمحتوى شهرياً ننفذها نحن',
+    wf_m3:'دعم بأولوية',
+    web_addon:'+ 19$ شهرياً لخطة الرعاية',
+    qf_b1:'صفحة قائمة أو كتالوج بلغة واحدة',
+    qf_b2:'رمز QR + كرت طاولة للطباعة',
+    qf_b3:'غيّر الأسعار أي وقت بكود التعديل',
+    qf_p1:'الشعار وصور الأصناف',
+    qf_p2:'الطلب أو الحجز عبر واتساب',
+    qf_p3:'عربي + إنجليزي، 6 ثيمات، بحث مباشر',
+    qf_m1:'كل مزايا QR Pro',
+    qf_m2:'نحدّث قائمتك بدلاً عنك (حتى 4 مرات شهرياً)',
+    qf_m3:'دعم بأولوية',
+    qr_addon:'+ 9$ شهرياً لخطة الرعاية',
+    custom_title:'تحتاج أتمتة شيء آخر؟',
+    custom_text:'المتابعات، الحجوزات، التقارير، تنبيهات العملاء… إذا كنت تكرر المهمة مرة بعد مرة، فغالباً نستطيع أتمتتها. أخبرنا عنها وسنقول لك بصراحة إن كانت تستحق.',
+    custom_cta:'أخبرنا بفكرتك',
+    how_eyebrow:'كيف نعمل', how_title:'من أول محادثة إلى الإطلاق في ثلاث خطوات',
+    st1_t:'استشارة مجانية', st1_p:'مكالمة قصيرة أو محادثة واتساب لنفهم عملك وما يستهلك وقتك.',
+    st2_t:'نبني وأنت توافق', st2_p:'نجهّز كل شيء ونعرض عليك معاينة. لا شيء يُنشر قبل أن تكون راضياً.',
+    st3_t:'الإطلاق مع الدعم', st3_p:'نطلق الخدمة ونشرح لك طريقة استخدامها ونبقى معك لأي تعديل أو سؤال.',
+    why_eyebrow:'لماذا Gear Radar', why_title:'تقنية ذكية، ووراءها شخص حقيقي',
+    w1_t:'أنت المتحكم', w1_p:'مساعدنا يستأذنك قبل إرسال أي بريد أو تعديل مواعيدك، والمواقع تُراجع قبل نشرها.',
+    w2_t:'عربي وإنجليزي', w2_p:'كل ما نبنيه يمكنه التحدث مع عملائك بالعربية أو الإنجليزية أو كليهما.',
+    w3_t:'توفير حقيقي للوقت', w3_p:'نركّز على الأعمال المتكررة التي تستهلك أسبوعك، لتستعيد ساعات — لا تطبيقاً جديداً تتعلمه.',
+    w4_t:'قريبون ومتاحون', w4_p:'مقرّنا في مانشستر الكبرى. راسلنا على واتساب وتحدّث مع الشخص الذي بنى نظامك.',
+    faq_eyebrow:'أسئلة', faq_title:'الأسئلة الشائعة',
+    q1:'هل أحتاج أي خبرة تقنية؟', a1:'لا. نحن نتولى الإعداد. إذا كنت تستخدم واتساب أو تيليجرام، ستستخدم ما نبنيه بسهولة.',
+    q2:'كم التكلفة؟', a2:'المساعد وصائد الوظائف باقات شهرية تبدأ من 9$. المواقع تبدأ من 149$ وقوائم QR من 79$ تدفع مرة واحدة. راجع <a href="#pricing" style="text-decoration:underline">الأسعار</a> لكل التفاصيل.',
+    q3:'هل بياناتي آمنة؟', a3:'المساعد يصل فقط إلى الحسابات التي تختار ربطها، ويستأذنك قبل أي إجراء نيابةً عنك. ويمكنك فصلها في أي وقت.',
+    q4:'كم يستغرق التجهيز؟', a4:'المواقع والكتالوجات الذكية تكون جاهزة عادةً خلال أيام قليلة من استلام بياناتك. أما الخدمات الأخرى فنحدد مدتها مع عرض السعر.',
+    q5:'هل تعملون مع عملاء خارج مانشستر؟', a5:'نعم. كل شيء يتم عن بُعد، لذلك نعمل معك أينما كنت.',
+    c_eyebrow:'تواصل معنا', c_title:'لنتحدث عن عملك',
+    c_lead:'أرسل لنا رسالة وسنرد خلال يوم عمل واحد. تفضّل المحادثة؟ واتساب هو أسرع طريقة للوصول إلينا.',
+    c_wa:'واتساب', c_phone:'الهاتف', c_email:'البريد الإلكتروني', c_loc:'الموقع', c_loc_v:'مانشستر، المملكة المتحدة',
+    f_name:'الاسم الكامل', f_email:'البريد الإلكتروني', f_phone:'الهاتف / واتساب', f_biz:'اسم النشاط التجاري', optional:'(اختياري)',
+    f_service:'أنا مهتم بـ', opt_custom:'شيء آخر / أتمتة مخصصة', f_msg:'كيف يمكننا مساعدتك؟',
+    f_consent:'أوافق على أن تستخدم Gear Radar هذه البيانات للرد على استفساري، كما هو موضح في <a href="privacy.html">إشعار الخصوصية</a>.',
+    f_send:'أرسل الرسالة', privacy:'الخصوصية', rights:'جميع الحقوق محفوظة.',
+    msg_sending:'جارٍ الإرسال…', msg_ok:'شكراً! وصلتنا رسالتك، وأرسلنا لك بريد تأكيد.', msg_err:'تعذّر الإرسال. حاول مرة أخرى أو راسلنا على واتساب.', msg_invalid:'يرجى إدخال الاسم وبريد إلكتروني صحيح ورسالة، والموافقة على إشعار الخصوصية.'
   };
+  var EN_EXTRA = { per_y:'/year', per_mo_eq:'= ${x}/month', msg_sending:'Sending…', msg_ok:'Thank you! We\'ve got your message and sent you a confirmation email.', msg_err:'Something went wrong. Please try again or message us on WhatsApp.', msg_invalid:'Please add your name, a valid email and a message, and tick the privacy box.' };
 
-  function lang() { return (document.documentElement.lang || 'en').slice(0, 2) === 'ar' ? 'ar' : 'en'; }
-  function t(k) { return T[lang()][k]; }
+  var nodes = document.querySelectorAll('[data-i18n],[data-i18n-html]');
+  var EN = {};
+  nodes.forEach(function(el){
+    var k = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
+    if (!(k in EN)) EN[k] = el.innerHTML;
+  });
+  for (var k in EN_EXTRA) EN[k] = EN_EXTRA[k];
 
-  function store(kind) { try { return window[kind]; } catch (e) { return null; } }
-  function get(kind, key) { try { var s = store(kind); return s ? s.getItem(key) : null; } catch (e) { return null; } }
-  function set(kind, key, val) { try { var s = store(kind); if (s) s.setItem(key, val); } catch (e) {} }
-
-  function newSession() {
-    var d = '9';
-    var bytes = null;
-    try { bytes = window.crypto.getRandomValues(new Uint8Array(17)); } catch (e) { bytes = null; }
-    for (var i = 0; i < 17; i++) d += String((bytes ? bytes[i] : Math.floor(Math.random() * 256)) % 10);
-    return d;
-  }
-  var session = get('localStorage', 'gr_chat_session');
-  if (!/^9\d{17}$/.test(session || '')) { session = newSession(); set('localStorage', 'gr_chat_session', session); }
-
-  var history = [];
-  try { history = JSON.parse(get('sessionStorage', 'gr_chat_log') || '[]') || []; } catch (e) { history = []; }
-  function save() { set('sessionStorage', 'gr_chat_log', JSON.stringify(history.slice(-40))); }
-
-  var css = ''
-    + '.grc-btn{position:fixed;inset-inline-end:22px;bottom:22px;z-index:70;height:58px;padding:0 20px 0 16px;border:0;border-radius:999px;background:#0B1220;color:#fff;display:flex;align-items:center;gap:10px;font-family:inherit;font-weight:600;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 14px 34px -10px rgba(11,18,32,.55);transition:transform .2s}'
-    + '.grc-btn:hover{transform:translateY(-2px)}'
-    + '.grc-btn svg{width:24px;height:24px;color:#E8B64C;flex:none}'
-    + '.grc-dot{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.25)}'
-    + '.wa-float{bottom:92px !important}'
-    + '.grc-panel{box-sizing:border-box;margin:0;padding:0;position:fixed;inset-inline-end:22px;bottom:92px;z-index:80;width:370px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 120px);background:#fff;border-radius:18px;box-shadow:0 30px 70px -20px rgba(11,18,32,.5);display:none;flex-direction:column;overflow:hidden;border:1px solid #E6E2D8}'
-    + '.grc-panel.open{display:flex}'
-    + '.grc-head{flex:none;background:#0B1220;color:#E8ECF4;padding:14px 16px;display:flex;align-items:center;gap:12px}'
-    + '.grc-av{width:38px;height:38px;border-radius:50%;background:rgba(232,182,76,.15);display:grid;place-items:center;flex:none}'
-    + '.grc-av svg{width:22px;height:22px;color:#E8B64C}'
-    + '.grc-head b{display:block;font-size:15px}.grc-head small{color:#9AA6BC;font-size:12px}'
-    + '.grc-x{margin-inline-start:auto;background:none;border:0;color:#9AA6BC;font-size:26px;line-height:1;cursor:pointer;padding:4px 6px}'
-    + '.grc-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:16px;background:#F7F5F0;display:flex;flex-direction:column;gap:10px}'
-    + '.grc-m{max-width:85%;padding:10px 13px;border-radius:14px;font-size:14px;line-height:1.55;white-space:normal;word-wrap:break-word;overflow-wrap:anywhere}'
-    + '.grc-m a{color:#1d4ed8;text-decoration:underline}'
-    + '.grc-bot{background:#fff;border:1px solid #E6E2D8;align-self:flex-start;border-end-start-radius:4px;color:#0F172A}'
-    + '.grc-me{background:#0B1220;color:#fff;align-self:flex-end;border-end-end-radius:4px}'
-    + '.grc-chips{display:flex;flex-wrap:wrap;gap:6px}'
-    + '.grc-chip{border:1px solid #E8B64C;background:#fff;color:#0B1220;border-radius:999px;padding:6px 12px;font-family:inherit;font-weight:500;font-size:13px;cursor:pointer}'
-    + '.grc-chip:hover{background:rgba(232,182,76,.12)}'
-    + '.grc-typing{align-self:flex-start;background:#fff;border:1px solid #E6E2D8;border-radius:14px;padding:12px 14px;display:flex;gap:4px}'
-    + '.grc-typing i{width:7px;height:7px;border-radius:50%;background:#9AA6BC;animation:grcb 1s infinite}'
-    + '.grc-typing i:nth-child(2){animation-delay:.15s}.grc-typing i:nth-child(3){animation-delay:.3s}'
-    + '@keyframes grcb{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}'
-    + '.grc-foot{flex:none;border-top:1px solid #E6E2D8;padding:10px;background:#fff}'
-    + '.grc-form{display:flex;gap:8px;align-items:flex-end}'
-    + '.grc-in{flex:1;resize:none;border:1px solid #E6E2D8;border-radius:12px;padding:10px 12px;font-family:inherit;font-size:14px;line-height:1.4;max-height:110px;min-height:42px;outline:none;color:#0F172A;background:#fff}'
-    + '.grc-in:focus{border-color:#E8B64C}'
-    + '.grc-send{border:0;border-radius:12px;background:#E8B64C;color:#0B1220;width:44px;height:42px;display:grid;place-items:center;cursor:pointer;flex:none}'
-    + '.grc-send:disabled{opacity:.5;cursor:default}'
-    + '.grc-send svg{width:20px;height:20px}'
-    + 'html[dir="rtl"] .grc-send svg{transform:scaleX(-1)}'
-    + '.grc-meta{display:flex;justify-content:space-between;gap:8px;margin-top:8px;font-size:11px;color:#5B6475}'
-    + '.grc-meta a{color:#5B6475;text-decoration:underline}'
-    + '.grc-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}'
-    + '@media (max-width:520px){.grc-panel{inset-inline-end:8px;left:8px;right:8px;width:auto;max-width:none;top:64px;bottom:84px;height:auto;max-height:none}.grc-btn span.grc-label{display:none}.grc-btn{padding:0 18px}}';
-  var st = document.createElement('style');
-  st.textContent = css;
-  document.head.appendChild(st);
-
-  var ICON_CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>';
-  var ICON_SEND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-
-  var btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'grc-btn';
-  btn.setAttribute('aria-expanded', 'false');
-  btn.innerHTML = ICON_CHAT + '<span class="grc-label"></span><span class="grc-dot" aria-hidden="true"></span>';
-
-  var panel = document.createElement('div');
-  panel.className = 'grc-panel';
-  panel.setAttribute('role', 'dialog');
-  panel.innerHTML = ''
-    + '<div class="grc-head"><div class="grc-av">' + ICON_CHAT + '</div><div><b class="grc-title"></b><small class="grc-sub"></small></div><button type="button" class="grc-x">×</button></div>'
-    + '<div class="grc-body" aria-live="polite"></div>'
-    + '<div class="grc-foot"><form class="grc-form"><input class="grc-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><textarea class="grc-in" rows="1" maxlength="' + MAX_LEN + '"></textarea><button class="grc-send" type="submit">' + ICON_SEND + '</button></form>'
-    + '<div class="grc-meta"><span class="grc-note"></span><a class="grc-wa" href="' + WA + '" target="_blank" rel="noopener"></a></div></div>';
-
-  document.body.appendChild(panel);
-  document.body.appendChild(btn);
-
-  var body = panel.querySelector('.grc-body');
-  var input = panel.querySelector('.grc-in');
-  var form = panel.querySelector('.grc-form');
-  var sendBtn = panel.querySelector('.grc-send');
-  var hp = panel.querySelector('.grc-hp');
-  var busy = false;
-
-  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function format(text) {
-    var h = esc(text);
-    h = h.replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"])/g, function (u) { return '<a href="' + u + '" target="_blank" rel="noopener">' + u + '</a>'; });
-    h = h.replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>').replace(/(^|[\s(])\*([^*\n]+)\*/g, '$1<b>$2</b>');
-    return h.replace(/\n/g, '<br>');
-  }
-  // Show prices in the visitor's chosen currency (set by currency.js); answers stay in USD in the saved history.
-  function localPrices(text) { try { return window.grFx ? window.grFx.convert(text) : text; } catch (e) { return text; } }
-  function bubble(role, text) {
-    var d = document.createElement('div');
-    d.className = 'grc-m ' + (role === 'me' ? 'grc-me' : 'grc-bot');
-    d.setAttribute('dir', 'auto');
-    d.innerHTML = format(role === 'me' ? text : localPrices(text));
-    body.appendChild(d);
-    body.scrollTop = body.scrollHeight;
-  }
-  function chips() {
-    var old = body.querySelector('.grc-chips');
-    if (old) old.remove();
-    if (history.length) return;
-    var w = document.createElement('div');
-    w.className = 'grc-chips';
-    t('chips').forEach(function (c) {
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'grc-chip'; b.textContent = c;
-      b.addEventListener('click', function () { send(c); });
-      w.appendChild(b);
+  var lang = 'en';
+  function t(key){ return (lang === 'ar' ? AR : EN)[key] || EN[key] || ''; }
+  function apply(l){
+    lang = l;
+    var dict = l === 'ar' ? AR : EN;
+    nodes.forEach(function(el){
+      var k = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
+      if (dict[k] != null) el.innerHTML = dict[k];
     });
-    body.appendChild(w);
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    document.getElementById('langToggle').textContent = l === 'ar' ? 'English' : 'العربية';
+    document.querySelectorAll('.flip').forEach(function(s){ s.style.transform = l === 'ar' ? 'scaleX(-1)' : ''; });
+    try { localStorage.setItem('gr_lang', l); } catch(e) {}
   }
-  function render() {
-    body.innerHTML = '';
-    bubble('bot', t('hello'));
-    history.forEach(function (m) { bubble(m.r, m.t); });
-    chips();
-  }
-  function labels() {
-    btn.querySelector('.grc-label').textContent = t('open');
-    btn.setAttribute('aria-label', t('open'));
-    panel.setAttribute('aria-label', t('title'));
-    panel.querySelector('.grc-title').textContent = t('title');
-    panel.querySelector('.grc-sub').textContent = t('sub');
-    panel.querySelector('.grc-x').setAttribute('aria-label', t('close'));
-    input.placeholder = t('ph');
-    sendBtn.setAttribute('aria-label', t('send'));
-    panel.querySelector('.grc-note').innerHTML = t('note');
-    panel.querySelector('.grc-wa').textContent = t('wa');
-  }
-  function typing(on) {
-    var el = body.querySelector('.grc-typing');
-    if (on && !el) { el = document.createElement('div'); el.className = 'grc-typing'; el.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(el); body.scrollTop = body.scrollHeight; }
-    if (!on && el) el.remove();
-  }
+  var initial = 'en';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    initial = q === 'ar' || q === 'en' ? q : (localStorage.getItem('gr_lang') || 'en');
+  } catch(e) {}
+  if (initial === 'ar') apply('ar');
+  document.getElementById('langToggle').addEventListener('click', function(){ apply(lang === 'ar' ? 'en' : 'ar'); });
 
-  function send(text) {
-    text = String(text || '').replace(/\s+/g, ' ').trim().slice(0, MAX_LEN);
-    if (!text || busy) return;
-    busy = true; sendBtn.disabled = true;
-    history.push({ r: 'me', t: text }); save();
-    var c = body.querySelector('.grc-chips'); if (c) c.remove();
-    bubble('me', text);
-    input.value = ''; input.style.height = '';
-    typing(true);
-    var ctrl = null, timer = null;
-    try { ctrl = new AbortController(); timer = setTimeout(function () { ctrl.abort(); }, 45000); } catch (e) { ctrl = null; }
-    fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ session: session, text: text, lang: lang(), page: location.pathname, website: hp.value }),
-      signal: ctrl ? ctrl.signal : undefined
-    }).then(function (r) { return r.json(); }).then(function (j) {
-      if (!j || !j.ok || !j.reply) throw new Error('bad reply');
-      history.push({ r: 'bot', t: j.reply }); save();
-      typing(false); bubble('bot', j.reply);
-    }).catch(function () {
-      typing(false); bubble('bot', t('err'));
-    }).then(function () {
-      if (timer) clearTimeout(timer);
-      busy = false; sendBtn.disabled = false; input.focus();
+
+  // Pricing: monthly / annual toggle and signup links
+  var bill = 'monthly';
+  function renderPrices(){
+    document.querySelectorAll('.pcard:not(.oneoff)').forEach(function(c){
+      var m = +c.getAttribute('data-m'), y = +c.getAttribute('data-y'), key = c.getAttribute('data-plan');
+      var annual = bill === 'annual';
+      c.querySelector('.p-amt').textContent = '$' + (annual ? y : m);
+      var per = c.querySelector('.p-per'); per.setAttribute('data-i18n', annual ? 'per_y' : 'per_m'); per.textContent = t(annual ? 'per_y' : 'per_m');
+      var eq = (y / 12).toFixed(2).replace(/\.00$/, '');
+      c.querySelector('.per-note').textContent = annual ? t('per_mo_eq').replace('{x}', eq) : '';
+      c.querySelector('.p-go').href = 'signup.html?plan=' + key + '&billing=' + bill + (lang === 'ar' ? '&lang=ar' : '');
     });
   }
+  document.querySelectorAll('[data-bill]').forEach(function(b){
+    b.addEventListener('click', function(){
+      bill = b.getAttribute('data-bill');
+      document.querySelectorAll('[data-bill]').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+      renderPrices();
+    });
+  });
+  document.getElementById('langToggle').addEventListener('click', renderPrices);
+  renderPrices();
 
-  function toggle(open) {
-    var isOpen = typeof open === 'boolean' ? open : !panel.classList.contains('open');
-    panel.classList.toggle('open', isOpen);
-    btn.setAttribute('aria-expanded', String(isOpen));
-    if (isOpen) { body.scrollTop = body.scrollHeight; setTimeout(function () { input.focus(); }, 50); }
-  }
+  // Header style on scroll
+  var header = document.querySelector('header');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 20); }
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
 
-  btn.addEventListener('click', function () { toggle(); });
-  panel.querySelector('.grc-x').addEventListener('click', function () { toggle(false); btn.focus(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('open')) { toggle(false); btn.focus(); } });
-  form.addEventListener('submit', function (e) { e.preventDefault(); send(input.value); });
-  input.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(input.value); } });
-  input.addEventListener('input', function () { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 110) + 'px'; });
+  // Mobile menu
+  var menuBtn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', function(){ var o = menu.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); }); });
 
-  // Redraw when the visitor changes currency, or when exchange rates finish loading.
-  document.addEventListener('gr-currency-change', function () { if (!busy) render(); });
+  // "Ask about this" preselects the service
+  var select = document.getElementById('f_service');
+  document.querySelectorAll('[data-service]').forEach(function(b){
+    b.addEventListener('click', function(){ select.value = b.getAttribute('data-service'); setTimeout(function(){ document.getElementById('f_name').focus({ preventScroll:true }); }, 600); });
+  });
 
-  // Follow the page's language toggle.
-  try { new MutationObserver(function () { labels(); render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); } catch (e) {}
+  // Reveal on scroll
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:.12 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else { document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
 
-  labels();
-  render();
+  // Enquiry form
+  var form = document.getElementById('enquiryForm'), status = document.getElementById('f_status'), btn = document.getElementById('f_submit');
+  function setStatus(key, cls){ status.textContent = t(key); status.className = 'form-status ' + (cls || ''); }
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var d = {
+      full_name: form.full_name.value.trim(), email: form.email.value.trim(), phone: form.phone.value.trim(),
+      business: form.business.value.trim(), service: form.service.value, message: form.message.value.trim(),
+      website: form.website.value, language: lang, page: location.pathname + location.search
+    };
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email);
+    if (d.full_name.length < 2 || !emailOk || d.message.length < 5 || !document.getElementById('f_consent').checked) { setStatus('msg_invalid', 'err'); return; }
+    btn.disabled = true; setStatus('msg_sending');
+    fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(d) })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){ form.reset(); setStatus('msg_ok', 'ok'); })
+      .catch(function(){ setStatus('msg_err', 'err'); })
+      .then(function(){ btn.disabled = false; });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
 })();
+</script>
+<script src="chat.js" defer></script>
+<script src="currency.js" defer></script>
+</body>
+</html>
