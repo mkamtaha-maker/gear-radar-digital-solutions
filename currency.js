@@ -58,14 +58,21 @@
     } catch (e) { return currency + ' ' + v.toFixed(d); }
   }
 
+  // Turns every "$19" (English) or "19$" (Arabic) in a piece of text into the chosen currency.
+  // Also used by the chat window so Tala's answers match the prices on the page.
+  function toLocal(text) {
+    if (currency === 'USD' || !rates) return text;
+    return String(text).replace(/\$\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d,]*(?:\.\d+)?)\s?\$/g, function (m, a, b) { return fmt(parseFloat((a || b).replace(/,/g, ''))); });
+  }
+  window.grFx = { convert: toLocal, currency: function () { return currency; } };
+  function notify() { try { document.dispatchEvent(new CustomEvent('gr-currency-change')); } catch (e) {} }
+
   // Keep the USD text each element was given by the page, and redraw it in the chosen currency.
   function render(el) {
     var shown = el.getAttribute('data-fx-shown');
     if (shown === null || el.textContent !== shown) el.setAttribute('data-fx-usd', el.innerHTML);
     var usdHtml = el.getAttribute('data-fx-usd');
-    var html = (currency === 'USD' || !rates) ? usdHtml
-      : usdHtml.replace(/\$\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d,]*(?:\.\d+)?)\s?\$/g, function (m, a, b) { return fmt(parseFloat((a || b).replace(/,/g, ''))); });
-    // The regex above matches both "$19" (English) and "19$" (Arabic text).
+    var html = toLocal(usdHtml);
     if (el.innerHTML !== html) el.innerHTML = html;
     el.setAttribute('data-fx-shown', el.textContent);
   }
@@ -100,7 +107,7 @@
     sel.setAttribute('aria-label', 'Currency');
     CURRENCIES.forEach(function (c) { var o = document.createElement('option'); o.value = c; o.textContent = c; o.style.color = '#0B1220'; sel.appendChild(o); });
     sel.value = currency;
-    sel.addEventListener('change', function () { currency = sel.value; store(STORE_CUR, currency); renderAll(); });
+    sel.addEventListener('change', function () { currency = sel.value; store(STORE_CUR, currency); renderAll(); notify(); });
 
     // Find the language toggle in the header (the button that says "العربية" / "English").
     var bar = document.querySelector('header') || document.querySelector('nav');
@@ -145,6 +152,7 @@
       if (!rates[currency]) currency = 'USD';
       var s = document.getElementById('fx-select'); if (s) s.value = currency;
       renderAll();
+      notify();
     }).catch(function () {
       currency = 'USD';
       var s = document.getElementById('fx-select'); if (s) s.style.display = 'none';
