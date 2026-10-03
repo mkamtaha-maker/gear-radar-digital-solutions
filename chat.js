@@ -125,11 +125,13 @@
     h = h.replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>').replace(/(^|[\s(])\*([^*\n]+)\*/g, '$1<b>$2</b>');
     return h.replace(/\n/g, '<br>');
   }
+  // Show prices in the visitor's chosen currency (set by currency.js); answers stay in USD in the saved history.
+  function localPrices(text) { try { return window.grFx ? window.grFx.convert(text) : text; } catch (e) { return text; } }
   function bubble(role, text) {
     var d = document.createElement('div');
     d.className = 'grc-m ' + (role === 'me' ? 'grc-me' : 'grc-bot');
     d.setAttribute('dir', 'auto');
-    d.innerHTML = format(text);
+    d.innerHTML = format(role === 'me' ? text : localPrices(text));
     body.appendChild(d);
     body.scrollTop = body.scrollHeight;
   }
@@ -212,6 +214,9 @@
   form.addEventListener('submit', function (e) { e.preventDefault(); send(input.value); });
   input.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(input.value); } });
   input.addEventListener('input', function () { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 110) + 'px'; });
+
+  // Redraw when the visitor changes currency, or when exchange rates finish loading.
+  document.addEventListener('gr-currency-change', function () { if (!busy) render(); });
 
   // Follow the page's language toggle.
   try { new MutationObserver(function () { labels(); render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); } catch (e) {}
