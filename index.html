@@ -105,6 +105,37 @@ header.scrolled{background:rgba(21,23,28,.88);backdrop-filter:blur(12px);border-
 .jh-show .msg{animation-play-state:paused}.jh-show.in .msg{animation-play-state:running}
 .jh-sub{display:block;color:var(--on-ink-muted);font-size:.82rem}
 @media (max-width:900px){.jh-show{grid-template-columns:1fr;padding:32px 22px}}
+.jh-show.flip>div:first-child{order:2}
+.jh-show .pp{opacity:0;transform:translateY(8px);animation:pop .5s forwards;animation-play-state:paused}.jh-show.in .pp{animation-play-state:running}
+@media (prefers-reduced-motion:reduce){.jh-show .pp{animation:none;opacity:1;transform:none}}
+.mini-url{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border-radius:999px;padding:8px 14px;font-size:.78rem;color:var(--on-ink-muted);direction:ltr}
+.mini-url:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.mini-hero{margin-top:14px;padding:18px;border-radius:16px;background:linear-gradient(135deg,var(--gold-soft),rgba(255,255,255,.04))}
+.mini-hero b{display:block;color:var(--white);font-size:1.1rem;margin-bottom:2px}
+.mini-hero small{color:var(--on-ink-muted)}
+.mini-btns{display:flex;gap:8px;margin-top:14px}
+.mb{font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:999px}
+.mb-call{background:var(--gold);color:var(--ink)}
+.mb-wa{background:rgba(34,197,94,.18);color:#86efac}
+.mini-gal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.mini-gal i{aspect-ratio:1;border-radius:12px;background:linear-gradient(135deg,#3A3F4A,#2B2F38)}
+.mini-gal i:nth-child(2){background:linear-gradient(135deg,var(--gold-soft),#3A3F4A)}
+.mini-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.05);font-size:.85rem;color:var(--on-ink)}
+.mini-row span:last-child{color:var(--gold)}
+.mini-chips{display:flex;gap:6px;margin:12px 0 2px;flex-wrap:wrap}
+.mini-chips .chip.on{background:var(--gold);color:var(--ink)}
+.mini-item{display:flex;gap:12px;align-items:center;margin-top:10px;padding:10px;border-radius:14px;background:rgba(255,255,255,.05)}
+.mini-item i{flex:none;width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--gold-soft),#3A3F4A)}
+.mini-item div{flex:1;min-width:0}.mini-item b{display:block;color:var(--white);font-size:.9rem}
+.mini-item small{color:var(--on-ink-muted);font-size:.76rem}
+.mini-item em{font-style:normal;color:var(--gold-2);font-weight:600;font-size:.88rem}
+.mb-order{display:block;text-align:center;margin-top:12px;padding:10px 14px}
+.qr-pair{display:flex;align-items:center;gap:20px;justify-content:center;flex-wrap:wrap}
+.qr-card{background:#fff;color:var(--ink);border-radius:18px;padding:14px;text-align:center;transform:rotate(-4deg);box-shadow:0 20px 40px -20px rgba(0,0,0,.6);width:150px}
+.qr-card svg{width:100%;height:auto;display:block}
+.qr-card small{display:block;margin-top:8px;font-weight:600;font-size:.76rem}
+.qr-pair .phone{max-width:290px;margin-inline:0;width:auto;flex:1 1 240px}
+@media (max-width:900px){.jh-show.flip>div:first-child{order:0}}
 @media (prefers-reduced-motion:reduce){.msg{animation:none;opacity:1;transform:none}.btn:hover{transform:none}html{scroll-behavior:auto}}
 
 /* Sections */
@@ -441,6 +472,66 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
 
     <div class="jh-show reveal">
       <div>
+        <span class="eyebrow" data-i18n="s1_title">AI Executive Assistant</span>
+        <h3 data-i18n="as_title">Your inbox and diary, handled</h3>
+        <p data-i18n="s1_sub">A personal assistant that lives in your Telegram or WhatsApp and handles your email and diary.</p>
+        <a href="#pricing" class="btn btn-gold" data-i18n="see_plans">See plans</a>
+      </div>
+      <div class="phone" aria-label="Example conversation with the AI Executive Assistant" role="img">
+        <div class="phone-top">
+          <div class="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M9 14h.01M15 14h.01"/></svg></div>
+          <div><b data-i18n="chat_name">Your AI Assistant</b><small data-i18n="chat_status">online · Telegram / WhatsApp</small></div>
+        </div>
+        <div class="chat">
+          <div class="msg me" data-i18n="as1">Anything urgent in my inbox?</div>
+          <div class="msg bot" data-i18n-html="as2"><b>2 emails</b> need you. The supplier wants to move Thursday's call.</div>
+          <div class="msg me" data-i18n="as3">Say yes, same time Friday.</div>
+          <div class="msg bot"><span data-i18n="as4">Reply drafted. I'll send it once you confirm.</span><div class="chip-row"><span class="chip yes" data-i18n="chat_yes">✓ Send</span><span class="chip" data-i18n="chat_no">Edit</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jh-show flip reveal">
+      <div>
+        <span class="eyebrow" data-i18n="s2_title">Websites for Businesses</span>
+        <h3 data-i18n="ws_title">Visitors become calls and messages</h3>
+        <p data-i18n="s2_sub">A clean, mobile-friendly website that turns visitors into calls and WhatsApp messages.</p>
+        <a href="#pricing" class="btn btn-gold" data-i18n="see_plans">See plans</a>
+      </div>
+      <div class="phone" aria-label="Example business website on a phone" role="img">
+        <div class="mini-url pp" style="animation-delay:.2s">yourbusiness.co.uk</div>
+        <div class="mini-hero pp" style="animation-delay:.7s">
+          <b data-i18n="ws_name">Your Business</b><small data-i18n="ws_hours">Open today 9:00 – 17:00</small>
+          <div class="mini-btns"><span class="mb mb-call" data-i18n="ws_call">Call now</span><span class="mb mb-wa" data-i18n="ws_wa">WhatsApp</span></div>
+        </div>
+        <div class="mini-gal pp" style="animation-delay:1.2s"><i></i><i></i><i></i></div>
+        <div class="mini-row pp" style="animation-delay:1.7s"><span data-i18n="ws_r1">Services and prices</span><span>↗</span></div>
+        <div class="mini-row pp" style="animation-delay:2s"><span data-i18n="ws_r2">Photo gallery</span><span>↗</span></div>
+        <div class="mini-row pp" style="animation-delay:2.3s"><span data-i18n="ws_r3">Find us on Google Maps</span><span>↗</span></div>
+      </div>
+    </div>
+
+    <div class="jh-show reveal">
+      <div>
+        <span class="eyebrow" data-i18n="s3_title">Smart QR Catalogue</span>
+        <h3 data-i18n="qr_title">Your menu, one scan away</h3>
+        <p data-i18n="s3_sub">Your menu or product list as a beautiful mobile page — one scan away.</p>
+        <a href="#pricing" class="btn btn-gold" data-i18n="see_plans">See plans</a>
+      </div>
+      <div class="qr-pair">
+        <div class="qr-card pp" style="animation-delay:.2s"><svg viewBox="0 0 25 25" shape-rendering="crispEdges" aria-hidden="true"><path fill="#15171C" d="M0 0h7v1h-7zM8 0h5v1h-5zM14 0h2v1h-2zM18 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h3v1h-3zM12 1h2v1h-2zM15 1h2v1h-2zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM11 2h1v1h-1zM15 2h1v1h-1zM18 2h1v1h-1zM20 2h3v1h-3zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h3v1h-3zM13 3h2v1h-2zM18 3h1v1h-1zM20 3h3v1h-3zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM15 4h1v1h-1zM18 4h1v1h-1zM20 4h3v1h-3zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM12 5h5v1h-5zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h7v1h-7zM12 6h3v1h-3zM18 6h7v1h-7zM10 7h1v1h-1zM14 7h3v1h-3zM0 8h1v1h-1zM5 8h2v1h-2zM8 8h1v1h-1zM11 8h2v1h-2zM15 8h3v1h-3zM20 8h1v1h-1zM24 8h1v1h-1zM1 9h2v1h-2zM7 9h1v1h-1zM10 9h4v1h-4zM15 9h3v1h-3zM19 9h2v1h-2zM23 9h1v1h-1zM3 10h4v1h-4zM8 10h2v1h-2zM12 10h1v1h-1zM16 10h1v1h-1zM18 10h2v1h-2zM0 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM12 11h1v1h-1zM16 11h6v1h-6zM0 12h1v1h-1zM3 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM12 12h2v1h-2zM15 12h3v1h-3zM19 12h1v1h-1zM21 12h3v1h-3zM1 13h1v1h-1zM5 13h3v1h-3zM9 13h3v1h-3zM14 13h2v1h-2zM19 13h2v1h-2zM22 13h2v1h-2zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h2v1h-2zM10 14h2v1h-2zM13 14h7v1h-7zM21 14h1v1h-1zM23 14h2v1h-2zM0 15h3v1h-3zM5 15h2v1h-2zM8 15h1v1h-1zM10 15h1v1h-1zM13 15h1v1h-1zM17 15h1v1h-1zM21 15h4v1h-4zM0 16h1v1h-1zM2 16h3v1h-3zM8 16h7v1h-7zM18 16h1v1h-1zM20 16h5v1h-5zM8 17h3v1h-3zM17 17h2v1h-2zM20 17h1v1h-1zM23 17h1v1h-1zM0 18h7v1h-7zM14 18h5v1h-5zM0 19h1v1h-1zM6 19h1v1h-1zM8 19h3v1h-3zM12 19h1v1h-1zM16 19h2v1h-2zM22 19h3v1h-3zM0 20h1v1h-1zM2 20h3v1h-3zM6 20h1v1h-1zM9 20h1v1h-1zM11 20h3v1h-3zM15 20h1v1h-1zM18 20h2v1h-2zM22 20h3v1h-3zM0 21h1v1h-1zM2 21h3v1h-3zM6 21h1v1h-1zM11 21h1v1h-1zM14 21h2v1h-2zM17 21h5v1h-5zM23 21h1v1h-1zM0 22h1v1h-1zM2 22h3v1h-3zM6 22h1v1h-1zM10 22h5v1h-5zM16 22h1v1h-1zM18 22h2v1h-2zM21 22h2v1h-2zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM11 23h2v1h-2zM14 23h4v1h-4zM20 23h1v1h-1zM22 23h1v1h-1zM24 23h1v1h-1zM0 24h7v1h-7zM8 24h8v1h-8zM19 24h2v1h-2zM22 24h3v1h-3z"/></svg><small data-i18n="qr_scan">Scan to see our menu</small></div>
+        <div class="phone" aria-label="Example QR menu on a phone" role="img">
+          <div class="mini-url pp" style="animation-delay:.7s"><span data-i18n="qr_name">Your Café</span></div>
+          <div class="mini-chips pp" style="animation-delay:1s"><span class="chip on" data-i18n="qr_c1">Coffee</span><span class="chip" data-i18n="qr_c2">Food</span><span class="chip" data-i18n="qr_c3">Desserts</span></div>
+          <div class="mini-item pp" style="animation-delay:1.4s"><i></i><div><b data-i18n="qr_i1">Flat white</b><small data-i18n="qr_d1">Double shot, silky milk</small></div><em>3.40</em></div>
+          <div class="mini-item pp" style="animation-delay:1.8s"><i></i><div><b data-i18n="qr_i2">Avocado toast</b><small data-i18n="qr_d2">Sourdough, lime, chilli</small></div><em>6.90</em></div>
+          <span class="mb mb-wa mb-order pp" style="animation-delay:2.2s" data-i18n="qr_order">Order on WhatsApp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="jh-show flip reveal">
+      <div>
         <span class="eyebrow" data-i18n="jh_eyebrow">AI Job Hunter</span>
         <h3 data-i18n="jh_title">The right jobs, delivered every day</h3>
         <p data-i18n="s4_sub">Stop scrolling job boards. Get the roles that actually fit your CV, sent to your Telegram or WhatsApp.</p>
@@ -731,6 +822,17 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     jh2:'<b>مدير عمليات</b><span class="jh-sub">مانشستر · هجين</span>نسبة التطابق <b>92%</b>. النقص الوحيد: شهادة PRINCE2.',
     jh3:'أعطني نقاطاً لسيرتي لهذه الوظيفة.',
     jh4:'هذه 3 نقاط من خبرتك الحقيقية. بدون اختلاق أي شيء.', jh_show:'✓ اعرضها', jh_next:'الوظيفة التالية',
+    as_title:'بريدك ومواعيدك مرتّبة',
+    as1:'هل في شيء عاجل في بريدي؟',
+    as2:'<b>رسالتان</b> تحتاجان قرارك. المورّد يريد تأجيل مكالمة الخميس.',
+    as3:'قل له موافق، في نفس الوقت يوم الجمعة.',
+    as4:'جهّزت الرد، وسأرسله عندما تؤكد.',
+    ws_title:'الزوار يتحوّلون إلى مكالمات ورسائل', ws_name:'نشاطك التجاري', ws_hours:'مفتوح اليوم 9:00 – 17:00',
+    ws_call:'اتصل الآن', ws_wa:'واتساب', ws_r1:'الخدمات والأسعار', ws_r2:'معرض الصور', ws_r3:'موقعنا على خرائط Google',
+    qr_title:'قائمتك على بُعد مسحة واحدة', qr_scan:'امسح لتشاهد قائمتنا', qr_name:'مقهاك',
+    qr_c1:'القهوة', qr_c2:'الطعام', qr_c3:'الحلويات',
+    qr_i1:'فلات وايت', qr_d1:'إسبريسو مضاعف وحليب ناعم', qr_i2:'توست الأفوكادو', qr_d2:'خبز مخمّر وليمون وفلفل حار',
+    qr_order:'اطلب عبر واتساب',
     svc_eyebrow:'ماذا نقدّم', svc_title:'أربع طرق نوفّر بها وقتك',
     svc_lead:'كل خدمة نجهّزها ونتابعها بأنفسنا. لا تحتاج أي خبرة تقنية — فقط أخبرنا بما تحتاجه.',
     tag_popular:'الأكثر طلباً', tag_fast:'تسليم سريع', tag_rest:'للمطاعم والمحلات', tag_job:'للباحثين عن عمل',
