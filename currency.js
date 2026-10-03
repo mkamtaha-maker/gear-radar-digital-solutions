@@ -111,8 +111,8 @@
 
     // Find the language toggle in the header (the button that says "العربية" / "English").
     var bar = document.querySelector('header') || document.querySelector('nav');
-    var langBtn = null;
-    if (bar) {
+    var langBtn = document.getElementById('langSelect');
+    if (bar && !langBtn) {
       Array.prototype.some.call(bar.querySelectorAll('a, button'), function (el) {
         var t = (el.textContent || '').trim();
         if (t === 'العربية' || t === 'English' || t === 'EN' || t === 'AR') { langBtn = el; return true; }

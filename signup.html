@@ -184,7 +184,7 @@ footer a:hover{color:var(--gold)}
       <svg viewBox="0 0 120 120" aria-hidden="true"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg>
       <span>Gear Radar</span>
     </a>
-    <button class="lang" id="langToggle" type="button" aria-label="Switch language">العربية</button>
+    <button class="lang" id="langToggle" type="button" hidden aria-hidden="true" tabindex="-1">EN</button><select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select>
   </div>
 </header>
 
@@ -814,6 +814,16 @@ footer a:hover{color:var(--gold)}
   $('areas').appendChild(areaRow());
   applyLang(initial === 'ar' ? 'ar' : 'en');
 })();
+</script>
+<style>select.lang{appearance:none;-webkit-appearance:none;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
+html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 13px center}
+select.lang option{color:#15171C;background:#fff}</style>
+<script>
+(function(){var s=document.getElementById('langSelect'),b=document.getElementById('langToggle');if(!s||!b)return;
+function cur(){return (document.documentElement.lang||'en').slice(0,2)==='ar'?'ar':'en';}
+function sync(){s.value=cur();s.setAttribute('aria-label',cur()==='ar'?'اللغة':'Language');}
+s.addEventListener('change',function(){if(s.value!==cur())b.click();});
+new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});sync();})();
 </script>
 </body>
 </html>

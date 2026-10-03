@@ -65,6 +65,9 @@ header.scrolled{background:rgba(21,23,28,.88);backdrop-filter:blur(12px);border-
 .nav-actions{display:flex;align-items:center;gap:10px}
 .lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'Cairo','Inter',sans-serif}
 .lang:hover{border-color:var(--gold);color:var(--gold)}
+select.lang{appearance:none;-webkit-appearance:none;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
+html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 13px center}
+select.lang option{color:#15171C;background:#fff}
 .nav .btn{padding:10px 18px;font-size:.9rem}
 .menu-btn{display:none;background:none;border:0;color:var(--white);cursor:pointer;padding:6px}
 .menu-btn svg{width:26px;height:26px}
@@ -105,7 +108,7 @@ header.scrolled{background:rgba(21,23,28,.88);backdrop-filter:blur(12px);border-
 .jh-show .msg{animation-play-state:paused}.jh-show.in .msg{animation-play-state:running}
 .jh-sub{display:block;color:var(--on-ink-muted);font-size:.82rem}
 @media (max-width:900px){.jh-show{grid-template-columns:1fr;padding:32px 22px}}
-.jh-show.flip>div:first-child{order:2}
+.jh-show.rev>div:first-child{order:2}
 .jh-show .pp{opacity:0;transform:translateY(8px);animation:pop .5s forwards;animation-play-state:paused}.jh-show.in .pp{animation-play-state:running}
 @media (prefers-reduced-motion:reduce){.jh-show .pp{animation:none;opacity:1;transform:none}}
 .mini-url{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border-radius:999px;padding:8px 14px;font-size:.78rem;color:var(--on-ink-muted);direction:ltr}
@@ -135,7 +138,7 @@ header.scrolled{background:rgba(21,23,28,.88);backdrop-filter:blur(12px);border-
 .qr-card svg{width:100%;height:auto;display:block}
 .qr-card small{display:block;margin-top:8px;font-weight:600;font-size:.76rem}
 .qr-pair .phone{max-width:290px;margin-inline:0;width:auto;flex:1 1 240px}
-@media (max-width:900px){.jh-show.flip>div:first-child{order:0}}
+@media (max-width:900px){.jh-show.rev>div:first-child{order:0}}
 @media (prefers-reduced-motion:reduce){.msg{animation:none;opacity:1;transform:none}.btn:hover{transform:none}html{scroll-behavior:auto}}
 
 /* Sections */
@@ -340,7 +343,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="nav-actions">
-      <button class="lang" id="langToggle" type="button" aria-label="Switch language">العربية</button>
+      <select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select>
       <a href="#contact" class="btn btn-gold" data-i18n="cta_call">Book a free call</a>
       <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -491,7 +494,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       </div>
     </div>
 
-    <div class="jh-show flip reveal">
+    <div class="jh-show rev reveal">
       <div>
         <span class="eyebrow" data-i18n="s1_title">AI Executive Assistant</span>
         <h3 data-i18n="as_title">Your inbox and diary, handled</h3>
@@ -532,7 +535,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       </div>
     </div>
 
-    <div class="jh-show flip reveal">
+    <div class="jh-show rev reveal">
       <div>
         <span class="eyebrow" data-i18n="s3_title">Smart QR Catalogue</span>
         <h3 data-i18n="qr_title">Your menu, one scan away</h3>
@@ -953,7 +956,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     });
     document.documentElement.lang = l;
     document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
-    document.getElementById('langToggle').textContent = l === 'ar' ? 'English' : 'العربية';
+    var ls = document.getElementById('langSelect'); ls.value = l; ls.setAttribute('aria-label', l === 'ar' ? 'اللغة' : 'Language');
     document.querySelectorAll('.flip').forEach(function(s){ s.style.transform = l === 'ar' ? 'scaleX(-1)' : ''; });
     try { localStorage.setItem('gr_lang', l); } catch(e) {}
   }
@@ -963,7 +966,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     initial = q === 'ar' || q === 'en' ? q : (localStorage.getItem('gr_lang') || 'en');
   } catch(e) {}
   if (initial === 'ar') apply('ar');
-  document.getElementById('langToggle').addEventListener('click', function(){ apply(lang === 'ar' ? 'en' : 'ar'); });
+  document.getElementById('langSelect').addEventListener('change', function(){ apply(this.value); });
 
 
   // Pricing: monthly / annual toggle and signup links
