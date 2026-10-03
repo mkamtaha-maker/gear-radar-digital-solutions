@@ -2,7 +2,7 @@
    Prices stay defined in USD in the page (.p-amt, data-m, data-y). This script:
    1. guesses the visitor's currency from their device time zone (no tracking, no extra request),
    2. gets today's rates from open.er-api.com (free, cached for 12 hours),
-   3. rewrites every "$<number>" inside .p-amt and .per-note, including after the monthly/yearly toggle,
+   3. rewrites every "$<number>" or "<number>$" inside the price elements listed in SEL below, including after the monthly/yearly toggle,
    4. adds a small currency picker above the plans. If anything fails, USD stays as it is. */
 (function () {
   var CURRENCIES = ['USD', 'GBP', 'EUR', 'CAD', 'AED', 'SAR', 'QAR', 'KWD', 'BHD', 'OMR', 'EGP'];
@@ -16,7 +16,8 @@
     'Luxembourg', 'Monaco', 'Malta', 'Bratislava', 'Ljubljana', 'Tallinn', 'Riga', 'Vilnius', 'Zagreb'];
   var CANADA = ['Toronto', 'Vancouver', 'Edmonton', 'Winnipeg', 'Halifax', 'St_Johns', 'Regina', 'Montreal', 'Moncton', 'Whitehorse'];
 
-  var SEL = '.p-amt, .per-note';
+  // Every element that shows a price. Prices in the page and in the language dictionary stay in USD.
+  var SEL = '.p-amt, .per-note, .amount b, .addon, [data-i18n-html="b2b"], [data-i18n-html="a2"]';
   var STORE_RATES = 'gr_fx_rates', STORE_CUR = 'gr_currency';
   var ar = (document.documentElement.lang || '').toLowerCase().indexOf('ar') === 0;
 
@@ -63,7 +64,8 @@
     if (shown === null || el.textContent !== shown) el.setAttribute('data-fx-usd', el.innerHTML);
     var usdHtml = el.getAttribute('data-fx-usd');
     var html = (currency === 'USD' || !rates) ? usdHtml
-      : usdHtml.replace(/\$\s?(\d[\d,]*(?:\.\d+)?)/g, function (m, n) { return fmt(parseFloat(n.replace(/,/g, ''))); });
+      : usdHtml.replace(/\$\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d,]*(?:\.\d+)?)\s?\$/g, function (m, a, b) { return fmt(parseFloat((a || b).replace(/,/g, ''))); });
+    // The regex above matches both "$19" (English) and "19$" (Arabic text).
     if (el.innerHTML !== html) el.innerHTML = html;
     el.setAttribute('data-fx-shown', el.textContent);
   }
