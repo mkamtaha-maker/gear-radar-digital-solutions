@@ -175,6 +175,22 @@ footer a:hover{color:var(--gold)}
   .area select{grid-column:1;grid-row:2}
   .area .rm{grid-row:1/3;grid-column:2}
 }
+.paybox{grid-column:1/-1;display:grid;gap:14px}
+.promo{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.promo input{flex:1;min-width:160px;text-transform:uppercase;letter-spacing:.04em}
+.promo .btn{padding:11px 20px}
+.promo .msg{flex-basis:100%;font-size:.86rem;min-height:1.2em}
+.promo .msg.ok{color:#15803d}.promo .msg.bad{color:var(--err)}
+.due{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.due b{font-size:1.45rem;white-space:nowrap}
+.due small{display:block;color:var(--muted);font-size:.85rem;margin-top:2px}
+.paywith{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.paywith label{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:var(--white)}
+.paywith input{width:auto;padding:0;margin-top:4px;accent-color:var(--ink)}
+.paywith label:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.paywith small{color:var(--muted)}
+.paywith .rec{font-size:.72rem;color:#15803d;font-weight:600;margin-inline-start:6px}
+@media(max-width:560px){.paywith{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -322,7 +338,16 @@ footer a:hover{color:var(--gold)}
   <!-- Finish -->
   <fieldset>
     <legend><span class="n" id="lastStep">6</span><span data-i18n="l_finish">Confirm</span></legend>
-    <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span data-i18n="no_charge">No payment today. We're in early access: we'll confirm your plan by email before anything is charged.</span></div>
+    <div class="paybox" id="paybox">
+      <div class="field full"><label for="promo"><span data-i18n="f_promo">Promo code</span> <span class="opt" data-i18n="optional">(optional)</span></label>
+        <div class="promo"><input id="promo" maxlength="30" autocomplete="off" spellcheck="false" dir="ltr"><button type="button" class="btn btn-line" id="promoApply" data-i18n="apply">Apply</button><span class="msg" id="promoMsg" aria-live="polite"></span></div></div>
+      <div class="due" aria-live="polite"><div><span data-i18n="due_today">Due today</span><small id="dueNext"></small></div><b id="dueAmt">—</b></div>
+      <div class="paywith" role="radiogroup" aria-label="Payment method">
+        <label><input type="radio" name="paywith" value="card" checked><span><b data-i18n="pw_card">Card</b><span class="rec" data-i18n="recommended">Recommended</span><br><small data-i18n="pw_card_h">Visa, Mastercard, Apple Pay, Google Pay</small></span></label>
+        <label><input type="radio" name="paywith" value="paypal"><span><b>PayPal</b><br><small data-i18n="pw_pp_h">Pay with your PayPal account</small></span></label>
+      </div>
+      <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="pay_note">Secure payment by Stripe or PayPal. If we can't accept your request, we refund you in full. Monthly plans can be cancelled any time.</span></div>
+    </div>
     <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" tabindex="-1" autocomplete="off"></div>
     <label class="check full" id="consentWrap"><input type="checkbox" id="consent"><span data-i18n-html="consent">I agree that Gear Radar may store and process my details (including my CV, if uploaded) to provide this service, as described in the <a href="privacy.html" target="_blank">privacy notice</a>.</span></label>
     <span class="err-text full" id="consentErr" data-i18n="e_consent">Please tick the box to continue.</span>
@@ -427,7 +452,15 @@ footer a:hover{color:var(--gold)}
     f_remote:'Also show remote jobs', f_salary:'Minimum salary per year', f_currency:'Currency',
     l_finish:'Confirm', no_charge:"No payment today. We're in early access: we'll confirm your plan by email before anything is charged.",
     consent:'I agree that Gear Radar may store and process my details (including my CV, if uploaded) to provide this service, as described in the <a href="privacy.html" target="_blank">privacy notice</a>.',
-    e_consent:'Please tick the box to continue.', submit:'Send my signup',
+    e_consent:'Please tick the box to continue.', submit:'Continue to payment',
+    f_promo:'Promo code', apply:'Apply', due_today:'Due today', then_m:'then {p} a month', then_y:'then {p} a year', then_addon:'then {p} a month for updates', one_off_note:'One-off payment',
+    free_first:'First month free, then {p} a month', code_ok:'Code applied: {d} off', code_free:'Code applied: your first month is free', code_bad:"This code isn't valid.",
+    cr_expired:'This code has expired.', cr_not_started:"This code isn't active yet.", cr_used_up:'This code has been fully used.', cr_not_for_this_plan:"This code doesn't apply to this plan.", cr_not_for_this_billing:"This code doesn't apply to this billing option.", cr_monthly_plans_only:'This code only works with monthly plans.',
+    pw_card:'Card', recommended:'Recommended', pw_card_h:'Visa, Mastercard, Apple Pay, Google Pay', pw_pp_h:'Pay with your PayPal account',
+    pay_note:"Secure payment by Stripe or PayPal. If we can't accept your request, we refund you in full. Monthly plans can be cancelled any time.",
+    s_redirect:'Taking you to secure payment…', s_payerr:"We couldn't open the payment page. Please try again, or choose the other payment method.",
+    s_cancelled:'Payment was cancelled and nothing was charged. You can sign up again below.', s_payfailed:"Your payment didn't go through and nothing was charged. Please try again, or use the other payment method.",
+    d_paid:'Payment received. Thank you!',
     s_check:'Please check the highlighted fields.', s_upload:'Uploading your CV…', s_sending:'Sending…', s_err:'Something went wrong. Please try again, or message us on WhatsApp: +44 7442 309417.', s_uperr:"We couldn't upload your CV. Please try again, or try a smaller PDF.",
     d_title:"We've got your signup", d_ref:'Your reference', d_1:"We've emailed you a confirmation. Check your spam folder if you don't see it.", d_2:'We review your details and set up your account within one working day.',
     d_3tg:'You get an activation link. One tap opens Telegram and connects your account.', d_3wa:'You get a WhatsApp message from our business number to activate your account.', d_dup:"We already have a signup from you for this service, so we didn't create a new one. Your reference is below.",
@@ -479,7 +512,15 @@ footer a:hover{color:var(--gold)}
     f_remote:'اعرض أيضاً وظائف العمل عن بُعد', f_salary:'أقل راتب سنوي', f_currency:'العملة',
     l_finish:'التأكيد', no_charge:'لا يوجد دفع اليوم. نحن في مرحلة الإطلاق المبكر، وسنؤكد باقتك بالبريد قبل أي خصم.',
     consent:'أوافق على أن تحفظ Gear Radar بياناتي وتعالجها (بما فيها سيرتي الذاتية إن رفعتها) لتقديم هذه الخدمة، كما هو موضح في <a href="privacy.html" target="_blank">إشعار الخصوصية</a>.',
-    e_consent:'يرجى الموافقة للمتابعة.', submit:'أرسل طلبي',
+    e_consent:'يرجى الموافقة للمتابعة.', submit:'المتابعة إلى الدفع',
+    f_promo:'كود الخصم', apply:'تطبيق', due_today:'المطلوب اليوم', then_m:'ثم {p} شهرياً', then_y:'ثم {p} سنوياً', then_addon:'ثم {p} شهرياً للتحديثات', one_off_note:'دفعة واحدة',
+    free_first:'الشهر الأول مجاناً، ثم {p} شهرياً', code_ok:'تم تطبيق الكود: خصم {d}', code_free:'تم تطبيق الكود: شهرك الأول مجاني', code_bad:'هذا الكود غير صحيح.',
+    cr_expired:'انتهت صلاحية هذا الكود.', cr_not_started:'هذا الكود لم يبدأ بعد.', cr_used_up:'تم استخدام هذا الكود بالكامل.', cr_not_for_this_plan:'هذا الكود لا ينطبق على هذه الباقة.', cr_not_for_this_billing:'هذا الكود لا ينطبق على طريقة الدفع هذه.', cr_monthly_plans_only:'هذا الكود للباقات الشهرية فقط.',
+    pw_card:'بطاقة', recommended:'مُوصى به', pw_card_h:'فيزا، ماستركارد، Apple Pay، Google Pay', pw_pp_h:'ادفع من حسابك في PayPal',
+    pay_note:'دفع آمن عبر Stripe أو PayPal. إذا لم نتمكن من قبول طلبك نعيد لك المبلغ كاملاً، ويمكن إلغاء الباقات الشهرية في أي وقت.',
+    s_redirect:'جارٍ تحويلك إلى صفحة الدفع الآمنة…', s_payerr:'تعذّر فتح صفحة الدفع. حاول مرة أخرى أو اختر طريقة الدفع الأخرى.',
+    s_cancelled:'تم إلغاء الدفع ولم يُخصم أي مبلغ. يمكنك التسجيل مرة أخرى بالأسفل.', s_payfailed:'لم تتم عملية الدفع ولم يُخصم أي مبلغ. حاول مرة أخرى أو استخدم طريقة الدفع الأخرى.',
+    d_paid:'استلمنا دفعتك. شكراً لك!',
     s_check:'يرجى مراجعة الحقول المحددة.', s_upload:'جارٍ رفع سيرتك الذاتية…', s_sending:'جارٍ الإرسال…', s_err:'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب: ‎+44 7442 309417.', s_uperr:'تعذّر رفع سيرتك الذاتية. حاول مرة أخرى أو جرّب ملفاً أصغر.',
     d_title:'وصلنا طلبك', d_ref:'رقم طلبك', d_1:'أرسلنا لك بريد تأكيد. راجع مجلد الرسائل غير المرغوبة إن لم تجده.', d_2:'نراجع بياناتك ونجهّز حسابك خلال يوم عمل واحد.',
     d_3tg:'يصلك رابط تفعيل، وبضغطة واحدة يفتح تيليجرام ويربط حسابك.', d_3wa:'تصلك رسالة واتساب من رقمنا التجاري لتفعيل حسابك.', d_dup:'لدينا طلب سابق منك لهذه الخدمة، لذلك لم ننشئ طلباً جديداً. رقم طلبك بالأسفل.',
@@ -727,7 +768,8 @@ footer a:hover{color:var(--gold)}
       service: p.service, plan: p.key, billing: p.group === 'subs' ? billing : (p.add ? 'monthly' : 'one_off'),
       full_name: name, email: email, country: $('country').value, language: $('language').value,
       channel: p.group === 'subs' ? channel : 'email', whatsapp_number: p.group === 'subs' && channel === 'whatsapp' ? waDigits : '',
-      payload: payload, website: $('website').value
+      payload: payload, website: $('website').value,
+      pay_with: payWith(), promo_code: cleanCode($('promo').value)
     } };
   }
 
@@ -789,11 +831,12 @@ footer a:hover{color:var(--gold)}
       if (!res.ok || !res.j.ok) {
         var errs = (res.j && res.j.errors) || [];
         errs.forEach(function(e){ if (e === 'business_name') mark($(group() === 'qr' ? 'q_name' : 'w_name'), true); if (SERVER_FIELDS[e]) mark($(SERVER_FIELDS[e]), true); if (e === 'cv_file') drop.classList.add('invalid-drop'); if (e === 'areas') $('areasErr').style.display = 'block'; });
-        throw new Error('rejected');
+        throw new Error(res.j && res.j.error === 'payment_unavailable' ? 'payerr' : 'rejected');
       }
+      if (res.j.checkout_url) { setStatus('s_redirect'); window.location.href = res.j.checkout_url; return; }
       showDone(res.j);
     }).catch(function(e){
-      setStatus(e && e.upload ? 's_uperr' : (e && e.message === 'rejected' ? 's_check' : 's_err'), 'err');
+      setStatus(e && e.upload ? 's_uperr' : (e && e.message === 'payerr' ? 's_payerr' : (e && e.message === 'rejected' ? 's_check' : 's_err')), 'err');
     }).then(function(){ btn.disabled = false; });
   });
 
@@ -807,12 +850,53 @@ footer a:hover{color:var(--gold)}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // ---------- Price, promo code and payment ----------
+  var QUOTE = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-quote', qSeq = 0, appliedCode = '', qTimer = null;
+  function cleanCode(v){ return String(v || '').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 30); }
+  function payWith(){ var r = document.querySelector('input[name="paywith"]:checked'); return r ? r.value : 'card'; }
+  function usd(n){ n = Number(n || 0); return '$' + (n % 1 ? n.toFixed(2) : String(n)); }
+  function promoMsg(text, cls){ var m = $('promoMsg'); m.textContent = text || ''; m.className = 'msg ' + (cls || ''); }
+  function updateQuote(showMsg){
+    var p = plan(), my = ++qSeq;
+    var bill = p.group === 'subs' ? billing : 'monthly';
+    fetch(QUOTE, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ plan: p.key, billing: bill, code: appliedCode }) })
+      .then(function(r){ return r.json(); })
+      .then(function(q){
+        if (my !== qSeq || !q || !q.ok) return;
+        $('dueAmt').textContent = usd(q.due_now_usd);
+        var next = '';
+        if (q.kind === 'subscription') next = Number(q.trial_days) > 0 ? t('free_first').replace('{p}', usd(q.recurring_usd)) : t(q.recurring_interval === 'year' ? 'then_y' : 'then_m').replace('{p}', usd(q.recurring_usd));
+        else next = q.addon_monthly_usd ? t('then_addon').replace('{p}', usd(q.addon_monthly_usd)) : t('one_off_note');
+        $('dueNext').textContent = next;
+        if (!appliedCode) promoMsg('');
+        else if (q.code_valid) promoMsg(q.discount_type === 'free_month' ? t('code_free') : (Number(q.discount_usd) > 0 ? t('code_ok').replace('{d}', usd(q.discount_usd)) : ''), 'ok');
+        else if (showMsg !== false) promoMsg(t('cr_' + q.code_reason) || t('code_bad'), 'bad');
+      }).catch(function(){});
+  }
+  function scheduleQuote(){ clearTimeout(qTimer); qTimer = setTimeout(function(){ updateQuote(false); }, 120); }
+  function applyCode(){ appliedCode = cleanCode($('promo').value); $('promo').value = appliedCode; updateQuote(true); }
+  $('promoApply').addEventListener('click', applyCode);
+  $('promo').addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); applyCode(); } });
+  $('promo').addEventListener('input', function(){ if (cleanCode($('promo').value) !== appliedCode) promoMsg(''); });
+  var updateBase = update;
+  update = function(){ var r = updateBase.apply(this, arguments); scheduleQuote(); return r; };
+  document.addEventListener('click', function(e){ if (e.target.closest && e.target.closest('[data-billing],[data-group]')) scheduleQuote(); });
+  document.addEventListener('change', function(e){ if (e.target && e.target.name === 'plan') scheduleQuote(); });
+
   // ---------- Init ----------
   $('year').textContent = new Date().getFullYear();
   var initial = params.get('lang');
   if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch(e) { initial = 'en'; } }
   $('areas').appendChild(areaRow());
   applyLang(initial === 'ar' ? 'ar' : 'en');
+  var pre = params.get('code'); if (pre) { $('promo').value = cleanCode(pre); appliedCode = cleanCode(pre); }
+  updateQuote(true);
+  if (params.get('paid') === '1') {
+    var h = $('done').querySelector('h2'); h.setAttribute('data-i18n', 'd_paid'); h.textContent = t('d_paid');
+    $('ref').textContent = (params.get('ref') || '—').replace(/[^A-Za-z0-9]/g, '').slice(0, 12);
+    $('signup').classList.add('section-hide'); $('done').classList.remove('section-hide');
+  } else if (params.get('cancelled') === '1') { setStatus('s_cancelled', 'err'); }
+  else if (params.get('payfailed') === '1') { setStatus('s_payfailed', 'err'); }
 })();
 </script>
 <style>select.lang{appearance:none;-webkit-appearance:none;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
