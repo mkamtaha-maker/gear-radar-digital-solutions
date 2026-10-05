@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Gallery | Gear Radar Digital Solutions</title>
+<meta name="description" content="Build your business website: pick a theme and the features you need, see a live preview and the plan that fits.">
+<link rel="canonical" href="https://www.gearradar.co.uk/gallery.html">
+<meta name="theme-color" content="#15171C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171C; --ink-2:#1B1E25; --ink-3:#22252D; --gold:#FF8A50; --gold-2:#FACC15; --gold-soft:rgba(255,138,80,.14);
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#F5F5F4; --on-ink-muted:#A8A29E;
+  --radius:18px; --shadow:0 20px 50px -24px rgba(21,23,28,.35);
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:110px}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.container{width:min(1160px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-head);line-height:1.2;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0;line-height:1.4}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+header{background:var(--ink);color:var(--on-ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.back{color:var(--on-ink-muted);font-size:.93rem;font-weight:500}
+.back:hover{color:var(--white)}
+.lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;font-family:'Cairo','Inter',sans-serif}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.hero{padding:28px 0 36px}
+.eyebrow{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--white);margin-bottom:8px}
+.hero p{color:var(--on-ink-muted);max-width:680px}
+
+/* ---------- Layout: preview + options ---------- */
+.studio{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;align-items:start;padding:32px 0 24px}
+@media (max-width:900px){ .studio{grid-template-columns:1fr} }
+.preview-wrap{position:sticky;top:16px}
+@media (max-width:900px){ .preview-wrap{position:static} .site{max-height:360px} }
+.preview-label{font-size:.8rem;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+
+/* Browser frame */
+.frame{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.frame-bar{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#EFEDE8;border-bottom:1px solid var(--line)}
+.frame-bar i{width:9px;height:9px;border-radius:50%;background:#D6D3CC;display:inline-block}
+.frame-bar span{flex:1;background:#fff;border-radius:999px;padding:3px 12px;font-size:.75rem;color:var(--muted);direction:ltr;text-align:left}
+
+/* Mini website: colours match the palettes in the Website Agent prompt */
+.site{--bg:#fff;--fg:#0f172a;--sub:#64748b;--nav:#0f172a;--navfg:#fff;--pri:#2563eb;--prifg:#fff;--acc:#38bdf8;--card:#f1f5f9;
+  background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;font-size:12px;line-height:1.45;position:relative;max-height:560px;overflow:auto;scrollbar-width:thin}
+.site[dir="rtl"]{font-family:'Cairo',system-ui,sans-serif}
+.t-blue  {--bg:#ffffff;--fg:#0f172a;--sub:#64748b;--nav:#0f172a;--navfg:#fff;--pri:#2563eb;--prifg:#fff;--acc:#38bdf8;--card:#f1f5f9}
+.t-green {--bg:#f0fdfa;--fg:#064e3b;--sub:#4b6b63;--nav:#065f46;--navfg:#fff;--pri:#059669;--prifg:#fff;--acc:#2dd4bf;--card:#ffffff}
+.t-gold  {--bg:#020617;--fg:#f8fafc;--sub:#94a3b8;--nav:#020617;--navfg:#fbbf24;--pri:#fbbf24;--prifg:#020617;--acc:#eab308;--card:#0f172a}
+.t-violet{--bg:#faf5ff;--fg:#1e1b4b;--sub:#6b6790;--nav:#7c3aed;--navfg:#fff;--pri:#f97316;--prifg:#fff;--acc:#7c3aed;--card:#ffffff}
+.s-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;background:var(--nav);color:var(--navfg);position:sticky;top:0;z-index:2}
+.s-brand{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13px}
+.s-mark{width:18px;height:18px;border-radius:5px;background:var(--acc);display:inline-block;flex:none}
+.s-logo{height:20px;padding:0 6px;border-radius:5px;background:var(--navfg);color:var(--nav);font-size:9px;font-weight:800;display:inline-flex;align-items:center;letter-spacing:.06em;flex:none}
+.s-links{display:flex;gap:10px;font-size:10.5px;opacity:.85}
+.s-right{display:flex;gap:6px;align-items:center}
+.s-pill{padding:3px 9px;border-radius:999px;font-weight:600;font-size:10px;white-space:nowrap}
+.s-call{background:var(--pri);color:var(--prifg)}
+.s-toggle{border:1px solid currentColor}
+.s-hero{padding:22px 14px 18px;display:grid;gap:6px}
+.s-hero.photo{background:linear-gradient(135deg,rgba(0,0,0,.08),rgba(0,0,0,.02)),repeating-linear-gradient(45deg,var(--card) 0 10px,transparent 10px 20px)}
+.s-hero b{font-size:17px;line-height:1.25}
+.s-hero span{color:var(--sub)}
+.s-ctas{display:flex;gap:6px;margin-top:4px}
+.s-ctas em{font-style:normal;padding:5px 11px;border-radius:999px;font-weight:600;font-size:10.5px}
+.s-ctas em:first-child{background:var(--pri);color:var(--prifg)}
+.s-ctas em:last-child{border:1px solid var(--acc);color:var(--acc)}
+.s-sec{padding:12px 14px}
+.s-sec h4{font-size:12.5px;margin-bottom:8px}
+.s-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.s-cards div{background:var(--card);border-radius:8px;padding:9px 7px}
+.s-cards i{display:block;width:12px;height:12px;border-radius:50%;background:var(--acc);margin-bottom:5px}
+.s-cards small{display:block;font-weight:600;font-size:10.5px}
+.s-cards u{text-decoration:none;color:var(--pri);font-weight:700;font-size:10.5px}
+.s-hours{display:grid;grid-template-columns:1fr auto;gap:3px 12px;background:var(--card);border-radius:8px;padding:9px 10px;font-size:10.5px}
+.s-hours span:nth-child(even){color:var(--sub)}
+.s-gal{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.s-gal i{aspect-ratio:1;border-radius:6px;background:linear-gradient(135deg,var(--acc),var(--pri));opacity:.55}
+.s-gal i:nth-child(2n){opacity:.35}
+.s-map{height:90px;border-radius:8px;background:
+  linear-gradient(90deg,transparent 48%,rgba(255,255,255,.7) 48% 52%,transparent 52%),
+  linear-gradient(0deg,transparent 45%,rgba(255,255,255,.7) 45% 50%,transparent 50%),
+  linear-gradient(135deg,#cfe8d4,#d8e6f2);position:relative}
+.s-map::after{content:"";position:absolute;left:50%;top:38%;width:14px;height:14px;border-radius:50% 50% 50% 0;background:#ea4335;transform:translate(-50%,-50%) rotate(-45deg)}
+.s-book{background:var(--card);border-radius:8px;padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.s-book span{background:var(--bg);border:1px solid rgba(127,127,127,.25);border-radius:6px;padding:5px 7px;color:var(--sub);font-size:10px}
+.s-book em{grid-column:1/-1;font-style:normal;text-align:center;background:var(--pri);color:var(--prifg);border-radius:6px;padding:6px;font-weight:600;font-size:10.5px}
+.s-contact{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--sub);font-size:10.5px}
+.s-foot{padding:10px 14px 14px;color:var(--sub);font-size:10px;border-top:1px solid rgba(127,127,127,.18)}
+.s-wa{position:sticky;bottom:10px;display:flex;justify-content:flex-end;padding:0 10px;pointer-events:none;height:0;overflow:visible}
+.s-wa i{width:30px;height:30px;border-radius:50%;background:#25D366;box-shadow:0 4px 12px rgba(0,0,0,.25);transform:translateY(-40px);display:grid;place-items:center}
+.s-wa svg{width:16px;height:16px;fill:#fff}
+.hide{display:none!important}
+
+/* ---------- Options ---------- */
+.opts{display:grid;gap:14px}
+.opt{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.opt-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.opt-head h3{font-size:.98rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--white);border-radius:999px;padding:7px 13px;font-size:.88rem;font-weight:500;color:var(--text);transition:border-color .15s,background .15s}
+.chip:hover{border-color:#cfc9bb}
+.chip[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--white)}
+.chip .dot{width:14px;height:14px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.1)}
+.badge{font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.b0{background:#E7F0FF;color:#1E40AF}
+.b1{background:var(--gold-soft);color:#C2410C}
+.b2{background:#F3E8FF;color:#6B21A8}
+.b3{background:#F1F5F9;color:#334155}
+.chip[aria-pressed="true"] .badge{background:rgba(255,255,255,.16);color:#fff}
+.feat{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:8px}
+.tgl{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1.5px solid var(--line);background:var(--white);border-radius:12px;padding:9px 12px;font-size:.88rem;font-weight:500;text-align:start;color:var(--text)}
+.tgl .l{display:flex;align-items:center;gap:8px}
+.tgl .box{width:18px;height:18px;border-radius:5px;border:1.5px solid #cfc9bb;flex:none;display:grid;place-items:center}
+.tgl[aria-pressed="true"]{border-color:var(--ink)}
+.tgl[aria-pressed="true"] .box{background:var(--ink);border-color:var(--ink)}
+.tgl[aria-pressed="true"] .box::after{content:"";width:8px;height:4px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.8rem;color:var(--muted)}
+
+/* ---------- Plan bar (like a cart) ---------- */
+.cart{position:fixed;inset-inline:0;bottom:0;z-index:20;background:var(--ink);color:var(--on-ink);box-shadow:0 -10px 30px -12px rgba(0,0,0,.4)}
+.cart-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.cart-plan{display:flex;flex-direction:column;min-width:0}
+.cart-plan small{color:var(--on-ink-muted);font-size:.78rem}
+.cart-plan b{font-family:var(--font-head);font-size:1.15rem;color:var(--white)}
+.cart-plan b .gx-price{color:var(--gold)}
+.cart-why{color:var(--on-ink-muted);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
+.cart-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:999px;background:var(--gold);color:var(--ink);font-weight:700;white-space:nowrap;transition:background .2s}
+.cart-btn:hover{background:var(--gold-2)}
+@media (max-width:600px){ .cart-why{display:none} .cart-btn{padding:11px 16px;font-size:.9rem} .cart-plan b{font-size:1rem} }
+#fx-note{margin:0 0 12px!important}
+</style>
+<script>window.grFxExtra = '.gx-price';</script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="back" href="index.html#plans-web" data-i18n="back">← Back to website plans</a>
+    <button class="lang" id="langToggle" type="button">العربية</button>
+  </div>
+  <div class="container hero">
+    <span class="eyebrow" data-i18n="eyebrow">Website gallery</span>
+    <h1 data-i18n="title">Design your website and see your plan</h1>
+    <p data-i18n="lead">Pick a theme and the features you want. The preview updates as you go, and the bar at the bottom shows which plan you need and its price.</p>
+  </div>
+</header>
+
+<main class="container">
+  <div class="studio">
+    <div class="preview-wrap">
+      <div class="preview-label"><span data-i18n="preview">Live preview</span><span data-i18n="preview_note">Your logo, photos and text go here</span></div>
+      <div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span>yourbusiness.gearradar.co.uk</span></div>
+        <div class="site t-blue" id="site"></div>
+      </div>
+    </div>
+
+    <div>
+      <div id="plans"><div class="opts" id="opts"></div></div>
+    </div>
+  </div>
+</main>
+
+<div class="cart" role="region" aria-live="polite" aria-label="Your plan">
+  <div class="container cart-in">
+    <div class="cart-plan">
+      <small data-i18n="your_plan">Your plan</small>
+      <b id="cartName">Website Starter · <span class="gx-price">$149</span></b>
+      <span class="cart-why" id="cartWhy"></span>
+    </div>
+    <a class="cart-btn" id="cartBtn" href="signup.html?plan=web_basic">Continue</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Plans and prices must match signup.html (PLANS) and index.html. Tier: 0 Starter, 1 Pro, 2 Premium, 3 custom quote.
+  var PLAN = [
+    { key:'web_basic',   name:'Website Starter', price:'$149' },
+    { key:'web_pro',     name:'Website Pro',     price:'$249' },
+    { key:'web_premium', name:'Website Premium', price:'$249', add:'$19' }
+  ];
+  // Theme names must match the "Colour theme" options in signup.html and the palettes in the Website Agent prompt.
+  var THEMES = [
+    { name:'Modern Blue',             cls:'t-blue',   c:'#2563eb', tier:0, ar:'الأزرق العصري' },
+    { name:'Emerald Green',           cls:'t-green',  c:'#059669', tier:1, ar:'الأخضر الزمردي' },
+    { name:'Luxury Dark & Gold',      cls:'t-gold',   c:'#fbbf24', tier:1, ar:'الداكن والذهبي' },
+    { name:'Vibrant Orange & Purple', cls:'t-violet', c:'#7c3aed', tier:1, ar:'البرتقالي والبنفسجي' }
+  ];
+  // Single-choice groups
+  var GROUPS = [
+    { id:'pages', title:{en:'Number of pages',ar:'عدد الصفحات'}, choices:[
+      { v:'1',    tier:0, en:'One page',     ar:'صفحة واحدة' },
+      { v:'more', tier:3, en:'More pages',   ar:'صفحات أكثر' } ] },
+    { id:'lang', title:{en:'Language',ar:'اللغة'}, choices:[
+      { v:'en',   tier:0, en:'English',          ar:'English' },
+      { v:'ar',   tier:0, en:'العربية',          ar:'العربية' },
+      { v:'both', tier:1, en:'Arabic + English', ar:'عربي + إنجليزي' } ] },
+    { id:'theme', title:{en:'Theme',ar:'الثيم'}, theme:true },
+    { id:'rev', title:{en:'Revision rounds before launch',ar:'جولات التعديل قبل النشر'}, choices:[
+      { v:'1', tier:0, en:'1 round',  ar:'جولة واحدة' },
+      { v:'2', tier:1, en:'2 rounds', ar:'جولتان' },
+      { v:'3', tier:2, en:'3 rounds', ar:'3 جولات' } ] },
+    { id:'upd', title:{en:'Updates after launch',ar:'التحديثات بعد النشر'}, choices:[
+      { v:'0', tier:0, en:'I\'ll manage',                ar:'لا أحتاج' },
+      { v:'4', tier:2, en:'Up to 4 a month, done by us', ar:'حتى 4 شهرياً ننفذها لك' } ] }
+  ];
+  // On/off features
+  var FEATS = [
+    { id:'services', tier:0, on:true,  en:'Services',        ar:'الخدمات' },
+    { id:'prices',   tier:0, on:true,  en:'Prices',          ar:'الأسعار' },
+    { id:'hours',    tier:0, on:true,  en:'Working hours',   ar:'ساعات العمل' },
+    { id:'call',     tier:0, on:true,  en:'Call button',     ar:'زر الاتصال' },
+    { id:'logo',     tier:1, on:false, en:'Logo',            ar:'الشعار' },
+    { id:'gallery',  tier:1, on:false, en:'Photo gallery (up to 8)', ar:'معرض صور (حتى 8)' },
+    { id:'map',      tier:1, on:false, en:'Google Map',      ar:'خريطة Google' },
+    { id:'wa',       tier:1, on:false, en:'WhatsApp button', ar:'زر واتساب' },
+    { id:'booking',  tier:3, on:false, en:'Booking form',    ar:'نموذج حجز' }
+  ];
+  var TIER_LABEL = { en:['Starter','Pro','Premium','Custom'], ar:['Starter','Pro','Premium','حسب الطلب'] };
+
+  var STR = {
+    en:{ back:'← Back to website plans', eyebrow:'Website gallery', title:'Design your website and see your plan',
+      lead:'Pick a theme and the features you want. The preview updates as you go, and the bar at the bottom shows which plan you need and its price.',
+      preview:'Live preview', preview_note:'Your logo, photos and text go here', your_plan:'Your plan', features:'Features',
+      legend:'Each option shows the lowest plan that includes it:', once:'one-off', addon:'+ {n}/month',
+      cont:'Continue with this plan', custom_name:'Custom website', custom_price:'we\'ll quote you', custom_btn:'Ask for a quote',
+      why_base:'Everything you picked is in Website Starter.', why:'Needs {plan} for: ', toggle:'العربية',
+      s_biz:'Your Business', s_home:'Home', s_about:'About', s_contact:'Contact', s_call:'Call now', s_head:'Quality service, close to you',
+      s_sub:'Book in minutes or message us on WhatsApp.', s_book:'Book now', s_more:'Our services', s_services:'Services', s_svc:['Service one','Service two','Service three'],
+      s_hours:'Working hours', s_days:[['Mon – Fri','9:00 – 18:00'],['Saturday','10:00 – 16:00'],['Sunday','Closed']], s_gal:'Gallery', s_map:'Find us',
+      s_bookt:'Book an appointment', s_f:['Name','Phone','Date','Time'], s_send:'Request booking', s_reach:'Get in touch', s_foot:'© Your Business' },
+    ar:{ back:'→ العودة لباقات المواقع', eyebrow:'معرض المواقع', title:'صمّم موقعك واعرف باقتك',
+      lead:'اختر الثيم والمزايا التي تريدها. المعاينة تتغير مع كل اختيار، والشريط في الأسفل يوضح الباقة المناسبة وسعرها.',
+      preview:'معاينة مباشرة', preview_note:'هنا يظهر شعارك وصورك ونصوصك', your_plan:'باقتك', features:'المزايا',
+      legend:'كل خيار يوضح أقل باقة تشمله:', once:'دفعة واحدة', addon:'+ {n} شهرياً',
+      cont:'أكمل بهذه الباقة', custom_name:'موقع حسب الطلب', custom_price:'نرسل لك عرض سعر', custom_btn:'اطلب عرض سعر',
+      why_base:'كل ما اخترته موجود في Website Starter.', why:'تحتاج {plan} بسبب: ', toggle:'English',
+      s_biz:'اسم نشاطك', s_home:'الرئيسية', s_about:'من نحن', s_contact:'تواصل', s_call:'اتصل الآن', s_head:'خدمة مميزة بالقرب منك',
+      s_sub:'احجز في دقائق أو راسلنا على واتساب.', s_book:'احجز الآن', s_more:'خدماتنا', s_services:'الخدمات', s_svc:['خدمة أولى','خدمة ثانية','خدمة ثالثة'],
+      s_hours:'ساعات العمل', s_days:[['الأحد – الخميس','9:00 – 18:00'],['السبت','10:00 – 16:00'],['الجمعة','مغلق']], s_gal:'معرض الصور', s_map:'موقعنا',
+      s_bookt:'احجز موعداً', s_f:['الاسم','الهاتف','التاريخ','الوقت'], s_send:'أرسل طلب الحجز', s_reach:'تواصل معنا', s_foot:'© اسم نشاطك' }
+  };
+
+  var lang = 'en';
+  var state = { pages:'1', lang:'en', theme:'Modern Blue', rev:'1', upd:'0' };
+  FEATS.forEach(function(f){ state[f.id] = f.on; });
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function badge(t){ return '<span class="badge b' + t + '">' + esc(TIER_LABEL[lang][t]) + '</span>'; }
+  function themeOf(name){ return THEMES.filter(function(t){ return t.name === name; })[0]; }
+
+  // ---------- Options panel ----------
+  function renderOpts(){
+    var s = STR[lang], h = '<div class="legend">' + esc(s.legend) + ' ' + badge(0) + badge(1) + badge(2) + badge(3) + '</div>';
+    GROUPS.forEach(function(g){
+      h += '<section class="opt"><div class="opt-head"><h3>' + esc(g.title[lang]) + '</h3></div><div class="chips">';
+      if (g.theme) THEMES.forEach(function(t){
+        h += '<button type="button" class="chip" data-g="theme" data-v="' + esc(t.name) + '" aria-pressed="' + (state.theme === t.name) + '">' +
+          '<span class="dot" style="background:' + t.c + '"></span>' + esc(lang === 'ar' ? t.ar : t.name) + ' ' + badge(t.tier) + '</button>';
+      });
+      else g.choices.forEach(function(c){
+        h += '<button type="button" class="chip" data-g="' + g.id + '" data-v="' + c.v + '" aria-pressed="' + (state[g.id] === c.v) + '">' + esc(c[lang]) + ' ' + badge(c.tier) + '</button>';
+      });
+      h += '</div></section>';
+    });
+    h += '<section class="opt"><div class="opt-head"><h3>' + esc(s.features) + '</h3></div><div class="feat">';
+    FEATS.forEach(function(f){
+      h += '<button type="button" class="tgl" data-f="' + f.id + '" aria-pressed="' + !!state[f.id] + '"><span class="l"><span class="box"></span>' + esc(f[lang]) + '</span>' + badge(f.tier) + '</button>';
+    });
+    h += '</div></section>';
+    $('opts').innerHTML = h;
+  }
+
+  $('opts').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.hasAttribute('data-f')) { var id = b.getAttribute('data-f'); state[id] = !state[id]; }
+    else { state[b.getAttribute('data-g')] = b.getAttribute('data-v'); }
+    // Prices without services make no sense; keep them together.
+    if (b.getAttribute('data-f') === 'services' && !state.services) state.prices = false;
+    if (b.getAttribute('data-f') === 'prices' && state.prices) state.services = true;
+    update();
+  });
+
+  // ---------- Plan logic ----------
+  function picks(){
+    var out = [];
+    GROUPS.forEach(function(g){
+      if (g.theme) { var t = themeOf(state.theme); out.push({ tier:t.tier, label: lang === 'ar' ? t.ar : t.name }); return; }
+      g.choices.forEach(function(c){ if (state[g.id] === c.v) out.push({ tier:c.tier, label:c[lang] }); });
+    });
+    FEATS.forEach(function(f){ if (state[f.id]) out.push({ tier:f.tier, label:f[lang] }); });
+    return out;
+  }
+
+  function renderCart(){
+    var s = STR[lang], all = picks();
+    var tier = all.reduce(function(m, p){ return Math.max(m, p.tier); }, 0);
+    var btn = $('cartBtn'), name = $('cartName'), why = $('cartWhy');
+    if (tier === 3) {
+      name.innerHTML = esc(s.custom_name) + ' · <span style="color:var(--gold)">' + esc(s.custom_price) + '</span>';
+      btn.textContent = s.custom_btn;
+      btn.href = 'index.html' + (lang === 'ar' ? '?lang=ar' : '') + '#contact';
+    } else {
+      var p = PLAN[tier];
+      name.innerHTML = esc(p.name) + ' · <span class="gx-price">' + p.price + '</span> <small style="color:var(--on-ink-muted);font-weight:500;font-size:.8rem">' + esc(s.once) +
+        (p.add ? ' <span class="gx-price">' + esc(s.addon.replace('{n}', p.add)) + '</span>' : '') + '</small>';
+      btn.textContent = s.cont;
+      var sl = state.lang;
+      btn.href = 'signup.html?plan=' + p.key + (tier > 0 ? '&palette=' + encodeURIComponent(state.theme) : '') + '&sitelang=' + sl + (lang === 'ar' ? '&lang=ar' : '');
+    }
+    var top = all.filter(function(p){ return p.tier === tier && tier > 0; }).map(function(p){ return p.label; });
+    why.textContent = tier === 0 ? s.why_base : s.why.replace('{plan}', tier === 3 ? s.custom_name : PLAN[tier].name) + top.join(lang === 'ar' ? '، ' : ', ');
+  }
+
+  // ---------- Live preview ----------
+  var WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.2.3-.1.5.2.3.8 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.2.1.4.1.5-.1l.7-.9c.2-.2.3-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>';
+  function renderSite(){
+    var siteLang = state.lang === 'both' ? lang : state.lang;
+    var s = STR[siteLang === 'ar' ? 'ar' : 'en'], el = $('site'), t = themeOf(state.theme);
+    el.className = 'site ' + t.cls;
+    el.setAttribute('dir', siteLang === 'ar' ? 'rtl' : 'ltr');
+    el.setAttribute('lang', siteLang === 'ar' ? 'ar' : 'en');
+    var svc = s.s_svc.map(function(n, i){ return '<div><i></i><small>' + esc(n) + '</small>' + (state.prices ? '<u>$' + (20 + i * 15) + '</u>' : '') + '</div>'; }).join('');
+    var hrs = s.s_days.map(function(d){ return '<span>' + esc(d[0]) + '</span><span>' + esc(d[1]) + '</span>'; }).join('');
+    el.innerHTML =
+      '<div class="s-nav"><span class="s-brand">' + (state.logo ? '<span class="s-logo">LOGO</span>' : '<span class="s-mark"></span>') + esc(s.s_biz) + '</span>' +
+        (state.pages === 'more' ? '<span class="s-links"><span>' + esc(s.s_home) + '</span><span>' + esc(s.s_about) + '</span><span>' + esc(s.s_contact) + '</span></span>' : '') +
+        '<span class="s-right">' + (state.lang === 'both' ? '<span class="s-pill s-toggle">' + (siteLang === 'ar' ? 'English' : 'العربية') + '</span>' : '') +
+        (state.call ? '<span class="s-pill s-call">' + esc(s.s_call) + '</span>' : '') + '</span></div>' +
+      '<div class="s-hero' + (state.gallery ? ' photo' : '') + '"><b>' + esc(s.s_head) + '</b><span>' + esc(s.s_sub) + '</span>' +
+        '<div class="s-ctas"><em>' + esc(state.booking ? s.s_book : (state.call ? s.s_call : s.s_more)) + '</em><em>' + esc(s.s_more) + '</em></div></div>' +
+      (state.services ? '<div class="s-sec"><h4>' + esc(s.s_services) + '</h4><div class="s-cards">' + svc + '</div></div>' : '') +
+      (state.gallery ? '<div class="s-sec"><h4>' + esc(s.s_gal) + '</h4><div class="s-gal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>' : '') +
+      (state.booking ? '<div class="s-sec"><h4>' + esc(s.s_bookt) + '</h4><div class="s-book">' + s.s_f.map(function(f){ return '<span>' + esc(f) + '</span>'; }).join('') + '<em>' + esc(s.s_send) + '</em></div></div>' : '') +
+      (state.hours ? '<div class="s-sec"><h4>' + esc(s.s_hours) + '</h4><div class="s-hours">' + hrs + '</div></div>' : '') +
+      (state.map ? '<div class="s-sec"><h4>' + esc(s.s_map) + '</h4><div class="s-map"></div></div>' : '') +
+      '<div class="s-sec"><h4>' + esc(s.s_reach) + '</h4><div class="s-contact"><span>✉ hello@yourbusiness.co.uk</span>' + (state.call ? '<span>☎ 07700 900123</span>' : '') + '</div></div>' +
+      '<div class="s-foot">' + esc(s.s_foot) + '</div>' +
+      (state.wa ? '<div class="s-wa"><i>' + WA_SVG + '</i></div>' : '');
+  }
+
+  function update(){ renderOpts(); renderSite(); renderCart(); }
+
+  function applyLang(l){
+    lang = l;
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    var s = STR[l];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ var k = el.getAttribute('data-i18n'); if (s[k] != null) el.textContent = s[k]; });
+    $('langToggle').textContent = s.toggle;
+    try { localStorage.setItem('gr_lang', l); } catch(e) {}
+    update();
+  }
+
+  $('langToggle').addEventListener('click', function(){ applyLang(lang === 'ar' ? 'en' : 'ar'); });
+  var params = new URLSearchParams(location.search), initial = params.get('lang');
+  if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch(e) { initial = 'en'; } }
+  if (initial === 'ar') state.lang = 'ar';
+  var pal = params.get('palette'); if (pal && themeOf(pal)) state.theme = pal;
+  applyLang(initial === 'ar' ? 'ar' : 'en');
+})();
+</script>
+<script src="currency.js" defer></script>
+</body>
+</html>
