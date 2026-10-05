@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Themes | Gear Radar Digital Solutions</title>
+<meta name="description" content="Preview the colour themes for your Gear Radar business website before you order.">
+<link rel="canonical" href="https://www.gearradar.co.uk/themes.html">
+<meta name="theme-color" content="#15171C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171C; --gold:#FF8A50; --gold-2:#FACC15;
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#F5F5F4; --on-ink-muted:#A8A29E;
+  --radius:18px; --shadow:0 20px 50px -24px rgba(21,23,28,.35);
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:min(1160px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-head);line-height:1.2;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0;line-height:1.4}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+.top{background:var(--ink);color:var(--on-ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.back{color:var(--on-ink-muted);font-size:.93rem;font-weight:500}
+.back:hover{color:var(--white)}
+.lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'Cairo','Inter',sans-serif}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.hero{padding:36px 0 44px}
+.eyebrow{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
+.hero h1{font-size:clamp(1.7rem,4vw,2.5rem);color:var(--white);margin-bottom:10px}
+.hero p{color:var(--on-ink-muted);max-width:640px}
+
+main{padding:40px 0 64px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:24px}
+.theme{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.theme .info{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.theme h3{font-size:1.15rem}
+.theme p{color:var(--muted);font-size:.93rem}
+.swatches{display:flex;gap:6px}
+.swatches span{width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.08)}
+.tag{display:inline-block;font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:999px;background:#EEF2FF;color:#3730A3;align-self:flex-start}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;border-radius:999px;font-weight:600;font-size:.95rem;background:var(--ink);color:var(--white);margin-top:auto;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:#22252D}
+
+/* Mini website preview: one per theme, colours match what the website builder uses */
+.mock{--bg:#fff;--fg:#0f172a;--sub:#64748b;--nav:#0f172a;--navfg:#fff;--pri:#2563eb;--prifg:#fff;--acc:#38bdf8;--card:#f1f5f9;
+  background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;font-size:11px;line-height:1.4;user-select:none}
+html[lang="ar"] .mock{font-family:'Cairo',system-ui,sans-serif}
+.mock .m-nav{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(--nav);color:var(--navfg)}
+.mock .m-brand{display:flex;align-items:center;gap:6px;font-weight:700}
+.mock .m-brand i{width:14px;height:14px;border-radius:4px;background:var(--acc);display:inline-block}
+.mock .m-call{background:var(--pri);color:var(--prifg);padding:3px 9px;border-radius:999px;font-weight:600;font-size:10px}
+.mock .m-hero{padding:18px 12px 16px}
+.mock .m-hero b{display:block;font-size:15px;line-height:1.25;margin-bottom:4px}
+.mock .m-hero span{color:var(--sub);display:block;margin-bottom:10px}
+.mock .m-ctas{display:flex;gap:6px}
+.mock .m-ctas em{font-style:normal;padding:4px 10px;border-radius:999px;font-weight:600;font-size:10px}
+.mock .m-ctas em:first-child{background:var(--pri);color:var(--prifg)}
+.mock .m-ctas em:last-child{border:1px solid var(--acc);color:var(--acc)}
+.mock .m-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:0 12px 14px}
+.mock .m-cards div{background:var(--card);border-radius:8px;padding:8px 6px}
+.mock .m-cards div i{display:block;width:12px;height:12px;border-radius:50%;background:var(--acc);margin-bottom:5px}
+.mock .m-cards div small{display:block;font-weight:600;font-size:10px}
+.mock .m-cards div u{text-decoration:none;color:var(--pri);font-weight:700;font-size:10px}
+.mock .m-wa{position:relative;height:0}
+.mock .m-wa i{position:absolute;bottom:10px;inset-inline-end:10px;width:22px;height:22px;border-radius:50%;background:#25D366;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+
+.t-blue  {--bg:#ffffff;--fg:#0f172a;--sub:#64748b;--nav:#0f172a;--navfg:#fff;--pri:#2563eb;--prifg:#fff;--acc:#38bdf8;--card:#f1f5f9}
+.t-green {--bg:#f0fdfa;--fg:#064e3b;--sub:#4b6b63;--nav:#065f46;--navfg:#fff;--pri:#059669;--prifg:#fff;--acc:#2dd4bf;--card:#ffffff}
+.t-gold  {--bg:#020617;--fg:#f8fafc;--sub:#94a3b8;--nav:#020617;--navfg:#fbbf24;--pri:#fbbf24;--prifg:#020617;--acc:#eab308;--card:#0f172a}
+.t-violet{--bg:#faf5ff;--fg:#1e1b4b;--sub:#6b6790;--nav:#7c3aed;--navfg:#fff;--pri:#f97316;--prifg:#fff;--acc:#7c3aed;--card:#ffffff}
+
+.note{margin-top:32px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;color:var(--muted);font-size:.93rem}
+.note a{color:var(--text);text-decoration:underline}
+footer{padding:24px 0;color:var(--muted);font-size:.85rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="container nav">
+    <a class="back" href="index.html#plans-web" data-i18n="back">← Back to website plans</a>
+    <button class="lang" id="langToggle" type="button">العربية</button>
+  </div>
+  <div class="container hero">
+    <span class="eyebrow" data-i18n="eyebrow">Website themes</span>
+    <h1 data-i18n="title">Pick the look of your website</h1>
+    <p data-i18n="lead">These are the colour themes we build business websites in. Choose one and we'll carry it into your order. Your logo, photos and text are added on top.</p>
+  </div>
+</div>
+
+<main class="container">
+  <div class="grid" id="grid"></div>
+  <p class="note" data-i18n-html="note">Website Starter is built in <b>Modern Blue</b>. All four themes come with Website Pro and Premium. Want to see a full site? <a href="https://mkamtaha-maker.github.io/cedar-barbers-demo-9kyrxe/" target="_blank" rel="noopener">Open our sample website</a>.</p>
+</main>
+
+<footer>© <span id="year"></span> Gear Radar Digital Solutions</footer>
+
+<script>
+(function(){
+  // Names must match the "Colour theme" options in signup.html and the palettes in the Website Agent prompt.
+  var THEMES = [
+    { name:'Modern Blue',             cls:'t-blue',   sw:['#0f172a','#2563eb','#38bdf8'], starter:true,
+      en:'Clean and corporate. Suits clinics, consultants, repair and trade services.',
+      ar:'نظيف ورسمي. مناسب للعيادات والاستشارات وخدمات الصيانة والحِرف.' },
+    { name:'Emerald Green',           cls:'t-green',  sw:['#065f46','#059669','#2dd4bf'],
+      en:'Fresh and calm. Suits wellness, cafés, cleaning and outdoor businesses.',
+      ar:'هادئ ومنعش. مناسب للعناية الصحية والمقاهي وخدمات التنظيف.' },
+    { name:'Luxury Dark & Gold',      cls:'t-gold',   sw:['#020617','#fbbf24','#eab308'],
+      en:'Dark and premium. Suits barbers, salons, jewellers and fine dining.',
+      ar:'داكن وفاخر. مناسب للحلاقين والصالونات والمجوهرات والمطاعم الراقية.' },
+    { name:'Vibrant Orange & Purple', cls:'t-violet', sw:['#7c3aed','#f97316','#faf5ff'],
+      en:'Bold and modern. Suits shops, events, tech and youth brands.',
+      ar:'جريء وعصري. مناسب للمتاجر والفعاليات والتقنية والعلامات الشبابية.' }
+  ];
+  var AR_NAMES = { 'Modern Blue':'الأزرق العصري', 'Emerald Green':'الأخضر الزمردي', 'Luxury Dark & Gold':'الداكن والذهبي', 'Vibrant Orange & Purple':'البرتقالي والبنفسجي' };
+  var STR = {
+    en:{ back:'← Back to website plans', eyebrow:'Website themes', title:'Pick the look of your website',
+      lead:"These are the colour themes we build business websites in. Choose one and we'll carry it into your order. Your logo, photos and text are added on top.",
+      note:'Website Starter is built in <b>Modern Blue</b>. All four themes come with Website Pro and Premium. Want to see a full site? <a href="https://mkamtaha-maker.github.io/cedar-barbers-demo-9kyrxe/" target="_blank" rel="noopener">Open our sample website</a>.',
+      choose:'Choose this theme', starter:'Included in every plan', m_biz:'Your Business', m_call:'Call', m_head:'Quality service, close to you',
+      m_sub:'Book in minutes or message us on WhatsApp.', m_book:'Book now', m_more:'Our services', m_s:['Service one','Service two','Service three'], toggle:'العربية' },
+    ar:{ back:'→ العودة لباقات المواقع', eyebrow:'ثيمات المواقع', title:'اختر شكل موقعك',
+      lead:'هذه ألوان الثيمات التي نبني بها مواقع الأعمال. اختر واحداً وسننقله إلى طلبك، ثم نضيف شعارك وصورك ونصوصك.',
+      note:'باقة Website Starter تأتي بثيم <b>الأزرق العصري</b>. الثيمات الأربعة كلها متاحة في Website Pro وPremium. تريد رؤية موقع كامل؟ <a href="https://mkamtaha-maker.github.io/cedar-barbers-demo-9kyrxe/" target="_blank" rel="noopener">افتح الموقع التجريبي</a>.',
+      choose:'اختر هذا الثيم', starter:'متاح في كل الباقات', m_biz:'اسم نشاطك', m_call:'اتصل', m_head:'خدمة مميزة بالقرب منك',
+      m_sub:'احجز في دقائق أو راسلنا على واتساب.', m_book:'احجز الآن', m_more:'خدماتنا', m_s:['خدمة أولى','خدمة ثانية','خدمة ثالثة'], toggle:'English' }
+  };
+  var lang = 'en';
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function render(){
+    var s = STR[lang], box = document.getElementById('grid');
+    box.innerHTML = THEMES.map(function(th){
+      var href = 'signup.html?plan=web_pro' + '&palette=' + encodeURIComponent(th.name) + (lang === 'ar' ? '&lang=ar' : '');
+      var title = lang === 'ar' ? AR_NAMES[th.name] : th.name;
+      return '<article class="theme">' +
+        '<div class="mock ' + th.cls + '" role="img" aria-label="' + esc(title) + '">' +
+          '<div class="m-nav"><span class="m-brand"><i></i>' + esc(s.m_biz) + '</span><span class="m-call">' + esc(s.m_call) + '</span></div>' +
+          '<div class="m-hero"><b>' + esc(s.m_head) + '</b><span>' + esc(s.m_sub) + '</span>' +
+            '<div class="m-ctas"><em>' + esc(s.m_book) + '</em><em>' + esc(s.m_more) + '</em></div></div>' +
+          '<div class="m-cards">' + s.m_s.map(function(n, i){ return '<div><i></i><small>' + esc(n) + '</small><u>$' + (20 + i * 15) + '</u></div>'; }).join('') + '</div>' +
+          '<div class="m-wa"><i></i></div>' +
+        '</div>' +
+        '<div class="info">' +
+          '<div class="swatches">' + th.sw.map(function(c){ return '<span style="background:' + c + '"></span>'; }).join('') + '</div>' +
+          '<h3>' + esc(title) + '</h3>' +
+          (th.starter ? '<span class="tag">' + esc(s.starter) + '</span>' : '') +
+          '<p>' + esc(th[lang]) + '</p>' +
+          '<a class="btn" href="' + href + '">' + esc(s.choose) + '</a>' +
+        '</div></article>';
+    }).join('');
+  }
+
+  function applyLang(l){
+    lang = l;
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    var s = STR[l];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ var k = el.getAttribute('data-i18n'); if (s[k] != null) el.textContent = s[k]; });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){ var k = el.getAttribute('data-i18n-html'); if (s[k] != null) el.innerHTML = s[k]; });
+    document.getElementById('langToggle').textContent = s.toggle;
+    try { localStorage.setItem('gr_lang', l); } catch(e) {}
+    render();
+  }
+
+  document.getElementById('langToggle').addEventListener('click', function(){ applyLang(lang === 'ar' ? 'en' : 'ar'); });
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var q = new URLSearchParams(location.search).get('lang'), initial = q;
+  if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch(e) { initial = 'en'; } }
+  applyLang(initial === 'ar' ? 'ar' : 'en');
+})();
+</script>
+</body>
+</html>

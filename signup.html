@@ -901,6 +901,8 @@ footer a:hover{color:var(--gold)}
   if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch(e) { initial = 'en'; } }
   $('areas').appendChild(areaRow());
   applyLang(initial === 'ar' ? 'ar' : 'en');
+  var prePal = params.get('palette');
+  if (prePal) Array.prototype.forEach.call($('w_palette').options, function(o){ if (o.value === prePal) $('w_palette').value = prePal; });
   var pre = params.get('code'); if (pre) { $('promo').value = cleanCode(pre); appliedCode = cleanCode(pre); }
   updateQuote(true);
   if (params.get('paid') === '1') {
