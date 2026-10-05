@@ -63,9 +63,10 @@
 
   // Turns every "$19" (English) or "19$" (Arabic) in US dollars, and every "£15" in pounds, into the chosen currency.
   // Also used by the chat window so Tala's answers match the prices on the page.
+  // Thousands commas count as part of a number ("$1,290"), but a comma after a price does not ("$79, paid once").
   function toLocal(text) {
     if (!rates) return text;
-    return String(text).replace(/\$\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d,]*(?:\.\d+)?)\s?\$|£\s?(\d[\d,]*(?:\.\d+)?)/g, function (m, a, b, c) {
+    return String(text).replace(/\$\s?(\d+(?:,\d{3})*(?:\.\d+)?)|(\d+(?:,\d{3})*(?:\.\d+)?)\s?\$|£\s?(\d+(?:,\d{3})*(?:\.\d+)?)/g, function (m, a, b, c) {
       var from = c ? 'GBP' : 'USD';
       if (from === currency || !rates[from]) return m;
       return fmt(parseFloat((a || b || c).replace(/,/g, '')), from);
