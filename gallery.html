@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#15171C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&family=Playfair+Display:wght@500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#15171C; --ink-2:#1B1E25; --ink-3:#22252D; --gold:#FF8A50; --gold-2:#FACC15; --gold-soft:rgba(255,138,80,.14);
@@ -57,10 +57,6 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 .site{--bg:#fff;--fg:#0f172a;--sub:#64748b;--nav:#0f172a;--navfg:#fff;--pri:#2563eb;--prifg:#fff;--acc:#38bdf8;--card:#f1f5f9;
   background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;font-size:12px;line-height:1.45;position:relative;max-height:560px;overflow:auto;scrollbar-width:thin}
 .site[dir="rtl"]{font-family:'Cairo',system-ui,sans-serif}
-.t-blue  {--bg:#ffffff;--fg:#0f172a;--sub:#64748b;--nav:#0f172a;--navfg:#fff;--pri:#2563eb;--prifg:#fff;--acc:#38bdf8;--card:#f1f5f9}
-.t-green {--bg:#f0fdfa;--fg:#064e3b;--sub:#4b6b63;--nav:#065f46;--navfg:#fff;--pri:#059669;--prifg:#fff;--acc:#2dd4bf;--card:#ffffff}
-.t-gold  {--bg:#020617;--fg:#f8fafc;--sub:#94a3b8;--nav:#020617;--navfg:#fbbf24;--pri:#fbbf24;--prifg:#020617;--acc:#eab308;--card:#0f172a}
-.t-violet{--bg:#faf5ff;--fg:#1e1b4b;--sub:#6b6790;--nav:#7c3aed;--navfg:#fff;--pri:#f97316;--prifg:#fff;--acc:#7c3aed;--card:#ffffff}
 .s-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;background:var(--nav);color:var(--navfg);position:sticky;top:0;z-index:2}
 .s-brand{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13px}
 .s-mark{width:18px;height:18px;border-radius:5px;background:var(--acc);display:inline-block;flex:none}
@@ -104,6 +100,79 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 .s-wa i{width:30px;height:30px;border-radius:50%;background:#25D366;box-shadow:0 4px 12px rgba(0,0,0,.25);transform:translateY(-40px);display:grid;place-items:center}
 .s-wa svg{width:16px;height:16px;fill:#fff}
 .hide{display:none!important}
+
+/* Template variants (match the layouts described to the Website Agent) */
+.s-h{display:flex;align-items:baseline;gap:6px}
+.s-h .n{font-size:18px;font-weight:800;color:var(--acc);line-height:1}
+.serif .s-hero b,.serif h4,.serif .s-brand{font-family:'Playfair Display',Georgia,serif;font-weight:700;letter-spacing:0}
+.serif[dir="rtl"] .s-hero b,.serif[dir="rtl"] h4,.serif[dir="rtl"] .s-brand{font-family:'Amiri',serif}
+.s-split{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;align-items:center}
+.s-visual{aspect-ratio:4/3;border-radius:12px;background:linear-gradient(135deg,var(--pri),var(--acc));opacity:.85}
+.s-alt{background:var(--card)}
+.s-rows{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.s-rows div{display:flex;justify-content:space-between;gap:6px;background:var(--bg);border:1px solid rgba(127,127,127,.18);border-radius:8px;padding:8px 9px;font-weight:600;font-size:10.5px}
+.s-rows u{text-decoration:none;color:var(--pri)}
+.s-list div{display:flex;align-items:baseline;gap:6px;padding:5px 0;font-size:11px;font-weight:600}
+.s-list div::after{content:"";order:1;flex:1;border-bottom:1px dotted var(--sub);opacity:.6}
+.s-list u{order:2;text-decoration:none;color:var(--pri)}
+.s-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);font-weight:700}
+.tpl-minimal .s-sec{border-top:1px solid rgba(127,127,127,.2);margin:0 22px;padding:12px 0}
+.tpl-minimal .s-hero{padding:26px 22px}
+.tpl-bold .s-hero{background:var(--pri);color:var(--prifg);padding:28px 14px}
+.tpl-bold .s-hero b{font-size:24px;line-height:1.1}
+.tpl-bold .s-hero span{color:inherit;opacity:.85}
+.tpl-bold .s-ctas em:first-child{background:var(--prifg);color:var(--pri)}
+.tpl-bold .s-ctas em:last-child{border-color:var(--prifg);color:var(--prifg)}
+.s-strip{display:flex;flex-wrap:wrap;gap:4px 14px;padding:8px 14px;background:var(--fg);color:var(--bg);font-size:10px;font-weight:600}
+.s-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.s-tiles div{aspect-ratio:1;background:var(--card);border-radius:8px;padding:8px;display:flex;flex-direction:column;justify-content:flex-end;font-weight:700;font-size:11px}
+.s-tiles u{text-decoration:none;color:var(--pri)}
+.tpl-photo .s-hero{min-height:170px;align-content:end;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.65)),linear-gradient(135deg,var(--acc),var(--pri))}
+.tpl-photo .s-hero span{color:rgba(255,255,255,.85)}
+.s-masonry{columns:3;column-gap:5px}
+.s-masonry i{display:block;margin-bottom:5px;border-radius:6px;background:linear-gradient(135deg,var(--acc),var(--pri));opacity:.5;height:40px}
+.s-masonry i:nth-child(3n+1){height:62px}.s-masonry i:nth-child(2n){opacity:.32}
+.tpl-photo .s-overlap{margin-top:-14px;position:relative;z-index:1}
+.tpl-photo .s-overlap .s-cards div{box-shadow:0 8px 18px -10px rgba(0,0,0,.35)}
+.s-bento{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:10px 12px}
+.s-bento>div{background:var(--card);border-radius:14px;padding:10px;min-width:0}
+.s-bento .w{grid-column:1/-1}
+.s-bento h4{font-size:11.5px;margin-bottom:6px}
+.s-mbar{position:sticky;bottom:0;display:flex;gap:6px;padding:8px 10px;background:var(--bg);border-top:1px solid rgba(127,127,127,.2)}
+.s-mbar em{flex:1;text-align:center;font-style:normal;font-weight:700;font-size:10.5px;padding:6px;border-radius:8px;background:var(--pri);color:var(--prifg)}
+.s-mbar em.wa{background:#25D366;color:#fff}
+.s-info{display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:space-between;padding:5px 14px;background:var(--pri);color:var(--prifg);font-size:9.5px;font-weight:600}
+.tpl-local .s-hero{padding:14px}
+.tpl-local .s-hero b{font-size:15px}
+.s-visit{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.s-visit .s-map{height:auto;min-height:80px}
+.s-quote{font-family:'Playfair Display',Georgia,serif;font-size:15px;line-height:1.35;font-style:italic;border-inline-start:3px solid var(--acc);padding-inline-start:10px}
+.serif[dir="rtl"] .s-quote{font-family:'Amiri',serif}
+.tpl-editorial .s-sec{border-top:1px solid rgba(127,127,127,.25);margin:0 14px;padding:12px 0}
+.tpl-editorial .s-hero{padding:24px 14px 14px}
+.tpl-editorial .s-hero b{font-size:21px}
+.s-num div{display:grid;grid-template-columns:22px 1fr auto;gap:6px;padding:6px 0;border-bottom:1px solid rgba(127,127,127,.18);font-size:11px;font-weight:600}
+.s-num div span{color:var(--acc);font-weight:800}
+.s-num u{text-decoration:none;color:var(--pri)}
+.tpl-luxury .s-hero{text-align:center;justify-items:center;padding:34px 14px 26px}
+.tpl-luxury .s-hero b{font-size:21px}
+.tpl-luxury .s-sec{text-align:center}
+.tpl-luxury .s-sec h4{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;font-family:inherit;color:var(--acc)}
+.s-rule{height:1px;width:60px;margin:2px auto 8px;background:var(--acc)}
+.s-zz{display:grid;gap:8px}
+.s-zz>div{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;text-align:start}
+.s-zz>div:nth-child(even) .s-zimg{order:2}
+.s-zimg{aspect-ratio:4/3;border-radius:8px;background:linear-gradient(135deg,var(--acc),var(--pri));opacity:.55}
+.s-zz b{font-size:11.5px;display:block}
+.s-zz u{text-decoration:none;color:var(--pri);font-weight:700;font-size:10.5px}
+.s-prog{position:sticky;top:0;height:3px;background:linear-gradient(90deg,var(--pri) 35%,transparent 35%);z-index:3}
+.s-cue{width:14px;height:22px;border:2px solid var(--sub);border-radius:8px;margin-top:6px;position:relative}
+.s-cue::after{content:"";position:absolute;left:50%;top:4px;width:3px;height:5px;border-radius:2px;background:var(--sub);transform:translateX(-50%)}
+.s-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;position:relative}
+.s-steps div{text-align:center;font-size:10px;font-weight:600}
+.s-steps i{display:grid;place-items:center;width:24px;height:24px;margin:0 auto 4px;border-radius:50%;background:var(--pri);color:var(--prifg);font-style:normal;font-weight:800;font-size:11px}
+.s-band{margin:6px 14px 12px;padding:16px;border-radius:12px;background:var(--pri);color:var(--prifg);text-align:center;font-weight:800;font-size:13px}
+.tpl-desc{font-size:.82rem;color:var(--muted);margin-top:10px}
 
 /* ---------- Options ---------- */
 .opts{display:grid;gap:14px}
@@ -154,7 +223,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   <div class="container hero">
     <span class="eyebrow" data-i18n="eyebrow">Website gallery</span>
     <h1 data-i18n="title">Design your website and see your plan</h1>
-    <p data-i18n="lead">Pick a theme and the features you want. The preview updates as you go, and the bar at the bottom shows which plan you need and its price.</p>
+    <p data-i18n="lead">Pick a template, a theme and the features you want. The preview updates as you go, and the bar at the bottom shows which plan you need and its price.</p>
   </div>
 </header>
 
@@ -164,7 +233,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       <div class="preview-label"><span data-i18n="preview">Live preview</span><span data-i18n="preview_note">Your logo, photos and text go here</span></div>
       <div class="frame">
         <div class="frame-bar"><i></i><i></i><i></i><span>yourbusiness.gearradar.co.uk</span></div>
-        <div class="site t-blue" id="site"></div>
+        <div class="site" id="site"></div>
       </div>
     </div>
 
@@ -185,6 +254,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   </div>
 </div>
 
+<script src="designs.js"></script>
 <script>
 (function(){
   // Plans and prices must match signup.html (PLANS) and index.html. Tier: 0 Starter, 1 Pro, 2 Premium, 3 custom quote.
@@ -193,13 +263,8 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     { key:'web_pro',     name:'Website Pro',     price:'$249' },
     { key:'web_premium', name:'Website Premium', price:'$249', add:'$19' }
   ];
-  // Theme names must match the "Colour theme" options in signup.html and the palettes in the Website Agent prompt.
-  var THEMES = [
-    { name:'Modern Blue',             cls:'t-blue',   c:'#2563eb', tier:0, ar:'الأزرق العصري' },
-    { name:'Emerald Green',           cls:'t-green',  c:'#059669', tier:1, ar:'الأخضر الزمردي' },
-    { name:'Luxury Dark & Gold',      cls:'t-gold',   c:'#fbbf24', tier:1, ar:'الداكن والذهبي' },
-    { name:'Vibrant Orange & Purple', cls:'t-violet', c:'#7c3aed', tier:1, ar:'البرتقالي والبنفسجي' }
-  ];
+  // Themes and templates come from designs.js (same list as signup.html and the Website Agent).
+  var THEMES = window.GR_DESIGNS.themes, TEMPLATES = window.GR_DESIGNS.templates;
   // Single-choice groups
   var GROUPS = [
     { id:'pages', title:{en:'Number of pages',ar:'عدد الصفحات'}, choices:[
@@ -209,7 +274,8 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       { v:'en',   tier:0, en:'English',          ar:'English' },
       { v:'ar',   tier:0, en:'العربية',          ar:'العربية' },
       { v:'both', tier:1, en:'Arabic + English', ar:'عربي + إنجليزي' } ] },
-    { id:'theme', title:{en:'Theme',ar:'الثيم'}, theme:true },
+    { id:'template', title:{en:'Template (layout)',ar:'القالب (شكل الصفحة)'}, template:true },
+    { id:'theme', title:{en:'Theme (colours)',ar:'الثيم (الألوان)'}, theme:true },
     { id:'rev', title:{en:'Revision rounds before launch',ar:'جولات التعديل قبل النشر'}, choices:[
       { v:'1', tier:0, en:'1 round',  ar:'جولة واحدة' },
       { v:'2', tier:1, en:'2 rounds', ar:'جولتان' },
@@ -234,7 +300,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 
   var STR = {
     en:{ back:'← Back to website plans', eyebrow:'Website gallery', title:'Design your website and see your plan',
-      lead:'Pick a theme and the features you want. The preview updates as you go, and the bar at the bottom shows which plan you need and its price.',
+      lead:'Pick a template, a theme and the features you want. The preview updates as you go, and the bar at the bottom shows which plan you need and its price.',
       preview:'Live preview', preview_note:'Your logo, photos and text go here', your_plan:'Your plan', features:'Features',
       legend:'Each option shows the lowest plan that includes it:', once:'one-off', addon:'+ {n}/month',
       cont:'Continue with this plan', custom_name:'Custom website', custom_price:'we\'ll quote you', custom_btn:'Ask for a quote',
@@ -244,7 +310,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       s_hours:'Working hours', s_days:[['Mon – Fri','9:00 – 18:00'],['Saturday','10:00 – 16:00'],['Sunday','Closed']], s_gal:'Gallery', s_map:'Find us',
       s_bookt:'Book an appointment', s_f:['Name','Phone','Date','Time'], s_send:'Request booking', s_reach:'Get in touch', s_foot:'© Your Business' },
     ar:{ back:'→ العودة لباقات المواقع', eyebrow:'معرض المواقع', title:'صمّم موقعك واعرف باقتك',
-      lead:'اختر الثيم والمزايا التي تريدها. المعاينة تتغير مع كل اختيار، والشريط في الأسفل يوضح الباقة المناسبة وسعرها.',
+      lead:'اختر القالب والثيم والمزايا التي تريدها. المعاينة تتغير مع كل اختيار، والشريط في الأسفل يوضح الباقة المناسبة وسعرها.',
       preview:'معاينة مباشرة', preview_note:'هنا يظهر شعارك وصورك ونصوصك', your_plan:'باقتك', features:'المزايا',
       legend:'كل خيار يوضح أقل باقة تشمله:', once:'دفعة واحدة', addon:'+ {n} شهرياً',
       cont:'أكمل بهذه الباقة', custom_name:'موقع حسب الطلب', custom_price:'نرسل لك عرض سعر', custom_btn:'اطلب عرض سعر',
@@ -256,13 +322,14 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   };
 
   var lang = 'en';
-  var state = { pages:'1', lang:'en', theme:'Modern Blue', rev:'1', upd:'0' };
+  var state = { pages:'1', lang:'en', template:'Classic', theme:'Modern Blue', rev:'1', upd:'0' };
   FEATS.forEach(function(f){ state[f.id] = f.on; });
 
   function $(id){ return document.getElementById(id); }
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function badge(t){ return '<span class="badge b' + t + '">' + esc(TIER_LABEL[lang][t]) + '</span>'; }
   function themeOf(name){ return THEMES.filter(function(t){ return t.name === name; })[0]; }
+  function tplOf(name){ return TEMPLATES.filter(function(t){ return t.name === name; })[0]; }
 
   // ---------- Options panel ----------
   function renderOpts(){
@@ -271,8 +338,15 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       h += '<section class="opt"><div class="opt-head"><h3>' + esc(g.title[lang]) + '</h3></div><div class="chips">';
       if (g.theme) THEMES.forEach(function(t){
         h += '<button type="button" class="chip" data-g="theme" data-v="' + esc(t.name) + '" aria-pressed="' + (state.theme === t.name) + '">' +
-          '<span class="dot" style="background:' + t.c + '"></span>' + esc(lang === 'ar' ? t.ar : t.name) + ' ' + badge(t.tier) + '</button>';
+          '<span class="dot" style="background:linear-gradient(135deg,' + t.sw[0] + ' 0 50%,' + t.sw[1] + ' 50%)"></span>' + esc(lang === 'ar' ? t.ar : t.name) + ' ' + badge(t.tier) + '</button>';
       });
+      else if (g.template) {
+        TEMPLATES.forEach(function(t){
+          h += '<button type="button" class="chip" data-g="template" data-v="' + esc(t.name) + '" aria-pressed="' + (state.template === t.name) + '">' + esc(lang === 'ar' ? t.ar : t.name) + ' ' + badge(t.tier) + '</button>';
+        });
+        var ct = tplOf(state.template);
+        h += '</div><p class="tpl-desc">' + esc(lang === 'ar' ? ct.ar_d : ct.en_d) + '</p><div>';
+      }
       else g.choices.forEach(function(c){
         h += '<button type="button" class="chip" data-g="' + g.id + '" data-v="' + c.v + '" aria-pressed="' + (state[g.id] === c.v) + '">' + esc(c[lang]) + ' ' + badge(c.tier) + '</button>';
       });
@@ -301,6 +375,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     var out = [];
     GROUPS.forEach(function(g){
       if (g.theme) { var t = themeOf(state.theme); out.push({ tier:t.tier, label: lang === 'ar' ? t.ar : t.name }); return; }
+      if (g.template) { var tp = tplOf(state.template); out.push({ tier:tp.tier, label: lang === 'ar' ? tp.ar : tp.name }); return; }
       g.choices.forEach(function(c){ if (state[g.id] === c.v) out.push({ tier:c.tier, label:c[lang] }); });
     });
     FEATS.forEach(function(f){ if (state[f.id]) out.push({ tier:f.tier, label:f[lang] }); });
@@ -321,7 +396,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
         (p.add ? ' <span class="gx-price">' + esc(s.addon.replace('{n}', p.add)) + '</span>' : '') + '</small>';
       btn.textContent = s.cont;
       var sl = state.lang;
-      btn.href = 'signup.html?plan=' + p.key + (tier > 0 ? '&palette=' + encodeURIComponent(state.theme) : '') + '&sitelang=' + sl + (lang === 'ar' ? '&lang=ar' : '');
+      btn.href = 'signup.html?plan=' + p.key + '&palette=' + encodeURIComponent(state.theme) + '&template=' + encodeURIComponent(state.template) + '&sitelang=' + sl + (lang === 'ar' ? '&lang=ar' : '');
     }
     var top = all.filter(function(p){ return p.tier === tier && tier > 0; }).map(function(p){ return p.label; });
     why.textContent = tier === 0 ? s.why_base : s.why.replace('{plan}', tier === 3 ? s.custom_name : PLAN[tier].name) + top.join(lang === 'ar' ? '، ' : ', ');
@@ -331,27 +406,117 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   var WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.2.3-.1.5.2.3.8 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.2.1.4.1.5-.1l.7-.9c.2-.2.3-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>';
   function renderSite(){
     var siteLang = state.lang === 'both' ? lang : state.lang;
-    var s = STR[siteLang === 'ar' ? 'ar' : 'en'], el = $('site'), t = themeOf(state.theme);
-    el.className = 'site ' + t.cls;
+    var s = STR[siteLang === 'ar' ? 'ar' : 'en'], el = $('site'), t = themeOf(state.theme), tpl = state.template;
+    var slug = { 'Classic':'classic', 'Split Hero':'split', 'Minimal':'minimal', 'Bold Banner':'bold', 'Photo Showcase':'photo', 'Card Grid':'cards',
+      'Local Shop':'local', 'Editorial':'editorial', 'Luxury Showcase':'luxury', 'Story Scroll':'story' }[tpl];
+    el.className = 'site tpl-' + slug + (slug === 'editorial' || slug === 'luxury' ? ' serif' : '');
+    Object.keys(t.v).forEach(function(k){ el.style.setProperty('--' + k, t.v[k]); });
     el.setAttribute('dir', siteLang === 'ar' ? 'rtl' : 'ltr');
     el.setAttribute('lang', siteLang === 'ar' ? 'ar' : 'en');
-    var svc = s.s_svc.map(function(n, i){ return '<div><i></i><small>' + esc(n) + '</small>' + (state.prices ? '<u>$' + (20 + i * 15) + '</u>' : '') + '</div>'; }).join('');
-    var hrs = s.s_days.map(function(d){ return '<span>' + esc(d[0]) + '</span><span>' + esc(d[1]) + '</span>'; }).join('');
-    el.innerHTML =
-      '<div class="s-nav"><span class="s-brand">' + (state.logo ? '<span class="s-logo">LOGO</span>' : '<span class="s-mark"></span>') + esc(s.s_biz) + '</span>' +
-        (state.pages === 'more' ? '<span class="s-links"><span>' + esc(s.s_home) + '</span><span>' + esc(s.s_about) + '</span><span>' + esc(s.s_contact) + '</span></span>' : '') +
-        '<span class="s-right">' + (state.lang === 'both' ? '<span class="s-pill s-toggle">' + (siteLang === 'ar' ? 'English' : 'العربية') + '</span>' : '') +
-        (state.call ? '<span class="s-pill s-call">' + esc(s.s_call) + '</span>' : '') + '</span></div>' +
-      '<div class="s-hero' + (state.gallery ? ' photo' : '') + '"><b>' + esc(s.s_head) + '</b><span>' + esc(s.s_sub) + '</span>' +
-        '<div class="s-ctas"><em>' + esc(state.booking ? s.s_book : (state.call ? s.s_call : s.s_more)) + '</em><em>' + esc(s.s_more) + '</em></div></div>' +
-      (state.services ? '<div class="s-sec"><h4>' + esc(s.s_services) + '</h4><div class="s-cards">' + svc + '</div></div>' : '') +
-      (state.gallery ? '<div class="s-sec"><h4>' + esc(s.s_gal) + '</h4><div class="s-gal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>' : '') +
-      (state.booking ? '<div class="s-sec"><h4>' + esc(s.s_bookt) + '</h4><div class="s-book">' + s.s_f.map(function(f){ return '<span>' + esc(f) + '</span>'; }).join('') + '<em>' + esc(s.s_send) + '</em></div></div>' : '') +
-      (state.hours ? '<div class="s-sec"><h4>' + esc(s.s_hours) + '</h4><div class="s-hours">' + hrs + '</div></div>' : '') +
-      (state.map ? '<div class="s-sec"><h4>' + esc(s.s_map) + '</h4><div class="s-map"></div></div>' : '') +
-      '<div class="s-sec"><h4>' + esc(s.s_reach) + '</h4><div class="s-contact"><span>✉ hello@yourbusiness.co.uk</span>' + (state.call ? '<span>☎ 07700 900123</span>' : '') + '</div></div>' +
-      '<div class="s-foot">' + esc(s.s_foot) + '</div>' +
-      (state.wa ? '<div class="s-wa"><i>' + WA_SVG + '</i></div>' : '');
+
+    var numbered = slug === 'bold' || slug === 'editorial' || slug === 'story', n = 0;
+    function h(title){ n++; return '<h4' + (numbered ? ' class="s-h"><span class="n">' + ('0' + n).slice(-2) + '</span>' : '>') + esc(title) + '</h4>'; }
+    function price(i){ return state.prices ? '<u>$' + (20 + i * 15) + '</u>' : ''; }
+    function sec(title, body, cls){ return '<div class="s-sec' + (cls ? ' ' + cls : '') + '">' + (title ? h(title) : '') + body + '</div>'; }
+    var svcBody = {
+      cards: '<div class="s-cards">' + s.s_svc.map(function(x, i){ return '<div><i></i><small>' + esc(x) + '</small>' + price(i) + '</div>'; }).join('') + '</div>',
+      rows:  '<div class="s-rows">' + s.s_svc.map(function(x, i){ return '<div><span>' + esc(x) + '</span>' + price(i) + '</div>'; }).join('') + '</div>',
+      list:  '<div class="s-list">' + s.s_svc.map(function(x, i){ return '<div><span>' + esc(x) + '</span>' + price(i) + '</div>'; }).join('') + '</div>',
+      tiles: '<div class="s-tiles">' + s.s_svc.map(function(x, i){ return '<div><span>' + esc(x) + '</span>' + price(i) + '</div>'; }).join('') + '</div>',
+      num:   '<div class="s-num">' + s.s_svc.map(function(x, i){ return '<div><span>' + ('0' + (i + 1)).slice(-2) + '</span><span style="color:inherit;font-weight:600">' + esc(x) + '</span>' + price(i) + '</div>'; }).join('') + '</div>',
+      zz:    '<div class="s-zz">' + s.s_svc.map(function(x, i){ return '<div><div class="s-zimg"></div><div><b>' + esc(x) + '</b>' + price(i) + '</div></div>'; }).join('') + '</div>'
+    };
+    var hrs = '<div class="s-hours">' + s.s_days.map(function(d){ return '<span>' + esc(d[0]) + '</span><span>' + esc(d[1]) + '</span>'; }).join('') + '</div>';
+    var galGrid = '<div class="s-gal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>';
+    var galMasonry = '<div class="s-masonry"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>';
+    var book = '<div class="s-book">' + s.s_f.map(function(f){ return '<span>' + esc(f) + '</span>'; }).join('') + '<em>' + esc(s.s_send) + '</em></div>';
+    var contact = '<div class="s-contact"><span>✉ hello@yourbusiness.co.uk</span>' + (state.call ? '<span>☎ 07700 900123</span>' : '') + '</div>';
+    var cta1 = esc(state.booking ? s.s_book : (state.call ? s.s_call : s.s_more));
+    var ctas = '<div class="s-ctas"><em>' + cta1 + '</em><em>' + esc(s.s_more) + '</em></div>';
+
+    var nav = '<div class="s-nav"><span class="s-brand">' + (state.logo ? '<span class="s-logo">LOGO</span>' : '<span class="s-mark"></span>') + esc(s.s_biz) + '</span>' +
+      (state.pages === 'more' ? '<span class="s-links"><span>' + esc(s.s_home) + '</span><span>' + esc(s.s_about) + '</span><span>' + esc(s.s_contact) + '</span></span>' : '') +
+      '<span class="s-right">' + (state.lang === 'both' ? '<span class="s-pill s-toggle">' + (siteLang === 'ar' ? 'English' : 'العربية') + '</span>' : '') +
+      (state.call ? '<span class="s-pill s-call">' + esc(s.s_call) + '</span>' : '') + '</span></div>';
+    var heroText = '<b>' + esc(s.s_head) + '</b><span>' + esc(s.s_sub) + '</span>';
+    var hero = '<div class="s-hero' + (state.gallery && slug === 'classic' ? ' photo' : '') + '">' + heroText + ctas + '</div>';
+
+    var services = state.services ? svcBody.cards : '', gallery = state.gallery ? galGrid : '';
+    var parts = [];
+    var foot = '<div class="s-foot">' + esc(s.s_foot) + '</div>';
+    var tail = function(order){ order.forEach(function(k){
+      if (k === 'services' && state.services) parts.push(sec(s.s_services, services));
+      if (k === 'gallery' && state.gallery) parts.push(sec(s.s_gal, gallery));
+      if (k === 'booking' && state.booking) parts.push(sec(s.s_bookt, book));
+      if (k === 'hours' && state.hours) parts.push(sec(s.s_hours, hrs));
+      if (k === 'map' && state.map) parts.push(sec(s.s_map, '<div class="s-map"></div>'));
+      if (k === 'contact') parts.push(sec(s.s_reach, contact));
+    }); };
+    var std = ['services', 'gallery', 'booking', 'hours', 'map', 'contact'];
+
+    if (slug === 'classic') { parts.push(nav, hero); tail(std); }
+    else if (slug === 'split') {
+      services = svcBody.rows;
+      parts.push(nav, '<div class="s-hero"><div class="s-split"><div style="display:grid;gap:6px">' + heroText + ctas + '</div><div class="s-visual"></div></div></div>');
+      tail(std);
+      parts = parts.map(function(x, i){ return i > 1 && i % 2 === 0 ? x.replace('class="s-sec"', 'class="s-sec s-alt"') : x; });
+    }
+    else if (slug === 'minimal') {
+      services = svcBody.list;
+      parts.push(nav, '<div class="s-hero"><span class="s-label">' + esc(s.s_biz) + '</span>' + heroText + ctas + '</div>');
+      tail(['services', 'hours', 'contact', 'map', 'gallery', 'booking']);
+    }
+    else if (slug === 'bold') {
+      services = svcBody.tiles;
+      parts.push(nav, hero, '<div class="s-strip">' + (state.call ? '<span>☎ 07700 900123</span>' : '') + (state.hours ? '<span>' + esc(s.s_days[0][0] + ' ' + s.s_days[0][1]) + '</span>' : '') + '<span>📍 Manchester</span></div>');
+      tail(std);
+    }
+    else if (slug === 'photo') {
+      parts.push(nav, hero);
+      if (state.gallery) parts.push(sec('', galMasonry));
+      if (state.services) parts.push(sec(s.s_services, services, 's-overlap'));
+      tail(['booking', 'hours', 'map', 'contact']);
+    }
+    else if (slug === 'cards') {
+      parts.push(nav, hero);
+      var b = '<div class="s-bento">';
+      if (state.services) b += '<div class="w"><h4>' + esc(s.s_services) + '</h4>' + svcBody.cards + '</div>';
+      if (state.hours) b += '<div><h4>' + esc(s.s_hours) + '</h4>' + hrs + '</div>';
+      b += '<div><h4>' + esc(s.s_reach) + '</h4>' + contact + '</div>';
+      if (state.gallery) b += '<div class="w"><h4>' + esc(s.s_gal) + '</h4>' + galGrid + '</div>';
+      if (state.map) b += '<div' + (state.booking ? '' : ' class="w"') + '><h4>' + esc(s.s_map) + '</h4><div class="s-map"></div></div>';
+      if (state.booking) b += '<div' + (state.map ? '' : ' class="w"') + '><h4>' + esc(s.s_bookt) + '</h4>' + book + '</div>';
+      parts.push(b + '</div>');
+    }
+    else if (slug === 'local') {
+      services = svcBody.list;
+      parts.push('<div class="s-info">' + (state.hours ? '<span>🕘 ' + esc(s.s_days[0][1]) + '</span>' : '') + (state.call ? '<span>☎ 07700 900123</span>' : '') + '<span>📍 Manchester</span></div>', nav, hero);
+      if (state.hours || state.map) parts.push(sec(s.s_map, '<div class="s-visit">' + (state.hours ? hrs : '') + (state.map ? '<div class="s-map"></div>' : '') + '</div>'));
+      tail(['services', 'gallery', 'booking', 'contact']);
+    }
+    else if (slug === 'editorial') {
+      services = svcBody.num;
+      parts.push(nav, '<div class="s-hero">' + heroText + ctas + '</div>', sec('', '<div class="s-quote">' + esc(s.s_sub) + '</div>'));
+      tail(std);
+    }
+    else if (slug === 'luxury') {
+      services = svcBody.zz;
+      parts.push(nav, '<div class="s-hero"><span class="s-label">' + esc(s.s_biz) + '</span>' + heroText + '<div class="s-rule"></div>' + ctas + '</div>');
+      tail(std);
+      parts = parts.map(function(x){ return x.replace(/(<h4[^>]*>.*?<\/h4>)/, '$1<div class="s-rule"></div>'); });
+    }
+    else if (slug === 'story') {
+      services = svcBody.zz;
+      parts.push('<div class="s-prog"></div>', nav, '<div class="s-hero">' + heroText + ctas + '<div class="s-cue"></div></div>');
+      parts.push(sec(siteLang === 'ar' ? 'كيف نعمل' : 'How it works', '<div class="s-steps">' + [1, 2, 3].map(function(i){ return '<div><i>' + i + '</i>' + esc(s.s_svc[i - 1]) + '</div>'; }).join('') + '</div>'));
+      tail(['services', 'gallery', 'booking', 'hours', 'map']);
+      parts.push('<div class="s-band">' + cta1 + '</div>');
+      tail(['contact']);
+    }
+    parts.push(foot);
+    if (slug === 'cards' && (state.call || state.wa)) parts.push('<div class="s-mbar">' + (state.call ? '<em>' + esc(s.s_call) + '</em>' : '') + (state.wa ? '<em class="wa">WhatsApp</em>' : '') + '</div>');
+    else if (state.wa) parts.push('<div class="s-wa"><i>' + WA_SVG + '</i></div>');
+    el.innerHTML = parts.join('');
   }
 
   function update(){ renderOpts(); renderSite(); renderCart(); }
@@ -372,6 +537,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch(e) { initial = 'en'; } }
   if (initial === 'ar') state.lang = 'ar';
   var pal = params.get('palette'); if (pal && themeOf(pal)) state.theme = pal;
+  var tq = params.get('template'); if (tq && tplOf(tq)) state.template = tq;
   applyLang(initial === 'ar' ? 'ar' : 'en');
 })();
 </script>

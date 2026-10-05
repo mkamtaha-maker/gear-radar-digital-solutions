@@ -308,9 +308,10 @@ footer a:hover{color:var(--gold)}
     <div class="field"><label for="w_hours"><span data-i18n="f_hours">Opening hours</span> <span class="opt" data-i18n="optional">(optional)</span></label><textarea id="w_hours" maxlength="300" placeholder="Mon–Fri 9:00–18:00"></textarea></div>
     <div class="field"><label for="w_phone" data-i18n="f_phone">Phone (Call button)</label><input id="w_phone" type="tel" maxlength="30"></div>
     <div class="field"><label for="w_lang" data-i18n="f_sitelang">Website language</label><select id="w_lang"><option value="en">English</option><option value="ar">العربية</option><option value="both" class="pro-opt" data-i18n="both">Arabic + English</option></select></div>
-    <div class="pro-note full" id="w_note" data-i18n="pro_note_web">Logo, photos, Google Map, WhatsApp button and colour themes come with Website Pro and Premium.</div>
+    <div class="pro-note full" id="w_note" data-i18n="pro_note_web">Logo, photos, Google Map and WhatsApp button come with Website Pro and Premium. More templates and themes unlock with Pro and Premium.</div>
     <div class="field pro-only"><label for="w_wa" data-i18n="f_wabtn">WhatsApp number (for the WhatsApp button)</label><input id="w_wa" type="tel" maxlength="20" placeholder="447700900123"></div>
-    <div class="field pro-only"><label for="w_palette" data-i18n="f_palette">Colour theme</label><select id="w_palette"><option>Modern Blue</option><option>Emerald Green</option><option>Luxury Dark &amp; Gold</option><option>Vibrant Orange &amp; Purple</option></select></div>
+    <div class="field"><label for="w_template" data-i18n="f_template">Template (layout)</label><select id="w_template"></select><span class="hint"><a href="gallery.html" target="_blank" rel="noopener" data-i18n="h_gallery">See them in the gallery</a></span></div>
+    <div class="field"><label for="w_palette" data-i18n="f_palette">Colour theme</label><select id="w_palette"></select></div>
     <div class="field full pro-only"><label for="w_address" data-i18n="f_address">Address (for Google Maps)</label><input id="w_address" maxlength="200"></div>
     <div class="field pro-only files"><label for="w_logo" data-i18n="f_logo">Logo (optional)</label><input id="w_logo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span></div>
     <div class="field pro-only files"><label for="w_photos" data-i18n="f_photos8">Photos (up to 8)</label><input id="w_photos" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span><span class="err-text" data-i18n="e_files">Please use JPG, PNG or WebP images under 5 MB (too many files?).</span></div>
@@ -383,6 +384,7 @@ footer a:hover{color:var(--gold)}
   </div>
 </footer>
 
+<script src="designs.js"></script>
 <script>
 (function(){
   var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-signup';
@@ -423,7 +425,7 @@ footer a:hover{color:var(--gold)}
     l_web:'Your website', l_qr:'Your QR menu or catalogue', f_biz:'Business name', e_biz:'Please enter your business name.',
     f_activity:'What you do', f_desc:'Short description', f_services:'Services and prices (one per line)', e_services:'Please add at least one service.',
     f_hours:'Opening hours', f_phone:'Phone (Call button)', f_sitelang:'Website language', both:'Arabic + English',
-    pro_note_web:'Logo, photos, Google Map, WhatsApp button and colour themes come with Website Pro and Premium.',
+    pro_note_web:'Logo, photos, Google Map and WhatsApp button come with Website Pro and Premium. More templates and themes unlock with Pro and Premium.', f_template:'Template (layout)', h_gallery:'See them in the gallery', locked:'needs {plan}',
     f_wabtn:'WhatsApp number (for the WhatsApp button)', f_palette:'Colour theme', f_address:'Address (for Google Maps)',
     f_logo:'Logo (optional)', h_img:'JPG, PNG or WebP · max 5 MB', f_photos8:'Photos (up to 8)', e_files:'Please use JPG, PNG or WebP images under 5 MB (too many files?).',
     f_btype:'Type', bt_menu:'Restaurant / café menu', bt_services:'Services (salon, clinic, repair…)', bt_products:'Shop / products catalogue',
@@ -484,7 +486,7 @@ footer a:hover{color:var(--gold)}
     l_web:'موقعك', l_qr:'قائمتك أو كتالوجك بالـ QR', f_biz:'اسم النشاط', e_biz:'يرجى إدخال اسم النشاط.',
     f_activity:'مجال النشاط', f_desc:'وصف مختصر', f_services:'الخدمات والأسعار (سطر لكل خدمة)', e_services:'يرجى إضافة خدمة واحدة على الأقل.',
     f_hours:'ساعات العمل', f_phone:'رقم الهاتف (زر الاتصال)', f_sitelang:'لغة الموقع', both:'عربي + إنجليزي',
-    pro_note_web:'الشعار والصور وخريطة Google وزر واتساب والألوان متاحة في Website Pro و Premium.',
+    pro_note_web:'الشعار والصور وخريطة Google وزر واتساب متاحة في Website Pro و Premium. وتتوفر قوالب وثيمات أكثر في Pro و Premium.', f_template:'القالب (شكل الصفحة)', h_gallery:'شاهدها في المعرض', locked:'يتطلب {plan}',
     f_wabtn:'رقم واتساب (لزر واتساب)', f_palette:'الألوان', f_address:'العنوان (لخريطة Google)',
     f_logo:'الشعار (اختياري)', h_img:'JPG أو PNG أو WebP · حتى 5 ميغابايت', f_photos8:'صور (حتى 8)', e_files:'استخدم صور JPG أو PNG أو WebP أقل من 5 ميغابايت (أو قلّل عدد الملفات).',
     f_btype:'النوع', bt_menu:'قائمة مطعم / مقهى', bt_services:'خدمات (صالون، عيادة، صيانة…)', bt_products:'كتالوج منتجات / متجر',
@@ -594,6 +596,24 @@ footer a:hover{color:var(--gold)}
     box.querySelectorAll('.rm').forEach(function(b){ b.style.visibility = box.children.length > 1 ? 'visible' : 'hidden'; });
     $('areasHint').textContent = max === 1 ? t('h_areas1') : t('h_areas').replace('{n}', max);
   }
+  // Template and theme lists come from designs.js; options above the chosen plan are shown but disabled.
+  var DESIGN_PLAN = { 0:'Website Starter', 1:'Website Pro', 2:'Website Premium' };
+  function fillDesigns(){
+    var D = window.GR_DESIGNS; if (!D) return;
+    var level = { basic:0, pro:1, premium:2 }[tier()] || 0;
+    [['w_template', D.templates, 'Classic'], ['w_palette', D.themes, 'Modern Blue']].forEach(function(x){
+      var sel = $(x[0]), cur = sel.getAttribute('data-want') || sel.value || x[2];
+      sel.removeAttribute('data-want');
+      sel.innerHTML = '';
+      x[1].forEach(function(d){
+        var o = document.createElement('option'); o.value = d.name;
+        o.textContent = (lang === 'ar' ? d.ar : d.name) + (d.tier > level ? ' — ' + t('locked').replace('{plan}', DESIGN_PLAN[d.tier]) : '');
+        o.disabled = d.tier > level; sel.appendChild(o);
+      });
+      var ok = x[1].some(function(d){ return d.name === cur && d.tier <= level; });
+      sel.value = ok ? cur : x[2];
+    });
+  }
   function update(){
     var p = plan(), g = group(), basic = tier() === 'basic';
     document.querySelectorAll('[data-group]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-group') === g); });
@@ -606,6 +626,7 @@ footer a:hover{color:var(--gold)}
     document.querySelectorAll('.pro-only').forEach(function(el){ el.classList.toggle('section-hide', basic); });
     $('w_note').classList.toggle('section-hide', !basic); $('q_note').classList.toggle('section-hide', !basic);
     document.querySelectorAll('.pro-opt').forEach(function(o){ o.disabled = basic; if (basic && o.selected) o.parentNode.value = 'en'; });
+    fillDesigns();
     // step numbers
     var n = g === 'subs' ? 4 : 3;
     if (p.assistant) $('assistantSet').querySelector('.n').textContent = n++;
@@ -740,9 +761,9 @@ footer a:hover{color:var(--gold)}
       if (mark($('w_name'), wn.length < 2)) bad.push($('w_name'));
       if (mark($('w_services'), ws.length < 3)) bad.push($('w_services'));
       payload = { business_name: wn, activity: $('w_activity').value.trim(), description: $('w_desc').value.trim(), services: ws,
-        hours: $('w_hours').value.trim(), phone: $('w_phone').value.trim(), site_language: $('w_lang').value };
+        hours: $('w_hours').value.trim(), phone: $('w_phone').value.trim(), site_language: $('w_lang').value, palette: $('w_palette').value, template: $('w_template').value };
       if (tier() !== 'basic') {
-        payload.whatsapp = $('w_wa').value.replace(/\D/g, ''); payload.palette = $('w_palette').value; payload.address = $('w_address').value.trim();
+        payload.whatsapp = $('w_wa').value.replace(/\D/g, ''); payload.address = $('w_address').value.trim();
         var wl = imgList($('w_logo'), 1), wp = imgList($('w_photos'), 8);
         if (!wl) bad.push($('w_logo')); if (!wp) bad.push($('w_photos'));
         files = { logo: (wl || [])[0] || null, photos: wp || [] };
@@ -910,8 +931,10 @@ footer a:hover{color:var(--gold)}
   $('areas').appendChild(areaRow());
   applyLang(initial === 'ar' ? 'ar' : 'en');
   var preLang = params.get('sitelang'); if (preLang === 'en' || preLang === 'ar' || preLang === 'both') $('w_lang').value = preLang;
-  var prePal = params.get('palette');
-  if (prePal) Array.prototype.forEach.call($('w_palette').options, function(o){ if (o.value === prePal) $('w_palette').value = prePal; });
+  var prePal = params.get('palette'), preTpl = params.get('template');
+  if (prePal) $('w_palette').setAttribute('data-want', prePal);
+  if (preTpl) $('w_template').setAttribute('data-want', preTpl);
+  fillDesigns();
   var pre = params.get('code'); if (pre) { $('promo').value = cleanCode(pre); appliedCode = cleanCode(pre); }
   updateQuote(true);
   if (params.get('paid') === '1') {
