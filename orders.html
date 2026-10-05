@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table Orders | Gear Radar</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#15171C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20120%20120%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2226%22%20fill%3D%22%2315171C%22%2F%3E%3Cg%20fill%3D%22%23FF8A50%22%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(45%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(90%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(135%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(180%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(225%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(270%2060%2060)%22%2F%3E%3Crect%20x%3D%2253%22%20y%3D%2214%22%20width%3D%2214%22%20height%3D%2216%22%20rx%3D%223%22%20transform%3D%22rotate(315%2060%2060)%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%2234%22%20fill%3D%22%23FF8A50%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%2224%22%20fill%3D%22%2315171C%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22%23FF8A50%22%20stroke-width%3D%222%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M60%2060L77%2043%22%20stroke%3D%22%23FACC15%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%223.5%22%20fill%3D%22%23FACC15%22%2F%3E%3Ccircle%20cx%3D%2272%22%20cy%3D%2270%22%20r%3D%222.5%22%20fill%3D%22%23FACC15%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Restaurant orders screen for Smart QR table ordering. Signs in with the menu's edit code, polls the
+   gearradar-qr-orders webhook, rings on new orders, and lets staff mark each one done. */
+:root{--ink:#15171C;--gold:#FF8A50;--paper:#F7F5F0;--white:#FFFFFF;--text:#0F172A;--muted:#5B6475;--line:#E6E2D8;--ok:#16A34A;--new:#FFF4EC}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;background:var(--paper);color:var(--text)}
+h1,h2,.tbl{font-family:Sora,Inter,system-ui,sans-serif}
+button{font:inherit;cursor:pointer}
+.top{position:sticky;top:0;z-index:5;background:var(--ink);color:#F5F5F4;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px}
+.top h1{font-size:18px;margin:0;flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top .live{font-size:13px;color:#A8A29E}
+.top .live b{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-inline-end:6px}
+.top .live.off b{background:#DC2626}
+.chip{border:1px solid #3F3F46;background:transparent;color:#F5F5F4;border-radius:999px;padding:7px 14px;font-size:14px}
+.chip.on{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:600}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+.login{max-width:420px;margin:40px auto;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:24px}
+.login h2{margin:0 0 6px;font-size:22px}
+.login p{margin:0 0 18px;color:var(--muted);line-height:1.6;font-size:14px}
+.login label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
+.login input{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:16px}
+.login .go{width:100%;margin-top:18px;padding:13px;border:0;border-radius:10px;background:var(--ink);color:#fff;font-weight:600;font-size:16px}
+.err{color:#DC2626;font-size:14px;margin-top:10px;min-height:1em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.card.new{background:var(--new);border-color:var(--gold);box-shadow:0 0 0 2px rgba(255,138,80,.25)}
+.card.flash{animation:flash 1s ease 3}
+@keyframes flash{50%{box-shadow:0 0 0 6px rgba(255,138,80,.55)}}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.tbl{font-size:28px;font-weight:700}
+.meta{font-size:13px;color:var(--muted);text-align:end}
+.items{list-style:none;margin:0;padding:0}
+.items li{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:16px}
+.items .q{font-weight:700;min-width:32px}
+.note{background:#FEF9C3;border-radius:8px;padding:8px 10px;font-size:14px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.total{font-weight:700}
+.done{border:0;border-radius:10px;padding:11px 18px;background:var(--ok);color:#fff;font-weight:600;font-size:15px}
+.undo{border:1px solid var(--line);border-radius:10px;padding:8px 14px;background:transparent;color:var(--muted);font-size:13px}
+.section{display:flex;align-items:center;gap:10px;margin:22px 0 10px}
+.section h2{font-size:17px;margin:0}
+.count{background:var(--ink);color:#fff;border-radius:999px;padding:2px 10px;font-size:13px}
+.empty{color:var(--muted);background:var(--white);border:1px dashed var(--line);border-radius:16px;padding:28px;text-align:center}
+.card.old{opacity:.7}
+.hide{display:none!important}
+.banner{background:var(--ink);color:#fff;border-radius:12px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.banner button{border:0;border-radius:999px;padding:8px 16px;background:var(--gold);color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1 id="biz">Table orders</h1>
+  <span id="live" class="live hide"><b></b><span id="liveTxt"></span></span>
+  <button type="button" id="sound" class="chip hide"></button>
+  <button type="button" id="lang" class="chip">العربية</button>
+  <button type="button" id="out" class="chip hide"></button>
+</div>
+<div class="wrap">
+  <form id="login" class="login" autocomplete="off">
+    <h2 data-t="title"></h2>
+    <p data-t="intro"></p>
+    <label for="menu" data-t="menuLabel"></label>
+    <input id="menu" placeholder="menu.gearradar.co.uk/your-menu" required>
+    <label for="code" data-t="codeLabel"></label>
+    <input id="code" placeholder="GR-XXXX-XXXX" required>
+    <button type="submit" class="go" data-t="open"></button>
+    <div id="err" class="err"></div>
+  </form>
+  <div id="board" class="hide">
+    <div id="soundBanner" class="banner"><span data-t="soundAsk"></span><button type="button" id="soundOn" data-t="soundOn"></button></div>
+    <div class="section"><h2 data-t="newOrders"></h2><span id="newCount" class="count">0</span></div>
+    <div id="newList" class="grid"></div>
+    <div class="section"><h2 data-t="doneOrders"></h2><span id="doneCount" class="count">0</span></div>
+    <div id="doneList" class="grid"></div>
+  </div>
+</div>
+<script>
+(function(){
+var API = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-qr-orders';
+var T = {
+  en: { title: 'Table orders', intro: 'Orders your guests send from the QR menu appear here with their table number. Keep this page open on a tablet or phone at the counter.', menuLabel: 'Your menu link', codeLabel: 'Your private edit code', open: 'Open orders', badCode: 'That menu link and edit code don\'t match. Use the code from your menu email.', net: 'Can\'t reach the server. Retrying…', newOrders: 'New orders', doneOrders: 'Done (last 12 hours)', noNew: 'No new orders. New ones will appear here and ring.', noDone: 'Nothing done yet today.', table: 'Table', noTable: 'No table', order: 'Order', done: 'Done', undo: 'Back to new', total: 'Total', live: 'Live', offline: 'Offline', soundOn: 'Turn sound on', soundAsk: 'Tap once so this screen can ring when an order arrives.', soundIsOn: '🔔 Sound on', soundIsOff: '🔕 Sound off', signOut: 'Sign out', ago: function(m){ return m < 1 ? 'just now' : m + ' min ago'; } },
+  ar: { title: 'طلبات الطاولات', intro: 'الطلبات اللي يرسلها الزبائن من منيو الـQR بتظهر هنا مع رقم الطاولة. خلّي الصفحة مفتوحة على تابلت أو موبايل في الكاونتر.', menuLabel: 'رابط المنيو', codeLabel: 'كود التعديل الخاص', open: 'افتح الطلبات', badCode: 'رابط المنيو وكود التعديل غير متطابقين. استخدم الكود الموجود في إيميل المنيو.', net: 'تعذر الاتصال بالخادم. نعيد المحاولة…', newOrders: 'طلبات جديدة', doneOrders: 'تم تجهيزها (آخر 12 ساعة)', noNew: 'لا توجد طلبات جديدة. الطلبات الجديدة تظهر هنا مع صوت تنبيه.', noDone: 'لم يتم تجهيز أي طلب بعد.', table: 'طاولة', noTable: 'بدون طاولة', order: 'طلب', done: 'تم', undo: 'إرجاع لجديد', total: 'الإجمالي', live: 'متصل', offline: 'غير متصل', soundOn: 'شغّل الصوت', soundAsk: 'اضغط مرة واحدة عشان الشاشة ترن لما يوصل طلب.', soundIsOn: '🔔 الصوت شغال', soundIsOff: '🔕 الصوت مقفول', signOut: 'خروج', ago: function(m){ return m < 1 ? 'الآن' : 'قبل ' + m + ' د'; } }
+};
+var store = { get: function(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function(k, v){ try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} } };
+var lang = store.get('gr_orders_lang') || (/^ar/i.test(navigator.language || '') ? 'ar' : 'en');
+var slug = '', code = '', orders = [], known = null, timer = null, audio = null, soundOn = store.get('gr_orders_sound') !== 'off', wake = null;
+function $(id){ return document.getElementById(id); }
+function t(k){ return T[lang][k]; }
+function esc(s){ return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function slugFrom(v){ v = String(v || '').trim().toLowerCase(); var m = v.match(/menu\.gearradar\.co\.uk\/([a-z0-9-]+)/); if (m) return m[1]; return v.replace(/^https?:\/\//, '').replace(/[^a-z0-9-]/g, ''); }
+function money(v, cur){ var n = Number(v) || 0, s = (Math.round(n * 100) % 100 === 0) ? String(Math.round(n)) : n.toFixed(2); if (!cur) return s; return /^[£$€¥]|^[AC]\$$/.test(cur) ? cur + s : s + ' ' + cur; }
+
+function paintText(){
+  document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  var els = document.querySelectorAll('[data-t]');
+  for (var i = 0; i < els.length; i++) els[i].textContent = t(els[i].getAttribute('data-t'));
+  $('lang').textContent = lang === 'ar' ? 'English' : 'العربية';
+  $('out').textContent = t('signOut');
+  $('sound').textContent = soundOn ? t('soundIsOn') : t('soundIsOff');
+  $('sound').classList.toggle('on', soundOn);
+  if (!slug) $('biz').textContent = t('title');
+  setLive(!$('live').classList.contains('off'));
+  render();
+}
+
+function call(body){
+  body.slug = slug; body.code = code;
+  return fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+    .then(function(r){ return r.json().catch(function(){ return { ok: false }; }).then(function(j){ j._status = r.status; return j; }); });
+}
+
+function setLive(ok){ $('live').classList.toggle('off', !ok); $('liveTxt').textContent = ok ? t('live') : t('offline'); }
+
+function poll(){
+  return call({ action: 'list' }).then(function(j){
+    if (j._status === 401) { signOut(t('badCode')); return; }
+    if (!j.ok) { setLive(false); return; }
+    setLive(true);
+    $('biz').textContent = j.business || slug;
+    document.title = (j.business || slug) + ' | ' + t('title');
+    var fresh = [];
+    (j.orders || []).forEach(function(o){ if (known && !known[o.id] && o.status === 'new') fresh.push(o.id); });
+    known = {}; (j.orders || []).forEach(function(o){ known[o.id] = 1; });
+    orders = j.orders || [];
+    render(fresh);
+    if (fresh.length) ring();
+  }).catch(function(){ setLive(false); });
+}
+
+function card(o, fresh){
+  var mins = Math.max(0, Math.floor((Date.now() - new Date(o.created_at).getTime()) / 60000));
+  var items = (o.items || []).map(function(x){ return '<li><span class="q">' + esc(x.qty) + '×</span><span>' + esc(x.name) + '</span></li>'; }).join('');
+  var isNew = o.status === 'new';
+  return '<div class="card ' + (isNew ? 'new' : 'old') + (fresh ? ' flash' : '') + '">' +
+    '<div class="head"><span class="tbl">' + (o.table ? esc(t('table')) + ' ' + esc(o.table) : esc(t('noTable'))) + '</span><span class="meta">' + esc(t('order')) + ' #' + esc(o.order_no) + '<br>' + esc(t('ago')(mins)) + '</span></div>' +
+    '<ul class="items">' + items + '</ul>' +
+    (o.note ? '<div class="note">' + esc(o.note) + '</div>' : '') +
+    '<div class="foot"><span class="total">' + (Number(o.total) ? esc(t('total')) + ': <bdi dir="ltr">' + esc(money(o.total, o.currency)) + '</bdi>' : '') + '</span>' +
+    (isNew ? '<button type="button" class="done" data-id="' + esc(o.id) + '" data-to="done">✓ ' + esc(t('done')) + '</button>' : '<button type="button" class="undo" data-id="' + esc(o.id) + '" data-to="new">' + esc(t('undo')) + '</button>') +
+    '</div></div>';
+}
+
+function render(fresh){
+  if (!slug) return;
+  fresh = fresh || [];
+  var nw = orders.filter(function(o){ return o.status === 'new'; }).sort(function(a, b){ return new Date(a.created_at) - new Date(b.created_at); });
+  var dn = orders.filter(function(o){ return o.status === 'done'; });
+  $('newCount').textContent = nw.length; $('doneCount').textContent = dn.length;
+  $('newList').innerHTML = nw.length ? nw.map(function(o){ return card(o, fresh.indexOf(o.id) !== -1); }).join('') : '<div class="empty">' + esc(t('noNew')) + '</div>';
+  $('doneList').innerHTML = dn.length ? dn.map(function(o){ return card(o, false); }).join('') : '<div class="empty">' + esc(t('noDone')) + '</div>';
+}
+
+function ring(){
+  if (!soundOn || !audio) return;
+  try {
+    var now = audio.currentTime;
+    [0, 0.25, 0.5].forEach(function(d, i){
+      var o = audio.createOscillator(), g = audio.createGain();
+      o.type = 'sine'; o.frequency.value = i === 1 ? 1175 : 880;
+      g.gain.setValueAtTime(0.0001, now + d); g.gain.exponentialRampToValueAtTime(0.4, now + d + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, now + d + 0.22);
+      o.connect(g); g.connect(audio.destination); o.start(now + d); o.stop(now + d + 0.25);
+    });
+  } catch (e) {}
+  if (navigator.vibrate) try { navigator.vibrate([200, 100, 200]); } catch (e) {}
+}
+
+function enableSound(){
+  try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); if (audio.state === 'suspended') audio.resume(); } catch (e) { audio = null; }
+  $('soundBanner').classList.add('hide');
+  keepAwake();
+}
+
+function keepAwake(){
+  try { if ('wakeLock' in navigator && !wake) navigator.wakeLock.request('screen').then(function(w){ wake = w; w.addEventListener('release', function(){ wake = null; }); }).catch(function(){}); } catch (e) {}
+}
+
+function start(){
+  $('login').classList.add('hide'); $('board').classList.remove('hide');
+  ['live', 'sound', 'out'].forEach(function(id){ $(id).classList.remove('hide'); });
+  known = null; orders = [];
+  poll();
+  clearInterval(timer); timer = setInterval(poll, 5000);
+}
+
+function signOut(msg){
+  clearInterval(timer); slug = ''; code = ''; orders = []; known = null;
+  store.set('gr_orders_code', null);
+  $('board').classList.add('hide'); $('login').classList.remove('hide');
+  ['live', 'sound', 'out'].forEach(function(id){ $(id).classList.add('hide'); });
+  $('biz').textContent = t('title'); $('err').textContent = msg || '';
+}
+
+$('login').addEventListener('submit', function(e){
+  e.preventDefault();
+  slug = slugFrom($('menu').value); code = $('code').value.trim().toUpperCase();
+  $('err').textContent = '';
+  if (!slug || !code) return;
+  enableSound();
+  call({ action: 'list' }).then(function(j){
+    if (!j.ok) { slug = ''; $('err').textContent = j._status === 401 ? t('badCode') : t('net'); return; }
+    store.set('gr_orders_slug', slug); store.set('gr_orders_code', code);
+    start();
+  }).catch(function(){ slug = ''; $('err').textContent = t('net'); });
+});
+
+document.addEventListener('click', function(e){
+  var b = e.target && e.target.closest ? e.target.closest('[data-id]') : null;
+  if (!b) return;
+  var id = b.getAttribute('data-id'), to = b.getAttribute('data-to');
+  orders.forEach(function(o){ if (o.id === id) o.status = to; });
+  render();
+  call({ action: 'status', id: id, status: to }).then(poll, poll);
+});
+$('soundOn').addEventListener('click', enableSound);
+$('sound').addEventListener('click', function(){ soundOn = !soundOn; store.set('gr_orders_sound', soundOn ? 'on' : 'off'); if (soundOn) enableSound(); paintText(); });
+$('lang').addEventListener('click', function(){ lang = lang === 'ar' ? 'en' : 'ar'; store.set('gr_orders_lang', lang); paintText(); });
+$('out').addEventListener('click', function(){ signOut(''); });
+document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible' && slug) { keepAwake(); poll(); } });
+setInterval(function(){ if (slug) render(); }, 30000);
+
+var q = new URLSearchParams(location.search);
+$('menu').value = q.get('menu') || store.get('gr_orders_slug') || '';
+paintText();
+var savedCode = store.get('gr_orders_code');
+if ($('menu').value && savedCode) { slug = slugFrom($('menu').value); code = savedCode; start(); }
+})();
+</script>
+</body>
+</html>
