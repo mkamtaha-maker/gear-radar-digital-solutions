@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Menu Gallery | Gear Radar Digital Solutions</title>
+<meta name="description" content="Design your QR menu or catalogue: pick a layout, a theme and the features you need, see a live preview and the plan that fits.">
+<link rel="canonical" href="https://www.gearradar.co.uk/qr-gallery.html">
+<meta name="theme-color" content="#15171C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&family=Playfair+Display:wght@500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171C; --ink-2:#1B1E25; --ink-3:#22252D; --gold:#FF8A50; --gold-2:#FACC15; --gold-soft:rgba(255,138,80,.14);
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#F5F5F4; --on-ink-muted:#A8A29E;
+  --radius:18px; --shadow:0 20px 50px -24px rgba(21,23,28,.35);
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:110px}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.container{width:min(1160px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-head);line-height:1.2;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0;line-height:1.4}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+header{background:var(--ink);color:var(--on-ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.back{color:var(--on-ink-muted);font-size:.93rem;font-weight:500}
+.back:hover{color:var(--white)}
+.lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;font-family:'Cairo','Inter',sans-serif}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.hero{padding:28px 0 36px}
+.eyebrow{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--white);margin-bottom:8px}
+.hero p{color:var(--on-ink-muted);max-width:680px}
+
+/* ---------- Layout: preview + options ---------- */
+.studio{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;align-items:start;padding:32px 0 24px}
+@media (max-width:900px){ .studio{grid-template-columns:1fr} }
+.preview-wrap{position:sticky;top:16px}
+@media (max-width:900px){ .preview-wrap{position:static} .site{max-height:360px} }
+.preview-label{font-size:.8rem;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+
+/* Browser frame */
+.frame{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.frame-bar{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#EFEDE8;border-bottom:1px solid var(--line)}
+.frame-bar i{width:9px;height:9px;border-radius:50%;background:#D6D3CC;display:inline-block}
+.frame-bar span{flex:1;background:#fff;border-radius:999px;padding:3px 12px;font-size:.75rem;color:var(--muted);direction:ltr;text-align:left}
+
+/* ---------- Options ---------- */
+.opts{display:grid;gap:14px}
+.opt{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.opt-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.opt-head h3{font-size:.98rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--white);border-radius:999px;padding:7px 13px;font-size:.88rem;font-weight:500;color:var(--text);transition:border-color .15s,background .15s}
+.chip:hover{border-color:#cfc9bb}
+.chip[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--white)}
+.chip .dot{width:14px;height:14px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.1)}
+.badge{font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.b0{background:#E7F0FF;color:#1E40AF}
+.b1{background:var(--gold-soft);color:#C2410C}
+.b2{background:#F3E8FF;color:#6B21A8}
+.b3{background:#F1F5F9;color:#334155}
+.chip[aria-pressed="true"] .badge{background:rgba(255,255,255,.16);color:#fff}
+.feat{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:8px}
+.tgl{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1.5px solid var(--line);background:var(--white);border-radius:12px;padding:9px 12px;font-size:.88rem;font-weight:500;text-align:start;color:var(--text)}
+.tgl .l{display:flex;align-items:center;gap:8px}
+.tgl .box{width:18px;height:18px;border-radius:5px;border:1.5px solid #cfc9bb;flex:none;display:grid;place-items:center}
+.tgl[aria-pressed="true"]{border-color:var(--ink)}
+.tgl[aria-pressed="true"] .box{background:var(--ink);border-color:var(--ink)}
+.tgl[aria-pressed="true"] .box::after{content:"";width:8px;height:4px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.8rem;color:var(--muted)}
+
+/* ---------- Plan bar (like a cart) ---------- */
+.cart{position:fixed;inset-inline:0;bottom:0;z-index:20;background:var(--ink);color:var(--on-ink);box-shadow:0 -10px 30px -12px rgba(0,0,0,.4)}
+.cart-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.cart-plan{display:flex;flex-direction:column;min-width:0}
+.cart-plan small{color:var(--on-ink-muted);font-size:.78rem}
+.cart-plan b{font-family:var(--font-head);font-size:1.15rem;color:var(--white)}
+.cart-plan b .gx-price{color:var(--gold)}
+.cart-why{color:var(--on-ink-muted);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
+.cart-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:999px;background:var(--gold);color:var(--ink);font-weight:700;white-space:nowrap;transition:background .2s}
+.cart-btn:hover{background:var(--gold-2)}
+@media (max-width:600px){ .cart-why{display:none} .cart-btn{padding:11px 16px;font-size:.9rem} .cart-plan b{font-size:1rem} }
+#fx-note{margin:0 0 12px!important}
+
+/* Phone frame */
+.phone{width:min(360px,100%);margin-inline:auto;background:#111;border-radius:36px;padding:10px;box-shadow:var(--shadow)}
+.phone-in{border-radius:28px;overflow:hidden;background:#fff}
+@media (max-width:900px){ .phone-in .q{max-height:440px} }
+/* Mini QR page: same colours, classes and layout rules as the real page built by the Smart QR Generator */
+.q{--bg:#fbf6ee;--surface:#fff;--text:#2b2118;--muted:#76675a;--accent:#a8640f;--border:#eadfcd;--hero:#2b2118;--hero-text:#fbf6ee;--head:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:12px;line-height:1.45;max-height:600px;overflow:auto;scrollbar-width:thin;position:relative}
+.q.serif{--head:'Playfair Display',Georgia,serif}
+.q[dir="rtl"]{font-family:'Cairo',system-ui,sans-serif}
+.q[dir="rtl"].serif{--head:'Amiri',serif}
+.q-hero{background:var(--hero);color:var(--hero-text);text-align:center;padding:14px 14px 20px;position:relative}
+.q-hero.cover{background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.6)),linear-gradient(135deg,#8a5a2b,#d29a5a 60%,#5b3a1c);color:#fff;--hero-text:#fff}
+.q-top{display:flex;justify-content:flex-end;min-height:6px}
+.q-ls{display:inline-flex;border:1px solid currentColor;border-radius:999px;overflow:hidden;font-size:9px}
+.q-ls span{padding:3px 8px}.q-ls span:first-child{background:var(--hero-text);color:var(--hero)}
+.q-logo{width:44px;height:44px;border-radius:50%;background:#fff;color:#999;margin:6px auto 0;display:grid;place-items:center;font-size:8px;font-weight:700;border:2px solid var(--hero-text)}
+.q-brand{font-family:var(--head);font-size:20px;font-weight:700;margin:8px 0 4px;line-height:1.15}
+.q-tag{opacity:.85;font-size:11px;margin-bottom:8px}
+.q-pill{display:inline-block;border:1px solid currentColor;border-radius:999px;padding:3px 10px;font-size:10px;margin:2px}
+.q-book{display:inline-block;border-radius:999px;padding:4px 12px;font-size:10px;font-weight:700;background:var(--hero-text);color:var(--hero);margin:6px 2px 0}
+.q-nav{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 12px}
+.q-search{border:1px solid var(--border);border-radius:9px;background:var(--surface);padding:6px 10px;color:var(--muted);font-size:10.5px}
+.q-chips{display:flex;gap:6px;padding-top:7px;overflow:hidden}
+.q-chips span{border:1px solid var(--border);border-radius:999px;padding:2px 9px;font-size:9.5px;background:var(--surface);white-space:nowrap}
+.q-offers{margin:12px 12px 0;border:1.5px dashed var(--accent);border-radius:12px;padding:8px 10px}
+.q-offers b{color:var(--accent);font-size:11px}
+.q-root{padding:4px 12px 18px}
+.q-cat{margin:14px 0}
+.q-ct{font-family:var(--head);font-size:14px;font-weight:700;padding-bottom:5px;margin-bottom:8px;border-bottom:2px solid var(--accent)}
+.q-items{display:flex;flex-direction:column;gap:8px}
+.q-item{border:1px solid var(--border);border-radius:10px;padding:9px;background:var(--surface);position:relative}
+.q-main{display:flex;justify-content:space-between;align-items:flex-start;gap:9px}
+.q-ph{flex:none;width:46px;height:46px;border-radius:9px;background:var(--border);display:grid;place-items:center;font-size:22px;margin-inline-end:2px}
+.q-info{flex:1;min-width:0}
+.q-name{font-weight:600;font-size:12px;margin-bottom:2px}
+.q-desc{color:var(--muted);font-size:10px}
+.q-price{font-weight:700;color:var(--accent);white-space:nowrap}
+.q-add{display:flex;justify-content:flex-end;margin-top:6px}
+.q-add span{font-size:9.5px;font-weight:600;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:2px 9px}
+.q-sold{position:absolute;inset-inline-end:8px;top:8px;background:#b91c1c;color:#fff;font-size:8.5px;font-weight:700;border-radius:999px;padding:1px 7px}
+.q-item.sold{opacity:.6}
+.q-foot{border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:10px;padding:12px 0 46px}
+.q-wa{position:sticky;bottom:10px;margin:-42px 10px 0 auto;width:34px;height:34px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.q[dir="rtl"] .q-wa{margin:-42px auto 0 10px}
+.q-wa svg{width:18px;height:18px;fill:#fff}
+.q-mode{position:sticky;bottom:10px;margin:-34px auto 0 10px;width:30px;height:30px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;font-size:14px}
+/* Layouts */
+.l-cards .q-items{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.l-cards .q-main{flex-wrap:wrap}
+.l-line .q-item,.l-dots .q-item,.l-centered .q-item,.l-twocol .q-item,.l-magazine .q-item,.l-frame .q-item{background:transparent;border:0;border-radius:0}
+.l-line .q-item{border-bottom:1px solid var(--border);padding:9px 2px}.l-line .q-items{gap:0}
+.l-line .q-ct{text-align:center;border-bottom:0;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+.l-line .q-ct::after{content:"";display:block;width:34px;height:2px;background:var(--accent);margin:6px auto 0}
+.l-dots .q-item{padding:4px 0}.l-dots .q-items{gap:0}.l-dots .q-main{align-items:baseline;gap:0}
+.l-dots .q-name{display:flex;align-items:baseline}.l-dots .q-name::after{content:"";flex:1;min-width:16px;border-bottom:2px dotted var(--border);margin:0 6px}
+.l-dots .q-ph{width:30px;height:30px;font-size:15px;margin-inline-end:8px}
+.l-centered .q-item{text-align:center;padding:9px 0}.l-centered .q-main{flex-direction:column;align-items:center;gap:3px}
+.l-centered .q-ct{text-align:center;border-bottom:0}.l-centered .q-ct::before,.l-centered .q-ct::after{content:"\2014";color:var(--accent);margin:0 7px}
+.l-centered .q-add{justify-content:center}
+.l-grid .q-items,.l-bento .q-items{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.l-grid .q-item,.l-bento .q-item{padding:7px;overflow:hidden}
+.l-grid .q-main,.l-bento .q-main{flex-direction:column;align-items:stretch;gap:4px}
+.l-grid .q-ph,.l-bento .q-ph{width:100%;height:auto;aspect-ratio:4/3;font-size:30px;margin:0}
+.l-bento .q-ph{aspect-ratio:1/1}
+.l-bento .q-item:first-child{grid-column:1/-1;background:var(--hero);color:var(--hero-text);border-color:var(--hero)}
+.l-bento .q-item:first-child .q-ph{aspect-ratio:16/9;font-size:40px}
+.l-bento .q-item:first-child .q-desc,.l-bento .q-item:first-child .q-price{color:var(--hero-text)}
+.l-bento .q-item:first-child .q-name{font-family:var(--head);font-size:14px}
+.l-bento .q-item:first-child .q-add span{border-color:var(--hero-text);color:var(--hero-text)}
+.l-bigphoto .q-item{padding:0 0 9px;overflow:hidden}
+.l-bigphoto .q-main{flex-wrap:wrap;padding:0 10px}
+.l-bigphoto .q-ph{flex:0 0 calc(100% + 20px);width:calc(100% + 20px);height:auto;aspect-ratio:16/9;margin:0 -10px 4px;border-radius:0;font-size:40px}
+.l-bigphoto .q-add{padding:0 10px}
+.l-twocol .q-item{border-bottom:1px dashed var(--border);padding:7px 0}.l-twocol .q-items{gap:0}
+.l-twocol .q-root{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}.l-twocol .q-cat{margin:10px 0}
+.l-twocol .q-ph{width:30px;height:30px;font-size:15px}.l-twocol .q-main{gap:5px}
+.l-magazine .q-cat{counter-reset:item}
+.l-magazine .q-ct{font-size:19px;border-bottom:0;padding-bottom:0}.l-magazine .q-ct::after{content:"";display:block;width:40px;height:3px;background:var(--accent);margin-top:6px}
+.l-magazine .q-item{counter-increment:item;border-bottom:1px solid var(--border);padding:10px 0}
+.l-magazine .q-info::before{content:counter(item,decimal-leading-zero);display:block;font-family:var(--head);font-size:9px;letter-spacing:.14em;color:var(--accent)}
+.l-magazine .q-name{font-family:var(--head);font-size:13.5px}.l-magazine .q-price{font-family:var(--head);font-size:14px}
+.t-magazine .q-hero{text-align:start;padding-bottom:26px}.t-magazine .q-brand{font-size:28px;letter-spacing:-.02em}
+.q-root.l-frame{border:3px double var(--accent);border-radius:5px;margin:12px 10px;padding:4px 12px 14px;background:var(--surface)}
+.l-frame .q-ct{text-align:center;border-bottom:0;text-transform:uppercase;letter-spacing:.12em;font-size:11.5px}
+.l-frame .q-ct::before,.l-frame .q-ct::after{content:"\2726";color:var(--accent);margin:0 8px}
+.l-frame .q-item{padding:6px 0}.l-frame .q-name{font-family:var(--head)}
+.t-frame .q-hero{border-bottom:3px double var(--accent)}.t-frame .q-brand{letter-spacing:.06em}
+.hide{display:none!important}
+.tpl-desc{font-size:.82rem;color:var(--muted);margin-top:10px}
+</style>
+<script>window.grFxExtra = '.gx-price';</script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="back" href="index.html#plans-qr" data-i18n="back">← Back to QR plans</a>
+    <button class="lang" id="langToggle" type="button">العربية</button>
+  </div>
+  <div class="container hero">
+    <span class="eyebrow" data-i18n="eyebrow">QR menu gallery</span>
+    <h1 data-i18n="title">Design your QR menu and see your plan</h1>
+    <p data-i18n="lead">Pick a layout, a theme and the features you want. The preview updates as you go, and the bar at the bottom shows which plan you need and its price.</p>
+  </div>
+</header>
+
+<main class="container">
+  <div class="studio">
+    <div class="preview-wrap">
+      <div class="preview-label"><span data-i18n="preview">Live preview</span><span data-i18n="preview_note">Your items, logo and photos go here</span></div>
+      <div class="phone"><div class="phone-in"><div class="q" id="q"></div></div></div>
+    </div>
+    <div>
+      <div class="opts" id="opts"></div>
+    </div>
+  </div>
+</main>
+
+<div class="cart" role="region" aria-live="polite" aria-label="Your plan">
+  <div class="container cart-in">
+    <div class="cart-plan">
+      <small data-i18n="your_plan">Your plan</small>
+      <b id="cartName">QR Starter · <span class="gx-price">£30</span></b>
+      <span class="cart-why" id="cartWhy"></span>
+    </div>
+    <a class="cart-btn" id="cartBtn" href="signup.html?plan=qr_basic">Continue</a>
+  </div>
+</div>
+
+<script src="qr-designs.js"></script>
+<script>
+(function(){
+  // Plans and prices must match signup.html (PLANS), index.html and plan_prices in Supabase. Prices are in pounds.
+  // Tier: 0 Starter, 1 Pro, 2 Premium.
+  var PLAN = [
+    { key:'qr_basic',   name:'QR Starter', price:'£30' },
+    { key:'qr_pro',     name:'QR Pro',     price:'£50' },
+    { key:'qr_premium', name:'QR Premium', price:'£70', add:'£9' }
+  ];
+  // Themes and layouts come from qr-designs.js (same list as signup.html and the Smart QR Generator).
+  var THEMES = window.GR_QR_DESIGNS.themes, LAYOUTS = window.GR_QR_DESIGNS.layouts;
+  var GROUPS = [
+    { id:'type', title:{en:'Type of page',ar:'نوع الصفحة'}, choices:[
+      { v:'menu',     tier:0, en:'Restaurant / café menu', ar:'منيو مطعم / مقهى' },
+      { v:'services', tier:0, en:'Services & prices',      ar:'خدمات وأسعار' },
+      { v:'products', tier:0, en:'Product catalogue',      ar:'كتالوج منتجات' } ] },
+    { id:'lang', title:{en:'Language',ar:'اللغة'}, choices:[
+      { v:'en',   tier:0, en:'English',          ar:'English' },
+      { v:'ar',   tier:0, en:'العربية',          ar:'العربية' },
+      { v:'both', tier:1, en:'Arabic + English', ar:'عربي + إنجليزي' } ] },
+    { id:'layout', title:{en:'Layout',ar:'طريقة العرض'}, layout:true },
+    { id:'theme', title:{en:'Theme (colours)',ar:'الثيم (الألوان)'}, theme:true }
+  ];
+  var FEATS = [
+    { id:'items',   tier:0, on:true,  fixed:true, en:'Items & prices',              ar:'الأصناف والأسعار' },
+    { id:'qr',      tier:0, on:true,  fixed:true, en:'QR code + table card',        ar:'رمز QR + كرت طاولة' },
+    { id:'edit',    tier:0, on:true,  fixed:true, en:'Change prices with your edit code', ar:'غيّر الأسعار بكود التعديل' },
+    { id:'logo',    tier:1, on:false, en:'Logo',                        ar:'الشعار' },
+    { id:'photos',  tier:1, on:false, en:'Item photos',                 ar:'صور الأصناف' },
+    { id:'cover',   tier:1, on:false, en:'Cover photo',                 ar:'صورة غلاف' },
+    { id:'wa',      tier:1, on:false, en:'Order or book on WhatsApp',   ar:'الطلب أو الحجز عبر واتساب' },
+    { id:'search',  tier:1, on:false, en:'Live search & category bar',  ar:'بحث مباشر وشريط أقسام' },
+    { id:'offers',  tier:1, on:false, en:'Today\'s offers & sold-out tags', ar:'عروض اليوم وعلامة غير متاح' },
+    { id:'dark',    tier:1, on:false, en:'Light / dark mode button',    ar:'زر الوضع الداكن' },
+    { id:'updates', tier:2, on:false, en:'We update your menu for you (up to 4 a month)', ar:'نحدّث قائمتك بدلاً عنك (حتى 4 مرات شهرياً)' }
+  ];
+  var TIER_LABEL = { en:['Starter','Pro','Premium'], ar:['Starter','Pro','Premium'] };
+  var STR = {
+    en:{ back:'← Back to QR plans', eyebrow:'QR menu gallery', title:'Design your QR menu and see your plan',
+      lead:'Pick a layout, a theme and the features you want. The preview updates as you go, and the bar at the bottom shows which plan you need and its price.',
+      preview:'Live preview', preview_note:'Your items, logo and photos go here', your_plan:'Your plan', features:'Features',
+      legend:'Each option shows the lowest plan that includes it:', once:'one-off', addon:'+ {n}/month',
+      cont:'Continue with this plan', why_base:'Everything you picked is in QR Starter.', why:'Needs {plan} for: ', toggle:'العربية',
+      q_biz:'Your Café', q_tag:'Fresh coffee and homemade food', q_book:{menu:'Reserve a table',services:'Book an appointment',products:'Ask on WhatsApp'},
+      q_search:{menu:'Search menu...',services:'Search services...',products:'Search products...'}, q_offers:"Today's offers", q_offer:'Breakfast combo · 6.50',
+      q_sold:'Sold out', q_add:'+ Add', q_foot:'Powered by Gear Radar',
+      cats:{ menu:[['Coffee',[['☕','Flat White','Double shot, silky milk','3.40'],['🍵','Karak Tea','Cardamom and saffron','2.60'],['🧋','Iced Latte','Over ice','3.80']]],
+                   ['Breakfast',[['🍳','Shakshuka','Eggs in spiced tomato sauce','7.50'],['🥑','Avocado Toast','Sourdough, lime, chilli','6.90']]]],
+             services:[['Hair',[['💇','Haircut','Wash, cut and style','18.00'],['🧔','Beard Trim','Shape and hot towel','10.00'],['🎨','Colour','Full head','45.00']]],
+                   ['Treatments',[['💆','Head Massage','20 minutes','15.00'],['💅','Manicure','Shape and polish','20.00']]]],
+             products:[['New in',[['👟','Trainers','Sizes 38–45','59.00'],['🎒','Backpack','Water resistant','35.00'],['⌚','Watch','Steel strap','89.00']]],
+                   ['Accessories',[['🕶️','Sunglasses','UV400','25.00'],['🧢','Cap','One size','12.00']]]] } },
+    ar:{ back:'→ العودة لباقات QR', eyebrow:'معرض قوائم QR', title:'صمّم قائمتك بالـ QR واعرف باقتك',
+      lead:'اختر طريقة العرض والثيم والمزايا التي تريدها. المعاينة تتغير مع كل اختيار، والشريط في الأسفل يوضح الباقة المناسبة وسعرها.',
+      preview:'معاينة مباشرة', preview_note:'هنا تظهر أصنافك وشعارك وصورك', your_plan:'باقتك', features:'المزايا',
+      legend:'كل خيار يوضح أقل باقة تشمله:', once:'دفعة واحدة', addon:'+ {n} شهرياً',
+      cont:'أكمل بهذه الباقة', why_base:'كل ما اخترته موجود في QR Starter.', why:'تحتاج {plan} بسبب: ', toggle:'English',
+      q_biz:'مقهاك', q_tag:'قهوة طازجة وأكل بيتي', q_book:{menu:'احجز طاولة',services:'احجز موعداً',products:'اسأل عبر واتساب'},
+      q_search:{menu:'ابحث في القائمة...',services:'ابحث في الخدمات...',products:'ابحث في المنتجات...'}, q_offers:'عروض اليوم', q_offer:'فطور كومبو · 6.50',
+      q_sold:'غير متاح', q_add:'+ أضف', q_foot:'Powered by Gear Radar',
+      cats:{ menu:[['القهوة',[['☕','فلات وايت','إسبريسو مضاعف وحليب ناعم','3.40'],['🍵','شاي كرك','بالهيل والزعفران','2.60'],['🧋','آيس لاتيه','مع الثلج','3.80']]],
+                   ['الفطور',[['🍳','شكشوكة','بيض بصلصة الطماطم','7.50'],['🥑','توست أفوكادو','خبز مخمّر وليمون','6.90']]]],
+             services:[['الشعر',[['💇','قص شعر','غسيل وقص وتصفيف','18.00'],['🧔','تهذيب اللحية','مع منشفة ساخنة','10.00'],['🎨','صبغة','كامل الشعر','45.00']]],
+                   ['العناية',[['💆','مساج للرأس','20 دقيقة','15.00'],['💅','مانيكير','تشكيل وطلاء','20.00']]]],
+             products:[['وصل حديثاً',[['👟','حذاء رياضي','مقاسات 38–45','59.00'],['🎒','حقيبة ظهر','مقاومة للماء','35.00'],['⌚','ساعة','سوار ستيل','89.00']]],
+                   ['إكسسوارات',[['🕶️','نظارة شمسية','حماية UV400','25.00'],['🧢','كاب','مقاس واحد','12.00']]]] } }
+  };
+
+  var lang = 'en';
+  var state = { type:'menu', lang:'en', layout:'Modern Cards', theme:'Warm Cream & Amber' };
+  FEATS.forEach(function(f){ state[f.id] = f.on; });
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function badge(t){ return '<span class="badge b' + t + '">' + esc(TIER_LABEL[lang][t]) + '</span>'; }
+  function themeOf(n){ return THEMES.filter(function(t){ return t.name === n; })[0]; }
+  function layoutOf(n){ return LAYOUTS.filter(function(t){ return t.name === n; })[0]; }
+
+  // ---------- Options panel ----------
+  function renderOpts(){
+    var s = STR[lang], h = '<div class="legend">' + esc(s.legend) + ' ' + badge(0) + badge(1) + badge(2) + '</div>';
+    GROUPS.forEach(function(g){
+      h += '<section class="opt"><div class="opt-head"><h3>' + esc(g.title[lang]) + '</h3></div><div class="chips">';
+      if (g.theme) THEMES.forEach(function(t){
+        h += '<button type="button" class="chip" data-g="theme" data-v="' + esc(t.name) + '" aria-pressed="' + (state.theme === t.name) + '">' +
+          '<span class="dot" style="background:linear-gradient(135deg,' + t.c.hero + ' 0 50%,' + t.c.accent + ' 50%)"></span>' + esc(lang === 'ar' ? t.ar : t.name) + ' ' + badge(t.tier) + '</button>';
+      });
+      else if (g.layout) {
+        LAYOUTS.forEach(function(t){
+          h += '<button type="button" class="chip" data-g="layout" data-v="' + esc(t.name) + '" aria-pressed="' + (state.layout === t.name) + '">' + esc(lang === 'ar' ? t.ar : t.name) + ' ' + badge(t.tier) + '</button>';
+        });
+        var cl = layoutOf(state.layout);
+        h += '</div><p class="tpl-desc">' + esc(lang === 'ar' ? cl.ar_d : cl.en_d) + '</p><div>';
+      }
+      else g.choices.forEach(function(c){
+        h += '<button type="button" class="chip" data-g="' + g.id + '" data-v="' + c.v + '" aria-pressed="' + (state[g.id] === c.v) + '">' + esc(c[lang]) + ' ' + badge(c.tier) + '</button>';
+      });
+      h += '</div></section>';
+    });
+    h += '<section class="opt"><div class="opt-head"><h3>' + esc(s.features) + '</h3></div><div class="feat">';
+    FEATS.forEach(function(f){
+      h += '<button type="button" class="tgl" data-f="' + f.id + '" aria-pressed="' + !!state[f.id] + '"' + (f.fixed ? ' disabled' : '') + '><span class="l"><span class="box"></span>' + esc(f[lang]) + '</span>' + badge(f.tier) + '</button>';
+    });
+    h += '</div></section>';
+    $('opts').innerHTML = h;
+  }
+  $('opts').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b || b.disabled) return;
+    if (b.hasAttribute('data-f')) { var id = b.getAttribute('data-f'); state[id] = !state[id]; }
+    else state[b.getAttribute('data-g')] = b.getAttribute('data-v');
+    update();
+  });
+
+  // ---------- Plan logic ----------
+  function picks(){
+    var out = [], t = themeOf(state.theme), l = layoutOf(state.layout);
+    out.push({ tier:l.tier, label: lang === 'ar' ? l.ar : l.name }, { tier:t.tier, label: lang === 'ar' ? t.ar : t.name });
+    GROUPS.forEach(function(g){ if (g.choices) g.choices.forEach(function(c){ if (state[g.id] === c.v) out.push({ tier:c.tier, label:c[lang] }); }); });
+    FEATS.forEach(function(f){ if (state[f.id]) out.push({ tier:f.tier, label:f[lang] }); });
+    return out;
+  }
+  function renderCart(){
+    var s = STR[lang], all = picks();
+    var tier = all.reduce(function(m, p){ return Math.max(m, p.tier); }, 0), p = PLAN[tier];
+    $('cartName').innerHTML = esc(p.name) + ' · <span class="gx-price">' + p.price + '</span> <small style="color:var(--on-ink-muted);font-weight:500;font-size:.8rem">' + esc(s.once) +
+      (p.add ? ' <span class="gx-price">' + esc(s.addon.replace('{n}', p.add)) + '</span>' : '') + '</small>';
+    var btn = $('cartBtn'); btn.textContent = s.cont;
+    btn.href = 'signup.html?plan=' + p.key + '&theme=' + encodeURIComponent(state.theme) + '&layout=' + encodeURIComponent(state.layout) +
+      '&pagelang=' + state.lang + '&qtype=' + state.type + (lang === 'ar' ? '&lang=ar' : '');
+    var top = all.filter(function(x){ return x.tier === tier && tier > 0; }).map(function(x){ return x.label; });
+    $('cartWhy').textContent = tier === 0 ? s.why_base : s.why.replace('{plan}', p.name) + top.join(lang === 'ar' ? '، ' : ', ');
+  }
+
+  // ---------- Live preview (same classes and rules as the real QR page) ----------
+  var WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.2.3-.1.5.2.3.8 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.2.1.4.1.5-.1l.7-.9c.2-.2.3-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>';
+  function renderPage(){
+    var pl = state.lang === 'both' ? lang : state.lang, s = STR[pl], el = $('q'), t = themeOf(state.theme), L = layoutOf(state.layout), c = t.c;
+    el.setAttribute('dir', pl === 'ar' ? 'rtl' : 'ltr');
+    el.className = 'q t-' + L.k + (c.serif ? ' serif' : '');
+    ['bg','surface','text','muted','accent','border','hero'].forEach(function(k){ el.style.setProperty('--' + k, c[k]); });
+    el.style.setProperty('--hero-text', c.heroText);
+    var cur = '£', photos = state.photos;
+    var h = '<div class="q-hero' + (state.cover ? ' cover' : '') + '"><div class="q-top">' + (state.lang === 'both' ? '<span class="q-ls"><span>' + (pl === 'ar' ? 'عربي' : 'EN') + '</span><span>' + (pl === 'ar' ? 'EN' : 'عربي') + '</span></span>' : '') + '</div>' +
+      (state.logo ? '<div class="q-logo">LOGO</div>' : '') + '<div class="q-brand">' + esc(s.q_biz) + '</div><div class="q-tag">' + esc(s.q_tag) + '</div>' +
+      '<span class="q-pill">📞 07700 900123</span>' + (state.wa ? '<br><span class="q-book">' + esc(s.q_book[state.type]) + '</span>' : '') + '</div>';
+    if (state.search) h += '<div class="q-nav"><div class="q-search">' + esc(s.q_search[state.type]) + '</div><div class="q-chips">' + s.cats[state.type].map(function(x){ return '<span>' + esc(x[0]) + '</span>'; }).join('') + '</div></div>';
+    if (state.offers) h += '<div class="q-offers"><b>' + esc(s.q_offers) + '</b><div>' + esc(s.q_offer) + '</div></div>';
+    h += '<div class="q-root l-' + L.k + '">';
+    s.cats[state.type].forEach(function(cat, ci){
+      h += '<div class="q-cat"><div class="q-ct">' + esc(cat[0]) + '</div><div class="q-items">';
+      cat[1].forEach(function(it, ii){
+        var sold = state.offers && ci === 0 && ii === 1;
+        h += '<div class="q-item' + (sold ? ' sold' : '') + '">' + (sold ? '<span class="q-sold">' + esc(s.q_sold) + '</span>' : '') + '<div class="q-main">' +
+          (photos ? '<div class="q-ph">' + it[0] + '</div>' : '') + '<div class="q-info"><div class="q-name">' + esc(it[1]) + '</div><div class="q-desc">' + esc(it[2]) + '</div></div>' +
+          '<div class="q-price">' + cur + it[3] + '</div></div>' + (state.wa && !sold ? '<div class="q-add"><span>' + esc(s.q_add) + '</span></div>' : '') + '</div>';
+      });
+      h += '</div></div>';
+    });
+    h += '</div><div class="q-foot">' + esc(s.q_foot) + '</div>';
+    if (state.wa) h += '<div class="q-wa">' + WA_SVG + '</div>';
+    if (state.dark) h += '<div class="q-mode">🌙</div>';
+    el.innerHTML = h;
+  }
+
+  function update(){ renderOpts(); renderPage(); renderCart(); }
+  function applyLang(l){
+    lang = l;
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    var s = STR[l];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ var k = el.getAttribute('data-i18n'); if (s[k] != null) el.textContent = s[k]; });
+    $('langToggle').textContent = s.toggle;
+    try { localStorage.setItem('gr_lang', l); } catch(e) {}
+    update();
+  }
+  $('langToggle').addEventListener('click', function(){ applyLang(lang === 'ar' ? 'en' : 'ar'); });
+  var params = new URLSearchParams(location.search), initial = params.get('lang');
+  if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch(e) { initial = 'en'; } }
+  if (initial === 'ar') state.lang = 'ar';
+  var th = params.get('theme'); if (th && themeOf(th)) state.theme = th;
+  var ly = params.get('layout'); if (ly && layoutOf(ly)) state.layout = ly;
+  applyLang(initial === 'ar' ? 'ar' : 'en');
+})();
+</script>
+<script src="currency.js" defer></script>
+</body>
+</html>
