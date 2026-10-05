@@ -231,6 +231,9 @@ section{padding:100px 0}
 .demo-link{margin:-6px 0 16px;font-size:.92rem}
 .demo-link a{color:#C2410C;font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .demo-link a:hover{color:var(--ink)}
+.demo-link{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.demo-link a.themes-link{display:inline-flex;padding:8px 16px;border-radius:999px;background:var(--ink);color:var(--white);text-decoration:none}
+.demo-link a.themes-link:hover{background:var(--gold);color:var(--ink)}
 .biz-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .pcard.oneoff.star{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
 .pcard .once{font-size:.82rem;color:var(--muted)}
@@ -651,7 +654,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     <div class="biz-group reveal" id="plans-web">
       <h4 data-i18n="s2_title">Websites for Businesses</h4>
       <p data-i18n="biz_web_sub">A mobile-friendly page that turns visitors into calls and WhatsApp messages.</p>
-      <div class="demo-link"><a href="https://mkamtaha-maker.github.io/cedar-barbers-demo-9kyrxe/" target="_blank" rel="noopener" data-i18n="demo_web">See a sample website (fictional barber shop) →</a></div>
+      <div class="demo-link"><a href="https://mkamtaha-maker.github.io/cedar-barbers-demo-9kyrxe/" target="_blank" rel="noopener" data-i18n="demo_web">See a sample website (fictional barber shop) →</a> <a class="themes-link" href="themes.html" data-i18n="themes_btn">Browse website themes →</a></div>
       <div class="biz-cards">
           <div class="pcard oneoff">
             <h4>Website Starter</h4>
@@ -896,7 +899,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     biz_lead:'أرسل لنا بياناتك أونلاين، ونبنيها ونراجعها قبل النشر. الاستضافة على رابطنا مشمولة.',
     biz_web_sub:'صفحة مناسبة للجوال تحوّل الزوار إلى مكالمات ورسائل واتساب.',
     biz_qr_sub:'قائمتك أو خدماتك أو منتجاتك خلف رمز QR واحد — غيّر الأسعار بدون إعادة طباعة.',
-    demo_web:'شاهد موقعاً تجريبياً (لصالون حلاقة وهمي) ←', demo_qr:'جرّب قائمة QR تجريبية (لمقهى وهمي) ←',
+    demo_web:'شاهد موقعاً تجريبياً (لصالون حلاقة وهمي) ←', themes_btn:'تصفّح ثيمات المواقع ←', demo_qr:'جرّب قائمة QR تجريبية (لمقهى وهمي) ←',
     wf_b1:'موقع من صفحة واحدة بلغة واحدة',
     wf_b2:'الخدمات والأسعار وساعات العمل',
     wf_b3:'زر اتصال، والاستضافة مشمولة',
