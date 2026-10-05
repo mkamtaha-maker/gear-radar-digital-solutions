@@ -17,7 +17,9 @@
   var CANADA = ['Toronto', 'Vancouver', 'Edmonton', 'Winnipeg', 'Halifax', 'St_Johns', 'Regina', 'Montreal', 'Moncton', 'Whitehorse'];
 
   // Every element that shows a price. Prices in the page and in the language dictionary stay in USD.
-  var SEL = '.p-amt, .per-note, .amount b, .addon, [data-i18n-html="b2b"], [data-i18n-html="a2"]';
+  // A page can add its own price elements with <script>window.grFxExtra = '...selectors...'</script> before this file.
+  var EXTRA = window.grFxExtra || '';
+  var SEL = '.p-amt, .per-note, .amount b, .addon, [data-i18n-html="b2b"], [data-i18n-html="a2"]' + (EXTRA ? ', ' + EXTRA : '');
   var STORE_RATES = 'gr_fx_rates', STORE_CUR = 'gr_currency';
   var ar = (document.documentElement.lang || '').toLowerCase().indexOf('ar') === 0;
 
@@ -99,8 +101,8 @@
   // Picker goes in the top bar next to the language button; the "approximate" note sits above the plans.
   function addPicker() {
     var firstCard = document.querySelector('.pcard');
-    if (!firstCard) return;
-    var grid = (firstCard.closest('.pgroup') || firstCard).parentNode;
+    var grid = firstCard ? (firstCard.closest('.pgroup') || firstCard).parentNode : document.getElementById('plans');
+    if (!grid) return;
 
     var sel = document.createElement('select');
     sel.id = 'fx-select';
@@ -142,7 +144,9 @@
 
   function start() {
     addPicker();
-    Array.prototype.forEach.call(document.querySelectorAll(SEL), function (el) {
+    // Pages that redraw their price elements (signup.html) are watched as a whole, so new elements are converted too.
+    if (EXTRA) mo.observe(document.body, { childList: true, characterData: true, subtree: true });
+    else Array.prototype.forEach.call(document.querySelectorAll(SEL), function (el) {
       mo.observe(el, { childList: true, characterData: true, subtree: true });
     });
     // Update the note's language when the visitor switches between English and Arabic.
