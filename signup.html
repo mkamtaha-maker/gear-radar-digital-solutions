@@ -338,6 +338,7 @@ footer a:hover{color:var(--gold)}
     <div class="field pro-only files"><label for="q_logo" data-i18n="f_logo">Logo (optional)</label><input id="q_logo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span></div>
     <div class="field pro-only files"><label for="q_cover" data-i18n="f_cover">Cover photo (optional)</label><input id="q_cover" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_cover">Shown behind your name at the top of the page · max 5 MB</span></div>
     <div class="field full pro-only files"><label for="q_photos" data-i18n="f_itemphotos">Item photos (optional)</label><input id="q_photos" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="hint" data-i18n="h_itemphotos">Name each photo exactly like the item (English or Arabic), e.g. Chicken Burger.jpg · up to 40 · max 5 MB each</span><span class="err-text" data-i18n="e_files">Please use JPG, PNG or WebP images under 5 MB (too many files?).</span></div>
+    <label class="check full care"><input type="checkbox" id="q_care"><span data-i18n-html="f_qcare">Add monthly menu updates for <b class="care-p">£9</b>/month: we update your items, prices and offers for you (up to 4 times a month) with priority support. Cancel any time.</span></label>
     <div class="field full"><label for="q_foot"><span data-i18n="f_footer">Note at the bottom of the page</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="q_foot" maxlength="300" dir="auto" placeholder="Please tell our staff about any allergies."></div>
   </fieldset>
 
@@ -408,7 +409,7 @@ footer a:hover{color:var(--gold)}
     { key:'web_premium', service:'website',  group:'web', cat:'cat_web', name:'Website Premium', once:30, cur:'GBP', feats:['wf_m1','wf_m2','wf_m3'] },
     { key:'qr_basic',    service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Starter',      once:30, cur:'GBP', feats:['qf_b1','qf_b2','qf_b3'] },
     { key:'qr_pro',      service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Pro',          once:50, cur:'GBP', feats:['qf_p1','qf_p2','qf_p3'], best:true },
-    { key:'qr_premium',  service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Premium',      once:70, cur:'GBP', add:9, feats:['qf_m1','qf_m2','qf_m3'] }
+    { key:'qr_premium',  service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Premium',      once:70, cur:'GBP', feats:['qf_m1','qf_m2','qf_m3'] }
   ];
   PLANS.forEach(function(p){ if (!p.group) p.group = 'subs'; });
   var DEFAULT_PLAN = { subs:'premium', web:'web_pro', qr:'qr_pro' };
@@ -424,12 +425,12 @@ footer a:hover{color:var(--gold)}
     wf_m1:'Everything in Website Pro', wf_m2:'All 10 templates, including Editorial and Luxury', wf_m3:'All 10 colour themes, including Dark & Gold',
     qf_b1:'Menu or catalogue page, one language', qf_b2:'QR code + printable table card', qf_b3:'Change prices any time with your edit code, 4 themes & 4 layouts',
     qf_p1:'Logo and item photos', qf_p2:'Order or book on WhatsApp', qf_p3:'Arabic + English, live search, 7 themes & 7 layouts',
-    qf_m1:'Everything in QR Pro, plus all 10 themes & 10 layouts', qf_m2:'We update your menu for you (up to 4 a month)', qf_m3:'Priority support',
+    qf_m1:'Everything in QR Pro', qf_m2:'All 10 themes, including Midnight Neon and Emerald & Brass', qf_m3:'All 10 layouts, including Magazine and Bento',
     l_web:'Your website', l_qr:'Your QR menu or catalogue', f_biz:'Business name', e_biz:'Please enter your business name.',
     f_activity:'What you do', f_desc:'Short description', f_services:'Services and prices (one per line)', e_services:'Please add at least one service.',
     f_hours:'Opening hours', f_phone:'Phone (Call button)', f_sitelang:'Website language', both:'Arabic + English',
     pro_note_web:'Logo, photos, Google Map and WhatsApp button come with Website Pro and Premium. More templates and themes unlock with Pro and Premium.', f_template:'Template (layout)', h_gallery:'See them in the gallery', locked:'needs {plan}',
-    f_wabtn:'WhatsApp number (for the WhatsApp button)', f_care:'Add monthly care for <b class="care-p">£15</b>/month: up to 4 updates a month, revision rounds and priority support. Cancel any time.', f_palette:'Colour theme', f_address:'Address (for Google Maps)',
+    f_wabtn:'WhatsApp number (for the WhatsApp button)', f_qcare:'Add monthly menu updates for <b class="care-p">£9</b>/month: we update your items, prices and offers for you (up to 4 times a month) with priority support. Cancel any time.', f_care:'Add monthly care for <b class="care-p">£15</b>/month: up to 4 updates a month, revision rounds and priority support. Cancel any time.', f_palette:'Colour theme', f_address:'Address (for Google Maps)',
     f_logo:'Logo (optional)', h_img:'JPG, PNG or WebP · max 5 MB', f_photos8:'Photos (up to 8)', e_files:'Please use JPG, PNG or WebP images under 5 MB (too many files?).',
     f_btype:'Type', bt_menu:'Restaurant / café menu', bt_services:'Services (salon, clinic, repair…)', bt_products:'Shop / products catalogue',
     f_slug:'Your page link', h_slug:'English letters, numbers and hyphens only. This link stays the same forever.', e_slug:'Use at least 3 characters: a–z, 0–9 and hyphens.',
@@ -485,12 +486,12 @@ footer a:hover{color:var(--gold)}
     wf_m1:'كل مزايا Website Pro', wf_m2:'كل القوالب العشرة، ومنها المجلة والعرض الفاخر', wf_m3:'كل الثيمات العشرة، ومنها الداكن والذهبي',
     qf_b1:'صفحة قائمة أو كتالوج بلغة واحدة', qf_b2:'رمز QR + كرت طاولة للطباعة', qf_b3:'غيّر الأسعار أي وقت بكود التعديل، 4 ثيمات و4 طرق عرض',
     qf_p1:'الشعار وصور الأصناف', qf_p2:'الطلب أو الحجز عبر واتساب', qf_p3:'عربي + إنجليزي، بحث مباشر، 7 ثيمات و7 طرق عرض',
-    qf_m1:'كل مزايا QR Pro، وكل الثيمات العشرة وطرق العرض العشر', qf_m2:'نحدّث قائمتك بدلاً عنك (حتى 4 مرات شهرياً)', qf_m3:'دعم بأولوية',
+    qf_m1:'كل مزايا QR Pro', qf_m2:'كل الثيمات العشرة، ومنها النيون الليلي والزمردي', qf_m3:'كل طرق العرض العشر، ومنها المجلة والبينتو',
     l_web:'موقعك', l_qr:'قائمتك أو كتالوجك بالـ QR', f_biz:'اسم النشاط', e_biz:'يرجى إدخال اسم النشاط.',
     f_activity:'مجال النشاط', f_desc:'وصف مختصر', f_services:'الخدمات والأسعار (سطر لكل خدمة)', e_services:'يرجى إضافة خدمة واحدة على الأقل.',
     f_hours:'ساعات العمل', f_phone:'رقم الهاتف (زر الاتصال)', f_sitelang:'لغة الموقع', both:'عربي + إنجليزي',
     pro_note_web:'الشعار والصور وخريطة Google وزر واتساب متاحة في Website Pro و Premium. وتتوفر قوالب وثيمات أكثر في Pro و Premium.', f_template:'القالب (شكل الصفحة)', h_gallery:'شاهدها في المعرض', locked:'يتطلب {plan}',
-    f_wabtn:'رقم واتساب (لزر واتساب)', f_care:'أضف الرعاية الشهرية بـ <b class="care-p">£15</b> شهرياً: حتى 4 تحديثات شهرياً، جولات مراجعة، ودعم بأولوية. تقدر تلغيها في أي وقت.', f_palette:'الألوان', f_address:'العنوان (لخريطة Google)',
+    f_wabtn:'رقم واتساب (لزر واتساب)', f_qcare:'أضف التحديثات الشهرية للقائمة بـ <b class="care-p">£9</b> شهرياً: نحدّث أصنافك وأسعارك وعروضك بدلاً عنك (حتى 4 مرات شهرياً) مع دعم بأولوية. تقدر تلغيها في أي وقت.', f_care:'أضف الرعاية الشهرية بـ <b class="care-p">£15</b> شهرياً: حتى 4 تحديثات شهرياً، جولات مراجعة، ودعم بأولوية. تقدر تلغيها في أي وقت.', f_palette:'الألوان', f_address:'العنوان (لخريطة Google)',
     f_logo:'الشعار (اختياري)', h_img:'JPG أو PNG أو WebP · حتى 5 ميغابايت', f_photos8:'صور (حتى 8)', e_files:'استخدم صور JPG أو PNG أو WebP أقل من 5 ميغابايت (أو قلّل عدد الملفات).',
     f_btype:'النوع', bt_menu:'قائمة مطعم / مقهى', bt_services:'خدمات (صالون، عيادة، صيانة…)', bt_products:'كتالوج منتجات / متجر',
     f_slug:'رابط صفحتك', h_slug:'حروف إنجليزية وأرقام وشرطات فقط. الرابط يبقى ثابتاً دائماً.', e_slug:'3 أحرف على الأقل: a–z و 0–9 والشرطة.',
@@ -786,7 +787,7 @@ footer a:hover{color:var(--gold)}
         language: $('q_lang').value, items_en: ie, items_ar: ia, description: $('q_desc').value.trim(),
         footer_note_en: /[\u0600-\u06FF]/.test($('q_foot').value) ? '' : $('q_foot').value.trim(),
         footer_note_ar: /[\u0600-\u06FF]/.test($('q_foot').value) ? $('q_foot').value.trim() : '',
-        include_stand: $('q_stand').checked, theme: $('q_theme').value, layout: $('q_layout').value };
+        include_stand: $('q_stand').checked, care_plan: $('q_care').checked, theme: $('q_theme').value, layout: $('q_layout').value };
       if (tier() !== 'basic') {
         payload.whatsapp = $('q_wa').value.replace(/\D/g, '');
         var ql = imgList($('q_logo'), 1), qc = imgList($('q_cover'), 1), qph = imgList($('q_photos'), 40);
@@ -907,7 +908,7 @@ footer a:hover{color:var(--gold)}
   function updateQuote(showMsg){
     var p = plan(), my = ++qSeq;
     var bill = p.group === 'subs' ? billing : 'monthly';
-    fetch(QUOTE, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ plan: p.key, billing: bill, code: appliedCode, addon: p.group === 'web' && $('w_care').checked }) })
+    fetch(QUOTE, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ plan: p.key, billing: bill, code: appliedCode, addon: (p.group === 'web' && $('w_care').checked) || (p.group === 'qr' && $('q_care').checked) }) })
       .then(function(r){ return r.json(); })
       .then(function(q){
         if (my !== qSeq || !q || !q.ok) return;
@@ -931,7 +932,7 @@ footer a:hover{color:var(--gold)}
   var updateBase = update;
   update = function(){ var r = updateBase.apply(this, arguments); scheduleQuote(); return r; };
   document.addEventListener('click', function(e){ if (e.target.closest && e.target.closest('[data-billing],[data-group]')) scheduleQuote(); });
-  document.addEventListener('change', function(e){ if (e.target && (e.target.name === 'plan' || e.target.id === 'w_care')) scheduleQuote(); });
+  document.addEventListener('change', function(e){ if (e.target && (e.target.name === 'plan' || e.target.id === 'w_care' || e.target.id === 'q_care')) scheduleQuote(); });
 
   // ---------- Init ----------
   $('year').textContent = new Date().getFullYear();
@@ -940,7 +941,7 @@ footer a:hover{color:var(--gold)}
   $('areas').appendChild(areaRow());
   applyLang(initial === 'ar' ? 'ar' : 'en');
   var preLang = params.get('sitelang'); if (preLang === 'en' || preLang === 'ar' || preLang === 'both') $('w_lang').value = preLang;
-  if (params.get('care') === '1') $('w_care').checked = true;
+  if (params.get('care') === '1') { $('w_care').checked = true; $('q_care').checked = true; }
   var prePal = params.get('palette'), preTpl = params.get('template');
   if (prePal) $('w_palette').setAttribute('data-want', prePal);
   if (preTpl) $('w_template').setAttribute('data-want', preTpl);
