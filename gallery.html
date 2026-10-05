@@ -247,7 +247,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   <div class="container cart-in">
     <div class="cart-plan">
       <small data-i18n="your_plan">Your plan</small>
-      <b id="cartName">Website Starter · <span class="gx-price">$149</span></b>
+      <b id="cartName">Website Starter · <span class="gx-price">£10</span></b>
       <span class="cart-why" id="cartWhy"></span>
     </div>
     <a class="cart-btn" id="cartBtn" href="signup.html?plan=web_basic">Continue</a>
@@ -257,12 +257,14 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 <script src="designs.js"></script>
 <script>
 (function(){
-  // Plans and prices must match signup.html (PLANS) and index.html. Tier: 0 Starter, 1 Pro, 2 Premium, 3 custom quote.
+  // Plans and prices must match signup.html (PLANS), index.html and plan_prices in Supabase. Prices are in pounds.
+  // Tier: 0 Starter, 1 Pro, 2 Premium, 3 custom quote. Monthly care is an optional add-on with any plan.
   var PLAN = [
-    { key:'web_basic',   name:'Website Starter', price:'$149' },
-    { key:'web_pro',     name:'Website Pro',     price:'$249' },
-    { key:'web_premium', name:'Website Premium', price:'$249', add:'$19' }
+    { key:'web_basic',   name:'Website Starter', price:'£10' },
+    { key:'web_pro',     name:'Website Pro',     price:'£20' },
+    { key:'web_premium', name:'Website Premium', price:'£30' }
   ];
+  var CARE_PRICE = '£15';
   // Themes and templates come from designs.js (same list as signup.html and the Website Agent).
   var THEMES = window.GR_DESIGNS.themes, TEMPLATES = window.GR_DESIGNS.templates;
   // Single-choice groups
@@ -276,13 +278,10 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       { v:'both', tier:1, en:'Arabic + English', ar:'عربي + إنجليزي' } ] },
     { id:'template', title:{en:'Template (layout)',ar:'القالب (شكل الصفحة)'}, template:true },
     { id:'theme', title:{en:'Theme (colours)',ar:'الثيم (الألوان)'}, theme:true },
-    { id:'rev', title:{en:'Revision rounds before launch',ar:'جولات التعديل قبل النشر'}, choices:[
-      { v:'1', tier:0, en:'1 round',  ar:'جولة واحدة' },
-      { v:'2', tier:1, en:'2 rounds', ar:'جولتان' },
-      { v:'3', tier:2, en:'3 rounds', ar:'3 جولات' } ] },
-    { id:'upd', title:{en:'Updates after launch',ar:'التحديثات بعد النشر'}, choices:[
-      { v:'0', tier:0, en:'I\'ll manage',                ar:'لا أحتاج' },
-      { v:'4', tier:2, en:'Up to 4 a month, done by us', ar:'حتى 4 شهرياً ننفذها لك' } ] }
+    { id:'care', addon:true, title:{en:'Monthly care (optional, with any plan)',ar:'رعاية شهرية (اختيارية مع أي باقة)'}, choices:[
+      { v:'0', tier:0, en:'No thanks', ar:'لا أحتاج' },
+      { v:'1', tier:0, en:'<span class="gx-price">£15</span>/month: up to 4 updates a month, revision rounds, priority support',
+               ar:'<span class="gx-price">£15</span> شهرياً: حتى 4 تحديثات شهرياً، جولات مراجعة، دعم بأولوية' } ] }
   ];
   // On/off features
   var FEATS = [
@@ -322,7 +321,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   };
 
   var lang = 'en';
-  var state = { pages:'1', lang:'en', template:'Classic', theme:'Modern Blue', rev:'1', upd:'0' };
+  var state = { pages:'1', lang:'en', template:'Classic', theme:'Modern Blue', care:'0' };
   FEATS.forEach(function(f){ state[f.id] = f.on; });
 
   function $(id){ return document.getElementById(id); }
@@ -348,7 +347,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
         h += '</div><p class="tpl-desc">' + esc(lang === 'ar' ? ct.ar_d : ct.en_d) + '</p><div>';
       }
       else g.choices.forEach(function(c){
-        h += '<button type="button" class="chip" data-g="' + g.id + '" data-v="' + c.v + '" aria-pressed="' + (state[g.id] === c.v) + '">' + esc(c[lang]) + ' ' + badge(c.tier) + '</button>';
+        h += '<button type="button" class="chip" data-g="' + g.id + '" data-v="' + c.v + '" aria-pressed="' + (state[g.id] === c.v) + '">' + (g.addon ? c[lang] : esc(c[lang]) + ' ' + badge(c.tier)) + '</button>';
       });
       h += '</div></section>';
     });
@@ -376,6 +375,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     GROUPS.forEach(function(g){
       if (g.theme) { var t = themeOf(state.theme); out.push({ tier:t.tier, label: lang === 'ar' ? t.ar : t.name }); return; }
       if (g.template) { var tp = tplOf(state.template); out.push({ tier:tp.tier, label: lang === 'ar' ? tp.ar : tp.name }); return; }
+      if (g.addon) return;
       g.choices.forEach(function(c){ if (state[g.id] === c.v) out.push({ tier:c.tier, label:c[lang] }); });
     });
     FEATS.forEach(function(f){ if (state[f.id]) out.push({ tier:f.tier, label:f[lang] }); });
@@ -393,10 +393,10 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     } else {
       var p = PLAN[tier];
       name.innerHTML = esc(p.name) + ' · <span class="gx-price">' + p.price + '</span> <small style="color:var(--on-ink-muted);font-weight:500;font-size:.8rem">' + esc(s.once) +
-        (p.add ? ' <span class="gx-price">' + esc(s.addon.replace('{n}', p.add)) + '</span>' : '') + '</small>';
+        (state.care === '1' ? ' <span class="gx-price">' + esc(s.addon.replace('{n}', CARE_PRICE)) + '</span>' : '') + '</small>';
       btn.textContent = s.cont;
       var sl = state.lang;
-      btn.href = 'signup.html?plan=' + p.key + '&palette=' + encodeURIComponent(state.theme) + '&template=' + encodeURIComponent(state.template) + '&sitelang=' + sl + (lang === 'ar' ? '&lang=ar' : '');
+      btn.href = 'signup.html?plan=' + p.key + '&palette=' + encodeURIComponent(state.theme) + '&template=' + encodeURIComponent(state.template) + '&sitelang=' + sl + (state.care === '1' ? '&care=1' : '') + (lang === 'ar' ? '&lang=ar' : '');
     }
     var top = all.filter(function(p){ return p.tier === tier && tier > 0; }).map(function(p){ return p.label; });
     why.textContent = tier === 0 ? s.why_base : s.why.replace('{plan}', tier === 3 ? s.custom_name : PLAN[tier].name) + top.join(lang === 'ar' ? '، ' : ', ');

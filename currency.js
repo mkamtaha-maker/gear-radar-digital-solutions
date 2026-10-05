@@ -1,9 +1,9 @@
 /* Gear Radar – show prices in the visitor's local currency.
-   Prices stay defined in USD in the page (.p-amt, data-m, data-y). This script:
+   Prices stay defined in the page in USD ("$19"), or in pounds for websites ("£10"). This script:
    1. guesses the visitor's currency from their device time zone (no tracking, no extra request),
    2. gets today's rates from open.er-api.com (free, cached for 12 hours),
-   3. rewrites every "$<number>" or "<number>$" inside the price elements listed in SEL below, including after the monthly/yearly toggle,
-   4. adds a small currency picker above the plans. If anything fails, USD stays as it is. */
+   3. rewrites every "$<number>", "<number>$" or "£<number>" inside the price elements listed in SEL below, including after the monthly/yearly toggle,
+   4. adds a small currency picker above the plans. If anything fails, prices stay as written. */
 (function () {
   var CURRENCIES = ['USD', 'GBP', 'EUR', 'CAD', 'AED', 'SAR', 'QAR', 'KWD', 'BHD', 'OMR', 'EGP'];
   var DECIMALS = { KWD: 1, BHD: 1, OMR: 1 };
@@ -16,7 +16,7 @@
     'Luxembourg', 'Monaco', 'Malta', 'Bratislava', 'Ljubljana', 'Tallinn', 'Riga', 'Vilnius', 'Zagreb'];
   var CANADA = ['Toronto', 'Vancouver', 'Edmonton', 'Winnipeg', 'Halifax', 'St_Johns', 'Regina', 'Montreal', 'Moncton', 'Whitehorse'];
 
-  // Every element that shows a price. Prices in the page and in the language dictionary stay in USD.
+  // Every element that shows a price. Prices in the page and in the language dictionary stay in USD (or GBP for websites).
   // A page can add its own price elements with <script>window.grFxExtra = '...selectors...'</script> before this file.
   var EXTRA = window.grFxExtra || '';
   var SEL = '.p-amt, .per-note, .amount b, .addon, [data-i18n-html="b2b"], [data-i18n-html="a2"]' + (EXTRA ? ', ' + EXTRA : '');
@@ -53,18 +53,23 @@
 
   var currency = guessCurrency(), rates = null;
 
-  function fmt(usd) {
-    var v = usd * rates[currency], d = DECIMALS[currency] || 0;
+  // Converts an amount from its own currency (USD or GBP) into the chosen one.
+  function fmt(amount, from) {
+    var v = amount / rates[from || 'USD'] * rates[currency], d = DECIMALS[currency] || 0;
     try {
       return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency, currencyDisplay: 'narrowSymbol', minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
     } catch (e) { return currency + ' ' + v.toFixed(d); }
   }
 
-  // Turns every "$19" (English) or "19$" (Arabic) in a piece of text into the chosen currency.
+  // Turns every "$19" (English) or "19$" (Arabic) in US dollars, and every "£15" in pounds, into the chosen currency.
   // Also used by the chat window so Tala's answers match the prices on the page.
   function toLocal(text) {
-    if (currency === 'USD' || !rates) return text;
-    return String(text).replace(/\$\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d,]*(?:\.\d+)?)\s?\$/g, function (m, a, b) { return fmt(parseFloat((a || b).replace(/,/g, ''))); });
+    if (!rates) return text;
+    return String(text).replace(/\$\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d,]*(?:\.\d+)?)\s?\$|£\s?(\d[\d,]*(?:\.\d+)?)/g, function (m, a, b, c) {
+      var from = c ? 'GBP' : 'USD';
+      if (from === currency || !rates[from]) return m;
+      return fmt(parseFloat((a || b || c).replace(/,/g, '')), from);
+    });
   }
   window.grFx = { convert: toLocal, currency: function () { return currency; } };
   function notify() { try { document.dispatchEvent(new CustomEvent('gr-currency-change')); } catch (e) {} }
@@ -79,15 +84,18 @@
     el.setAttribute('data-fx-shown', el.textContent);
   }
   function renderAll() {
-    Array.prototype.forEach.call(document.querySelectorAll(SEL), render);
+    var els = document.querySelectorAll(SEL);
+    Array.prototype.forEach.call(els, render);
+    var converted = Array.prototype.some.call(els, function (el) { return el.getAttribute('data-fx-usd') !== el.innerHTML; });
     ar = (document.documentElement.lang || '').toLowerCase().indexOf('ar') === 0;
     var note = document.getElementById('fx-note-text') || (function () {
       var n = document.getElementById('fx-note'); if (!n) return null;
       var sp = document.createElement('span'); sp.id = 'fx-note-text'; n.appendChild(sp); return sp;
     })();
-    if (note) note.innerHTML = currency === 'USD' ? '' : (ar
-      ? 'الأسعار محوّلة تقريبياً من الدولار الأمريكي بسعر صرف اليوم. <a href="https://www.exchangerate-api.com" rel="noopener" target="_blank">Rates by Exchange Rate API</a>'
-      : 'Approximate prices, converted from US dollars at today\'s rate. <a href="https://www.exchangerate-api.com" rel="noopener" target="_blank">Rates by Exchange Rate API</a>');
+    // Website prices are set in pounds and the rest in US dollars, so the note shows whenever something was converted.
+    if (note) note.innerHTML = !converted ? '' : (ar
+      ? 'الأسعار محوّلة تقريبياً بسعر صرف اليوم. <a href="https://www.exchangerate-api.com" rel="noopener" target="_blank">Rates by Exchange Rate API</a>'
+      : 'Approximate prices, converted at today\'s rate. <a href="https://www.exchangerate-api.com" rel="noopener" target="_blank">Rates by Exchange Rate API</a>');
   }
 
   // Re-render when the page's own script changes a price (e.g. monthly / yearly toggle).
