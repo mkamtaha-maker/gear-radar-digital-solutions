@@ -223,12 +223,13 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 <script>
 (function(){
   // Plans and prices must match signup.html (PLANS), index.html and plan_prices in Supabase. Prices are in pounds.
-  // Tier: 0 Starter, 1 Pro, 2 Premium.
+  // Tier: 0 Starter, 1 Pro, 2 Premium. Monthly menu updates are an optional add-on with any plan.
   var PLAN = [
     { key:'qr_basic',   name:'QR Starter', price:'£30' },
     { key:'qr_pro',     name:'QR Pro',     price:'£50' },
-    { key:'qr_premium', name:'QR Premium', price:'£70', add:'£9' }
+    { key:'qr_premium', name:'QR Premium', price:'£70' }
   ];
+  var CARE_PRICE = '£9';
   // Themes and layouts come from qr-designs.js (same list as signup.html and the Smart QR Generator).
   var THEMES = window.GR_QR_DESIGNS.themes, LAYOUTS = window.GR_QR_DESIGNS.layouts;
   var GROUPS = [
@@ -241,7 +242,11 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       { v:'ar',   tier:0, en:'العربية',          ar:'العربية' },
       { v:'both', tier:1, en:'Arabic + English', ar:'عربي + إنجليزي' } ] },
     { id:'layout', title:{en:'Layout',ar:'طريقة العرض'}, layout:true },
-    { id:'theme', title:{en:'Theme (colours)',ar:'الثيم (الألوان)'}, theme:true }
+    { id:'theme', title:{en:'Theme (colours)',ar:'الثيم (الألوان)'}, theme:true },
+    { id:'care', addon:true, title:{en:'Monthly menu updates (optional, with any plan)',ar:'تحديثات شهرية للقائمة (اختيارية مع أي باقة)'}, choices:[
+      { v:'0', tier:0, en:'No thanks, I update it myself', ar:'لا، أحدّثها بنفسي' },
+      { v:'1', tier:0, en:'<span class="gx-price">£9</span>/month: we update your items, prices and offers (up to 4 times a month), priority support',
+               ar:'<span class="gx-price">£9</span> شهرياً: نحدّث أصنافك وأسعارك وعروضك (حتى 4 مرات شهرياً)، ودعم بأولوية' } ] }
   ];
   var FEATS = [
     { id:'items',   tier:0, on:true,  fixed:true, en:'Items & prices',              ar:'الأصناف والأسعار' },
@@ -253,8 +258,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     { id:'wa',      tier:1, on:false, en:'Order or book on WhatsApp',   ar:'الطلب أو الحجز عبر واتساب' },
     { id:'search',  tier:1, on:false, en:'Live search & category bar',  ar:'بحث مباشر وشريط أقسام' },
     { id:'offers',  tier:1, on:false, en:'Today\'s offers & sold-out tags', ar:'عروض اليوم وعلامة غير متاح' },
-    { id:'dark',    tier:1, on:false, en:'Light / dark mode button',    ar:'زر الوضع الداكن' },
-    { id:'updates', tier:2, on:false, en:'We update your menu for you (up to 4 a month)', ar:'نحدّث قائمتك بدلاً عنك (حتى 4 مرات شهرياً)' }
+    { id:'dark',    tier:1, on:false, en:'Light / dark mode button',    ar:'زر الوضع الداكن' }
   ];
   var TIER_LABEL = { en:['Starter','Pro','Premium'], ar:['Starter','Pro','Premium'] };
   var STR = {
@@ -289,7 +293,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   };
 
   var lang = 'en';
-  var state = { type:'menu', lang:'en', layout:'Modern Cards', theme:'Warm Cream & Amber' };
+  var state = { type:'menu', lang:'en', layout:'Modern Cards', theme:'Warm Cream & Amber', care:'0' };
   FEATS.forEach(function(f){ state[f.id] = f.on; });
 
   function $(id){ return document.getElementById(id); }
@@ -315,7 +319,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
         h += '</div><p class="tpl-desc">' + esc(lang === 'ar' ? cl.ar_d : cl.en_d) + '</p><div>';
       }
       else g.choices.forEach(function(c){
-        h += '<button type="button" class="chip" data-g="' + g.id + '" data-v="' + c.v + '" aria-pressed="' + (state[g.id] === c.v) + '">' + esc(c[lang]) + ' ' + badge(c.tier) + '</button>';
+        h += '<button type="button" class="chip" data-g="' + g.id + '" data-v="' + c.v + '" aria-pressed="' + (state[g.id] === c.v) + '">' + (g.addon ? c[lang] : esc(c[lang]) + ' ' + badge(c.tier)) + '</button>';
       });
       h += '</div></section>';
     });
@@ -337,7 +341,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
   function picks(){
     var out = [], t = themeOf(state.theme), l = layoutOf(state.layout);
     out.push({ tier:l.tier, label: lang === 'ar' ? l.ar : l.name }, { tier:t.tier, label: lang === 'ar' ? t.ar : t.name });
-    GROUPS.forEach(function(g){ if (g.choices) g.choices.forEach(function(c){ if (state[g.id] === c.v) out.push({ tier:c.tier, label:c[lang] }); }); });
+    GROUPS.forEach(function(g){ if (g.choices && !g.addon) g.choices.forEach(function(c){ if (state[g.id] === c.v) out.push({ tier:c.tier, label:c[lang] }); }); });
     FEATS.forEach(function(f){ if (state[f.id]) out.push({ tier:f.tier, label:f[lang] }); });
     return out;
   }
@@ -345,10 +349,10 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     var s = STR[lang], all = picks();
     var tier = all.reduce(function(m, p){ return Math.max(m, p.tier); }, 0), p = PLAN[tier];
     $('cartName').innerHTML = esc(p.name) + ' · <span class="gx-price">' + p.price + '</span> <small style="color:var(--on-ink-muted);font-weight:500;font-size:.8rem">' + esc(s.once) +
-      (p.add ? ' <span class="gx-price">' + esc(s.addon.replace('{n}', p.add)) + '</span>' : '') + '</small>';
+      (state.care === '1' ? ' <span class="gx-price">' + esc(s.addon.replace('{n}', CARE_PRICE)) + '</span>' : '') + '</small>';
     var btn = $('cartBtn'); btn.textContent = s.cont;
     btn.href = 'signup.html?plan=' + p.key + '&theme=' + encodeURIComponent(state.theme) + '&layout=' + encodeURIComponent(state.layout) +
-      '&pagelang=' + state.lang + '&qtype=' + state.type + (lang === 'ar' ? '&lang=ar' : '');
+      '&pagelang=' + state.lang + '&qtype=' + state.type + (state.care === '1' ? '&care=1' : '') + (lang === 'ar' ? '&lang=ar' : '');
     var top = all.filter(function(x){ return x.tier === tier && tier > 0; }).map(function(x){ return x.label; });
     $('cartWhy').textContent = tier === 0 ? s.why_base : s.why.replace('{plan}', p.name) + top.join(lang === 'ar' ? '، ' : ', ');
   }
