@@ -30,6 +30,8 @@
 html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+[id^="plans-"]{scroll-margin-top:100px}
+.pcard{cursor:pointer}
 body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -422,7 +424,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b4">Tailored CV points for each match — never invented experience</span></li>
         </ul>
         <p class="for" data-i18n-html="s4_for"><b>Ideal for:</b> professionals looking for their next role at home or abroad.</p>
-        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
+        <a href="#plans-jobs" class="btn btn-dark" data-i18n="see_plans">See plans</a>
       </article>
       <!-- 1. Executive Assistant -->
       <article class="card reveal">
@@ -439,7 +441,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b4">Reminders, voice notes and PDF summaries</span></li>
         </ul>
         <p class="for" data-i18n-html="s1_for"><b>Ideal for:</b> busy owners, managers and consultants.</p>
-        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
+        <a href="#plans-assistant" class="btn btn-dark" data-i18n="see_plans">See plans</a>
       </article>
 
       <!-- 2. Websites -->
@@ -457,7 +459,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s2_b4">Every site is checked by us before it goes live, and easy to update later</span></li>
         </ul>
         <p class="for" data-i18n-html="s2_for"><b>Ideal for:</b> shops, salons, trades, clinics and restaurants.</p>
-        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
+        <a href="#plans-web" class="btn btn-dark" data-i18n="see_plans">See plans</a>
       </article>
 
       <!-- 3. QR Catalogue -->
@@ -475,7 +477,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s3_b4">Change prices any time — no reprinting</span></li>
         </ul>
         <p class="for" data-i18n-html="s3_for"><b>Ideal for:</b> cafés, restaurants, takeaways and retail.</p>
-        <a href="#pricing" class="btn btn-dark" data-i18n="see_plans">See plans</a>
+        <a href="#plans-qr" class="btn btn-dark" data-i18n="see_plans">See plans</a>
       </article>
 
     </div>
@@ -485,7 +487,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <span class="eyebrow" data-i18n="jh_eyebrow">AI Job Hunter</span>
         <h3 data-i18n="jh_title">The right jobs, delivered every day</h3>
         <p data-i18n="s4_sub">Stop scrolling job boards. Get the roles that actually fit your CV, sent to your Telegram or WhatsApp.</p>
-        <a href="#pricing" class="btn btn-gold" data-i18n="see_plans">See plans</a>
+        <a href="#plans-jobs" class="btn btn-gold" data-i18n="see_plans">See plans</a>
       </div>
       <div class="phone" aria-label="Example conversation with the AI Job Hunter" role="img">
         <div class="phone-top">
@@ -506,7 +508,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <span class="eyebrow" data-i18n="s1_title">AI Executive Assistant</span>
         <h3 data-i18n="as_title">Your inbox and diary, handled</h3>
         <p data-i18n="s1_sub">A personal assistant that lives in your Telegram or WhatsApp and handles your email and diary.</p>
-        <a href="#pricing" class="btn btn-gold" data-i18n="see_plans">See plans</a>
+        <a href="#plans-assistant" class="btn btn-gold" data-i18n="see_plans">See plans</a>
       </div>
       <div class="phone" aria-label="Example conversation with the AI Executive Assistant" role="img">
         <div class="phone-top">
@@ -527,7 +529,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <span class="eyebrow" data-i18n="s2_title">Websites for Businesses</span>
         <h3 data-i18n="ws_title">Visitors become calls and messages</h3>
         <p data-i18n="s2_sub">A clean, mobile-friendly website that turns visitors into calls and WhatsApp messages.</p>
-        <a href="#pricing" class="btn btn-gold" data-i18n="see_plans">See plans</a>
+        <a href="#plans-web" class="btn btn-gold" data-i18n="see_plans">See plans</a>
       </div>
       <div class="phone" aria-label="Example business website on a phone" role="img">
         <div class="mini-url pp" style="animation-delay:.2s">yourbusiness.co.uk</div>
@@ -547,7 +549,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <span class="eyebrow" data-i18n="s3_title">Smart QR Catalogue</span>
         <h3 data-i18n="qr_title">Your menu, one scan away</h3>
         <p data-i18n="s3_sub">Your menu or product list as a beautiful mobile page — one scan away.</p>
-        <a href="#pricing" class="btn btn-gold" data-i18n="see_plans">See plans</a>
+        <a href="#plans-qr" class="btn btn-gold" data-i18n="see_plans">See plans</a>
       </div>
       <div class="qr-pair">
         <div class="qr-card pp" style="animation-delay:.2s"><svg viewBox="0 0 25 25" shape-rendering="crispEdges" aria-hidden="true"><path fill="#15171C" d="M0 0h7v1h-7zM8 0h5v1h-5zM14 0h2v1h-2zM18 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h3v1h-3zM12 1h2v1h-2zM15 1h2v1h-2zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM11 2h1v1h-1zM15 2h1v1h-1zM18 2h1v1h-1zM20 2h3v1h-3zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h3v1h-3zM13 3h2v1h-2zM18 3h1v1h-1zM20 3h3v1h-3zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM15 4h1v1h-1zM18 4h1v1h-1zM20 4h3v1h-3zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM12 5h5v1h-5zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h7v1h-7zM12 6h3v1h-3zM18 6h7v1h-7zM10 7h1v1h-1zM14 7h3v1h-3zM0 8h1v1h-1zM5 8h2v1h-2zM8 8h1v1h-1zM11 8h2v1h-2zM15 8h3v1h-3zM20 8h1v1h-1zM24 8h1v1h-1zM1 9h2v1h-2zM7 9h1v1h-1zM10 9h4v1h-4zM15 9h3v1h-3zM19 9h2v1h-2zM23 9h1v1h-1zM3 10h4v1h-4zM8 10h2v1h-2zM12 10h1v1h-1zM16 10h1v1h-1zM18 10h2v1h-2zM0 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM12 11h1v1h-1zM16 11h6v1h-6zM0 12h1v1h-1zM3 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM12 12h2v1h-2zM15 12h3v1h-3zM19 12h1v1h-1zM21 12h3v1h-3zM1 13h1v1h-1zM5 13h3v1h-3zM9 13h3v1h-3zM14 13h2v1h-2zM19 13h2v1h-2zM22 13h2v1h-2zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h2v1h-2zM10 14h2v1h-2zM13 14h7v1h-7zM21 14h1v1h-1zM23 14h2v1h-2zM0 15h3v1h-3zM5 15h2v1h-2zM8 15h1v1h-1zM10 15h1v1h-1zM13 15h1v1h-1zM17 15h1v1h-1zM21 15h4v1h-4zM0 16h1v1h-1zM2 16h3v1h-3zM8 16h7v1h-7zM18 16h1v1h-1zM20 16h5v1h-5zM8 17h3v1h-3zM17 17h2v1h-2zM20 17h1v1h-1zM23 17h1v1h-1zM0 18h7v1h-7zM14 18h5v1h-5zM0 19h1v1h-1zM6 19h1v1h-1zM8 19h3v1h-3zM12 19h1v1h-1zM16 19h2v1h-2zM22 19h3v1h-3zM0 20h1v1h-1zM2 20h3v1h-3zM6 20h1v1h-1zM9 20h1v1h-1zM11 20h3v1h-3zM15 20h1v1h-1zM18 20h2v1h-2zM22 20h3v1h-3zM0 21h1v1h-1zM2 21h3v1h-3zM6 21h1v1h-1zM11 21h1v1h-1zM14 21h2v1h-2zM17 21h5v1h-5zM23 21h1v1h-1zM0 22h1v1h-1zM2 22h3v1h-3zM6 22h1v1h-1zM10 22h5v1h-5zM16 22h1v1h-1zM18 22h2v1h-2zM21 22h2v1h-2zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM11 23h2v1h-2zM14 23h4v1h-4zM20 23h1v1h-1zM22 23h1v1h-1zM24 23h1v1h-1zM0 24h7v1h-7zM8 24h8v1h-8zM19 24h2v1h-2zM22 24h3v1h-3z"/></svg><small data-i18n="qr_scan">Scan to see our menu</small></div>
@@ -584,7 +586,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       </div>
     </div>
     <div class="price-groups">
-      <div class="pgroup reveal">
+      <div class="pgroup reveal" id="plans-jobs">
         <div class="pgroup-head"><h3 data-i18n="g_jobs">AI Job Hunter</h3></div>
         <div class="pcard" data-plan="jobs_starter" data-m="12" data-y="120">
           <h4>Jobs Starter</h4>
@@ -601,7 +603,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <a class="btn btn-dark p-go" href="signup.html?plan=jobs_pro&amp;billing=monthly" data-i18n="start">Get started</a>
         </div>
       </div>
-      <div class="pgroup reveal">
+      <div class="pgroup reveal" id="plans-assistant">
         <div class="pgroup-head"><h3 data-i18n="g_butler">AI Executive Assistant</h3></div>
         <div class="pcard" data-plan="basic" data-m="9" data-y="90">
           <h4>Butler Basic</h4>
@@ -646,7 +648,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       <h3 data-i18n="biz_title">Websites and QR menus — pay once</h3>
       <p data-i18n="biz_lead">Send us your details online, we build it and check it before it goes live. Hosting on our link is included.</p>
     </div>
-    <div class="biz-group reveal">
+    <div class="biz-group reveal" id="plans-web">
       <h4 data-i18n="s2_title">Websites for Businesses</h4>
       <p data-i18n="biz_web_sub">A mobile-friendly page that turns visitors into calls and WhatsApp messages.</p>
       <div class="demo-link"><a href="https://mkamtaha-maker.github.io/cedar-barbers-demo-9kyrxe/" target="_blank" rel="noopener" data-i18n="demo_web">See a sample website (fictional barber shop) →</a></div>
@@ -674,7 +676,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           </div>
       </div>
     </div>
-    <div class="biz-group reveal">
+    <div class="biz-group reveal" id="plans-qr">
       <h4 data-i18n="s3_title">Smart QR Catalogue</h4>
       <p data-i18n="biz_qr_sub">Your menu, services or products behind one QR code — update prices without reprinting.</p>
       <div class="demo-link"><a href="https://menu.gearradar.co.uk/demo-cafe/" target="_blank" rel="noopener" data-i18n="demo_qr">Try a sample QR menu (fictional café) →</a></div>
@@ -998,6 +1000,12 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
   });
   document.getElementById('langSelect').addEventListener('change', renderPrices);
   renderPrices();
+  // Clicking anywhere on a price card opens signup for that plan (same link as its button)
+  document.querySelectorAll('.pcard').forEach(function(c){
+    var go = c.querySelector('a.btn');
+    if (!go) return;
+    c.addEventListener('click', function(e){ if (!e.target.closest('a, button')) location.href = go.href; });
+  });
 
   // Header style on scroll
   var header = document.querySelector('header');
