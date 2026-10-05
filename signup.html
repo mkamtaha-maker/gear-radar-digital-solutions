@@ -184,6 +184,9 @@ footer a:hover{color:var(--gold)}
 .due{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
 .due b{font-size:1.45rem;white-space:nowrap}
 .due small{display:block;color:var(--muted);font-size:.85rem;margin-top:2px}
+.due-amt{text-align:end}
+.nav-tools{display:flex;align-items:center}
+.nav-tools select{width:auto}
 .paywith{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .paywith label{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:var(--white)}
 .paywith input{width:auto;padding:0;margin-top:4px;accent-color:var(--ink)}
@@ -200,7 +203,7 @@ footer a:hover{color:var(--gold)}
       <svg viewBox="0 0 120 120" aria-hidden="true"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg>
       <span>Gear Radar</span>
     </a>
-    <button class="lang" id="langToggle" type="button" hidden aria-hidden="true" tabindex="-1">EN</button><select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select>
+    <div class="nav-tools"><button class="lang" id="langToggle" type="button" hidden aria-hidden="true" tabindex="-1">EN</button><select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select></div>
   </div>
 </header>
 
@@ -342,7 +345,7 @@ footer a:hover{color:var(--gold)}
     <div class="paybox" id="paybox">
       <div class="field full"><label for="promo"><span data-i18n="f_promo">Promo code</span> <span class="opt" data-i18n="optional">(optional)</span></label>
         <div class="promo"><input id="promo" maxlength="30" autocomplete="off" spellcheck="false" dir="ltr"><button type="button" class="btn btn-line" id="promoApply" data-i18n="apply">Apply</button><span class="msg" id="promoMsg" aria-live="polite"></span></div></div>
-      <div class="due" aria-live="polite"><div><span data-i18n="due_today">Due today</span><small id="dueNext"></small></div><b id="dueAmt">—</b></div>
+      <div class="due" aria-live="polite"><div><span data-i18n="due_today">Due today</span><small id="dueNext"></small></div><div class="due-amt"><b id="dueAmt">—</b><small id="dueUsd"></small></div></div>
       <div class="paywith" role="radiogroup" aria-label="Payment method">
         <label><input type="radio" name="paywith" value="card" checked><span><b data-i18n="pw_card">Card</b><span class="rec" data-i18n="recommended">Recommended</span><br><small data-i18n="pw_card_h">Visa, Mastercard, Apple Pay, Google Pay</small></span></label>
         <label><input type="radio" name="paywith" value="paypal"><span><b>PayPal</b><br><small data-i18n="pw_pp_h">Pay with your PayPal account</small></span></label>
@@ -455,7 +458,7 @@ footer a:hover{color:var(--gold)}
     l_finish:'Confirm', no_charge:"No payment today. We're in early access: we'll confirm your plan by email before anything is charged.",
     consent:'I agree that Gear Radar may store and process my details (including my CV, if uploaded) to provide this service, as described in the <a href="privacy.html" target="_blank">privacy notice</a>.',
     e_consent:'Please tick the box to continue.', submit:'Continue to payment',
-    f_promo:'Promo code', apply:'Apply', due_today:'Due today', then_m:'then {p} a month', then_y:'then {p} a year', then_addon:'then {p} a month for updates', one_off_note:'One-off payment',
+    f_promo:'Promo code', apply:'Apply', due_today:'Due today', then_m:'then {p} a month', then_y:'then {p} a year', then_addon:'then {p} a month for updates', one_off_note:'One-off payment', charged_usd:'Charged in US dollars: {p}',
     free_first:'First month free, then {p} a month', code_ok:'Code applied: {d} off', code_free:'Code applied: your first month is free', code_bad:"This code isn't valid.",
     cr_expired:'This code has expired.', cr_not_started:"This code isn't active yet.", cr_used_up:'This code has been fully used.', cr_not_for_this_plan:"This code doesn't apply to this plan.", cr_not_for_this_billing:"This code doesn't apply to this billing option.", cr_monthly_plans_only:'This code only works with monthly plans.',
     pw_card:'Card', recommended:'Recommended', pw_card_h:'Visa, Mastercard, Apple Pay, Google Pay', pw_pp_h:'Pay with your PayPal account',
@@ -516,7 +519,7 @@ footer a:hover{color:var(--gold)}
     l_finish:'التأكيد', no_charge:'لا يوجد دفع اليوم. نحن في مرحلة الإطلاق المبكر، وسنؤكد باقتك بالبريد قبل أي خصم.',
     consent:'أوافق على أن تحفظ Gear Radar بياناتي وتعالجها (بما فيها سيرتي الذاتية إن رفعتها) لتقديم هذه الخدمة، كما هو موضح في <a href="privacy.html" target="_blank">إشعار الخصوصية</a>.',
     e_consent:'يرجى الموافقة للمتابعة.', submit:'المتابعة إلى الدفع',
-    f_promo:'كود الخصم', apply:'تطبيق', due_today:'المطلوب اليوم', then_m:'ثم {p} شهرياً', then_y:'ثم {p} سنوياً', then_addon:'ثم {p} شهرياً للتحديثات', one_off_note:'دفعة واحدة',
+    f_promo:'كود الخصم', apply:'تطبيق', due_today:'المطلوب اليوم', then_m:'ثم {p} شهرياً', then_y:'ثم {p} سنوياً', then_addon:'ثم {p} شهرياً للتحديثات', one_off_note:'دفعة واحدة', charged_usd:'يُدفع بالدولار الأمريكي: {p}',
     free_first:'الشهر الأول مجاناً، ثم {p} شهرياً', code_ok:'تم تطبيق الكود: خصم {d}', code_free:'تم تطبيق الكود: شهرك الأول مجاني', code_bad:'هذا الكود غير صحيح.',
     cr_expired:'انتهت صلاحية هذا الكود.', cr_not_started:'هذا الكود لم يبدأ بعد.', cr_used_up:'تم استخدام هذا الكود بالكامل.', cr_not_for_this_plan:'هذا الكود لا ينطبق على هذه الباقة.', cr_not_for_this_billing:'هذا الكود لا ينطبق على طريقة الدفع هذه.', cr_monthly_plans_only:'هذا الكود للباقات الشهرية فقط.',
     pw_card:'بطاقة', recommended:'مُوصى به', pw_card_h:'فيزا، ماستركارد، Apple Pay، Google Pay', pw_pp_h:'ادفع من حسابك في PayPal',
@@ -867,6 +870,10 @@ footer a:hover{color:var(--gold)}
   function cleanCode(v){ return String(v || '').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 30); }
   function payWith(){ var r = document.querySelector('input[name="paywith"]:checked'); return r ? r.value : 'card'; }
   function usd(n){ n = Number(n || 0); return '$' + (n % 1 ? n.toFixed(2) : String(n)); }
+  // Prices on the page can be shown in the visitor's currency (currency.js), but payment is always in USD, so say so.
+  var dueUsdNow = null;
+  function showUsd(){ var local = window.grFx && window.grFx.currency() !== 'USD'; $('dueUsd').textContent = local && dueUsdNow != null ? t('charged_usd').replace('{p}', usd(dueUsdNow)) : ''; }
+  document.addEventListener('gr-currency-change', showUsd);
   function promoMsg(text, cls){ var m = $('promoMsg'); m.textContent = text || ''; m.className = 'msg ' + (cls || ''); }
   function updateQuote(showMsg){
     var p = plan(), my = ++qSeq;
@@ -876,6 +883,7 @@ footer a:hover{color:var(--gold)}
       .then(function(q){
         if (my !== qSeq || !q || !q.ok) return;
         $('dueAmt').textContent = usd(q.due_now_usd);
+        dueUsdNow = Number(q.due_now_usd || 0); showUsd();
         var next = '';
         if (q.kind === 'subscription') next = Number(q.trial_days) > 0 ? t('free_first').replace('{p}', usd(q.recurring_usd)) : t(q.recurring_interval === 'year' ? 'then_y' : 'then_m').replace('{p}', usd(q.recurring_usd));
         else next = q.addon_monthly_usd ? t('then_addon').replace('{p}', usd(q.addon_monthly_usd)) : t('one_off_note');
@@ -913,6 +921,8 @@ footer a:hover{color:var(--gold)}
   else if (params.get('payfailed') === '1') { setStatus('s_payfailed', 'err'); }
 })();
 </script>
+<script>window.grFxExtra = '#plans .pr b, #summary, #dueAmt, #dueNext, #promoMsg';</script>
+<script src="currency.js?v=20261005" defer></script>
 <style>select.lang{appearance:none;-webkit-appearance:none;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
 html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 13px center}
 select.lang option{color:#15171C;background:#fff}</style>
