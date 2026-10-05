@@ -331,7 +331,8 @@ footer a:hover{color:var(--gold)}
     <div class="field pro-only"><label for="q_theme" data-i18n="f_theme">Theme</label><select id="q_theme"><option>Warm Cream &amp; Amber</option><option>Dark Luxury &amp; Gold</option><option>Fresh Olive &amp; Sage</option><option>Bold Charcoal &amp; Crimson</option><option>Modern Minimalist Slate</option><option>Pastel Rose &amp; Vanilla</option></select></div>
     <div class="field pro-only"><label for="q_layout" data-i18n="f_layout">Layout</label><select id="q_layout"><option>Modern Cards</option><option>Classic Line Menu</option><option>Compact Dot-Leader</option></select></div>
     <div class="field pro-only files"><label for="q_logo" data-i18n="f_logo">Logo (optional)</label><input id="q_logo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span></div>
-    <div class="field full pro-only files"><label for="q_photos" data-i18n="f_itemphotos">Item photos (optional)</label><input id="q_photos" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="hint" data-i18n="h_itemphotos">Name each photo exactly like the item in English, e.g. Chicken Burger.jpg · max 5 MB each</span><span class="err-text" data-i18n="e_files">Please use JPG, PNG or WebP images under 5 MB (too many files?).</span></div>
+    <div class="field pro-only files"><label for="q_cover" data-i18n="f_cover">Cover photo (optional)</label><input id="q_cover" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_cover">Shown behind your name at the top of the page · max 5 MB</span></div>
+    <div class="field full pro-only files"><label for="q_photos" data-i18n="f_itemphotos">Item photos (optional)</label><input id="q_photos" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="hint" data-i18n="h_itemphotos">Name each photo exactly like the item (English or Arabic), e.g. Chicken Burger.jpg · up to 40 · max 5 MB each</span><span class="err-text" data-i18n="e_files">Please use JPG, PNG or WebP images under 5 MB (too many files?).</span></div>
     <div class="field full"><label for="q_foot"><span data-i18n="f_footer">Note at the bottom of the page</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="q_foot" maxlength="300" dir="auto" placeholder="Please tell our staff about any allergies."></div>
   </fieldset>
 
@@ -428,7 +429,8 @@ footer a:hover{color:var(--gold)}
     f_items_en:'Items in English (one per line)', h_items:'Name - Price - Description. Start a line with # for a section title.', e_items:'Please add your items in English or Arabic.',
     f_items_ar:'Items in Arabic (one per line)', pro_note_qr:'Logo, item photos, WhatsApp ordering, both languages, themes and live search come with QR Pro and Premium.',
     f_waorder:'WhatsApp number (for orders / bookings)', f_theme:'Theme', f_layout:'Layout', f_itemphotos:'Item photos (optional)',
-    h_itemphotos:'Name each photo exactly like the item in English, e.g. Chicken Burger.jpg · max 5 MB each', f_footer:'Note at the bottom of the page',
+    h_itemphotos:'Name each photo exactly like the item (English or Arabic), e.g. Chicken Burger.jpg · up to 40 · max 5 MB each',
+    f_cover:'Cover photo (optional)', h_cover:'Shown behind your name at the top of the page · max 5 MB', f_footer:'Note at the bottom of the page',
     s_upimg:'Uploading your images…', d_3web:'We build your site and check it ourselves, then email you the link, Client ID and Edit Code (usually within one working day).', d_3qr:'Your page, QR code and printable table card are emailed to you within minutes of approval.', lead:'Takes about 3 minutes. We review every signup and email you your activation link within one working day.',
     l_plan:'Choose your plan', monthly:'Monthly', annual:'Annual', save:'2 months free',
     cat_butler:'Assistant', cat_jobs:'Job Hunter', cat_bundle:'Both', best:'Best value',
@@ -488,7 +490,8 @@ footer a:hover{color:var(--gold)}
     f_items_en:'الأصناف بالإنجليزي (سطر لكل صنف)', h_items:'الاسم - السعر - الوصف. ابدأ السطر بـ # لعنوان قسم.', e_items:'يرجى إضافة الأصناف بالعربي أو الإنجليزي.',
     f_items_ar:'الأصناف بالعربي (سطر لكل صنف)', pro_note_qr:'الشعار وصور الأصناف والطلب عبر واتساب واللغتين والثيمات والبحث متاحة في QR Pro و Premium.',
     f_waorder:'رقم واتساب (للطلبات / الحجوزات)', f_theme:'الثيم', f_layout:'طريقة العرض', f_itemphotos:'صور الأصناف (اختياري)',
-    h_itemphotos:'سمِّ كل صورة باسم الصنف بالإنجليزي، مثل Chicken Burger.jpg · حتى 5 ميغابايت لكل صورة', f_footer:'ملاحظة أسفل الصفحة',
+    h_itemphotos:'سمِّ كل صورة باسم الصنف بالضبط (عربي أو إنجليزي)، مثل شاورما.jpg · حتى 40 صورة · 5 ميغابايت لكل صورة',
+    f_cover:'صورة الغلاف (اختياري)', h_cover:'تظهر خلف اسم المحل أعلى الصفحة · حتى 5 ميغابايت', f_footer:'ملاحظة أسفل الصفحة',
     s_upimg:'جارٍ رفع الصور…', d_3web:'نبني موقعك ونراجعه بأنفسنا، ثم نرسل لك الرابط ورقم العميل وكود التعديل بالبريد (عادةً خلال يوم عمل واحد).', d_3qr:'تصلك الصفحة ورمز QR وكرت الطاولة بالبريد خلال دقائق من الموافقة.', lead:'يستغرق حوالي 3 دقائق. نراجع كل طلب ونرسل لك رابط التفعيل بالبريد خلال يوم عمل واحد.',
     l_plan:'اختر باقتك', monthly:'شهري', annual:'سنوي', save:'شهران مجاناً',
     cat_butler:'المساعد', cat_jobs:'صائد الوظائف', cat_bundle:'الاثنان معاً', best:'الأفضل قيمة',
@@ -756,9 +759,9 @@ footer a:hover{color:var(--gold)}
         include_stand: $('q_stand').checked };
       if (tier() !== 'basic') {
         payload.whatsapp = $('q_wa').value.replace(/\D/g, ''); payload.theme = $('q_theme').value; payload.layout = $('q_layout').value;
-        var ql = imgList($('q_logo'), 1), qph = imgList($('q_photos'), 40);
-        if (!ql) bad.push($('q_logo')); if (!qph) bad.push($('q_photos'));
-        files = { logo: (ql || [])[0] || null, photos: qph || [] };
+        var ql = imgList($('q_logo'), 1), qc = imgList($('q_cover'), 1), qph = imgList($('q_photos'), 40);
+        if (!ql) bad.push($('q_logo')); if (!qc) bad.push($('q_cover')); if (!qph) bad.push($('q_photos'));
+        files = { logo: (ql || [])[0] || null, cover: (qc || [])[0] || null, photos: qph || [], names: true };
       }
     }
     var consent = $('consent').checked;
@@ -787,10 +790,10 @@ footer a:hover{color:var(--gold)}
     }).then(function(r){ if (!r.ok) throw new Error('upload ' + r.status); return path; });
   }
 
-  function uploadImage(file){
+  function uploadImage(file, fixedBase){
     var d = new Date(), day = d.getUTCFullYear() + ('0' + (d.getUTCMonth() + 1)).slice(-2) + ('0' + d.getUTCDate()).slice(-2);
     var ext = file.type === 'image/png' ? 'png' : (file.type === 'image/webp' ? 'webp' : 'jpg');
-    var base = String(file.name || 'image').replace(/\.[^.]+$/, '').normalize('NFKD').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'image';
+    var base = fixedBase || String(file.name || 'image').replace(/\.[^.]+$/, '').normalize('NFKD').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'image';
     var path = 'incoming/' + day + '/' + uuid() + '/' + base + '.' + ext;
     return fetch(SB_URL + '/storage/v1/object/signup-files/' + path, {
       method: 'POST',
@@ -798,12 +801,21 @@ footer a:hover{color:var(--gold)}
       body: file
     }).then(function(r){ if (!r.ok) throw new Error('upload ' + r.status); return path; });
   }
+  // Storage paths are ASCII only, so QR pages also send each photo's original name (may be Arabic) in photo_names, in the same order.
+  // A cover photo is sent as a photo named "cover"; the QR builder uses it as the header background.
   function uploadImages(files){
-    if (!files || (!files.logo && !files.photos.length)) return Promise.resolve(null);
+    if (!files || (!files.logo && !files.cover && !files.photos.length)) return Promise.resolve(null);
     setStatus('s_upimg');
-    var out = { logo_file: '', photo_files: [] };
+    var out = { logo_file: '', photo_files: [], photo_names: files.names ? [] : null };
+    function addPhoto(f, fixedBase){
+      return uploadImage(f, fixedBase).then(function(p){
+        out.photo_files.push(p);
+        if (out.photo_names) out.photo_names.push(fixedBase || String(f.name || '').replace(/\.[^.]+$/, '').trim().slice(0, 80));
+      });
+    }
     var chain = files.logo ? uploadImage(files.logo).then(function(p){ out.logo_file = p; }) : Promise.resolve();
-    files.photos.forEach(function(f){ chain = chain.then(function(){ return uploadImage(f).then(function(p){ out.photo_files.push(p); }); }); });
+    if (files.cover) chain = chain.then(function(){ return addPhoto(files.cover, 'cover'); });
+    files.photos.forEach(function(f){ chain = chain.then(function(){ return addPhoto(f); }); });
     return chain.then(function(){ return out; });
   }
 
@@ -822,7 +834,7 @@ footer a:hover{color:var(--gold)}
       : uploadImages(c.files).catch(function(e){ e.upload = true; throw e; });
     step.then(function(res){
       if (typeof res === 'string') c.body.payload.cv_file = res;
-      else if (res) { c.body.payload.logo_file = res.logo_file; c.body.payload.photo_files = res.photo_files; }
+      else if (res) { c.body.payload.logo_file = res.logo_file; c.body.payload.photo_files = res.photo_files; if (res.photo_names) c.body.payload.photo_names = res.photo_names; }
       setStatus('s_sending');
       return fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(c.body) });
     }).then(function(r){
