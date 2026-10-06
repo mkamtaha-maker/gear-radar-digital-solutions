@@ -12,17 +12,17 @@
   var T = {
     en: {
       open: 'Chat with us', title: 'Gear Radar assistant', sub: 'Usually replies in seconds',
-      hello: 'Hi! 👋 I can help you choose the right plan: AI assistant, Job Hunter, a business website or a QR menu. What are you looking for?',
+      hello: 'Hi! 👋 I can help you choose the right plan: Tala, your personal assistant (plans Tala Essential and Tala Pro, with add-ons like Job Hunter), a business website or a QR menu. What are you looking for?',
       ph: 'Type your message…', send: 'Send', close: 'Close chat',
-      chips: ['See prices', 'QR menu for my business', 'A website for my business', 'AI personal assistant'],
+      chips: ['See prices', 'QR menu for my business', 'A website for my business', 'Tala personal assistant'],
       err: 'Sorry, something went wrong. Please try again, or message us on WhatsApp.',
       wa: 'WhatsApp us instead', note: 'Chats are saved so we can follow up. See our <a href="privacy.html">privacy notice</a>.'
     },
     ar: {
       open: 'تحدّث معنا', title: 'مساعد Gear Radar', sub: 'يرد عادةً خلال ثوانٍ',
-      hello: 'أهلاً! 👋 أقدر أساعدك تختار الباقة المناسبة: مساعد ذكي، صائد الوظائف، موقع لنشاطك أو قائمة QR. عن ماذا تبحث؟',
+      hello: 'أهلاً! 👋 أقدر أساعدك تختار الباقة المناسبة: تالا، مساعدتك الشخصية (Tala Essential أو Tala Pro، مع إضافات مثل صائد الوظائف)، موقع لنشاطك أو قائمة QR. عن ماذا تبحث؟',
       ph: 'اكتب رسالتك…', send: 'إرسال', close: 'إغلاق المحادثة',
-      chips: ['الأسعار', 'قائمة QR لنشاطي', 'موقع لنشاطي', 'مساعد شخصي ذكي'],
+      chips: ['الأسعار', 'قائمة QR لنشاطي', 'موقع لنشاطي', 'تالا، مساعدتك الشخصية'],
       err: 'عذراً، حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب.',
       wa: 'راسلنا على واتساب', note: 'نحفظ المحادثة لنتابع معك. راجع <a href="privacy.html">سياسة الخصوصية</a>.'
     }
