@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Nile Spice Kitchen | Sudanese Restaurant, London</title>
+<meta name="description" content="Sudanese and East African home cooking on Edgware Road, London. Sample website by Gear Radar.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#020617;--fg:#f8fafc;--sub:#94a3b8;--pri:#fbbf24;--prifg:#020617;--acc:#eab308;--card:#0f172a;--line:rgba(251,191,36,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+html[lang=ar] body{font-family:'Tajawal',system-ui,sans-serif}
+.ar{display:none}html[lang=ar] .en{display:none}html[lang=ar] .ar{display:revert}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-spacing:.01em}
+html[lang=ar] .serif{font-family:'Amiri','Tajawal',serif;font-weight:700;letter-spacing:0}
+nav{position:sticky;top:0;z-index:30;background:rgba(2,6,23,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:1.45rem;color:var(--pri)}
+.logo svg{flex:0 0 auto}
+.links{display:flex;gap:26px;font-size:.92rem}
+.links a{text-decoration:none;color:var(--sub)}.links a:hover{color:var(--pri)}
+.lang{border:1px solid var(--line);background:none;color:var(--pri);border-radius:999px;padding:6px 14px;font:inherit;font-size:.85rem;cursor:pointer}
+@media(max-width:820px){.links{display:none}}
+.hero{position:relative;overflow:hidden;padding:110px 0 120px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(251,191,36,.16),transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(234,179,8,.08),transparent 55%)}
+.hero:before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 4l6 30 30 6-30 6-6 30-6-30-30-6 30-6z' fill='none' stroke='%23fbbf24' stroke-opacity='.07'/%3E%3C/svg%3E");pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:14px;color:var(--pri);text-transform:uppercase;letter-spacing:.32em;font-size:.75rem}
+html[lang=ar] .eyebrow{letter-spacing:0;font-size:.95rem}
+.eyebrow:before,.eyebrow:after{content:"";width:46px;height:1px;background:var(--pri)}
+.hero h1{font-size:clamp(2.8rem,8vw,5.6rem);line-height:1.02;margin:22px 0 18px}
+.hero h1 em{color:var(--pri);font-style:italic}
+html[lang=ar] .hero h1 em{font-style:normal}
+.hero p{max-width:600px;margin:0 auto 34px;color:var(--sub);font-size:1.08rem}
+.btn{display:inline-block;padding:14px 30px;border-radius:2px;text-decoration:none;font-weight:600;letter-spacing:.06em;font-size:.88rem;text-transform:uppercase;transition:.25s}
+html[lang=ar] .btn{letter-spacing:0;font-size:1rem}
+.btn-gold{background:var(--pri);color:var(--prifg)}.btn-gold:hover{background:#fcd34d}
+.btn-line{border:1px solid var(--pri);color:var(--pri);margin-inline-start:10px}.btn-line:hover{background:rgba(251,191,36,.1)}
+.plate{margin:64px auto 0;width:min(420px,80vw);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 50% 45%,#1e293b 0 52%,#0f172a 53% 62%,transparent 63%),conic-gradient(from 0deg,#fbbf24,#78350f,#fbbf24,#92400e,#fbbf24);padding:3px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px var(--line)}
+.plate .inner{position:absolute;inset:14%;border-radius:50%;background:radial-gradient(circle at 40% 35%,#422006,#1c1917 70%);display:grid;place-items:center;font-size:clamp(4rem,14vw,7rem);box-shadow:inset 0 0 40px rgba(0,0,0,.7)}
+.plate .ring{position:absolute;inset:-26px;border:1px dashed var(--line);border-radius:50%}
+section{padding:96px 0}
+.title{text-align:center;margin-bottom:56px}
+.title h2{font-size:clamp(2.1rem,5vw,3.2rem);margin:12px 0 0;line-height:1.1}
+.rule{width:90px;height:1px;background:var(--pri);margin:20px auto 0;position:relative}
+.rule:after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;background:var(--pri);transform:translate(-50%,-50%) rotate(45deg)}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.story .frame{aspect-ratio:4/5;border:1px solid var(--line);padding:16px;position:relative}
+.story .frame .art{height:100%;background:linear-gradient(160deg,#1e293b,#020617);display:grid;place-items:center;font-size:6rem;position:relative;overflow:hidden}
+.story .frame .art:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 22px,rgba(251,191,36,.04) 22px 23px)}
+.story .badge{position:absolute;bottom:-22px;inset-inline-end:-22px;background:var(--pri);color:var(--prifg);width:118px;height:118px;border-radius:50%;display:grid;place-items:center;text-align:center;font-weight:700;line-height:1.1;font-size:.82rem}
+.story .badge b{display:block;font-size:2rem;font-family:'Cormorant Garamond',serif}
+.story h2{font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin:12px 0 20px}
+.story p{color:var(--sub)}
+.stats{display:flex;gap:40px;margin-top:30px}
+.stats b{display:block;font-size:2.2rem;color:var(--pri);font-family:'Cormorant Garamond',serif}
+.stats span{color:var(--sub);font-size:.85rem}
+@media(max-width:820px){.story{grid-template-columns:1fr;gap:48px}.btn-line{margin:12px 0 0}}
+.dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.dish{background:var(--card);border:1px solid var(--line);padding:34px 28px;text-align:center;transition:.3s;position:relative}
+.dish:hover{transform:translateY(-6px);border-color:var(--pri)}
+.dish .ico{width:96px;height:96px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;font-size:2.8rem;background:radial-gradient(circle,#1e293b,#020617);border:1px solid var(--pri)}
+.dish h3{font-size:1.6rem;margin:0 0 8px}
+.dish p{color:var(--sub);font-size:.93rem;margin:0 0 16px}
+.dish .price{color:var(--pri);font-weight:600;letter-spacing:.08em}
+@media(max-width:900px){.dishes{grid-template-columns:1fr 1fr}}@media(max-width:600px){.dishes{grid-template-columns:1fr}}
+.menu-band{background:linear-gradient(180deg,#020617,#0b1222 50%,#020617)}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:20px 70px}
+.menu h3{grid-column:1/-1;font-size:1.7rem;color:var(--pri);margin:26px 0 4px;text-align:center}
+.mi{display:flex;align-items:baseline;gap:10px;padding:10px 0}
+.mi .n{font-weight:600}.mi .d{display:block;color:var(--sub);font-size:.85rem;font-weight:400}
+.mi .dots{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px)}
+.mi .p{color:var(--pri);font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700}
+@media(max-width:720px){.menu{grid-template-columns:1fr}}
+.quote{max-width:780px;margin:0 auto;text-align:center}
+.quote blockquote{font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.35;margin:0 0 20px}
+.quote cite{color:var(--pri);font-style:normal;letter-spacing:.2em;font-size:.8rem;text-transform:uppercase}
+html[lang=ar] .quote cite{letter-spacing:0;font-size:1rem}
+.stars{color:var(--pri);letter-spacing:6px;margin-bottom:18px}
+.visit{display:grid;grid-template-columns:1.1fr .9fr;gap:30px}
+.box{background:var(--card);border:1px solid var(--line);padding:38px}
+.box h3{font-size:1.7rem;margin:0 0 20px}
+.hours div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.hours span:last-child{color:var(--pri)}
+form{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+input,select{width:100%;padding:13px 14px;background:#020617;border:1px solid var(--line);color:var(--fg);font:inherit;border-radius:2px}
+input:focus,select:focus{outline:1px solid var(--pri)}
+label{font-size:.8rem;color:var(--sub);display:block;margin-bottom:6px}
+.map{margin-top:22px;height:150px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(251,191,36,.05) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(rgba(251,191,36,.05) 1px,transparent 1px) 0 0/28px 28px,#0b1222;position:relative;display:grid;place-items:center;color:var(--sub);font-size:.9rem}
+.map:before{content:"";position:absolute;left:0;right:0;top:55%;height:10px;background:rgba(251,191,36,.12);transform:rotate(-8deg)}
+.map b{position:relative;background:var(--bg);padding:8px 14px;border:1px solid var(--pri);color:var(--pri)}
+@media(max-width:820px){.visit{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:var(--sub);font-size:.88rem}
+footer .logo{justify-content:center;margin-bottom:10px}
+.wa{position:fixed;bottom:22px;inset-inline-end:22px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:40}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div style="background:#0f172a;color:#e2e8f0;font:500 13px/1.4 Inter,Tajawal,system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:9999" dir="ltr">✦ Sample by Gear Radar · <bdi dir="rtl">نموذج من أعمالنا</bdi> · <a href="https://gearradar.co.uk/work.html" style="color:#fbbf24;font-weight:700;text-decoration:none">See all samples · <bdi dir="rtl">كل الأعمال</bdi></a></div>
+<nav><div class="wrap">
+  <a class="logo serif" href="#"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="#fbbf24" stroke-width="1.4"><circle cx="20" cy="20" r="18"/><path d="M8 24c4-3 8-3 12 0s8 3 12 0M8 18c4-3 8-3 12 0s8 3 12 0"/></svg><span class="en">Nile Spice</span><span class="ar">نايل سبايس</span></a>
+  <div class="links"><a href="#story"><span class="en">Our Story</span><span class="ar">قصتنا</span></a><a href="#menu"><span class="en">Menu</span><span class="ar">المنيو</span></a><a href="#visit"><span class="en">Visit</span><span class="ar">زورونا</span></a><a href="#book"><span class="en">Reserve</span><span class="ar">احجز</span></a></div>
+  <button class="lang" type="button" onclick="toggleLang()"><span class="en">عربي</span><span class="ar">English</span></button>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="en">Est. 2014 · Edgware Road</span><span class="ar">منذ 2014 · إدجوير رود</span></div>
+  <h1 class="serif"><span class="en">A taste of <em>the Nile</em><br>in London</span><span class="ar">طعم <em>النيل</em><br>في قلب لندن</span></h1>
+  <p><span class="en">Slow-cooked Sudanese and East African dishes made the way our mothers made them. Warm bread, real spices and coffee from the jebena.</span><span class="ar">أكلات سودانية وشرق أفريقية مطبوخة على مهل زي ما كانت بتعملها أمهاتنا. عيش سخن وبهارات أصلية وقهوة من الجبنة.</span></p>
+  <a class="btn btn-gold" href="#book"><span class="en">Reserve a table</span><span class="ar">احجز طاولة</span></a><a class="btn btn-line" href="#menu"><span class="en">View the menu</span><span class="ar">شوف المنيو</span></a>
+  <div class="plate reveal"><div class="ring"></div><div class="inner">🍲</div></div>
+</div></header>
+
+<section id="story"><div class="wrap story">
+  <div class="frame reveal"><div class="art">🫖</div><div class="badge"><span><b>10</b><span class="en">years of family recipes</span><span class="ar">سنين من وصفات العيلة</span></span></div></div>
+  <div class="reveal">
+    <div class="eyebrow"><span class="en">Our story</span><span class="ar">قصتنا</span></div>
+    <h2 class="serif"><span class="en">From Omdurman kitchens to Edgware Road</span><span class="ar">من مطابخ أم درمان إلى إدجوير رود</span></h2>
+    <p><span class="en">Nile Spice Kitchen started as a family table where friends always found a plate waiting. Today we cook the same recipes every morning: ful simmered overnight, kisra made by hand and shaiyah seared to order.</span><span class="ar">بدأ مطبخ نايل سبايس كسفرة عائلية الضيف فيها بيلقى صحنه جاهز دايما. ولحدي اليوم بنطبخ نفس الوصفات كل صباح: فول مطبوخ طول الليل، كسرة بالإيد، وشية على النار حسب الطلب.</span></p>
+    <div class="stats"><div><b>40+</b><span class="en">dishes</span><span class="ar">طبق</span></div><div><b>4.8★</b><span class="en">guest rating</span><span class="ar">تقييم الضيوف</span></div><div><b>120</b><span class="en">seats</span><span class="ar">مقعد</span></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="title"><div class="eyebrow"><span class="en">Signature dishes</span><span class="ar">أطباقنا المميزة</span></div><h2 class="serif"><span class="en">Loved by our guests</span><span class="ar">الأكثر طلبا</span></h2><div class="rule"></div></div>
+  <div class="dishes">
+    <div class="dish reveal"><div class="ico">🥩</div><h3 class="serif"><span class="en">Shaiyah</span><span class="ar">شية</span></h3><p><span class="en">Pan-seared lamb with onions, green chilli and kisra bread.</span><span class="ar">لحم ضأن على الصاج بالبصل والشطة الخضراء مع الكسرة.</span></p><div class="price">£16.50</div></div>
+    <div class="dish reveal"><div class="ico">🍢</div><h3 class="serif"><span class="en">Mixed Grill</span><span class="ar">مشكل مشويات</span></h3><p><span class="en">Lamb kofta, chicken shish and lamb chops with rice and salad.</span><span class="ar">كفتة وشيش طاووق وريش ضأن مع رز وسلطة.</span></p><div class="price">£18.90</div></div>
+    <div class="dish reveal"><div class="ico">🫘</div><h3 class="serif"><span class="en">Ful Medames</span><span class="ar">فول مدمس</span></h3><p><span class="en">Fava beans with cumin, sesame oil, feta and fresh bread.</span><span class="ar">فول بالكمون وزيت السمسم والجبنة والعيش الطازج.</span></p><div class="price">£7.50</div></div>
+  </div>
+</div></section>
+
+<section id="menu" class="menu-band"><div class="wrap">
+  <div class="title"><div class="eyebrow"><span class="en">The menu</span><span class="ar">المنيو</span></div><h2 class="serif"><span class="en">Made fresh every day</span><span class="ar">طازج كل يوم</span></h2><div class="rule"></div></div>
+  <div class="menu">
+    <h3 class="serif"><span class="en">Mains</span><span class="ar">الأطباق الرئيسية</span></h3>
+    <div class="mi"><span class="n"><span class="en">Mulah Bamia with Kisra</span><span class="ar">ملاح بامية بالكسرة</span><span class="d"><span class="en">Okra and beef stew, thin sorghum bread</span><span class="ar">بامية باللحم مع كسرة الذرة</span></span></span><span class="dots"></span><span class="p">£13.90</span></div>
+    <div class="mi"><span class="n"><span class="en">Chicken Mandi</span><span class="ar">مندي دجاج</span><span class="d"><span class="en">Spiced rice with slow-roasted chicken</span><span class="ar">رز بالبهارات مع دجاج مشوي على مهل</span></span></span><span class="dots"></span><span class="p">£15.50</span></div>
+    <div class="mi"><span class="n"><span class="en">Vegetable Molokhia</span><span class="ar">ملوخية بالخضار</span><span class="d"><span class="en">Jute leaf stew with garlic, served with rice</span><span class="ar">ملوخية بالثوم مع الرز</span></span></span><span class="dots"></span><span class="p">£11.90</span></div>
+    <div class="mi"><span class="n"><span class="en">Ta'amiya Plate</span><span class="ar">صحن طعمية</span><span class="d"><span class="en">Sudanese falafel, salata aswad, pickles</span><span class="ar">طعمية سودانية وسلطة أسود ومخلل</span></span></span><span class="dots"></span><span class="p">£6.90</span></div>
+    <h3 class="serif"><span class="en">Sweets &amp; Drinks</span><span class="ar">الحلويات والمشروبات</span></h3>
+    <div class="mi"><span class="n"><span class="en">Basbousa</span><span class="ar">بسبوسة</span><span class="d"><span class="en">Semolina cake with syrup and coconut</span><span class="ar">بالقطر وجوز الهند</span></span></span><span class="dots"></span><span class="p">£4.90</span></div>
+    <div class="mi"><span class="n"><span class="en">Umm Ali</span><span class="ar">أم علي</span><span class="d"><span class="en">Warm pastry pudding with nuts</span><span class="ar">حلوى العجين بالحليب والمكسرات</span></span></span><span class="dots"></span><span class="p">£5.90</span></div>
+    <div class="mi"><span class="n"><span class="en">Jebena Coffee</span><span class="ar">قهوة جبنة</span><span class="d"><span class="en">Spiced with ginger and cardamom</span><span class="ar">بالزنجبيل والهيل</span></span></span><span class="dots"></span><span class="p">£3.80</span></div>
+    <div class="mi"><span class="n"><span class="en">Karkade</span><span class="ar">كركديه</span><span class="d"><span class="en">Chilled hibiscus with mint</span><span class="ar">كركديه بارد بالنعناع</span></span></span><span class="dots"></span><span class="p">£3.20</span></div>
+  </div>
+  <p style="text-align:center;margin-top:46px"><a class="btn btn-line" style="margin:0" href="../../qr/nile-spice-kitchen/"><span class="en">Open the full QR menu</span><span class="ar">افتح منيو الـ QR الكامل</span></a></p>
+</div></section>
+
+<section><div class="wrap quote reveal">
+  <div class="stars">★★★★★</div>
+  <blockquote class="serif"><span class="en">"The shaiyah tastes exactly like home. Warm service, generous plates and the best karkade in London."</span><span class="ar">"الشية طعمها زي البيت بالضبط. خدمة دافية وصحون كريمة وأحلى كركديه في لندن."</span></blockquote>
+  <cite><span class="en">A regular guest</span><span class="ar">ضيف دائم</span></cite>
+</div></section>
+
+<section id="visit" style="padding-top:0"><div class="wrap">
+  <div class="title"><div class="eyebrow"><span class="en">Visit us</span><span class="ar">زورونا</span></div><h2 class="serif" id="book"><span class="en">Book your table</span><span class="ar">احجز طاولتك</span></h2><div class="rule"></div></div>
+  <div class="visit">
+    <div class="box reveal">
+      <h3 class="serif"><span class="en">Reservation</span><span class="ar">الحجز</span></h3>
+      <form onsubmit="return book(event)">
+        <div class="row"><div><label><span class="en">Name</span><span class="ar">الاسم</span></label><input id="bn" required></div><div><label><span class="en">Guests</span><span class="ar">عدد الأشخاص</span></label><select id="bg"><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div></div>
+        <div class="row"><div><label><span class="en">Date</span><span class="ar">التاريخ</span></label><input id="bd" type="date" required></div><div><label><span class="en">Time</span><span class="ar">الوقت</span></label><input id="bt" type="time" value="19:30" required></div></div>
+        <button class="btn btn-gold" style="border:0;cursor:pointer"><span class="en">Send request on WhatsApp</span><span class="ar">أرسل الطلب على واتساب</span></button>
+      </form>
+    </div>
+    <div class="box reveal">
+      <h3 class="serif"><span class="en">Opening hours</span><span class="ar">مواعيد العمل</span></h3>
+      <div class="hours">
+        <div><span class="en">Mon to Thu</span><span class="ar">الاثنين إلى الخميس</span><span>11:00 – 23:00</span></div>
+        <div><span class="en">Fri &amp; Sat</span><span class="ar">الجمعة والسبت</span><span>11:00 – 00:00</span></div>
+        <div><span class="en">Sunday</span><span class="ar">الأحد</span><span>12:00 – 22:00</span></div>
+      </div>
+      <div class="map"><b>📍 214 Edgware Road, London W2</b></div>
+      <p style="color:var(--sub);margin:18px 0 0">📞 <span dir="ltr">020 7946 0321</span></p>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="logo serif" href="#"><span class="en">Nile Spice Kitchen</span><span class="ar">مطبخ نايل سبايس</span></a>
+  <div>© 2026 · <span class="en">Halal · Family friendly · Free Wi-Fi</span><span class="ar">حلال · مناسب للعائلات · واي فاي مجاني</span></div>
+</div></footer>
+<a class="wa" href="https://wa.me/447700900321" aria-label="WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3z"/></svg></a>
+<script>
+function toggleLang(){var h=document.documentElement,ar=h.lang!=='ar';h.lang=ar?'ar':'en';h.dir=ar?'rtl':'ltr'}
+function book(e){e.preventDefault();var ar=document.documentElement.lang==='ar';var t=(ar?'طلب حجز طاولة\nالاسم: ':'Table request\nName: ')+bn.value+(ar?'\nعدد الأشخاص: ':'\nGuests: ')+bg.value+(ar?'\nالتاريخ: ':'\nDate: ')+bd.value+(ar?'\nالوقت: ':'\nTime: ')+bt.value;window.open('https://wa.me/447700900321?text='+encodeURIComponent(t),'_blank');return false}
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Bright Smile Dental Clinic | Birmingham</title>
+<meta name="description" content="Gentle family and cosmetic dentistry in Birmingham. Sample website by Gear Radar.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ecfeff;--fg:#164e63;--sub:#4f7480;--nav:#164e63;--navfg:#fff;--pri:#fb7185;--prifg:#fff;--acc:#0d9488;--card:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6}
+html[lang=ar] body{font-family:'Tajawal',system-ui,sans-serif}
+.ar{display:none}html[lang=ar] .en{display:none}html[lang=ar] .ar{display:revert}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+nav{background:var(--nav);color:var(--navfg);position:sticky;top:0;z-index:30}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;text-decoration:none}
+.links{display:flex;gap:24px;align-items:center;font-size:.93rem}
+.links a{text-decoration:none;opacity:.85}
+.lang{background:rgba(255,255,255,.12);border:0;color:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:.85rem;cursor:pointer}
+.cta{background:var(--pri);color:#fff;border-radius:999px;padding:9px 18px;text-decoration:none;font-weight:700;font-size:.9rem;opacity:1!important}
+@media(max-width:860px){.links a:not(.cta){display:none}}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);gap:16px;padding:28px 0 0}
+.tile{background:var(--card);border-radius:24px;padding:26px;box-shadow:0 1px 2px rgba(22,78,99,.06),0 8px 24px rgba(22,78,99,.06);position:relative;overflow:hidden}
+.hero{grid-column:span 3;grid-row:span 2;background:linear-gradient(135deg,#164e63,#0d9488);color:#fff;padding:44px}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;inset-inline-end:-120px;bottom:-160px;background:radial-gradient(circle,rgba(251,113,133,.45),transparent 65%)}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);padding:6px 14px;border-radius:999px;font-size:.82rem;font-weight:600}
+.hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem);line-height:1.05;margin:20px 0 16px;max-width:620px;letter-spacing:-.02em}
+html[lang=ar] .hero h1{letter-spacing:0;line-height:1.25}
+.hero p{max-width:500px;opacity:.88;margin:0 0 28px;font-size:1.05rem}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;text-decoration:none;font-weight:700;position:relative;z-index:1}
+.btn-p{background:var(--pri);color:#fff}.btn-g{background:rgba(255,255,255,.14);color:#fff;margin-inline-start:8px}
+.tooth{position:absolute;inset-inline-end:44px;top:50px;width:150px;opacity:.95;z-index:1}
+@media(max-width:700px){.tooth{display:none}}
+.rating{display:flex;flex-direction:column;justify-content:center}
+.rating b{font-size:2.8rem;line-height:1;color:var(--fg)}
+.rating .st{color:#f59e0b;letter-spacing:3px;margin:6px 0}
+.rating small{color:var(--sub)}
+.coral{background:var(--pri);color:#fff}
+.coral h3{margin:0 0 6px;font-size:1.25rem}.coral p{margin:0;opacity:.92;font-size:.92rem}
+.coral .big{font-size:2.6rem;font-weight:800;line-height:1;margin-top:12px}
+.ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.5rem;background:#ccfbf1;margin-bottom:14px}
+.tile h3{margin:0 0 6px;font-size:1.12rem}
+.tile p{margin:0;color:var(--sub);font-size:.92rem}
+.tile .from{display:inline-block;margin-top:12px;font-weight:800;color:var(--acc)}
+.coral p,.hero p{color:inherit}
+.wide{grid-column:span 2}
+.teal{background:#0d9488;color:#fff}.teal p{color:#d1fae5}
+.steps{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+.steps span{background:rgba(255,255,255,.16);padding:8px 14px;border-radius:12px;font-size:.88rem;font-weight:600}
+@media(max-width:960px){.bento{grid-template-columns:1fr 1fr}.hero{grid-column:span 2}.wide{grid-column:span 2}}
+@media(max-width:560px){.bento{grid-template-columns:1fr}.hero,.wide{grid-column:span 1}.hero{padding:30px}.btn-g{margin:10px 0 0}}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:70px 0 6px;letter-spacing:-.01em}
+.lead{color:var(--sub);margin:0 0 26px}
+.ptable{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 8px 24px rgba(22,78,99,.06)}
+.prow{display:flex;justify-content:space-between;gap:12px;padding:18px 26px;border-bottom:1px solid #e0f2f1}
+.prow:last-child{border-bottom:0}
+.prow b{color:var(--acc);white-space:nowrap}
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.doc{background:#fff;border-radius:24px;padding:24px;display:flex;gap:16px;align-items:center;box-shadow:0 8px 24px rgba(22,78,99,.06)}
+.av{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;font-size:1.2rem;flex:0 0 auto}
+.doc h3{margin:0;font-size:1.05rem}.doc p{margin:0;color:var(--sub);font-size:.88rem}
+@media(max-width:860px){.team{grid-template-columns:1fr}}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:70px}
+.hours div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed #cfe9ea}
+.mapbox{background:linear-gradient(135deg,#a5f3fc,#99f6e4);border-radius:24px;min-height:220px;display:grid;place-items:center;position:relative;overflow:hidden}
+.mapbox:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.5) 2px,transparent 2px) 0 0/60px 60px,linear-gradient(rgba(255,255,255,.5) 2px,transparent 2px) 0 0/60px 60px}
+.mapbox b{position:relative;background:#fff;padding:12px 18px;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.1)}
+@media(max-width:760px){.visit{grid-template-columns:1fr}}
+footer{background:var(--nav);color:#a5c8d1;padding:28px 0 90px;font-size:.88rem;text-align:center}
+.callbar{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:40;gap:10px}
+.callbar a{flex:1;text-align:center;padding:14px;border-radius:16px;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.callbar .c1{background:var(--nav);color:#fff}.callbar .c2{background:#25d366;color:#fff}
+@media(max-width:760px){.callbar{display:flex}}
+</style>
+</head>
+<body>
+<div style="background:#0f172a;color:#e2e8f0;font:500 13px/1.4 Inter,Tajawal,system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:9999" dir="ltr">✦ Sample by Gear Radar · <bdi dir="rtl">نموذج من أعمالنا</bdi> · <a href="https://gearradar.co.uk/work.html" style="color:#fbbf24;font-weight:700;text-decoration:none">See all samples · <bdi dir="rtl">كل الأعمال</bdi></a></div>
+<nav><div class="wrap">
+  <a class="logo" href="#"><svg width="30" height="30" viewBox="0 0 32 32"><path d="M16 6c-3-3-11-3-11 5 0 5 2 7 3 12 .6 3 3.4 3 4 0l1-5c.4-2 5.6-2 6 0l1 5c.6 3 3.4 3 4 0 1-5 3-7 3-12 0-8-8-8-11-5z" fill="#fff"/></svg><span class="en">Bright Smile</span><span class="ar">برايت سمايل</span></a>
+  <div class="links"><a href="#treatments"><span class="en">Treatments</span><span class="ar">العلاجات</span></a><a href="#prices"><span class="en">Prices</span><span class="ar">الأسعار</span></a><a href="#team"><span class="en">Our team</span><span class="ar">الفريق</span></a><button class="lang" type="button" onclick="toggleLang()"><span class="en">عربي</span><span class="ar">EN</span></button><a class="cta" href="#visit"><span class="en">Book</span><span class="ar">احجز</span></a></div>
+</div></nav>
+
+<main class="wrap">
+<div class="bento" id="treatments">
+  <div class="tile hero">
+    <span class="pill">✨ <span class="en">New patients welcome</span><span class="ar">نستقبل مرضى جدد</span></span>
+    <h1><span class="en">Gentle dentistry for the whole family</span><span class="ar">طب أسنان لطيف لكل العائلة</span></h1>
+    <p><span class="en">Check-ups, hygiene, whitening and clear aligners in a calm, modern clinic in Harborne. Nervous patients are our speciality.</span><span class="ar">فحوصات وتنظيف وتبييض وتقويم شفاف في عيادة حديثة وهادئة في هاربورن. المرضى القلقانين هم تخصصنا.</span></p>
+    <a class="btn btn-p" href="#visit"><span class="en">Book an appointment</span><span class="ar">احجز موعد</span></a><a class="btn btn-g" href="tel:01214960815">📞 <span dir="ltr">0121 496 0815</span></a>
+    <svg class="tooth" viewBox="0 0 120 130"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ccfbf1"/></linearGradient></defs><path d="M60 18C48 6 10 4 10 40c0 22 9 32 13 55 3 18 17 18 20 0l5-24c2-9 22-9 24 0l5 24c3 18 17 18 20 0 4-23 13-33 13-55C110 4 72 6 60 18z" fill="url(#g)"/><path d="M84 30c8 2 12 8 12 16" stroke="#fb7185" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="96" cy="16" r="5" fill="#fde68a"/><circle cx="20" cy="104" r="3" fill="#fde68a"/></svg>
+  </div>
+  <div class="tile rating"><b>4.9</b><div class="st">★★★★★</div><small><span class="en">patient rating</span><span class="ar">تقييم المرضى</span></small></div>
+  <div class="tile coral"><h3><span class="en">Free consultation</span><span class="ar">استشارة مجانية</span></h3><p><span class="en">For clear aligners and smile makeovers</span><span class="ar">للتقويم الشفاف وتجميل الابتسامة</span></p><div class="big">£0</div></div>
+  <div class="tile"><div class="ico">🦷</div><h3><span class="en">Check-ups</span><span class="ar">الفحص الدوري</span></h3><p><span class="en">Exam, X-rays and screening</span><span class="ar">فحص وأشعة وكشف مبكر</span></p><span class="from">£45</span></div>
+  <div class="tile"><div class="ico">🪥</div><h3><span class="en">Hygiene</span><span class="ar">التنظيف</span></h3><p><span class="en">Scale &amp; polish with our hygienist</span><span class="ar">تنظيف وتلميع مع الأخصائي</span></p><span class="from">£65</span></div>
+  <div class="tile"><div class="ico">✨</div><h3><span class="en">Whitening</span><span class="ar">التبييض</span></h3><p><span class="en">Custom trays, up to 8 shades brighter</span><span class="ar">قوالب مخصصة وحتى 8 درجات أفتح</span></p><span class="from">£295</span></div>
+  <div class="tile"><div class="ico">😁</div><h3><span class="en">Bonding</span><span class="ar">فينير كومبوزيت</span></h3><p><span class="en">Fix chips and gaps in one visit</span><span class="ar">علاج الكسور والفراغات في زيارة واحدة</span></p><span class="from"><span class="en">from </span><span class="ar">من </span>£180</span></div>
+  <div class="tile teal wide"><h3><span class="en">Clear aligners in 3 steps</span><span class="ar">تقويم شفاف في 3 خطوات</span></h3><p><span class="en">Invisible, removable and planned digitally from your first scan.</span><span class="ar">غير مرئي وقابل للإزالة ومخطط رقميا من أول مسح.</span></p><div class="steps"><span>1 · <span class="en">3D scan</span><span class="ar">مسح ثلاثي الأبعاد</span></span><span>2 · <span class="en">Your plan</span><span class="ar">خطتك</span></span><span>3 · <span class="en">New smile</span><span class="ar">ابتسامة جديدة</span></span></div></div>
+  <div class="tile wide"><div class="ico" style="background:#ffe4e6">🚑</div><h3><span class="en">Dental emergency?</span><span class="ar">حالة طارئة؟</span></h3><p><span class="en">Same-day appointments for pain, swelling or a broken tooth. Call before 10am.</span><span class="ar">مواعيد في نفس اليوم للألم أو التورم أو السن المكسور. اتصل قبل 10 الصباح.</span></p><span class="from">£75</span></div>
+</div>
+
+<h2 id="prices"><span class="en">Clear prices</span><span class="ar">أسعار واضحة</span></h2>
+<p class="lead"><span class="en">No surprises. Your dentist confirms every plan before treatment.</span><span class="ar">بدون مفاجآت. الطبيب يؤكد الخطة قبل العلاج.</span></p>
+<div class="ptable">
+  <div class="prow"><span><span class="en">New patient examination</span><span class="ar">فحص مريض جديد</span></span><b>£55</b></div>
+  <div class="prow"><span><span class="en">White composite filling</span><span class="ar">حشوة بيضاء</span></span><b><span class="en">from </span><span class="ar">من </span>£120</b></div>
+  <div class="prow"><span><span class="en">Root canal (front tooth)</span><span class="ar">علاج عصب (سن أمامي)</span></span><b><span class="en">from </span><span class="ar">من </span>£450</b></div>
+  <div class="prow"><span><span class="en">Porcelain veneer (per tooth)</span><span class="ar">قشرة بورسلين (للسن)</span></span><b><span class="en">from </span><span class="ar">من </span>£650</b></div>
+  <div class="prow"><span><span class="en">Clear aligners (full course)</span><span class="ar">تقويم شفاف (كورس كامل)</span></span><b><span class="en">from </span><span class="ar">من </span>£2,500</b></div>
+</div>
+<p style="margin:14px 0 0"><a href="../../qr/bright-smile-dental/" style="color:var(--acc);font-weight:700"><span class="en">See our QR price list →</span><span class="ar">قائمة أسعار الـ QR ←</span></a></p>
+
+<h2 id="team"><span class="en">Meet the team</span><span class="ar">تعرّف على الفريق</span></h2>
+<p class="lead"><span class="en">GDC-registered dentists with a gentle touch.</span><span class="ar">أطباء مسجلين بلمسة لطيفة.</span></p>
+<div class="team">
+  <div class="doc"><div class="av" style="background:#0d9488">SA</div><div><h3><span class="en">Dr Sara Ahmed</span><span class="ar">د. سارة أحمد</span></h3><p><span class="en">Principal dentist · Cosmetic</span><span class="ar">الطبيبة الرئيسية · تجميل</span></p></div></div>
+  <div class="doc"><div class="av" style="background:#fb7185">JO</div><div><h3><span class="en">Dr James Okafor</span><span class="ar">د. جيمس أوكافور</span></h3><p><span class="en">Orthodontics · Aligners</span><span class="ar">تقويم الأسنان</span></p></div></div>
+  <div class="doc"><div class="av" style="background:#164e63">LP</div><div><h3><span class="en">Lucy Patel</span><span class="ar">لوسي باتيل</span></h3><p><span class="en">Dental hygienist</span><span class="ar">أخصائية صحة الفم</span></p></div></div>
+</div>
+
+<h2 id="visit"><span class="en">Visit the clinic</span><span class="ar">زورنا في العيادة</span></h2>
+<p class="lead"><span class="en">Free parking behind the clinic. Step-free access.</span><span class="ar">موقف مجاني خلف العيادة. مدخل مناسب للكراسي المتحركة.</span></p>
+<div class="visit">
+  <div class="tile"><h3><span class="en">Opening hours</span><span class="ar">مواعيد العمل</span></h3>
+    <div class="hours"><div><span class="en">Mon to Fri</span><span class="ar">الاثنين إلى الجمعة</span><span>08:30 – 18:00</span></div><div><span class="en">Saturday</span><span class="ar">السبت</span><span>09:00 – 13:00</span></div><div><span class="en">Sunday</span><span class="ar">الأحد</span><span><span class="en">Closed</span><span class="ar">مقفول</span></span></div></div>
+    <p style="margin-top:18px"><a class="btn btn-p" style="margin:0" href="https://wa.me/447700900815?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment"><span class="en">Book on WhatsApp</span><span class="ar">احجز على واتساب</span></a></p>
+  </div>
+  <div class="mapbox"><b>📍 12 Harborne Road, Birmingham B15</b></div>
+</div>
+</main>
+<footer>© 2026 Bright Smile Dental Clinic · <span class="en">Birmingham</span><span class="ar">برمنغهام</span></footer>
+<div class="callbar"><a class="c1" href="tel:01214960815">📞 <span class="en">Call</span><span class="ar">اتصال</span></a><a class="c2" href="https://wa.me/447700900815">WhatsApp</a></div>
+<script>function toggleLang(){var h=document.documentElement,ar=h.lang!=='ar';h.lang=ar?'ar':'en';h.dir=ar?'rtl':'ltr'}</script>
+</body>
+</html>

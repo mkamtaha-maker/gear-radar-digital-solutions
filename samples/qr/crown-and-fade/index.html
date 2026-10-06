@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crown &amp; Fade Barbers | Services</title>
+<meta name="description" content="Sharp cuts, clean fades and proper hot towel shaves in Manchester">
+<meta property="og:title" content="Crown &amp; Fade Barbers">
+<meta property="og:description" content="Sharp cuts, clean fades and proper hot towel shaves in Manchester">
+<meta name="theme-color" content="#1c1917">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f5f4;--surface:#ffffff;--text:#1c1917;--muted:#66605b;--accent:#b91c1c;--border:#e2dfdc;--hero:#1c1917;--hero-text:#fafaf9;--head:'Inter', system-ui, sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter','Tajawal',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+html[dir=rtl] body{font-family:'Tajawal','Inter',system-ui,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+.hero{background:var(--hero);color:var(--hero-text);padding:18px 0 32px;text-align:center}
+.topbar{display:flex;justify-content:flex-end;min-height:8px}
+.lang-switch{display:inline-flex;border:1px solid currentColor;border-radius:999px;overflow:hidden}
+.lang-switch button{background:transparent;color:inherit;border:0;padding:6px 14px;font:inherit;font-size:13px;cursor:pointer}
+.lang-switch button.active{background:var(--hero-text);color:var(--hero)}
+.brand{font-family:var(--head);font-size:clamp(28px,7vw,42px);line-height:1.15;margin:16px 0 8px}
+html[dir=rtl] .brand{font-family:'Tajawal',sans-serif;font-weight:700}
+.tagline{margin:0 auto 14px;max-width:520px;opacity:.85}
+.phone{display:inline-block;color:inherit;text-decoration:none;border:1px solid currentColor;border-radius:999px;padding:6px 16px;font-size:14px}
+.sticky{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--border);padding:10px 0}
+#menuSearch{width:100%;padding:11px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);font:inherit;font-size:16px}
+#menuSearch:focus{outline:2px solid var(--accent);outline-offset:1px}
+.cat-bar{display:flex;gap:8px;overflow-x:auto;padding-top:10px;scrollbar-width:none}
+.cat-bar:empty{display:none}
+.cat-bar::-webkit-scrollbar{display:none}
+.cat-chip{flex:0 0 auto;padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);text-decoration:none;font-size:13px;white-space:nowrap}
+.cat-chip:active{border-color:var(--accent)}
+.menu-root{padding-top:6px;padding-bottom:40px}
+.menu-category{scroll-margin-top:130px}
+.category-title{font-family:var(--head)!important;color:var(--text)!important;border-bottom:2px solid var(--accent)!important}
+html[dir=rtl] .category-title{font-family:'Tajawal',sans-serif!important;font-weight:700}
+.item-name{color:var(--text)}
+.item-description{color:var(--muted)!important;opacity:1!important}
+.item-price{color:var(--accent)!important}
+.empty-menu{color:var(--muted)}
+.layout-cards .menu-item{background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:14px!important;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+@media (min-width:640px){.layout-cards .category-items{display:grid!important;grid-template-columns:1fr 1fr}}
+.layout-line .menu-item{background:transparent!important;border:0!important;border-bottom:1px solid var(--border)!important;border-radius:0!important;padding:14px 2px!important}
+.layout-line .category-items{gap:0!important}
+.layout-line .category-title{text-align:center;border-bottom:0!important;letter-spacing:.06em;text-transform:uppercase;font-size:1.1rem!important}
+.layout-line .category-title::after{content:"";display:block;width:48px;height:2px;background:var(--accent);margin:10px auto 0}
+.layout-dots .menu-item{background:transparent!important;border:0!important;border-radius:0!important;padding:7px 0!important}
+.layout-dots .category-items{gap:2px!important}
+.layout-dots .item-main{align-items:baseline!important;gap:0!important}
+.layout-dots .item-name{display:flex;align-items:baseline;font-size:1rem!important;margin-bottom:2px!important}
+.layout-dots .item-name::after{content:"";flex:1;min-width:24px;border-bottom:2px dotted var(--border);margin:0 8px}
+.layout-dots .item-description{font-size:.82rem!important}
+.layout-centered .menu-item{background:transparent!important;border:0!important;border-radius:0!important;padding:14px 0!important;text-align:center}
+.layout-centered .item-main{flex-direction:column!important;align-items:center!important;gap:4px!important}
+.layout-centered .item-photo,.layout-centered .item-icon{margin:0 auto 8px!important}
+.layout-centered .category-title{text-align:center;border-bottom:0!important}
+.layout-centered .category-title::before,.layout-centered .category-title::after{content:"\2014";color:var(--accent);margin:0 10px}
+.layout-centered .item-actions{justify-content:center!important}
+.layout-grid .category-items{display:grid!important;grid-template-columns:1fr 1fr;gap:12px!important}
+@media (min-width:640px){.layout-grid .category-items{grid-template-columns:repeat(3,1fr)}}
+.layout-grid .menu-item{background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:14px!important;padding:10px!important;overflow:hidden}
+.layout-grid .item-main{flex-direction:column!important;align-items:stretch!important;gap:6px!important}
+.layout-grid .item-photo,.layout-grid .item-icon{width:100%!important;height:auto!important;aspect-ratio:4/3;margin:0 0 4px!important;border-radius:10px!important}
+.layout-grid .item-name{font-size:.98rem!important}
+.layout-grid .item-description{font-size:.8rem!important}
+.layout-bigphoto .menu-item{background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:16px!important;padding:0 0 14px!important;overflow:hidden}
+.layout-bigphoto .item-main{flex-wrap:wrap!important;padding:0 16px}
+.layout-bigphoto .item-photo,.layout-bigphoto .item-icon{flex:0 0 calc(100% + 32px)!important;width:calc(100% + 32px)!important;height:auto!important;aspect-ratio:16/9;margin:0 -16px 6px!important;border-radius:0!important}
+.layout-bigphoto .item-info{padding-top:14px}
+.layout-bigphoto .item-price{padding-top:14px;font-size:1.2rem!important}
+.layout-bigphoto .item-actions{padding:0 16px}
+.layout-twocol .menu-item{background:transparent!important;border:0!important;border-bottom:1px dashed var(--border)!important;border-radius:0!important;padding:10px 0!important}
+.layout-twocol .category-items{gap:0!important}
+@media (min-width:760px){.menu-root.layout-twocol{max-width:1080px}.layout-twocol #menuEnglish,.layout-twocol #menuArabic{column-count:2;column-gap:44px}.layout-twocol .menu-category{break-inside:avoid;margin-top:0!important}}
+.layout-magazine .menu-category{counter-reset:item}
+.layout-magazine .category-title{font-size:clamp(1.6rem,6vw,2.2rem)!important;border-bottom:0!important;margin-bottom:4px!important;padding-bottom:0!important}
+.layout-magazine .category-title::after{content:"";display:block;width:64px;height:4px;background:var(--accent);margin-top:10px}
+.layout-magazine .menu-item{counter-increment:item;background:transparent!important;border:0!important;border-bottom:1px solid var(--border)!important;border-radius:0!important;padding:18px 0!important}
+.layout-magazine .item-info::before{content:counter(item,decimal-leading-zero);display:block;font-family:var(--head);font-size:.78rem;letter-spacing:.14em;color:var(--accent);margin-bottom:4px}
+.layout-magazine .item-name{font-family:var(--head);font-size:1.25rem!important}
+html[dir=rtl] .layout-magazine .item-name{font-family:'Tajawal',sans-serif}
+.layout-magazine .item-price{font-family:var(--head);font-size:1.3rem!important}
+body.tpl-magazine .hero{text-align:start;padding-bottom:44px}
+body.tpl-magazine .brand{font-size:clamp(34px,9vw,58px);letter-spacing:-.02em}
+body.tpl-magazine .tagline{margin-inline-start:0}
+.menu-root.layout-frame{border:3px double var(--accent);border-radius:6px;margin:22px auto;padding:8px 26px 28px;max-width:720px;background:var(--surface)}
+@media (max-width:640px){.menu-root.layout-frame{margin:14px 10px;padding:6px 14px 20px}}
+.layout-frame .category-title{text-align:center;border-bottom:0!important;letter-spacing:.12em;text-transform:uppercase;font-size:1.05rem!important}
+.layout-frame .category-title::before,.layout-frame .category-title::after{content:"\2726";color:var(--accent);margin:0 12px}
+.layout-frame .menu-item{background:transparent!important;border:0!important;border-radius:0!important;padding:10px 0!important}
+.layout-frame .category-items{gap:4px!important}
+.layout-frame .item-name{font-family:var(--head)}
+html[dir=rtl] .layout-frame .item-name{font-family:'Tajawal',sans-serif}
+body.tpl-frame .brand{letter-spacing:.06em}
+body.tpl-frame .hero{border-bottom:3px double var(--accent)}
+.layout-bento .category-items{display:grid!important;grid-template-columns:1fr 1fr;gap:12px!important}
+@media (min-width:640px){.layout-bento .category-items{grid-template-columns:repeat(3,1fr)}}
+.layout-bento .menu-item{background:var(--surface)!important;border:1px solid var(--border)!important;border-radius:18px!important;padding:12px!important;overflow:hidden}
+.layout-bento .item-main{flex-direction:column!important;align-items:stretch!important;gap:6px!important}
+.layout-bento .item-photo,.layout-bento .item-icon{width:100%!important;height:auto!important;aspect-ratio:1/1;margin:0 0 4px!important;border-radius:12px!important}
+.layout-bento .menu-item:first-child{grid-column:1/-1;background:var(--hero)!important;color:var(--hero-text);border-color:var(--hero)!important}
+.layout-bento .menu-item:first-child .item-name{color:var(--hero-text);font-size:1.3rem!important;font-family:var(--head)}
+.layout-bento .menu-item:first-child .item-description{color:var(--hero-text)!important;opacity:.85!important}
+.layout-bento .menu-item:first-child .item-price{color:var(--hero-text)!important;font-size:1.3rem!important}
+.layout-bento .menu-item:first-child .item-photo,.layout-bento .menu-item:first-child .item-icon{aspect-ratio:16/9}
+.layout-grid .item-icon,.layout-bento .item-icon{font-size:56px!important}
+.layout-bigphoto .item-icon,.layout-bento .menu-item:first-child .item-icon{font-size:76px!important}
+.layout-bento .menu-item:first-child .add-btn{border-color:var(--hero-text)!important;color:var(--hero-text)!important}
+.layout-bento .menu-item:first-child .add-btn.added{background:var(--hero-text)!important;color:var(--hero)!important}
+.layout-twocol #menuEnglish>:first-child,.layout-twocol #menuArabic>:first-child{margin-top:0!important}
+.site-footer{border-top:1px solid var(--border);padding:22px 0 96px;text-align:center;color:var(--muted);font-size:13px}
+.site-footer .note{margin:0 0 10px}
+.credit a{color:var(--accent);text-decoration:none;font-weight:600}
+html[dir=rtl] .only-en{display:none}
+html[dir=ltr] .only-ar{display:none}
+html[dir=rtl] #menuEnglish{display:none}
+</style>
+<style>.brand-logo{display:block;width:88px;height:88px;object-fit:cover;border-radius:50%;margin:12px auto 0;background:#fff;border:2px solid var(--hero-text)}.item-photo{width:76px;height:76px;object-fit:cover;border-radius:12px;flex:0 0 auto;margin-inline-end:12px;background:var(--border)}.layout-dots .item-photo{width:52px;height:52px;border-radius:10px}.item-actions{display:flex;justify-content:flex-end;margin-top:8px}.add-btn{font:inherit;font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;transition:all .15s}.add-btn.added{background:var(--accent);color:var(--bg);transform:scale(1.05)}.cart-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:10000;display:none;max-width:560px;margin:0 auto;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25);overflow:hidden}.cart-summary{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;background:var(--accent);color:var(--bg);border:0;font:inherit;font-weight:700;font-size:15px;cursor:pointer}.cart-panel{display:none;padding:12px 16px 16px;max-height:55vh;overflow:auto}.cart-panel.open{display:block}.cart-panel ul{list-style:none;margin:0 0 12px;padding:0}.cart-panel li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}.ci-qty{display:inline-flex;align-items:center;gap:10px}.ci-qty button{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text);font:inherit;font-size:16px;cursor:pointer}.cart-send{width:100%;padding:13px;border:0;border-radius:12px;background:#25D366;color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}.cart-send.direct{background:var(--accent);color:var(--bg)}.cart-send:disabled{opacity:.6;cursor:wait}.cart-field{display:block;margin:0 0 10px;font-size:13px;color:var(--muted)}.cart-field input,.cart-field textarea{display:block;width:100%;margin-top:4px;padding:9px 10px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;font-size:15px;box-sizing:border-box}.cart-field textarea{min-height:52px;resize:vertical}.cart-table{font-weight:700;color:var(--text);margin:0 0 10px}.cart-done{display:none;padding:18px 16px;text-align:center;line-height:1.5}.cart-done b{display:block;font-size:18px;margin-bottom:4px}.cart-msg{min-height:1em;font-size:13px;color:#dc2626;margin:6px 0 0;text-align:center}.cart-clear{width:100%;margin-top:8px;padding:8px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;cursor:pointer}body.has-cart a[aria-label="Order via WhatsApp"]{display:none!important}</style><style>
+.book-btn{display:inline-block;margin:10px 6px 0;padding:8px 20px;border-radius:999px;border:0;background:var(--hero-text);color:var(--hero);font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.bk-overlay{position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center}
+.bk-overlay[hidden]{display:none}
+.bk-card{width:100%;max-width:480px;max-height:92vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:20px 20px 0 0;padding:20px 18px 24px;box-shadow:0 -10px 40px rgba(0,0,0,.3)}
+@media (min-width:600px){.bk-overlay{align-items:center}.bk-card{border-radius:20px}}
+.bk-card h2{margin:0 0 14px;font-family:var(--head);font-size:1.3rem}
+.bk-row{display:flex;gap:10px}
+.bk-field{flex:1;display:block;margin-bottom:12px;min-width:0}
+.bk-field span{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+.bk-field input,.bk-field select,.bk-field textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;font-size:16px}
+.bk-field textarea{min-height:64px;resize:vertical}
+.bk-err{color:#b91c1c;font-size:13px;min-height:18px;margin:0 0 8px}
+.bk-send{width:100%;padding:13px;border:0;border-radius:12px;background:#25D366;color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.bk-cancel{width:100%;margin-top:8px;padding:8px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;cursor:pointer}
+</style><style>.menu-category.offers{margin:12px 0 28px}.offers .category-items{display:flex;flex-direction:column;gap:12px}.offer-item{background:var(--surface);border:1px solid var(--accent)!important;border-radius:14px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.05)}.offer-item .item-main{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.offer-item .item-info{flex:1;min-width:0}.offer-item .item-name{margin:0 0 6px;font-size:1.1rem;font-weight:600}.offer-item .item-description{margin:0;font-size:.88rem;line-height:1.45}.offer-item .item-price{font-weight:700;font-size:1.05rem;white-space:nowrap}@media (min-width:640px){.offers .category-items{display:grid;grid-template-columns:1fr 1fr}}.menu-item.unavail{opacity:.55}.menu-item.unavail .item-actions{display:none}.menu-item.unavail .item-price{text-decoration:line-through}.sold-badge{display:inline-block;margin-top:4px;padding:2px 10px;border-radius:999px;background:#b91c1c;color:#fff;font-size:12px;font-weight:700}</style></head>
+<body class="tpl-cards">
+<div style="background:#0f172a;color:#e2e8f0;font:500 13px/1.4 Inter,Tajawal,system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:9999" dir="ltr">✦ Sample by Gear Radar · <bdi dir="rtl">نموذج من أعمالنا</bdi> · <a href="https://gearradar.co.uk/work.html" style="color:#fbbf24;font-weight:700;text-decoration:none">See all samples · <bdi dir="rtl">كل الأعمال</bdi></a></div>
+<header class="hero"><div class="wrap">
+<div class="topbar"><div class="lang-switch"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="ar">عربي</button></div></div>
+<h1 class="brand">Crown &amp; Fade Barbers</h1>
+<p class="tagline">Sharp cuts, clean fades and proper hot towel shaves in Manchester</p>
+<a class="phone" href="tel:01614960472">📞 <span dir="ltr">0161 496 0472</span></a>
+<div><button type='button' class='book-btn' id='bkOpen' data-bk='btn'>📅 Book appointment</button></div></div></header>
+<nav class="sticky"><div class="wrap"><div id="searchWrapper"><input type="search" id="menuSearch" placeholder="Search services..." autocomplete="off" aria-label="Search"></div><div id="catBar" class="cat-bar"></div></div></nav>
+<main class="wrap menu-root layout-cards">
+<!-- MENU_EN_START -->
+<div id="menuEnglish" class="menu-container"><section class="menu-category offers" data-category="⭐ Special offers"><h2 class="category-title">⭐ Special offers</h2><div class="category-items"><article class="menu-item offer-item" data-search="students: 10% off monday to wednesday with a valid card  " dir="ltr"><div class="item-main"><div class="item-info"><h3 class="item-name">Students: 10% off Monday to Wednesday with a valid card</h3></div></div></article></div></section><section class="menu-category" data-category="Haircuts" style="margin:28px 0;"><h2 class="category-title" style="font-size:1.35rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #b8860b;color:inherit;">Haircuts</h2><div class="category-items" style="display:flex;flex-direction:column;gap:12px;"><article class="menu-item" data-search="haircuts classic cut 18 scissor or clipper cut, wash and style" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Classic Cut</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Scissor or clipper cut, wash and style</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£18</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article><article class="menu-item" data-search="haircuts skin fade 22 bald or skin fade blended to your length on top" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Skin Fade</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Bald or skin fade blended to your length on top</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£22</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article><article class="menu-item" data-search="haircuts scissor cut (long hair) 26 full scissor work for longer styles" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Scissor Cut (long hair)</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Full scissor work for longer styles</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£26</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article><article class="menu-item" data-search="haircuts kids cut (under 12) 14 patient, friendly cut for little ones" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Kids Cut (under 12)</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Patient, friendly cut for little ones</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£14</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article></div></section><section class="menu-category" data-category="Beard" style="margin:28px 0;"><h2 class="category-title" style="font-size:1.35rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #b8860b;color:inherit;">Beard</h2><div class="category-items" style="display:flex;flex-direction:column;gap:12px;"><article class="menu-item" data-search="beard beard trim &amp; shape 12 line-up, shape and beard oil" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Beard Trim &amp; Shape</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Line-up, shape and beard oil</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£12</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article><article class="menu-item" data-search="beard hot towel shave 20 traditional straight razor shave with hot towels" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Hot Towel Shave</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Traditional straight razor shave with hot towels</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£20</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article></div></section><section class="menu-category" data-category="Packages" style="margin:28px 0;"><h2 class="category-title" style="font-size:1.35rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #b8860b;color:inherit;">Packages</h2><div class="category-items" style="display:flex;flex-direction:column;gap:12px;"><article class="menu-item" data-search="packages cut &amp; beard 28 any haircut plus beard trim and shape" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Cut &amp; Beard</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Any haircut plus beard trim and shape</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£28</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article><article class="menu-item" data-search="packages the crown package 38 skin fade, hot towel shave, face mask and styling" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">The Crown Package</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Skin fade, hot towel shave, face mask and styling</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£38</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article></div></section><section class="menu-category" data-category="Extras" style="margin:28px 0;"><h2 class="category-title" style="font-size:1.35rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #b8860b;color:inherit;">Extras</h2><div class="category-items" style="display:flex;flex-direction:column;gap:12px;"><article class="menu-item" data-search="extras hair design / pattern 6 lines or simple patterns" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Hair Design / Pattern</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Lines or simple patterns</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£6</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article><article class="menu-item" data-search="extras eyebrow tidy 5 clean, natural shape" dir="ltr" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">Eyebrow Tidy</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">Clean, natural shape</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£5</div></div><div class="item-actions"><button type="button" class="add-btn">+ Book</button></div></article></div></section></div>
+<!-- MENU_EN_END -->
+<!-- MENU_AR_START -->
+<div id="menuArabic" class="menu-container" style="display:none;" dir="rtl"><section class="menu-category offers" data-category="⭐ عروض خاصة"><h2 class="category-title">⭐ عروض خاصة</h2><div class="category-items"><article class="menu-item offer-item" data-search="الطلاب: خصم 10% من الاثنين إلى الأربعاء مع البطاقة  " dir="rtl"><div class="item-main"><div class="item-info"><h3 class="item-name">الطلاب: خصم 10% من الاثنين إلى الأربعاء مع البطاقة</h3></div></div></article></div></section><section class="menu-category" data-category="الحلاقة" style="margin:28px 0;"><h2 class="category-title" style="font-size:1.35rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #b8860b;color:inherit;">الحلاقة</h2><div class="category-items" style="display:flex;flex-direction:column;gap:12px;"><article class="menu-item" data-search="الحلاقة قصة كلاسيك 18 قص بالمقص أو الماكينة مع غسيل وتسريح" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">قصة كلاسيك</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">قص بالمقص أو الماكينة مع غسيل وتسريح</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£18</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article><article class="menu-item" data-search="الحلاقة سكن فيد 22 تدريج من الصفر يندمج مع الطول في الأعلى" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">سكن فيد</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">تدريج من الصفر يندمج مع الطول في الأعلى</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£22</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article><article class="menu-item" data-search="الحلاقة قص بالمقص (شعر طويل) 26 شغل مقص كامل للتسريحات الطويلة" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">قص بالمقص (شعر طويل)</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">شغل مقص كامل للتسريحات الطويلة</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£26</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article><article class="menu-item" data-search="الحلاقة قصة أطفال (تحت 12) 14 قصة بهدوء وصبر للصغار" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">قصة أطفال (تحت 12)</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">قصة بهدوء وصبر للصغار</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£14</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article></div></section><section class="menu-category" data-category="الدقن" style="margin:28px 0;"><h2 class="category-title" style="font-size:1.35rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #b8860b;color:inherit;">الدقن</h2><div class="category-items" style="display:flex;flex-direction:column;gap:12px;"><article class="menu-item" data-search="الدقن تحديد وتهذيب الدقن 12 تحديد وتشكيل مع زيت الدقن" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">تحديد وتهذيب الدقن</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">تحديد وتشكيل مع زيت الدقن</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£12</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article><article class="menu-item" data-search="الدقن حلاقة بالموس والفوطة الساخنة 20 حلاقة تقليدية بالموس مع فوط ساخنة" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">حلاقة بالموس والفوطة الساخنة</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">حلاقة تقليدية بالموس مع فوط ساخنة</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£20</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article></div></section><section class="menu-category" data-category="الباقات" style="margin:28px 0;"><h2 class="category-title" style="font-size:1.35rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #b8860b;color:inherit;">الباقات</h2><div class="category-items" style="display:flex;flex-direction:column;gap:12px;"><article class="menu-item" data-search="الباقات قصة ودقن 28 أي قصة مع تهذيب وتحديد الدقن" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">قصة ودقن</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">أي قصة مع تهذيب وتحديد الدقن</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£28</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article><article class="menu-item" data-search="الباقات باقة كراون 38 سكن فيد وحلاقة بالفوطة الساخنة وماسك وتسريح" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">باقة كراون</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">سكن فيد وحلاقة بالفوطة الساخنة وماسك وتسريح</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£38</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article></div></section><section class="menu-category" data-category="إضافات" style="margin:28px 0;"><h2 class="category-title" style="font-size:1.35rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #b8860b;color:inherit;">إضافات</h2><div class="category-items" style="display:flex;flex-direction:column;gap:12px;"><article class="menu-item" data-search="إضافات رسم خطوط في الشعر 6 خطوط أو أشكال بسيطة" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">رسم خطوط في الشعر</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">خطوط أو أشكال بسيطة</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£6</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article><article class="menu-item" data-search="إضافات تهذيب الحواجب 5 شكل طبيعي ونظيف" dir="rtl" style="border:1px solid rgba(148,163,184,0.25);border-radius:12px;padding:16px;background:rgba(255,255,255,0.03);"><div class="item-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;"><div class="item-info" style="flex:1;min-width:0;"><h3 class="item-name" style="margin:0 0 6px 0;font-size:1.1rem;font-weight:600;">تهذيب الحواجب</h3><p class="item-description" style="margin:0;font-size:0.88rem;opacity:0.78;line-height:1.45;">شكل طبيعي ونظيف</p></div><div class="item-price" style="font-weight:700;font-size:1.05rem;white-space:nowrap;color:#b8860b;">£5</div></div><div class="item-actions"><button type="button" class="add-btn">+ احجز</button></div></article></div></section></div>
+<!-- MENU_AR_END -->
+</main>
+<footer class="site-footer"><div class="wrap"><p class="note only-en">Walk-ins welcome · Tue to Sat 9am to 8pm, Sun 10am to 4pm · 58 Oldham Street, Manchester</p><p class="note only-ar" dir="rtl">نستقبل بدون موعد · الثلاثاء إلى السبت 9 صباحا حتى 8 مساء، الأحد 10 حتى 4 · 58 أولدهام ستريت، مانشستر</p><p class="credit">Powered by <a href="https://gearradar.co.uk" target="_blank" rel="noopener">Gear Radar</a></p></div></footer>
+<script>(function(){
+  var MODE = 'both';
+  var PH_EN = "Search services...";
+  var PH_AR = "ابحث في الخدمات...";
+  function activeLang(){ return document.documentElement.dir === 'rtl' ? 'ar' : 'en'; }
+  function setPh(){ var s = document.getElementById('menuSearch'); if (s) s.placeholder = activeLang() === 'ar' ? PH_AR : PH_EN; }
+  function buildCats(){
+    var bar = document.getElementById('catBar');
+    if (!bar) return;
+    var lang = activeLang();
+    var menu = document.getElementById(lang === 'ar' ? 'menuArabic' : 'menuEnglish');
+    bar.innerHTML = '';
+    if (!menu) return;
+    var cats = menu.querySelectorAll('.menu-category');
+    if (cats.length < 2) return;
+    for (var i = 0; i < cats.length; i++) {
+      var c = cats[i];
+      if (!c.id) c.id = lang + '-cat-' + i;
+      var a = document.createElement('a');
+      a.href = '#' + c.id;
+      a.className = 'cat-chip';
+      a.textContent = c.getAttribute('data-category') || '';
+      bar.appendChild(a);
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){
+      if (MODE === 'ar' && window.setMenuLanguage) window.setMenuLanguage('ar');
+      setPh();
+      buildCats();
+      var btns = document.querySelectorAll('[data-lang]');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', function(){ setTimeout(function(){ buildCats(); setPh(); }, 0); });
+      }
+    }, 0);
+  });
+})();</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var currentLang = "en";
+  var isSearchEnabled = true;
+  var searchInput = document.getElementById("menuSearch");
+  var searchWrapper = document.getElementById("searchWrapper");
+
+  function performSearch() {
+    if (!searchInput || !isSearchEnabled) return;
+    var q = searchInput.value.toLowerCase().trim();
+    var activeMenu = (currentLang === "ar") ? document.getElementById("menuArabic") : document.getElementById("menuEnglish");
+    if (!activeMenu) return;
+    var items = activeMenu.querySelectorAll(".menu-item");
+    var categories = activeMenu.querySelectorAll(".menu-category");
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var text = (item.getAttribute("data-search") || item.textContent || "").toLowerCase();
+      item.style.display = (q === "" || text.indexOf(q) !== -1) ? "" : "none";
+    }
+    for (var j = 0; j < categories.length; j++) {
+      var category = categories[j];
+      var visibleItems = category.querySelectorAll(".menu-item");
+      var hasVisible = false;
+      for (var k = 0; k < visibleItems.length; k++) {
+        if (visibleItems[k].style.display !== "none") {
+          hasVisible = true;
+          break;
+        }
+      }
+      category.style.display = hasVisible ? "" : "none";
+    }
+  }
+
+  if (!isSearchEnabled) {
+    if (searchWrapper) searchWrapper.style.display = "none";
+    if (searchInput) searchInput.style.display = "none";
+  } else if (searchInput) {
+    searchInput.addEventListener("input", performSearch);
+  }
+
+  window.setMenuLanguage = function(lang) {
+    currentLang = lang;
+    var en = document.getElementById("menuEnglish");
+    var ar = document.getElementById("menuArabic");
+    if (!en || !ar) return;
+    if (lang === "ar") {
+      en.style.display = "none";
+      ar.style.display = "block";
+      document.documentElement.dir = "rtl";
+    } else {
+      ar.style.display = "none";
+      en.style.display = "block";
+      document.documentElement.dir = "ltr";
+    }
+    if (searchInput && isSearchEnabled) {
+      searchInput.value = "";
+      performSearch();
+      searchInput.placeholder = (lang === "ar") ? "ابحث في القائمة..." : "Search menu...";
+    }
+    var buttons = document.querySelectorAll("[data-lang]");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].classList.toggle("active", buttons[i].getAttribute("data-lang") === lang);
+    }
+  };
+
+  var buttons = document.querySelectorAll("[data-lang]");
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function(e) {
+      e.preventDefault();
+      var target = this.getAttribute("data-lang");
+      window.setMenuLanguage(target);
+    });
+  }
+});
+</script>
+<a href="https://wa.me/447700900472?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Crown%20%26%20Fade%20Barbers" target="_blank" rel="noopener" aria-label="Order via WhatsApp" style="position:fixed;bottom:22px;right:22px;background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,0.25);z-index:9999;text-decoration:none;"><svg viewBox="0 0 32 32" width="30" height="30" fill="#ffffff"><path d="M16 .3C7.3.3.3 7.3.3 16 c0 2.8.7 5.5 2.1 7.9L.3 31.7l7.9-2.1 c2.3 1.3 4.9 2 7.8 2h0c8.7 0 15.7-7 15.7-15.7C31.7 7.3 24.7.3 16 .3zm0 28.8c-2.5 0-5-.7-7.1-2l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.1 20.9 2.4 18.5 2.4 16 2.4 8.5 8.5 2.4 16 2.4S29.6 8.5 29.6 16 23.5 29.1 16 29.1zm7.6 -9.8c-.4-.2-2.5-1.2-2.9-1.4-.4-.1-.7.2-1 .2-.3.4-1.1 1.4-1.4 1.7-.3.3-.5.3-.9.1 -.4-.2-1.8-.7-3.4-2.1-1.3-1.1-2.1-2.5-2.4-2.9 -.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.7 .1-.3.1-.5 0-.7-.1-.2-1-2.3-1.3-3.1-.3-.8-.7-.7-1-.7 h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 3 4.5 7.2 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.5-1 2.8-2 .3-1 .3-1.8.2-2 z"/></svg></a>
+<div id="cartBar" class="cart-bar"><button type="button" id="cartToggle" class="cart-summary"><span id="cartCount"></span><span id="cartTotal"></span></button><div id="cartPanel" class="cart-panel"><ul id="cartList"></ul><div id="cartExtra"></div><button type="button" id="cartSend" class="cart-send"></button><p id="cartMsg" class="cart-msg"></p><button type="button" id="cartClear" class="cart-clear"></button></div><div id="cartDone" class="cart-done"></div></div><script>(function(){
+var C = {"wa":"447700900472","biz":"Crown & Fade Barbers","cur":"£","prefix":true,"t":{"headEn":"New booking request from ","headAr":"طلب حجز جديد من ","sendEn":"Send booking on WhatsApp","sendAr":"إرسال طلب الحجز عبر واتساب","one":"service","many":"services","ar":"خدمات"},"slug":"crown-and-fade","orders":false,"api":"https://kamtyler.app.n8n.cloud/webhook/gearradar-qr-order","sb":"https://nrkydwotserhniczcgqs.supabase.co/rest/v1/rpc/qr_screen_active","key":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ya3lkd290c2VyaG5pY3pjZ3FzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyMzU0MzMsImV4cCI6MjEwNTgxMTQzM30.6v1fSTrg00Wj7JM0B18aBfwYzNPngv5y4uaf-HmsYq0"};
+var NL = String.fromCharCode(10);
+var cart = [];
+var TBL = '';
+try { TBL = (new URLSearchParams(location.search).get('table') || '').replace(/[^0-9A-Za-z-]/g, '').slice(0, 8); } catch (e) {}
+var screenOn = false, sending = false;
+function direct(){ return C.orders && (screenOn || !C.wa); }
+function rtl(){ return document.documentElement.dir === 'rtl'; }
+function fmt(v){ var s = (Math.round(v * 100) % 100 === 0) ? String(Math.round(v)) : v.toFixed(2); return C.cur ? (C.prefix ? C.cur + s : s + ' ' + C.cur) : s; }
+function num(t){ var m = String(t || '').match(/[0-9]+(?:[.,][0-9]+)?/); return m ? parseFloat(m[0].replace(',', '.')) : 0; }
+function totals(){ var c = 0, t = 0; for (var i = 0; i < cart.length; i++){ c += cart[i].qty; t += cart[i].qty * cart[i].price; } return { count: c, total: t }; }
+function render(){
+  cart = cart.filter(function(x){ return x.qty > 0; });
+  var s = totals();
+  if (s.count) document.getElementById('cartDone').style.display = 'none';
+  document.getElementById('cartBar').style.display = (s.count || document.getElementById('cartDone').style.display === 'block') ? 'block' : 'none';
+  document.getElementById('cartToggle').style.display = s.count ? '' : 'none';
+  document.body.classList.toggle('has-cart', s.count > 0);
+  if (!s.count) document.getElementById('cartPanel').classList.remove('open');
+  document.getElementById('cartCount').textContent = '🛒 ' + s.count + ' ' + (rtl() ? C.t.ar : (s.count === 1 ? C.t.one : C.t.many)) + ' ▾';
+  document.getElementById('cartTotal').textContent = s.total ? fmt(s.total) : '';
+  var list = document.getElementById('cartList');
+  list.innerHTML = '';
+  cart.forEach(function(x){
+    var li = document.createElement('li');
+    var nm = document.createElement('span'); nm.textContent = x.name;
+    var q = document.createElement('span'); q.className = 'ci-qty';
+    var minus = document.createElement('button'); minus.type = 'button'; minus.textContent = '−'; minus.onclick = function(){ x.qty--; render(); };
+    var val = document.createElement('b'); val.textContent = x.qty;
+    var plus = document.createElement('button'); plus.type = 'button'; plus.textContent = '+'; plus.onclick = function(){ x.qty++; render(); };
+    q.appendChild(minus); q.appendChild(val); q.appendChild(plus);
+    li.appendChild(nm); li.appendChild(q); list.appendChild(li);
+  });
+  var send = document.getElementById('cartSend');
+  send.textContent = direct() ? (rtl() ? 'أرسل الطلب' : 'Send order') : (rtl() ? C.t.sendAr : C.t.sendEn);
+  send.classList.toggle('direct', direct());
+  var ex = document.getElementById('cartExtra');
+  if (C.orders && direct()) {
+    if (!ex.getAttribute('data-on')) {
+      ex.setAttribute('data-on', '1');
+      ex.innerHTML = (TBL ? '<p class="cart-table"></p>' : '<label class="cart-field"><span class="ct-l"></span><input id="cartTableIn" inputmode="numeric" maxlength="8" autocomplete="off"></label>') +
+        '<label class="cart-field"><span class="cn-l"></span><textarea id="cartNote" maxlength="300"></textarea></label>';
+    }
+    var tb = ex.querySelector('.cart-table'); if (tb) tb.textContent = (rtl() ? '🪑 طاولة رقم ' : '🪑 Table ') + TBL;
+    var tl = ex.querySelector('.ct-l'); if (tl) tl.textContent = rtl() ? 'رقم الطاولة' : 'Table number';
+    ex.querySelector('.cn-l').textContent = rtl() ? 'ملاحظات للمطبخ (اختياري)' : 'Notes for the kitchen (optional)';
+  } else { ex.innerHTML = ''; ex.removeAttribute('data-on'); }
+  document.getElementById('cartClear').textContent = rtl() ? 'مسح السلة' : 'Clear';
+}
+document.addEventListener('click', function(e){
+  var b = e.target && e.target.closest ? e.target.closest('.add-btn') : null;
+  if (!b) return;
+  var art = b.closest('.menu-item');
+  var nameEl = art.querySelector('.item-name');
+  var name = nameEl ? nameEl.textContent.trim() : '';
+  var price = num((art.querySelector('.item-price') || {}).textContent);
+  var found = null;
+  for (var i = 0; i < cart.length; i++){ if (cart[i].name === name) found = cart[i]; }
+  if (found) found.qty++; else cart.push({ name: name, price: price, qty: 1 });
+  b.classList.add('added'); setTimeout(function(){ b.classList.remove('added'); }, 500);
+  render();
+});
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('cartToggle').addEventListener('click', function(){ document.getElementById('cartPanel').classList.toggle('open'); });
+  document.getElementById('cartClear').addEventListener('click', function(){ cart = []; render(); });
+  document.getElementById('cartSend').addEventListener('click', function(){
+    if (direct()) { sendDirect(); return; }
+    sendWhatsApp();
+  });
+  function sendWhatsApp(viaLocation){
+    var s = totals();
+    var lines = [(rtl() ? C.t.headAr : C.t.headEn) + C.biz, ''];
+    cart.forEach(function(x){ lines.push(x.qty + ' × ' + x.name + (x.price ? ' — ' + fmt(x.price * x.qty) : '')); });
+    if (s.total) { lines.push(''); lines.push((rtl() ? 'الإجمالي: ' : 'Total: ') + fmt(s.total)); }
+    var u = 'https://wa.me/' + C.wa + '?text=' + encodeURIComponent(lines.join(NL) + (TBL ? NL + (rtl() ? '🪑 طاولة رقم ' : '🪑 Table ') + TBL : ''));
+    // After an await the browser blocks pop-ups, so the fallback opens WhatsApp in this tab.
+    if (viaLocation) location.href = u; else window.open(u, '_blank');
+  }
+  function sendDirect(){
+    if (sending) return;
+    var msg = document.getElementById('cartMsg');
+    var tIn = document.getElementById('cartTableIn');
+    var table = TBL || (tIn ? tIn.value.replace(/[^0-9A-Za-z-]/g, '').slice(0, 8) : '');
+    var noteEl = document.getElementById('cartNote');
+    var body = { slug: C.slug, table: table, currency: C.cur, lang: rtl() ? 'ar' : 'en', note: noteEl ? noteEl.value.slice(0, 300) : '',
+      items: cart.map(function(x){ return { name: x.name, qty: x.qty, price: x.price }; }) };
+    sending = true; msg.textContent = '';
+    var btn = document.getElementById('cartSend'); btn.disabled = true;
+    fetch(C.api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        sending = false; btn.disabled = false;
+        if (!j || !j.ok) throw new Error((j && j.error) || 'failed');
+        cart = [];
+        var d = document.getElementById('cartDone');
+        d.innerHTML = '<b></b><span></span>';
+        d.querySelector('b').textContent = (rtl() ? '✓ وصل طلبك رقم ' : '✓ Order #') + j.order_no + (rtl() ? '' : ' sent');
+        d.querySelector('span').textContent = (table ? (rtl() ? 'طاولة رقم ' + table + '. ' : 'Table ' + table + '. ') : '') + (rtl() ? 'سيجهّزه الفريق الآن.' : 'The team is preparing it now.');
+        d.style.display = 'block';
+        render();
+        setTimeout(function(){ d.style.display = 'none'; render(); }, 12000);
+      })
+      .catch(function(e){
+        sending = false; btn.disabled = false;
+        if (String(e && e.message) === 'rate') { msg.textContent = rtl() ? 'تم إرسال طلبات كثيرة. انتظر دقيقة ثم حاول.' : 'Too many orders just now. Please wait a minute.'; return; }
+        if (C.wa) { sendWhatsApp(true); return; }
+        msg.textContent = rtl() ? 'تعذر إرسال الطلب. اطلب من الموظف مباشرة.' : 'Could not send the order. Please ask a member of staff.';
+      });
+  }
+  if (C.orders && C.wa) {
+    try {
+      fetch(C.sb, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: C.key, Authorization: 'Bearer ' + C.key }, body: JSON.stringify({ p_slug: C.slug }) })
+        .then(function(r){ return r.json(); }).then(function(v){ screenOn = v === true; render(); }).catch(function(){});
+    } catch (e) {}
+  }
+  var langBtns = document.querySelectorAll('[data-lang]');
+  for (var i = 0; i < langBtns.length; i++){ langBtns[i].addEventListener('click', function(){ setTimeout(render, 0); }); }
+});
+})();</script><div id='bkOverlay' class='bk-overlay' hidden><div class='bk-card' id='bkCard'><h2 data-bk='title'></h2>
+<label class='bk-field'><span data-bk='name'></span><input id='bkName' type='text' autocomplete='name'></label>
+<div class='bk-row'><label class='bk-field'><span data-bk='date'></span><input id='bkDate' type='date'></label><label class='bk-field'><span data-bk='time'></span><input id='bkTime' type='time'></label></div>
+<label class='bk-field'><span data-bk='service'></span><select id='bkService'></select></label>
+<label class='bk-field'><span data-bk='notes'></span><textarea id='bkNotes'></textarea></label>
+<p class='bk-err' id='bkErr'></p>
+<button type='button' class='bk-send' id='bkSend' data-bk='send'></button>
+<button type='button' class='bk-cancel' id='bkCancel' data-bk='cancel'></button></div></div><script>(function(){
+var C = {"wa":"447700900472","biz":"Crown & Fade Barbers","svc":true};
+var NL = String.fromCharCode(10);
+var T = {
+  btn: C.svc ? ['📅 Book appointment', '📅 احجز موعد'] : ['📅 Reserve a table', '📅 احجز طاولة'],
+  title: C.svc ? ['Book an appointment', 'حجز موعد'] : ['Reserve a table', 'حجز طاولة'],
+  name: ['Your name', 'الاسم'],
+  date: ['Date', 'التاريخ'],
+  time: ['Time', 'الوقت'],
+  guests: ['Guests', 'عدد الأشخاص'],
+  service: ['Service', 'الخدمة'],
+  notes: ['Notes (optional)', 'ملاحظات (اختياري)'],
+  send: ['Send on WhatsApp', 'إرسال عبر واتساب'],
+  cancel: ['Cancel', 'إلغاء'],
+  req: ['Please enter your name, date and time.', 'يرجى إدخال الاسم والتاريخ والوقت.'],
+  head: C.svc ? ['Booking request - ', 'طلب حجز موعد - '] : ['Table reservation - ', 'طلب حجز طاولة - ']
+};
+function g(id){ return document.getElementById(id); }
+function rtl(){ return document.documentElement.dir === 'rtl'; }
+function tx(k){ return T[k][rtl() ? 1 : 0]; }
+function labels(){
+  var els = document.querySelectorAll('[data-bk]');
+  for (var i = 0; i < els.length; i++){ els[i].textContent = tx(els[i].getAttribute('data-bk')); }
+  var card = g('bkCard'); if (card) card.setAttribute('dir', rtl() ? 'rtl' : 'ltr');
+}
+function pad(n){ return n < 10 ? '0' + n : String(n); }
+function fillServices(){
+  var sel = g('bkService'); if (!sel) return;
+  var menu = document.getElementById(rtl() ? 'menuArabic' : 'menuEnglish');
+  sel.innerHTML = '';
+  if (!menu) return;
+  var els = menu.querySelectorAll('.item-name');
+  for (var i = 0; i < els.length; i++){ var o = document.createElement('option'); o.value = o.textContent = els[i].textContent.trim(); sel.appendChild(o); }
+}
+function openBk(){
+  labels(); fillServices();
+  var d = new Date();
+  g('bkDate').min = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  g('bkErr').textContent = '';
+  g('bkOverlay').hidden = false;
+}
+function closeBk(){ g('bkOverlay').hidden = true; }
+function sendBk(){
+  var name = g('bkName').value.trim(), date = g('bkDate').value, time = g('bkTime').value;
+  if (!name || !date || !time){ g('bkErr').textContent = tx('req'); return; }
+  var lines = [tx('head') + C.biz, '', tx('name') + ': ' + name, tx('date') + ': ' + date, tx('time') + ': ' + time];
+  if (C.svc){ var sv = g('bkService'); if (sv && sv.value) lines.push(tx('service') + ': ' + sv.value); }
+  else { var gu = g('bkGuests'); if (gu && gu.value) lines.push(tx('guests') + ': ' + gu.value); }
+  var notes = g('bkNotes').value.trim();
+  if (notes) lines.push(tx('notes').split(' (')[0] + ': ' + notes);
+  window.open('https://wa.me/' + C.wa + '?text=' + encodeURIComponent(lines.join(NL)), '_blank');
+  closeBk();
+}
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(labels, 50);
+  g('bkOpen').addEventListener('click', openBk);
+  g('bkCancel').addEventListener('click', closeBk);
+  g('bkSend').addEventListener('click', sendBk);
+  g('bkOverlay').addEventListener('click', function(e){ if (e.target === this) closeBk(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeBk(); });
+  var lb = document.querySelectorAll('[data-lang]');
+  for (var i = 0; i < lb.length; i++){ lb[i].addEventListener('click', function(){ setTimeout(function(){ labels(); fillServices(); }, 0); }); }
+});
+})();</script></body>
+</html>
