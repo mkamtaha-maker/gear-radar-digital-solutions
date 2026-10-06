@@ -448,7 +448,9 @@ footer a:hover{color:var(--gold)}
   var ADDONS = [
     { code:'jobs',      nm:'ao_jobs',  ds:'ao_jobs_d',  m:10, y:100, cur:'GBP', jobs:true, titles:6,  areas:3, excl:'jobs_plus' },
     { code:'jobs_plus', nm:'ao_jobsp', ds:'ao_jobsp_d', m:20, y:200, cur:'GBP', jobs:true, titles:10, areas:5, excl:'jobs' },
-    { code:'messages',  nm:'ao_msg',   ds:'ao_msg_d',   m:4,  y:40,  cur:'GBP' }
+    { code:'messages',  nm:'ao_msg',   ds:'ao_msg_d',   m:4,  y:40,  cur:'GBP' },
+    { code:'scan',      nm:'ao_scan',  ds:'ao_scan_d',  m:3,  y:30,  cur:'GBP' },
+    { code:'logbook',   nm:'ao_diary', ds:'ao_diary_d', m:5,  y:50,  cur:'GBP' }
   ];
   // Old links (retired Job Hunter plans and bundles) land on the closest Tala plan + add-ons.
   var LEGACY = { premium:['pro', ['jobs']], executive:['pro', ['jobs_plus', 'messages']], jobs_pro:['pro', ['jobs']], jobs_starter:['basic', ['jobs']] };
@@ -493,6 +495,8 @@ footer a:hover{color:var(--gold)}
     ao_jobs:'Job Hunter', ao_jobs_d:'Daily job matches in Tala: 6 job titles, 3 cities, 40 tailored CVs + 20 cover letters a month',
     ao_jobsp:'Job Hunter Plus', ao_jobsp_d:'10 job titles, 5 cities, 100 tailored CVs + 60 cover letters a month',
     ao_msg:'Extra messages', ao_msg_d:'+100 messages a day',
+    ao_scan:'Scan to PDF', ao_scan_d:'Send a photo of a document and get a clean PDF back',
+    ao_diary:'Diary / Logbook', ao_diary_d:'Keep a daily diary or work log just by messaging Tala',
     l_you:'About you', f_name:'Full name', f_email:'Email', f_country:'Country you live in', f_lang:'Messages in',
     c_gb:'United Kingdom', c_us:'United States', c_ca:'Canada', c_ae:'United Arab Emirates', c_sa:'Saudi Arabia', c_qa:'Qatar', c_kw:'Kuwait', c_bh:'Bahrain', c_om:'Oman', c_other:'Other',
     e_name:'Please enter your name.', e_email:'Please enter a valid email.',
@@ -557,6 +561,8 @@ footer a:hover{color:var(--gold)}
     ao_jobs:'صائد الوظائف', ao_jobs_d:'وظائف مناسبة يومياً داخل تالا: 6 مسميات، 3 مدن، 40 سيرة مخصصة + 20 خطاب تقديم شهرياً',
     ao_jobsp:'صائد الوظائف بلس', ao_jobsp_d:'10 مسميات، 5 مدن، 100 سيرة مخصصة + 60 خطاب تقديم شهرياً',
     ao_msg:'رسائل إضافية', ao_msg_d:'+100 رسالة يومياً',
+    ao_scan:'المسح إلى PDF', ao_scan_d:'أرسل صورة مستند واستلمه ملف PDF واضحاً',
+    ao_diary:'المذكرات / السجل', ao_diary_d:'دوّن مذكراتك أو سجل عملك اليومي برسالة إلى تالا',
     l_you:'معلوماتك', f_name:'الاسم الكامل', f_email:'البريد الإلكتروني', f_country:'بلد الإقامة', f_lang:'لغة الرسائل',
     c_gb:'المملكة المتحدة', c_us:'الولايات المتحدة', c_ca:'كندا', c_ae:'الإمارات', c_sa:'السعودية', c_qa:'قطر', c_kw:'الكويت', c_bh:'البحرين', c_om:'عُمان', c_other:'أخرى',
     e_name:'يرجى إدخال اسمك.', e_email:'يرجى إدخال بريد إلكتروني صحيح.',
