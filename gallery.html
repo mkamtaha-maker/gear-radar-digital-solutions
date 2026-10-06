@@ -94,6 +94,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 .s-book{background:var(--card);border-radius:8px;padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .s-book span{background:var(--bg);border:1px solid rgba(127,127,127,.25);border-radius:6px;padding:5px 7px;color:var(--sub);font-size:10px}
 .s-book em{grid-column:1/-1;font-style:normal;text-align:center;background:var(--pri);color:var(--prifg);border-radius:6px;padding:6px;font-weight:600;font-size:10.5px}
+.s-enq{margin-top:8px}.s-enq span:nth-child(3){grid-column:1/-1;min-height:30px}
 .s-contact{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--sub);font-size:10.5px}
 .s-foot{padding:10px 14px 14px;color:var(--sub);font-size:10px;border-top:1px solid rgba(127,127,127,.18)}
 .s-wa{position:sticky;bottom:10px;display:flex;justify-content:flex-end;padding:0 10px;pointer-events:none;height:0;overflow:visible}
@@ -289,6 +290,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     { id:'prices',   tier:0, on:true,  en:'Prices',          ar:'الأسعار' },
     { id:'hours',    tier:0, on:true,  en:'Working hours',   ar:'ساعات العمل' },
     { id:'call',     tier:0, on:true,  en:'Call button',     ar:'زر الاتصال' },
+    { id:'enquiry',  tier:0, on:true,  en:'Enquiry form (messages go to your email)', ar:'نموذج استفسار (الرسائل تصل لإيميلك)' },
     { id:'logo',     tier:1, on:false, en:'Logo',            ar:'الشعار' },
     { id:'gallery',  tier:1, on:false, en:'Photo gallery (up to 8)', ar:'معرض صور (حتى 8)' },
     { id:'map',      tier:1, on:false, en:'Google Map',      ar:'خريطة Google' },
@@ -307,7 +309,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       s_biz:'Your Business', s_home:'Home', s_about:'About', s_contact:'Contact', s_call:'Call now', s_head:'Quality service, close to you',
       s_sub:'Book in minutes or message us on WhatsApp.', s_book:'Book now', s_more:'Our services', s_services:'Services', s_svc:['Service one','Service two','Service three'],
       s_hours:'Working hours', s_days:[['Mon – Fri','9:00 – 18:00'],['Saturday','10:00 – 16:00'],['Sunday','Closed']], s_gal:'Gallery', s_map:'Find us',
-      s_bookt:'Book an appointment', s_f:['Name','Phone','Date','Time'], s_send:'Request booking', s_reach:'Get in touch', s_foot:'© Your Business' },
+      s_bookt:'Book an appointment', s_f:['Name','Phone','Date','Time'], s_send:'Request booking', s_reach:'Get in touch', s_enq:['Name','Phone or email','Your message'], s_enqsend:'Send message', s_foot:'© Your Business' },
     ar:{ back:'→ العودة لباقات المواقع', eyebrow:'معرض المواقع', title:'صمّم موقعك واعرف باقتك',
       lead:'اختر القالب والثيم والمزايا التي تريدها. المعاينة تتغير مع كل اختيار، والشريط في الأسفل يوضح الباقة المناسبة وسعرها.',
       preview:'معاينة مباشرة', preview_note:'هنا يظهر شعارك وصورك ونصوصك', your_plan:'باقتك', features:'المزايا',
@@ -317,7 +319,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       s_biz:'اسم نشاطك', s_home:'الرئيسية', s_about:'من نحن', s_contact:'تواصل', s_call:'اتصل الآن', s_head:'خدمة مميزة بالقرب منك',
       s_sub:'احجز في دقائق أو راسلنا على واتساب.', s_book:'احجز الآن', s_more:'خدماتنا', s_services:'الخدمات', s_svc:['خدمة أولى','خدمة ثانية','خدمة ثالثة'],
       s_hours:'ساعات العمل', s_days:[['الأحد – الخميس','9:00 – 18:00'],['السبت','10:00 – 16:00'],['الجمعة','مغلق']], s_gal:'معرض الصور', s_map:'موقعنا',
-      s_bookt:'احجز موعداً', s_f:['الاسم','الهاتف','التاريخ','الوقت'], s_send:'أرسل طلب الحجز', s_reach:'تواصل معنا', s_foot:'© اسم نشاطك' }
+      s_bookt:'احجز موعداً', s_f:['الاسم','الهاتف','التاريخ','الوقت'], s_send:'أرسل طلب الحجز', s_reach:'تواصل معنا', s_enq:['الاسم','الهاتف أو الإيميل','رسالتك'], s_enqsend:'إرسال', s_foot:'© اسم نشاطك' }
   };
 
   var lang = 'en';
@@ -430,7 +432,8 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     var galGrid = '<div class="s-gal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>';
     var galMasonry = '<div class="s-masonry"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>';
     var book = '<div class="s-book">' + s.s_f.map(function(f){ return '<span>' + esc(f) + '</span>'; }).join('') + '<em>' + esc(s.s_send) + '</em></div>';
-    var contact = '<div class="s-contact"><span>✉ hello@yourbusiness.co.uk</span>' + (state.call ? '<span>☎ 07700 900123</span>' : '') + '</div>';
+    var contact = '<div class="s-contact"><span>✉ hello@yourbusiness.co.uk</span>' + (state.call ? '<span>☎ 07700 900123</span>' : '') + '</div>'
+      + (state.enquiry ? '<div class="s-book s-enq">' + s.s_enq.map(function(f){ return '<span>' + esc(f) + '</span>'; }).join('') + '<em>' + esc(s.s_enqsend) + '</em></div>' : '');
     var cta1 = esc(state.booking ? s.s_book : (state.call ? s.s_call : s.s_more));
     var ctas = '<div class="s-ctas"><em>' + cta1 + '</em><em>' + esc(s.s_more) + '</em></div>';
 
