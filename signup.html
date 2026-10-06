@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign up | Gear Radar Digital Solutions</title>
-<meta name="description" content="Sign up for the Gear Radar AI assistant, AI Job Hunter or a bundle. English and Arabic.">
+<meta name="description" content="Sign up for Tala, your personal assistant (with add-ons like Job Hunter), a business website or a QR menu. English and Arabic.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://www.gearradar.co.uk/signup.html">
 <meta name="theme-color" content="#15171C">
@@ -147,6 +147,28 @@ html[lang="ar"] .plan .cat{letter-spacing:0;font-size:.78rem}
 .prefix input{border-radius:0 12px 12px 0}
 textarea{min-height:110px;resize:vertical}
 @media (max-width:620px){.plans.three{grid-template-columns:1fr}}
+.plans.two{grid-template-columns:1fr 1fr}
+/* Add-ons (assistant only) */
+.ao-pick{grid-column:1/-1;display:grid;gap:10px}
+.ao-pick .label{display:block}
+.ao-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ao{position:relative}
+.ao input{position:absolute;top:0;left:0;opacity:0;pointer-events:none}
+.ao label{display:flex;gap:10px;font-weight:400;align-items:flex-start;height:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);cursor:pointer;transition:border-color .2s,background .2s}
+.ao label:hover{border-color:#F3C9B0}
+.ao input:checked + label{border-color:var(--gold);background:#FFF4EC;box-shadow:0 0 0 3px var(--gold-soft)}
+.ao input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+.ao .bx{width:20px;height:20px;border-radius:6px;border:1.5px solid #CFC9BB;background:var(--white);flex:none;margin-top:2px;display:grid;place-items:center}
+.ao input:checked + label .bx{background:var(--gold);border-color:var(--gold)}
+.ao input:checked + label .bx::after{content:"";width:9px;height:5px;border:2px solid var(--ink);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.ao .tx{display:grid;gap:2px}
+.ao .nm{font-weight:700;font-size:.95rem}
+.ao .ds{font-size:.8rem;color:var(--muted);line-height:1.4}
+.ao .ao-pr{font-size:.86rem;color:var(--muted)}
+.ao .ao-pr b{color:var(--text)}
+.summary .tot{margin-top:8px;padding-top:8px;border-top:1px dashed #F3C9B0}
+.due small.lines{font-size:.8rem}
+@media (max-width:720px){.ao-list{grid-template-columns:1fr}}
 
 /* Done */
 .done{text-align:center;padding:48px 34px}
@@ -171,7 +193,7 @@ footer a:hover{color:var(--gold)}
   .area{grid-template-columns:1fr 1fr auto}
 }
 @media (max-width:420px){
-  .plans{grid-template-columns:1fr}
+  .plans,.plans.two{grid-template-columns:1fr}
   .area{grid-template-columns:1fr auto}
   .area select{grid-column:1;grid-row:2}
   .area .rm{grid-row:1/3;grid-column:2}
@@ -222,7 +244,7 @@ footer a:hover{color:var(--gold)}
   <fieldset>
     <legend><span class="n">1</span><span data-i18n="l_plan">Choose your plan</span></legend>
     <div class="groups" role="group" aria-label="Service">
-      <button type="button" data-group="subs" data-i18n="g_subs">Assistant &amp; Job Hunter</button>
+      <button type="button" data-group="subs" data-i18n="g_subs">Tala · your personal assistant</button>
       <button type="button" data-group="web" data-i18n="g_web">Business website</button>
       <button type="button" data-group="qr" data-i18n="g_qr">QR menu / catalogue</button>
       <button type="button" data-group="combo" data-i18n="g_combo">Website + QR (save)</button>
@@ -232,6 +254,10 @@ footer a:hover{color:var(--gold)}
       <button type="button" data-billing="annual" aria-pressed="false"><span data-i18n="annual">Annual</span> · <span class="save" data-i18n="save">2 months free</span></button>
     </div>
     <div class="plans" id="plans"></div>
+    <div class="ao-pick" id="addonsBox">
+      <span class="label"><span data-i18n="l_addons">Add what you need</span> <span class="opt" data-i18n="optional">(optional)</span></span>
+      <div class="ao-list" id="addons" role="group" aria-label="Add-ons"></div>
+    </div>
     <div class="summary" id="summary" aria-live="polite"></div>
   </fieldset>
 
@@ -352,7 +378,7 @@ footer a:hover{color:var(--gold)}
     <div class="paybox" id="paybox">
       <div class="field full"><label for="promo"><span data-i18n="f_promo">Promo code</span> <span class="opt" data-i18n="optional">(optional)</span></label>
         <div class="promo"><input id="promo" maxlength="30" autocomplete="off" spellcheck="false" dir="ltr"><button type="button" class="btn btn-line" id="promoApply" data-i18n="apply">Apply</button><span class="msg" id="promoMsg" aria-live="polite"></span></div></div>
-      <div class="due" aria-live="polite"><div><span data-i18n="due_today">Due today</span><small id="dueNext"></small></div><div class="due-amt"><b id="dueAmt">—</b><small id="dueUsd"></small></div></div>
+      <div class="due" aria-live="polite"><div><span data-i18n="due_today">Due today</span><small id="dueNext"></small><small class="lines" id="dueLines"></small></div><div class="due-amt"><b id="dueAmt">—</b><small id="dueUsd"></small></div></div>
       <div class="paywith" role="radiogroup" aria-label="Payment method">
         <label><input type="radio" name="paywith" value="card" checked><span><b data-i18n="pw_card">Card</b><span class="rec" data-i18n="recommended">Recommended</span><br><small data-i18n="pw_card_h">Visa, Mastercard, Apple Pay, Google Pay</small></span></label>
         <label><input type="radio" name="paywith" value="paypal"><span><b>PayPal</b><br><small data-i18n="pw_pp_h">Pay with your PayPal account</small></span></label>
@@ -401,13 +427,10 @@ footer a:hover{color:var(--gold)}
 
   // Plan catalogue (keep in sync with index.html pricing and the n8n Intake workflow)
   var PLANS = [
-    { key:'basic',        service:'butler',     cat:'cat_butler', name:'Butler Basic', m:9,  y:90,  assistant:true,  jobs:false, wa:false, titles:0,  areas:0, feats:['pf_basic1','pf_basic2','pf_basic3'] },
-    { key:'pro',          service:'butler',     cat:'cat_butler', name:'Butler Pro',   m:19, y:190, assistant:true,  jobs:false, wa:true,  titles:0,  areas:0, feats:['pf_pro1','pf_pro2','pf_pro3'] },
-    { key:'premium',      service:'bundle',     cat:'cat_bundle', name:'Premium',      m:39, y:390, assistant:true,  jobs:true,  wa:true,  titles:6,  areas:3, feats:['pf_prem1','pf_prem2','pf_prem3'], best:true },
-    { key:'jobs_starter', service:'job_hunter', cat:'cat_jobs',   name:'Jobs Starter', m:12, y:120, assistant:false, jobs:true,  wa:true,  titles:3,  areas:1, feats:['pf_js1','pf_js2','pf_js3'] },
-    { key:'jobs_pro',     service:'job_hunter', cat:'cat_jobs',   name:'Jobs Pro',     m:29, y:290, assistant:false, jobs:true,  wa:true,  titles:6,  areas:3, feats:['pf_jp1','pf_jp2','pf_jp3'] },
-    { key:'executive',    service:'bundle',     cat:'cat_bundle', name:'Executive',    m:59, y:590, assistant:true,  jobs:true,  wa:true,  titles:10, areas:3, feats:['pf_ex1','pf_ex2','pf_ex3'] },
-    // Website and QR plans are priced in pounds (cur:'GBP'); everything else in US dollars. Must match plan_prices in Supabase.
+    // Tala, the personal assistant: the core monthly product, priced in pounds. Annual = 10 x monthly.
+    { key:'basic', service:'butler', cat:'cat_butler', name:'Tala Essential', m:7,  y:70,  cur:'GBP', assistant:true, wa:false, feats:['pf_basic1','pf_basic2','pf_basic3'] },
+    { key:'pro',   service:'butler', cat:'cat_butler', name:'Tala Pro',       m:12, y:120, cur:'GBP', assistant:true, wa:true,  feats:['pf_pro1','pf_pro2','pf_pro3'], pop:true },
+    // Website and QR plans are priced in pounds (cur:'GBP'), paid once. Must match plan_prices in Supabase.
     { key:'web_basic',   service:'website',  group:'web', cat:'cat_web', name:'Website Starter', once:10, cur:'GBP', feats:['wf_b1','wf_b2','wf_b3'] },
     { key:'web_pro',     service:'website',  group:'web', cat:'cat_web', name:'Website Pro',     once:20, cur:'GBP', feats:['wf_p1','wf_p2','wf_p3'], best:true },
     { key:'web_premium', service:'website',  group:'web', cat:'cat_web', name:'Website Premium', once:30, cur:'GBP', feats:['wf_m1','wf_m2','wf_m3'] },
@@ -420,13 +443,22 @@ footer a:hover{color:var(--gold)}
     { key:'combo_premium', service:'web_qr', group:'combo', cat:'cat_combo', name:'Website + QR Premium', once:85, cur:'GBP', was:100, feats:['cf_m1','cf_m2','cf_m3'] }
   ];
   PLANS.forEach(function(p){ if (!p.group) p.group = 'subs'; });
-  var DEFAULT_PLAN = { subs:'premium', web:'web_pro', qr:'qr_pro', combo:'combo_pro' };
+  // Monthly add-ons for Tala (either plan), billed with the plan in pounds. Annual = 10 x monthly.
+  // jobs and jobs_plus can't be taken together. Must match the add-on prices in Supabase.
+  var ADDONS = [
+    { code:'jobs',      nm:'ao_jobs',  ds:'ao_jobs_d',  m:10, y:100, cur:'GBP', jobs:true, titles:6,  areas:3, excl:'jobs_plus' },
+    { code:'jobs_plus', nm:'ao_jobsp', ds:'ao_jobsp_d', m:20, y:200, cur:'GBP', jobs:true, titles:10, areas:5, excl:'jobs' },
+    { code:'messages',  nm:'ao_msg',   ds:'ao_msg_d',   m:4,  y:40,  cur:'GBP' }
+  ];
+  // Old links (retired Job Hunter plans and bundles) land on the closest Tala plan + add-ons.
+  var LEGACY = { premium:['pro', ['jobs']], executive:['pro', ['jobs_plus', 'messages']], jobs_pro:['pro', ['jobs']], jobs_starter:['basic', ['jobs']] };
+  var DEFAULT_PLAN = { subs:'pro', web:'web_pro', qr:'qr_pro', combo:'combo_pro' };
   var MAX_IMG = 5 * 1024 * 1024;
   var AREA_COUNTRIES = ['gb','us','ca','ae','sa','qa','kw','bh','om'];
 
   var EN = {
     back:'Back to plans', title:'Set up your account',
-    g_subs:'Assistant & Job Hunter', g_web:'Business website', g_qr:'QR menu / catalogue', g_combo:'Website + QR (save)',
+    g_subs:'Tala · your personal assistant', g_web:'Business website', g_qr:'QR menu / catalogue', g_combo:'Website + QR (save)',
     cat_web:'Website', cat_qr:'QR menu', cat_combo:'Website + QR', save_vs:'you save {p}', once:'one-off', addon:'+ {n}/month',
     wf_b1:'One-page site, one language', wf_b2:'Services & prices, opening hours', wf_b3:'Call button, 4 templates & 4 themes, hosting included',
     wf_p1:'Logo + gallery of up to 8 photos', wf_p2:'Google Map & WhatsApp button', wf_p3:'Arabic + English, 7 templates & 7 themes',
@@ -453,18 +485,18 @@ footer a:hover{color:var(--gold)}
     f_cover:'Cover photo (optional)', h_cover:'Shown behind your name at the top of the page · max 5 MB', f_footer:'Note at the bottom of the page',
     s_upimg:'Uploading your images…', d_3web:'We build your site and check it ourselves, then email you the link, Client ID and Edit Code (usually within one working day).', d_3qr:'Your page, QR code and printable table card are emailed to you within minutes of approval.', d_3combo:'Your QR page preview is emailed within minutes of approval; your website preview follows after our design check (usually within one working day).', lead:'Takes about 3 minutes. We review every signup and email you your activation link within one working day.',
     l_plan:'Choose your plan', monthly:'Monthly', annual:'Annual', save:'2 months free',
-    cat_butler:'Assistant', cat_jobs:'Job Hunter', cat_bundle:'Both', best:'Best value',
-    per_m:'/month', per_y:'/year', billed_y:'billed yearly',
-    pf_basic1:'Assistant on Telegram', pf_basic2:'30 messages a day', pf_basic3:'Gmail, Calendar & reminders',
-    pf_pro1:'Telegram or WhatsApp', pf_pro2:'150 messages a day', pf_pro3:'Voice notes, PDFs & morning brief',
-    pf_prem1:'Everything in Butler Pro', pf_prem2:'Everything in Jobs Pro', pf_prem3:'Ask your assistant about your jobs',
-    pf_js1:'3 job titles, 1 city', pf_js2:'Daily digest of matches', pf_js3:'10 tailored CVs a month',
-    pf_jp1:'6 job titles, 3 cities', pf_jp2:'Instant alerts or daily digest', pf_jp3:'40 tailored CVs + 20 cover letters',
-    pf_ex1:'250 assistant messages a day', pf_ex2:'10 job titles, 3 cities', pf_ex3:'100 tailored CVs + 60 cover letters',
+    cat_butler:'Tala', best:'Best value', popular:'Most popular',
+    per_m:'/month', per_y:'/year', billed_y:'billed yearly', total:'Total',
+    pf_basic1:'Tala on Telegram', pf_basic2:'30 messages a day', pf_basic3:'Gmail, Calendar & reminders',
+    pf_pro1:'Telegram or WhatsApp', pf_pro2:'150 messages a day', pf_pro3:'Voice notes, PDF reading & daily morning brief',
+    l_addons:'Add what you need',
+    ao_jobs:'Job Hunter', ao_jobs_d:'Daily job matches in Tala: 6 job titles, 3 cities, 40 tailored CVs + 20 cover letters a month',
+    ao_jobsp:'Job Hunter Plus', ao_jobsp_d:'10 job titles, 5 cities, 100 tailored CVs + 60 cover letters a month',
+    ao_msg:'Extra messages', ao_msg_d:'+100 messages a day',
     l_you:'About you', f_name:'Full name', f_email:'Email', f_country:'Country you live in', f_lang:'Messages in',
     c_gb:'United Kingdom', c_us:'United States', c_ca:'Canada', c_ae:'United Arab Emirates', c_sa:'Saudi Arabia', c_qa:'Qatar', c_kw:'Kuwait', c_bh:'Bahrain', c_om:'Oman', c_other:'Other',
     e_name:'Please enter your name.', e_email:'Please enter a valid email.',
-    l_channel:'Where should we message you?', tg_hint:"We'll send you a one-tap link to connect", wa_hint:'Messages from our business number', wa_hint_basic:'Available from Butler Pro', wa_hint_digest:'One daily digest from our business number',
+    l_channel:'Where should we message you?', tg_hint:"We'll send you a one-tap link to connect", wa_hint:'Messages from our business number', wa_hint_basic:'Available on Tala Pro',
     f_wa:'WhatsApp number, with country code', e_wa:'Please enter your full number with country code, e.g. +44 7700 900123.',
     l_assistant:'Your assistant', f_google:'Google account for Gmail & Calendar', h_google:"Leave blank to use your email above. You'll approve access with Google when you activate.", e_google:'Please enter a valid Google email.',
     f_city:'Home city', optional:'(optional)', h_city:'For weather and travel times in your morning brief.', f_tz:'Time zone',
@@ -490,7 +522,7 @@ footer a:hover{color:var(--gold)}
   };
   var AR = {
     back:'العودة للباقات', title:'جهّز حسابك',
-    g_subs:'المساعد وصائد الوظائف', g_web:'موقع لنشاطك', g_qr:'قائمة / كتالوج QR', g_combo:'موقع + QR (توفير)',
+    g_subs:'تالا · مساعدتك الشخصية', g_web:'موقع لنشاطك', g_qr:'قائمة / كتالوج QR', g_combo:'موقع + QR (توفير)',
     cat_web:'موقع', cat_qr:'قائمة QR', cat_combo:'موقع + QR', save_vs:'توفّر {p}', once:'لمرة واحدة', addon:'+ {n} شهرياً',
     wf_b1:'موقع من صفحة واحدة بلغة واحدة', wf_b2:'الخدمات والأسعار وساعات العمل', wf_b3:'زر اتصال، 4 قوالب و4 ثيمات، والاستضافة مشمولة',
     wf_p1:'الشعار ومعرض حتى 8 صور', wf_p2:'خريطة Google وزر واتساب', wf_p3:'عربي + إنجليزي، 7 قوالب و7 ثيمات',
@@ -517,18 +549,18 @@ footer a:hover{color:var(--gold)}
     f_cover:'صورة الغلاف (اختياري)', h_cover:'تظهر خلف اسم المحل أعلى الصفحة · حتى 5 ميغابايت', f_footer:'ملاحظة أسفل الصفحة',
     s_upimg:'جارٍ رفع الصور…', d_3web:'نبني موقعك ونراجعه بأنفسنا، ثم نرسل لك الرابط ورقم العميل وكود التعديل بالبريد (عادةً خلال يوم عمل واحد).', d_3qr:'تصلك الصفحة ورمز QR وكرت الطاولة بالبريد خلال دقائق من الموافقة.', d_3combo:'تصلك معاينة صفحة الـ QR بالبريد خلال دقائق من الموافقة، ومعاينة الموقع بعد مراجعتنا للتصميم (عادةً خلال يوم عمل واحد).', lead:'يستغرق حوالي 3 دقائق. نراجع كل طلب ونرسل لك رابط التفعيل بالبريد خلال يوم عمل واحد.',
     l_plan:'اختر باقتك', monthly:'شهري', annual:'سنوي', save:'شهران مجاناً',
-    cat_butler:'المساعد', cat_jobs:'صائد الوظائف', cat_bundle:'الاثنان معاً', best:'الأفضل قيمة',
-    per_m:'/شهرياً', per_y:'/سنوياً', billed_y:'تُدفع سنوياً',
-    pf_basic1:'المساعد على تيليجرام', pf_basic2:'30 رسالة يومياً', pf_basic3:'Gmail والتقويم والتذكيرات',
-    pf_pro1:'تيليجرام أو واتساب', pf_pro2:'150 رسالة يومياً', pf_pro3:'الرسائل الصوتية وملفات PDF والملخص الصباحي',
-    pf_prem1:'كل مزايا Butler Pro', pf_prem2:'كل مزايا Jobs Pro', pf_prem3:'اسأل مساعدك عن وظائفك',
-    pf_js1:'3 مسميات وظيفية، مدينة واحدة', pf_js2:'ملخص يومي بالوظائف المناسبة', pf_js3:'10 سير ذاتية مخصصة شهرياً',
-    pf_jp1:'6 مسميات، 3 مدن', pf_jp2:'تنبيهات فورية أو ملخص يومي', pf_jp3:'40 سيرة مخصصة + 20 خطاب تقديم',
-    pf_ex1:'250 رسالة للمساعد يومياً', pf_ex2:'10 مسميات، 3 مدن', pf_ex3:'100 سيرة مخصصة + 60 خطاب تقديم',
+    cat_butler:'تالا', best:'الأفضل قيمة', popular:'الأكثر طلباً',
+    per_m:'/شهرياً', per_y:'/سنوياً', billed_y:'تُدفع سنوياً', total:'المجموع',
+    pf_basic1:'تالا على تيليجرام', pf_basic2:'30 رسالة يومياً', pf_basic3:'Gmail والتقويم والتذكيرات',
+    pf_pro1:'تيليجرام أو واتساب', pf_pro2:'150 رسالة يومياً', pf_pro3:'الرسائل الصوتية وقراءة ملفات PDF والملخص الصباحي اليومي',
+    l_addons:'أضف ما تحتاجه',
+    ao_jobs:'صائد الوظائف', ao_jobs_d:'وظائف مناسبة يومياً داخل تالا: 6 مسميات، 3 مدن، 40 سيرة مخصصة + 20 خطاب تقديم شهرياً',
+    ao_jobsp:'صائد الوظائف بلس', ao_jobsp_d:'10 مسميات، 5 مدن، 100 سيرة مخصصة + 60 خطاب تقديم شهرياً',
+    ao_msg:'رسائل إضافية', ao_msg_d:'+100 رسالة يومياً',
     l_you:'معلوماتك', f_name:'الاسم الكامل', f_email:'البريد الإلكتروني', f_country:'بلد الإقامة', f_lang:'لغة الرسائل',
     c_gb:'المملكة المتحدة', c_us:'الولايات المتحدة', c_ca:'كندا', c_ae:'الإمارات', c_sa:'السعودية', c_qa:'قطر', c_kw:'الكويت', c_bh:'البحرين', c_om:'عُمان', c_other:'أخرى',
     e_name:'يرجى إدخال اسمك.', e_email:'يرجى إدخال بريد إلكتروني صحيح.',
-    l_channel:'أين نراسلك؟', tg_hint:'نرسل لك رابطاً للربط بضغطة واحدة', wa_hint:'رسائل من رقمنا التجاري', wa_hint_basic:'متاح من باقة Butler Pro', wa_hint_digest:'ملخص يومي واحد من رقمنا التجاري',
+    l_channel:'أين نراسلك؟', tg_hint:'نرسل لك رابطاً للربط بضغطة واحدة', wa_hint:'رسائل من رقمنا التجاري', wa_hint_basic:'متاح في باقة Tala Pro',
     f_wa:'رقم واتساب مع رمز الدولة', e_wa:'يرجى إدخال رقمك كاملاً مع رمز الدولة، مثل ‎+44 7700 900123.',
     l_assistant:'مساعدك', f_google:'حساب Google للبريد والتقويم', h_google:'اتركه فارغاً لاستخدام بريدك أعلاه. ستوافق على الوصول من Google عند التفعيل.', e_google:'يرجى إدخال بريد Google صحيح.',
     f_city:'مدينة السكن', optional:'(اختياري)', h_city:'لحالة الطقس وأوقات الطريق في الملخص الصباحي.', f_tz:'المنطقة الزمنية',
@@ -563,11 +595,20 @@ footer a:hover{color:var(--gold)}
   var params = new URLSearchParams(location.search);
   var lang = 'en', billing = params.get('billing') === 'annual' ? 'annual' : 'monthly';
   var planKey = params.get('plan');
-  if (!PLANS.some(function(p){ return p.key === planKey; })) planKey = 'premium';
+  var addons = String(params.get('addons') || '').split(',').map(function(c){ return c.trim(); });
+  if (LEGACY[planKey]) { addons = addons.concat(LEGACY[planKey][1]); planKey = LEGACY[planKey][0]; }
+  if (!PLANS.some(function(p){ return p.key === planKey; })) planKey = DEFAULT_PLAN.subs;
+  // Keep known codes only, once each, and never both Job Hunter levels (the first one wins).
+  addons = addons.filter(function(c, i){ return addonInfo(c) && addons.indexOf(c) === i; });
+  addons = addons.filter(function(c){ var x = addonInfo(c).excl; return !(x && addons.indexOf(x) > -1 && addons.indexOf(x) < addons.indexOf(c)); });
   var cvFile = null;
 
   function t(k){ var d = lang === 'ar' ? AR : EN; return d[k] != null ? d[k] : (EN[k] || ''); }
   function plan(){ return PLANS.filter(function(p){ return p.key === planKey; })[0]; }
+  function addonInfo(code){ return ADDONS.filter(function(a){ return a.code === code; })[0]; }
+  // Add-ons only apply to the assistant plans.
+  function chosenAddons(){ return group() === 'subs' ? ADDONS.filter(function(a){ return addons.indexOf(a.code) > -1; }).map(function(a){ return a.code; }) : []; }
+  function jobsAddon(){ return chosenAddons().map(addonInfo).filter(function(a){ return a.jobs; })[0] || null; }
   function group(){ return plan().group; }
   function tier(){ return String(planKey).replace(/^(web|qr|combo)_/, ''); }
   function hasWeb(){ return group() === 'web' || group() === 'combo'; }
@@ -578,22 +619,54 @@ footer a:hover{color:var(--gold)}
   function renderPlans(){
     var box = $('plans'); box.innerHTML = '';
     box.classList.toggle('three', group() !== 'subs');
+    box.classList.toggle('two', group() === 'subs');
     PLANS.filter(function(p){ return p.group === group(); }).forEach(function(p){
       var wrap = document.createElement('div'); wrap.className = 'plan';
       var price = p.once ? (p.was ? '<s class="was">' + money(p.was, p.cur) + '</s> ' : '') + money(p.once, p.cur) + ' <span>' + t('once') + '</span>' + (p.add ? '<span class="add">' + t('addon').replace('{n}', money(p.add, p.cur)) + '</span>' : '')
-        : (billing === 'annual' ? money(p.y) + '<span>' + t('per_y') + '</span>' : money(p.m) + '<span>' + t('per_m') + '</span>');
+        : (billing === 'annual' ? money(p.y, p.cur) + '<span>' + t('per_y') + '</span>' : money(p.m, p.cur) + '<span>' + t('per_m') + '</span>');
       wrap.innerHTML = '<input type="radio" name="plan" id="p_' + p.key + '" value="' + p.key + '"' + (p.key === planKey ? ' checked' : '') + '>' +
         '<label for="p_' + p.key + '"><span class="cat">' + t(p.cat) + '</span><span class="nm">' + p.name + '</span><span class="pr"><b>' + price + '</b></span></label>' +
-        (p.best ? '<span class="best">' + t('best') + '</span>' : '');
+        (p.best ? '<span class="best">' + t('best') + '</span>' : '') + (p.pop ? '<span class="best">' + t('popular') + '</span>' : '');
       box.appendChild(wrap);
     });
     box.querySelectorAll('input').forEach(function(i){ i.addEventListener('change', function(){ planKey = i.value; update(); }); });
+    renderAddons();
+  }
+  function renderAddons(){
+    var box = $('addons'), annual = billing === 'annual'; box.innerHTML = '';
+    $('addonsBox').classList.toggle('section-hide', group() !== 'subs');
+    ADDONS.forEach(function(a){
+      var wrap = document.createElement('div'); wrap.className = 'ao';
+      wrap.innerHTML = '<input type="checkbox" id="ao_' + a.code + '" value="' + a.code + '"' + (addons.indexOf(a.code) > -1 ? ' checked' : '') + '>' +
+        '<label for="ao_' + a.code + '"><span class="bx" aria-hidden="true"></span><span class="tx"><span class="nm">' + t(a.nm) + '</span><span class="ds">' + t(a.ds) + '</span>' +
+        '<span class="ao-pr"><b>' + money(annual ? a.y : a.m, a.cur) + '</b>' + t(annual ? 'per_y' : 'per_m') + '</span></span></label>';
+      box.appendChild(wrap);
+    });
+    box.querySelectorAll('input').forEach(function(i){
+      i.addEventListener('change', function(){
+        var a = addonInfo(i.value);
+        addons = addons.filter(function(c){ return c !== a.code && (!i.checked || c !== a.excl); });
+        if (i.checked) addons.push(a.code);
+        if (i.checked && a.excl) { var o = $('ao_' + a.excl); if (o) o.checked = false; }
+        update();
+      });
+    });
   }
   function renderSummary(){
     var p = plan();
-    var line = p.once ? '<b>' + p.name + '</b> · ' + money(p.once, p.cur) + ' ' + t('once') + (p.was ? ' <span class="hint">(' + t('save_vs').replace('{p}', money(p.was - p.once, p.cur)) + ')</span>' : '') + (p.add ? ' ' + t('addon').replace('{n}', money(p.add, p.cur)) : '') : billing === 'annual'
-      ? '<b>' + p.name + '</b> · ' + money(p.y) + t('per_y') + ' <span class="hint">(' + t('billed_y') + ')</span>'
-      : '<b>' + p.name + '</b> · ' + money(p.m) + t('per_m');
+    if (!p.once) {
+      // Assistant: the plan, each add-on and the total, all in pounds (currency.js shows them in the visitor's currency).
+      var annual = billing === 'annual', per = t(annual ? 'per_y' : 'per_m'), sum = annual ? p.y : p.m;
+      var rows = '<b>' + p.name + '</b> · ' + money(sum, p.cur) + per;
+      chosenAddons().forEach(function(c){
+        var a = addonInfo(c), v = annual ? a.y : a.m; sum += v;
+        rows += '<br>+ <b>' + t(a.nm) + '</b> · ' + money(v, a.cur) + per;
+      });
+      rows += '<div class="tot"><b>' + t('total') + ': ' + money(sum, p.cur) + per + '</b>' + (annual ? ' <span class="hint">(' + t('billed_y') + ')</span>' : '') + '</div>';
+      $('summary').innerHTML = rows + '<ul>' + p.feats.map(function(f){ return '<li>' + t(f) + '</li>'; }).join('') + '</ul>';
+      return;
+    }
+    var line = '<b>' + p.name + '</b> · ' + money(p.once, p.cur) + ' ' + t('once') + (p.was ? ' <span class="hint">(' + t('save_vs').replace('{p}', money(p.was - p.once, p.cur)) + ')</span>' : '') + (p.add ? ' ' + t('addon').replace('{n}', money(p.add, p.cur)) : '');
     $('summary').innerHTML = line + '<ul>' + p.feats.map(function(f){ return '<li>' + t(f) + '</li>'; }).join('') + '</ul>';
   }
   function areaRow(label, code){
@@ -608,8 +681,8 @@ footer a:hover{color:var(--gold)}
     return row;
   }
   function syncAreas(){
-    var p = plan(), box = $('areas');
-    var max = p.areas || 1;
+    var ja = jobsAddon(), box = $('areas');
+    var max = (ja && ja.areas) || 1;
     while (box.children.length > max) box.lastElementChild.remove();
     if (!box.children.length) box.appendChild(areaRow());
     $('addArea').hidden = box.children.length >= max;
@@ -643,7 +716,8 @@ footer a:hover{color:var(--gold)}
     document.querySelector('.billing').classList.toggle('section-hide', g !== 'subs');
     $('channelSet').classList.toggle('section-hide', g !== 'subs');
     $('assistantSet').classList.toggle('section-hide', !p.assistant);
-    $('jobsSet').classList.toggle('section-hide', !p.jobs);
+    var ja = jobsAddon();
+    $('jobsSet').classList.toggle('section-hide', !ja);
     $('webSet').classList.toggle('section-hide', !hasWeb());
     $('qrSet').classList.toggle('section-hide', !hasQr());
     // Bundles have one add-on for both parts instead of the two separate ones
@@ -657,7 +731,7 @@ footer a:hover{color:var(--gold)}
     // step numbers
     var n = g === 'subs' ? 4 : 3;
     if (p.assistant) $('assistantSet').querySelector('.n').textContent = n++;
-    if (p.jobs) $('jobsSet').querySelector('.n').textContent = n++;
+    if (ja) $('jobsSet').querySelector('.n').textContent = n++;
     if (hasWeb()) $('webSet').querySelector('.n').textContent = n++;
     if (hasQr()) $('qrSet').querySelector('.n').textContent = n++;
     $('lastStep').textContent = n;
@@ -665,12 +739,13 @@ footer a:hover{color:var(--gold)}
     var wa = $('ch_wa');
     wa.disabled = !p.wa;
     if (!p.wa && wa.checked) { $('ch_tg').checked = true; }
-    $('waHint').textContent = !p.wa ? t('wa_hint_basic') : (p.jobs && !p.assistant ? t('wa_hint_digest') : t('wa_hint'));
+    $('waHint').textContent = !p.wa ? t('wa_hint_basic') : t('wa_hint');
     $('waField').classList.toggle('section-hide', !wa.checked);
-    $('titlesHint').textContent = t('h_titles').replace('{n}', p.titles || 3);
-    if (p.jobs) syncAreas();
+    $('titlesHint').textContent = t('h_titles').replace('{n}', ja ? ja.titles : 6);
+    if (ja) syncAreas();
     renderSummary();
-    try { history.replaceState(null, '', '?plan=' + planKey + (g === 'subs' ? '&billing=' + billing : '') + (lang === 'ar' ? '&lang=ar' : '')); } catch(e) {}
+    var ac = chosenAddons();
+    try { history.replaceState(null, '', '?' + (g === 'subs' ? 'service=butler&' : '') + 'plan=' + planKey + (ac.length ? '&addons=' + ac.join(',') : '') + (g === 'subs' ? '&billing=' + billing : '') + (lang === 'ar' ? '&lang=ar' : '')); } catch(e) {}
   }
   function applyLang(l){
     lang = l;
@@ -764,10 +839,12 @@ footer a:hover{color:var(--gold)}
       if (mark($('google_email'), !EMAIL.test(g) && $('google_email').value.trim() !== '')) bad.push($('google_email'));
       payload.google_email = g; payload.timezone = $('timezone').value; payload.city = $('city').value.trim();
     }
-    if (p.jobs) {
-      var titles = $('titles').value.split(/[,،\n]/).map(function(s){ return s.trim(); }).filter(Boolean).slice(0, p.titles);
+    var ja = jobsAddon();
+    if (p.group === 'subs') payload.addons = chosenAddons();
+    if (ja) {
+      var titles = $('titles').value.split(/[,،\n]/).map(function(s){ return s.trim(); }).filter(Boolean).slice(0, ja.titles);
       if (mark($('titles'), !titles.length)) bad.push($('titles'));
-      var areas = Array.prototype.map.call($('areas').children, function(r){ return { label: r.querySelector('.a-label').value.trim(), country: r.querySelector('.a-country').value }; }).filter(function(a){ return a.label; });
+      var areas = Array.prototype.map.call($('areas').children, function(r){ return { label: r.querySelector('.a-label').value.trim(), country: r.querySelector('.a-country').value }; }).filter(function(a){ return a.label; }).slice(0, ja.areas);
       $('areasErr').style.display = areas.length ? 'none' : 'block';
       $('areas').querySelectorAll('.a-label').forEach(function(i, idx){ i.classList.toggle('invalid', !areas.length && idx === 0); });
       if (!areas.length) bad.push($('areas').querySelector('.a-label'));
@@ -888,7 +965,7 @@ footer a:hover{color:var(--gold)}
     var c = collect();
     if (c.bad.length) { setStatus('s_check', 'err'); var first = c.bad[0]; (first.focus ? first : first.querySelector('input')).focus(); return; }
     btn.disabled = true;
-    var step = plan().jobs ? (setStatus('s_upload'), uploadCv().catch(function(e){ e.upload = true; throw e; }))
+    var step = jobsAddon() ? (setStatus('s_upload'), uploadCv().catch(function(e){ e.upload = true; throw e; }))
       : (c.files && c.files.combo
         ? uploadImages(c.files.website).then(function(w){ return uploadImages(c.files.qr).then(function(q){ return { combo: true, website: w, qr: q }; }); })
         : uploadImages(c.files)).catch(function(e){ e.upload = true; throw e; });
@@ -927,7 +1004,7 @@ footer a:hover{color:var(--gold)}
   var QUOTE = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-quote', qSeq = 0, appliedCode = '', qTimer = null;
   function cleanCode(v){ return String(v || '').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 30); }
   function payWith(){ var r = document.querySelector('input[name="paywith"]:checked'); return r ? r.value : 'card'; }
-  // Amounts from the quote are in the plan's own currency: pounds for websites, US dollars for the rest.
+  // Amounts from the quote are in the plan's own currency (pounds for every current plan; US dollars if a row says so).
   var qCur = 'USD';
   function usd(n){ n = Number(n || 0); return (qCur === 'GBP' ? '£' : '$') + (n % 1 ? n.toFixed(2) : String(n)); }
   // Prices on the page can be shown in the visitor's currency (currency.js), but payment is in the plan's currency, so say so.
@@ -938,15 +1015,24 @@ footer a:hover{color:var(--gold)}
   function updateQuote(showMsg){
     var p = plan(), my = ++qSeq;
     var bill = p.group === 'subs' ? billing : 'monthly';
-    fetch(QUOTE, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ plan: p.key, billing: bill, code: appliedCode, addon: (p.group === 'web' && $('w_care').checked) || (p.group === 'qr' && $('q_care').checked) || (p.group === 'combo' && $('c_care').checked) }) })
+    fetch(QUOTE, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ plan: p.key, billing: bill, code: appliedCode, addon: (p.group === 'web' && $('w_care').checked) || (p.group === 'qr' && $('q_care').checked) || (p.group === 'combo' && $('c_care').checked), addons: chosenAddons() }) })
       .then(function(r){ return r.json(); })
       .then(function(q){
         if (my !== qSeq || !q || !q.ok) return;
         qCur = String(q.currency || 'USD').toUpperCase();
-        $('dueAmt').textContent = usd(q.due_now_usd);
-        dueUsdNow = Number(q.due_now_usd || 0); showUsd();
+        // price_usd is the total of the plan and its add-ons, in the row's currency; due_now_usd also counts any promo code.
+        var dueNow = q.due_now_usd != null ? q.due_now_usd : q.price_usd;
+        $('dueAmt').textContent = usd(dueNow);
+        dueUsdNow = Number(dueNow || 0); showUsd();
+        // One line per item the server priced (plan + accepted add-ons).
+        var lines = Array.isArray(q.lines) && q.lines.length > 1 ? q.lines : [];
+        $('dueLines').textContent = lines.map(function(l){
+          var a = addonInfo(l.code), pl = PLANS.filter(function(x){ return x.key === l.code; })[0];
+          return (a ? t(a.nm) : (pl ? pl.name : String(l.name || l.code || ''))) + ' ' + usd(l.amount);
+        }).join(' · ');
         var next = '';
-        if (q.kind === 'subscription') next = Number(q.trial_days) > 0 ? t('free_first').replace('{p}', usd(q.recurring_usd)) : t(q.recurring_interval === 'year' ? 'then_y' : 'then_m').replace('{p}', usd(q.recurring_usd));
+        var rec = q.recurring_usd != null ? q.recurring_usd : q.price_usd;
+        if (q.kind === 'subscription') next = Number(q.trial_days) > 0 ? t('free_first').replace('{p}', usd(rec)) : t(q.recurring_interval === 'year' ? 'then_y' : 'then_m').replace('{p}', usd(rec));
         else next = q.addon_monthly_usd ? t('then_addon').replace('{p}', usd(q.addon_monthly_usd)) : t('one_off_note');
         $('dueNext').textContent = next;
         if (!appliedCode) promoMsg('');
@@ -992,7 +1078,7 @@ footer a:hover{color:var(--gold)}
   else if (params.get('payfailed') === '1') { setStatus('s_payfailed', 'err'); }
 })();
 </script>
-<script>window.grFxExtra = '#plans .pr b, #summary, #dueAmt, #dueNext, #promoMsg, .care-p';</script>
+<script>window.grFxExtra = '#plans .pr b, #addons .ao-pr b, #summary, #dueAmt, #dueNext, #dueLines, #promoMsg, .care-p';</script>
 <script src="currency.js?v=20261005" defer></script>
 <style>select.lang{appearance:none;-webkit-appearance:none;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
 html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 13px center}
