@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work | Gear Radar Digital Solutions</title>
+<meta name="description" content="Sample websites and Smart QR menus built by Gear Radar for a restaurant, a barber, a dental clinic and a beauty studio. Open each one live.">
+<link rel="canonical" href="https://www.gearradar.co.uk/work.html">
+<meta property="og:title" content="Our Work | Gear Radar">
+<meta property="og:description" content="Live sample websites and QR menus you can open and try.">
+<meta property="og:image" content="https://www.gearradar.co.uk/samples/shots/web-nile-spice-kitchen.webp">
+<meta name="theme-color" content="#15171C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171C; --ink-2:#1B1E25; --ink-3:#22252D; --gold:#FF8A50; --gold-2:#FACC15; --gold-soft:rgba(255,138,80,.14);
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#F5F5F4; --on-ink-muted:#A8A29E;
+  --radius:18px; --shadow:0 20px 50px -24px rgba(21,23,28,.35);
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.container{width:min(1160px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-head);line-height:1.2;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0;line-height:1.4}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+header{background:var(--ink);color:var(--on-ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.back{color:var(--on-ink-muted);font-size:.93rem;font-weight:500}
+.back:hover{color:var(--white)}
+.lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;font-family:'Cairo','Inter',sans-serif}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.hero{padding:34px 0 46px}
+.eyebrow{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
+.hero h1{font-size:clamp(1.8rem,4.4vw,2.8rem);color:var(--white);margin-bottom:10px}
+.hero p{color:var(--on-ink-muted);max-width:700px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.tab{background:transparent;color:var(--on-ink);border:1px solid rgba(232,236,244,.25);padding:9px 18px;border-radius:999px;font-weight:600;font-size:.92rem}
+.tab[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+
+main{padding:40px 0 30px}
+.work{display:grid;gap:34px}
+.biz{background:var(--white);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.biz-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:22px 26px;border-bottom:1px solid var(--line)}
+.biz-head h2{font-size:1.35rem}
+.biz-head p{color:var(--muted);font-size:.93rem}
+.type{display:inline-flex;align-items:center;gap:8px;background:var(--gold-soft);color:#B4541F;font-weight:700;font-size:.8rem;padding:6px 12px;border-radius:999px}
+.pieces{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:0}
+.piece{padding:24px 26px 26px;display:flex;flex-direction:column;gap:14px}
+.piece + .piece{border-inline-start:1px solid var(--line);background:#FBFAF7}
+.piece-label{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.piece-label b{font-family:var(--font-head);font-size:1rem}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:.75rem;font-weight:600;padding:4px 10px;border-radius:999px;background:#F1EFE9;color:var(--muted)}
+.chip.plan{background:var(--ink);color:var(--white)}
+.shot{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#EFEDE8;transition:transform .25s,box-shadow .25s}
+.shot:hover{transform:translateY(-3px);box-shadow:0 18px 36px -20px rgba(21,23,28,.45)}
+.shot img{display:block;width:100%;height:auto}
+.bar{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid var(--line)}
+.bar i{width:8px;height:8px;border-radius:50%;background:#D6D3CC}
+.bar span{flex:1;background:#fff;border-radius:999px;padding:2px 10px;font-size:.72rem;color:var(--muted);direction:ltr;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phone{max-width:250px;width:100%;margin:0 auto;border:8px solid var(--ink);border-radius:30px;background:var(--ink)}
+.phone img{border-radius:20px;aspect-ratio:390/780;object-fit:cover;object-position:top}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:600;font-size:.9rem;border:1px solid transparent;transition:transform .2s,background .2s,border-color .2s,color .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:var(--white)}
+.btn-dark:hover{background:var(--ink-3)}
+.btn-outline{border-color:var(--ink);color:var(--ink)}
+.btn-outline:hover{border-color:var(--gold);color:#B4541F}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-2)}
+@media (max-width:860px){ .pieces{grid-template-columns:1fr} .piece + .piece{border-inline-start:0;border-top:1px solid var(--line)} }
+body.only-web .piece.qr, body.only-qr .piece.web{display:none}
+body.only-web .pieces, body.only-qr .pieces{grid-template-columns:1fr}
+body.only-qr .piece.qr{border:0;background:var(--white)}
+body.only-qr .work{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+body.only-web .work{grid-template-columns:repeat(auto-fill,minmax(440px,1fr))}
+@media (max-width:520px){ body.only-web .work{grid-template-columns:1fr} }
+.note{color:var(--muted);font-size:.85rem;text-align:center;margin-top:26px}
+.cta{background:var(--ink);color:var(--on-ink);border-radius:24px;padding:40px 30px;text-align:center;margin:40px 0 60px}
+.cta h2{font-size:clamp(1.4rem,3.4vw,2rem);color:var(--white);margin-bottom:8px}
+.cta p{color:var(--on-ink-muted);margin-bottom:22px}
+.cta .btns{justify-content:center}
+.btn-ghost{border-color:rgba(232,236,244,.25);color:var(--on-ink)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="back" href="index.html" data-i18n="back">← Back to Gear Radar</a>
+    <button class="lang" id="langToggle" type="button">العربية</button>
+  </div>
+  <div class="container hero">
+    <span class="eyebrow" data-i18n="eyebrow">Our work</span>
+    <h1 data-i18n="title">See what we build, then open it live</h1>
+    <p data-i18n="lead">Four sample businesses, each with a website and a Smart QR menu. Click any screenshot to open the real page on your phone or computer and try it: switch the language, search the menu, add to the cart or book on WhatsApp.</p>
+    <div class="tabs" role="group" aria-label="Filter">
+      <button class="tab" type="button" data-f="all" aria-pressed="true" data-i18n="f_all">All</button>
+      <button class="tab" type="button" data-f="web" aria-pressed="false" data-i18n="f_web">Websites</button>
+      <button class="tab" type="button" data-f="qr" aria-pressed="false" data-i18n="f_qr">QR menus</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="work" id="work"></div>
+  <p class="note" data-i18n="note">These are sample businesses made to show our work. Names, prices and contact details are examples.</p>
+  <div class="cta">
+    <h2 data-i18n="cta_t">Want one like this for your business?</h2>
+    <p data-i18n="cta_p">Pick a design, send us your details and photos, and we build it for you.</p>
+    <div class="btns">
+      <a class="btn btn-gold" href="index.html#pricing" data-i18n="cta_plans">See plans and prices</a>
+      <a class="btn btn-ghost" href="gallery.html" data-i18n="cta_web">Website gallery</a>
+      <a class="btn btn-ghost" href="qr-gallery.html" data-i18n="cta_qr">QR menu gallery</a>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  // Sample list. Template, theme and layout names match designs.js / qr-designs.js.
+  var SAMPLES = [
+    { slug:'nile-spice-kitchen', name:{en:'Nile Spice Kitchen',ar:'مطبخ نايل سبايس'}, type:{en:'Restaurant',ar:'مطعم'}, icon:'🍽️',
+      about:{en:'Sudanese and East African restaurant, London',ar:'مطعم سوداني وشرق أفريقي، لندن'},
+      web:{ plan:'web_premium', template:'Luxury Showcase', theme:'Luxury Dark & Gold' },
+      qr:{ plan:'qr_premium', layout:'Magazine', theme:'Royal Burgundy & Gold', qtype:'menu',
+           extra:{en:'Cart, table orders, offers, sold-out tag',ar:'سلة، طلبات الطاولات، عروض، علامة نفذ'} } },
+    { slug:'crown-and-fade', name:{en:'Crown & Fade Barbers',ar:'كراون آند فيد للحلاقة'}, type:{en:'Barber',ar:'حلاق'}, icon:'💈',
+      about:{en:'Barbershop, Manchester',ar:'صالون حلاقة، مانشستر'},
+      web:{ plan:'web_basic', template:'Bold Banner', theme:'Clean Mono' },
+      qr:{ plan:'qr_pro', layout:'Modern Cards', theme:'Bold Charcoal & Crimson', qtype:'services',
+           extra:{en:'Booking form and service cart',ar:'نموذج حجز وسلة خدمات'} } },
+    { slug:'bright-smile-dental', name:{en:'Bright Smile Dental Clinic',ar:'عيادة برايت سمايل للأسنان'}, type:{en:'Dental clinic',ar:'عيادة أسنان'}, icon:'🦷',
+      about:{en:'Family and cosmetic dentistry, Birmingham',ar:'طب أسنان عائلي وتجميلي، برمنغهام'},
+      web:{ plan:'web_pro', template:'Card Grid', theme:'Ocean Teal & Coral' },
+      qr:{ plan:'qr_pro', layout:'Centered Elegant', theme:'Ocean Blue & Sand', qtype:'services',
+           extra:{en:'Price list with appointment booking',ar:'قائمة أسعار مع حجز موعد'} } },
+    { slug:'lumiere-beauty', name:{en:'Lumière Beauty Studio',ar:'ستوديو لوميير للتجميل'}, type:{en:'Beauty centre',ar:'مركز تجميل'}, icon:'💅',
+      about:{en:'Ladies-only beauty studio, Leeds',ar:'ستوديو تجميل للسيدات، ليدز'},
+      web:{ plan:'web_premium', template:'Editorial', theme:'Rose & Blush' },
+      qr:{ plan:'qr_premium', layout:'Luxury Frame', theme:'Pastel Rose & Vanilla', qtype:'services',
+           extra:{en:'Offers, booking and service cart',ar:'عروض وحجز وسلة خدمات'} } }
+  ];
+  var PLAN = { web_basic:{en:'Starter',ar:'المبتدئة'}, web_pro:{en:'Pro',ar:'الاحترافية'}, web_premium:{en:'Premium',ar:'المميزة'},
+               qr_basic:{en:'Starter',ar:'المبتدئة'}, qr_pro:{en:'Pro',ar:'الاحترافية'}, qr_premium:{en:'Premium',ar:'المميزة'} };
+  var STR = {
+    en:{ toggle:'العربية', back:'← Back to Gear Radar', eyebrow:'Our work', title:'See what we build, then open it live',
+      lead:'Four sample businesses, each with a website and a Smart QR menu. Click any screenshot to open the real page on your phone or computer and try it: switch the language, search the menu, add to the cart or book on WhatsApp.',
+      f_all:'All', f_web:'Websites', f_qr:'QR menus', website:'Website', qrmenu:'Smart QR menu', plan:'{p} plan',
+      open_web:'Open website', open_qr:'Open QR menu', want:'I want this style',
+      note:'These are sample businesses made to show our work. Names, prices and contact details are examples.',
+      cta_t:'Want one like this for your business?', cta_p:'Pick a design, send us your details and photos, and we build it for you.',
+      cta_plans:'See plans and prices', cta_web:'Website gallery', cta_qr:'QR menu gallery' },
+    ar:{ toggle:'English', back:'→ الرجوع إلى Gear Radar', eyebrow:'أعمالنا', title:'شوف شغلنا وافتحه مباشرة',
+      lead:'أربعة أنشطة نموذجية، لكل واحد موقع وقائمة QR ذكية. اضغط على أي صورة عشان تفتح الصفحة الحقيقية في جوالك أو الكمبيوتر وجرّبها: غيّر اللغة، ابحث في القائمة، أضف للسلة أو احجز على واتساب.',
+      f_all:'الكل', f_web:'المواقع', f_qr:'قوائم QR', website:'الموقع', qrmenu:'قائمة QR الذكية', plan:'باقة {p}',
+      open_web:'افتح الموقع', open_qr:'افتح قائمة QR', want:'أبغى نفس التصميم',
+      note:'هذه أنشطة نموذجية لعرض أعمالنا. الأسماء والأسعار وبيانات التواصل أمثلة فقط.',
+      cta_t:'عايز واحد زي ده لنشاطك؟', cta_p:'اختار التصميم، أرسل لنا بياناتك وصورك، ونحنا بنبنيه ليك.',
+      cta_plans:'شوف الباقات والأسعار', cta_web:'معرض المواقع', cta_qr:'معرض قوائم QR' }
+  };
+  var lang = 'en', filter = 'all';
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function render(){
+    var s = STR[lang], h = '';
+    SAMPLES.forEach(function(x){
+      var webUrl = 'samples/web/' + x.slug + '/', qrUrl = 'samples/qr/' + x.slug + '/';
+      var l = lang === 'ar' ? '&lang=ar' : '';
+      var webWant = 'signup.html?plan=' + x.web.plan + '&template=' + encodeURIComponent(x.web.template) + '&palette=' + encodeURIComponent(x.web.theme) + l;
+      var qrWant = 'signup.html?plan=' + x.qr.plan + '&theme=' + encodeURIComponent(x.qr.theme) + '&layout=' + encodeURIComponent(x.qr.layout) + '&qtype=' + x.qr.qtype + l;
+      h += '<article class="biz">' +
+        '<div class="biz-head"><div><h2>' + esc(x.name[lang]) + '</h2><p>' + esc(x.about[lang]) + '</p></div><span class="type">' + x.icon + ' ' + esc(x.type[lang]) + '</span></div>' +
+        '<div class="pieces">' +
+          '<div class="piece web"><div class="piece-label"><b>' + esc(s.website) + '</b><span class="chips"><span class="chip plan">' + esc(s.plan.replace('{p}', PLAN[x.web.plan][lang])) + '</span><span class="chip">' + esc(x.web.template) + '</span><span class="chip">' + esc(x.web.theme) + '</span></span></div>' +
+            '<a class="shot" href="' + webUrl + '" target="_blank" rel="noopener"><div class="bar"><i></i><i></i><i></i><span>gearradar.co.uk/samples/web/' + esc(x.slug) + '/</span></div><img src="samples/shots/web-' + x.slug + '.webp" width="1200" height="750" loading="lazy" alt="' + esc(x.name.en) + ' website"></a>' +
+            '<div class="btns"><a class="btn btn-dark" href="' + webUrl + '" target="_blank" rel="noopener">' + esc(s.open_web) + ' ↗</a><a class="btn btn-outline" href="' + webWant + '">' + esc(s.want) + '</a></div></div>' +
+          '<div class="piece qr"><div class="piece-label"><b>' + esc(s.qrmenu) + '</b><span class="chips"><span class="chip plan">' + esc(s.plan.replace('{p}', PLAN[x.qr.plan][lang])) + '</span><span class="chip">' + esc(x.qr.layout) + '</span></span></div>' +
+            '<a class="shot phone" href="' + qrUrl + '" target="_blank" rel="noopener"><img src="samples/shots/qr-' + x.slug + '.webp" width="390" height="780" loading="lazy" alt="' + esc(x.name.en) + ' QR menu"></a>' +
+            '<p class="chips" style="justify-content:center"><span class="chip">' + esc(x.qr.theme) + '</span><span class="chip">' + esc(x.qr.extra[lang]) + '</span></p>' +
+            '<div class="btns" style="justify-content:center"><a class="btn btn-dark" href="' + qrUrl + '" target="_blank" rel="noopener">' + esc(s.open_qr) + ' ↗</a><a class="btn btn-outline" href="' + qrWant + '">' + esc(s.want) + '</a></div></div>' +
+        '</div></article>';
+    });
+    document.getElementById('work').innerHTML = h;
+  }
+  function applyLang(l){
+    lang = l;
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    var s = STR[l];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ var k = el.getAttribute('data-i18n'); if (s[k] != null) el.textContent = s[k]; });
+    document.getElementById('langToggle').textContent = s.toggle;
+    try { localStorage.setItem('gr_lang', l); } catch(e) {}
+    render();
+  }
+  function applyFilter(f){
+    filter = f;
+    document.body.classList.toggle('only-web', f === 'web');
+    document.body.classList.toggle('only-qr', f === 'qr');
+    document.querySelectorAll('.tab').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-f') === f)); });
+  }
+  document.querySelectorAll('.tab').forEach(function(b){ b.addEventListener('click', function(){ applyFilter(b.getAttribute('data-f')); }); });
+  document.getElementById('langToggle').addEventListener('click', function(){ applyLang(lang === 'ar' ? 'en' : 'ar'); });
+  var params = new URLSearchParams(location.search), initial = params.get('lang');
+  if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch(e) { initial = 'en'; } }
+  var f0 = params.get('show'); if (f0 === 'web' || f0 === 'qr') applyFilter(f0);
+  applyLang(initial === 'ar' ? 'ar' : 'en');
+})();
+</script>
+</body>
+</html>

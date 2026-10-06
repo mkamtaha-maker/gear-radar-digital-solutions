@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Lumière Beauty Studio | Leeds</title>
+<meta name="description" content="Facials, lashes, brows and nails by a ladies-only team in Leeds. Sample website by Gear Radar.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;700&family=Tajawal:wght@400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff1f2;--fg:#4c0519;--sub:#9f5b68;--nav:#ffffff;--pri:#f43f5e;--prifg:#fff;--acc:#f9a8d4;--card:#ffffff;--line:#fbcfe8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'DM Sans',system-ui,sans-serif;line-height:1.65}
+html[lang=ar] body{font-family:'Tajawal',system-ui,sans-serif}
+.ar{display:none}html[lang=ar] .en{display:none}html[lang=ar] .ar{display:revert}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.serif{font-family:'Fraunces',Georgia,serif;font-weight:400}
+html[lang=ar] .serif{font-family:'Amiri','Tajawal',serif}
+.kicker{text-transform:uppercase;letter-spacing:.24em;font-size:.72rem;font-weight:700;color:var(--pri)}
+html[lang=ar] .kicker{letter-spacing:0;font-size:.95rem}
+nav{background:var(--nav);border-bottom:1px solid var(--line)}
+nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:76px}
+.navl,.navr{display:flex;gap:26px;font-size:.9rem}
+.navr{justify-content:flex-end;align-items:center}
+.navl a,.navr a{text-decoration:none}
+.logo{font-size:1.8rem;text-decoration:none;letter-spacing:.02em}
+.logo i{color:var(--pri)}
+.lang{background:none;border:1px solid var(--fg);border-radius:999px;padding:5px 14px;font:inherit;font-size:.82rem;cursor:pointer;color:var(--fg)}
+.book{background:var(--fg);color:#fff;padding:10px 20px;border-radius:999px;font-weight:700}
+@media(max-width:820px){.navl{display:none}nav .wrap{grid-template-columns:auto 1fr}.navr a:not(.book){display:none}}
+.issue{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);font-size:.8rem;color:var(--sub);letter-spacing:.1em;text-transform:uppercase}
+html[lang=ar] .issue{letter-spacing:0}
+.cover{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;padding:56px 0 80px;align-items:center}
+.cover h1{font-size:clamp(3rem,8vw,6.6rem);line-height:.98;margin:18px 0 26px;letter-spacing:-.025em}
+html[lang=ar] .cover h1{line-height:1.25;letter-spacing:0}
+.cover h1 i{color:var(--pri)}
+.cover p{font-size:1.12rem;color:var(--sub);max-width:520px;margin:0 0 30px}
+.btn{display:inline-block;padding:15px 28px;border-radius:999px;text-decoration:none;font-weight:700}
+.btn-p{background:var(--pri);color:#fff}.btn-l{border:1px solid var(--fg);margin-inline-start:10px}
+.art{aspect-ratio:3/4;border-radius:240px 240px 24px 24px;background:radial-gradient(circle at 30% 25%,#fff 0,#fecdd3 30%,#fda4af 60%,#f472b6 100%);position:relative;overflow:hidden;box-shadow:0 30px 60px rgba(244,63,94,.18)}
+.art svg{position:absolute;inset:0;width:100%;height:100%}
+.art .tagc{position:absolute;bottom:26px;inset-inline-start:26px;background:#fff;border-radius:18px;padding:14px 18px;box-shadow:0 10px 30px rgba(76,5,25,.12);font-size:.9rem}
+.art .tagc b{display:block;font-family:'Fraunces',serif;font-size:1.5rem;color:var(--pri)}
+@media(max-width:860px){.cover{grid-template-columns:1fr}.art{max-width:420px}.btn-l{margin:12px 0 0}}
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.numbers div{padding:34px 20px;border-inline-end:1px solid var(--line)}
+.numbers div:last-child{border:0}
+.numbers b{display:block;font-family:'Fraunces',serif;font-size:3.4rem;line-height:1;font-weight:400}
+.numbers span{color:var(--sub);font-size:.9rem}
+@media(max-width:760px){.numbers{grid-template-columns:1fr 1fr}.numbers div:nth-child(2){border-inline-end:0}.numbers div{border-bottom:1px solid var(--line)}}
+section{padding:96px 0}
+.sec-h{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:end;margin-bottom:50px}
+.sec-h .no{font-family:'Fraunces',serif;font-size:6rem;line-height:.8;color:var(--acc)}
+.sec-h h2{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1;margin:10px 0 0}
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.col{background:var(--card);border-radius:28px;padding:36px}
+.col h3{font-size:1.9rem;margin:0 0 6px}
+.col .lede{color:var(--sub);margin:0 0 16px;font-size:.93rem}
+.it{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid #fde4ea}
+.it span small{display:block;color:var(--sub);font-size:.84rem}
+.it b{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;white-space:nowrap}
+@media(max-width:860px){.menu{grid-template-columns:1fr}}
+.pull{background:var(--fg);color:#fff1f2;border-radius:32px;padding:70px 60px;text-align:center}
+.pull blockquote{font-size:clamp(1.8rem,4vw,3rem);line-height:1.2;margin:0 auto 18px;max-width:880px}
+.pull blockquote i{color:var(--acc)}
+.pull cite{font-style:normal;opacity:.75}
+.offer{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.ocard{border-radius:28px;padding:40px;position:relative;overflow:hidden}
+.ocard.a{background:linear-gradient(135deg,#f43f5e,#ec4899);color:#fff}
+.ocard.b{background:#fff;border:1px solid var(--line)}
+.ocard h3{font-size:2rem;margin:10px 0 8px}
+.ocard .pr{font-family:'Fraunces',serif;font-size:3.4rem;line-height:1;margin-top:18px}
+.ocard.a .kicker{color:#ffe4e6}
+@media(max-width:860px){.offer{grid-template-columns:1fr}.pull{padding:50px 26px}}
+.visit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;border-top:1px solid var(--line);padding-top:40px}
+.visit h4{margin:0 0 10px;font-size:1.3rem}
+.visit p{margin:0;color:var(--sub)}
+@media(max-width:760px){.visit{grid-template-columns:1fr}}
+footer{text-align:center;padding:40px 0;color:var(--sub);font-size:.88rem}
+footer .logo{display:block;margin-bottom:8px}
+.wa{position:fixed;bottom:22px;inset-inline-end:22px;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.2);text-decoration:none;font-size:1.6rem;z-index:20}
+</style>
+</head>
+<body>
+<div style="background:#0f172a;color:#e2e8f0;font:500 13px/1.4 Inter,Tajawal,system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:9999" dir="ltr">✦ Sample by Gear Radar · <bdi dir="rtl">نموذج من أعمالنا</bdi> · <a href="https://gearradar.co.uk/work.html" style="color:#fbbf24;font-weight:700;text-decoration:none">See all samples · <bdi dir="rtl">كل الأعمال</bdi></a></div>
+<nav><div class="wrap">
+  <div class="navl"><a href="#treatments"><span class="en">Treatments</span><span class="ar">الخدمات</span></a><a href="#offers"><span class="en">Offers</span><span class="ar">العروض</span></a></div>
+  <a class="logo serif" href="#">Lumi<i>è</i>re</a>
+  <div class="navr"><a href="#visit"><span class="en">Visit</span><span class="ar">العنوان</span></a><button class="lang" type="button" onclick="toggleLang()"><span class="en">عربي</span><span class="ar">EN</span></button><a class="book" href="https://wa.me/447700900638?text=Hello%2C%20I%27d%20like%20to%20book"><span class="en">Book now</span><span class="ar">احجزي الآن</span></a></div>
+</div></nav>
+<div class="wrap">
+  <div class="issue"><span><span class="en">Beauty studio · Leeds</span><span class="ar">ستوديو تجميل · ليدز</span></span><span><span class="en">Ladies only</span><span class="ar">للسيدات فقط</span></span></div>
+  <div class="cover">
+    <div>
+      <div class="kicker"><span class="en">The autumn edit</span><span class="ar">مجموعة الخريف</span></div>
+      <h1 class="serif"><span class="en">Skin that <i>glows</i>, lashes that last.</span><span class="ar">بشرة <i>تلمع</i> ورموش تدوم.</span></h1>
+      <p><span class="en">Facials, lashes, brows and nails in a calm, private studio run by women for women. Every treatment starts with a free skin chat.</span><span class="ar">عناية بالبشرة والرموش والحواجب والأظافر في ستوديو هادئ وخاص بإدارة نسائية. كل جلسة تبدأ باستشارة بشرة مجانية.</span></p>
+      <a class="btn btn-p" href="#treatments"><span class="en">Explore treatments</span><span class="ar">تصفحي الخدمات</span></a><a class="btn btn-l" href="#offers"><span class="en">This month's offers</span><span class="ar">عروض الشهر</span></a>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="#fff" stroke-width="2" opacity=".8"><path d="M60 330c40-90 140-90 180 0"/><circle cx="150" cy="170" r="70"/><path d="M118 165q12-10 24 0M158 165q12-10 24 0"/><path d="M112 160l-8-6M120 156l-4-9M180 156l4-9M188 160l8-6"/><path d="M138 205q12 9 24 0"/></g><g fill="#fff" opacity=".9"><circle cx="70" cy="80" r="4"/><circle cx="240" cy="120" r="3"/><circle cx="230" cy="60" r="6"/><circle cx="50" cy="210" r="3"/></g><path d="M226 54l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#fff"/></svg>
+      <div class="tagc"><span class="en">Hydrafacial</span><span class="ar">هيدرافيشل</span><b>£85</b></div>
+    </div>
+  </div>
+  <div class="numbers">
+    <div><b>12</b><span class="en">years in beauty</span><span class="ar">سنة في التجميل</span></div>
+    <div><b>6k+</b><span class="en">happy clients</span><span class="ar">عميلة سعيدة</span></div>
+    <div><b>30</b><span class="en">treatments</span><span class="ar">خدمة</span></div>
+    <div><b>4.9</b><span class="en">average rating</span><span class="ar">متوسط التقييم</span></div>
+  </div>
+</div>
+
+<section id="treatments"><div class="wrap">
+  <div class="sec-h"><div class="no serif">01</div><div><div class="kicker"><span class="en">Treatment menu</span><span class="ar">قائمة الخدمات</span></div><h2 class="serif"><span class="en">Chosen for you</span><span class="ar">مختارة ليكِ</span></h2></div></div>
+  <div class="menu">
+    <div class="col"><h3 class="serif"><span class="en">Facials</span><span class="ar">العناية بالبشرة</span></h3><p class="lede"><span class="en">Tailored to your skin on the day.</span><span class="ar">حسب حالة بشرتك في نفس اليوم.</span></p>
+      <div class="it"><span><span class="en">Signature Glow Facial</span><span class="ar">فيشل التوهج المميز</span><small><span class="en">60 min · cleanse, mask, massage</span><span class="ar">60 دقيقة · تنظيف وماسك ومساج</span></small></span><b>£55</b></div>
+      <div class="it"><span><span class="en">Hydrafacial</span><span class="ar">هيدرافيشل</span><small><span class="en">Deep cleanse and hydration</span><span class="ar">تنظيف عميق وترطيب</span></small></span><b>£85</b></div>
+      <div class="it"><span><span class="en">Dermaplaning</span><span class="ar">ديرمابلانينج</span><small><span class="en">Smooth, bright skin</span><span class="ar">بشرة ناعمة ومشرقة</span></small></span><b>£45</b></div>
+    </div>
+    <div class="col"><h3 class="serif"><span class="en">Lashes &amp; Brows</span><span class="ar">الرموش والحواجب</span></h3><p class="lede"><span class="en">Natural to dramatic, always neat.</span><span class="ar">من الطبيعي للجريء، ودايما مرتب.</span></p>
+      <div class="it"><span><span class="en">Classic Lash Extensions</span><span class="ar">رموش كلاسيك</span><small><span class="en">Natural full set</span><span class="ar">مجموعة كاملة طبيعية</span></small></span><b>£60</b></div>
+      <div class="it"><span><span class="en">Russian Volume</span><span class="ar">فوليوم روسي</span><small><span class="en">Fluffy and full</span><span class="ar">كثيفة وناعمة</span></small></span><b>£80</b></div>
+      <div class="it"><span><span class="en">Brow Lamination &amp; Tint</span><span class="ar">لامينيشن وصبغ الحواجب</span><small><span class="en">Fuller, brushed-up brows</span><span class="ar">حواجب أكثف ومرفوعة</span></small></span><b>£38</b></div>
+    </div>
+    <div class="col"><h3 class="serif"><span class="en">Nails</span><span class="ar">الأظافر</span></h3><p class="lede"><span class="en">Strong, glossy and chip-free.</span><span class="ar">قوية ولامعة وما بتتقشر.</span></p>
+      <div class="it"><span><span class="en">Gel Manicure</span><span class="ar">مناكير جل</span><small><span class="en">Shape, cuticles, gel colour</span><span class="ar">تشكيل وعناية ولون جل</span></small></span><b>£28</b></div>
+      <div class="it"><span><span class="en">BIAB Overlay</span><span class="ar">تقوية BIAB</span><small><span class="en">Builder gel on natural nails</span><span class="ar">جل بناء على الأظافر الطبيعية</span></small></span><b>£35</b></div>
+      <div class="it"><span><span class="en">Luxury Pedicure</span><span class="ar">باديكير فاخر</span><small><span class="en">Soak, scrub, massage, polish</span><span class="ar">نقع وتقشير ومساج وطلاء</span></small></span><b>£40</b></div>
+    </div>
+    <div class="col"><h3 class="serif"><span class="en">Henna &amp; Makeup</span><span class="ar">الحناء والمكياج</span></h3><p class="lede"><span class="en">For brides, Eid and every celebration.</span><span class="ar">للعرايس والعيد وكل المناسبات.</span></p>
+      <div class="it"><span><span class="en">Bridal Henna</span><span class="ar">حناء عروس</span><small><span class="en">Hands and feet, full design</span><span class="ar">اليدين والقدمين بتصميم كامل</span></small></span><b>£120</b></div>
+      <div class="it"><span><span class="en">Event Makeup</span><span class="ar">مكياج مناسبات</span><small><span class="en">Lashes included</span><span class="ar">يشمل الرموش</span></small></span><b>£65</b></div>
+      <div class="it"><span><span class="en">Threading (brows)</span><span class="ar">خيط الحواجب</span><small><span class="en">Precise shape</span><span class="ar">تحديد دقيق</span></small></span><b>£9</b></div>
+    </div>
+  </div>
+  <p style="margin-top:26px"><a href="../../qr/lumiere-beauty/" style="color:var(--pri);font-weight:700"><span class="en">Open our QR treatment menu →</span><span class="ar">افتحي قائمة الـ QR ←</span></a></p>
+</div></section>
+
+<div class="wrap"><div class="pull"><blockquote class="serif"><span class="en">"Beauty is not a rush. Every client gets <i>our full attention</i>, from the first chat to the final mirror."</span><span class="ar">"الجمال ما بيجي بالعجلة. كل عميلة بتاخد <i>اهتمامنا الكامل</i> من أول كلمة لآخر نظرة في المراية."</span></blockquote><cite><span class="en">The Lumière team</span><span class="ar">فريق لوميير</span></cite></div></div>
+
+<section id="offers"><div class="wrap">
+  <div class="sec-h"><div class="no serif">02</div><div><div class="kicker"><span class="en">This month</span><span class="ar">هذا الشهر</span></div><h2 class="serif"><span class="en">Offers</span><span class="ar">العروض</span></h2></div></div>
+  <div class="offer">
+    <div class="ocard a"><div class="kicker"><span class="en">October glow</span><span class="ar">عرض أكتوبر</span></div><h3 class="serif"><span class="en">Hydrafacial + Lash Lift</span><span class="ar">هيدرافيشل + رفع رموش</span></h3><p><span class="en">Save £15 on our two best sellers.</span><span class="ar">وفّري 15 جنيه على الأكثر طلبا.</span></p><div class="pr">£110</div></div>
+    <div class="ocard b"><div class="kicker"><span class="en">Bring a friend</span><span class="ar">أحضري صديقتك</span></div><h3 class="serif"><span class="en">£10 off for both</span><span class="ar">خصم 10 جنيه لكل واحدة</span></h3><p style="color:var(--sub)"><span class="en">Book together on WhatsApp and mention this offer.</span><span class="ar">احجزوا مع بعض على واتساب واذكروا العرض.</span></p><div class="pr" style="color:var(--pri)">−£10</div></div>
+  </div>
+</div></section>
+
+<div class="wrap" id="visit"><div class="visit">
+  <div><h4 class="serif"><span class="en">Find us</span><span class="ar">العنوان</span></h4><p><span class="en">7 Briggate Arcade, Leeds LS1</span><span class="ar">7 بريغيت أركيد، ليدز</span></p></div>
+  <div><h4 class="serif"><span class="en">Hours</span><span class="ar">المواعيد</span></h4><p><span class="en">Mon to Sat · 10am to 7pm<br>By appointment</span><span class="ar">الاثنين إلى السبت · 10 صباحا حتى 7 مساء<br>بالحجز</span></p></div>
+  <div><h4 class="serif"><span class="en">Book</span><span class="ar">الحجز</span></h4><p><a href="tel:01134960638" dir="ltr">0113 496 0638</a><br><a href="https://wa.me/447700900638">WhatsApp</a></p></div>
+</div></div>
+<footer><a class="logo serif" href="#">Lumi<i>è</i>re</a>© 2026 Lumière Beauty Studio</footer>
+<a class="wa" href="https://wa.me/447700900638" aria-label="WhatsApp">💬</a>
+<script>function toggleLang(){var h=document.documentElement,ar=h.lang!=='ar';h.lang=ar?'ar':'en';h.dir=ar?'rtl':'ltr'}</script>
+</body>
+</html>
