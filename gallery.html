@@ -97,6 +97,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 .s-enq{margin-top:8px}.s-enq span:nth-child(3){grid-column:1/-1;min-height:30px}
 .s-contact{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--sub);font-size:10.5px}
 .s-foot{padding:10px 14px 14px;color:var(--sub);font-size:10px;border-top:1px solid rgba(127,127,127,.18)}
+.s-soc{display:flex;flex-direction:column;align-items:center;gap:5px;margin-bottom:8px}.s-soc b{font-size:10px;color:inherit}.s-soc span{display:flex;gap:6px}.s-soc i{width:16px;height:16px;border-radius:50%;border:1px solid currentColor;opacity:.75}
 .s-wa{position:sticky;bottom:10px;display:flex;justify-content:flex-end;padding:0 10px;pointer-events:none;height:0;overflow:visible}
 .s-wa i{width:30px;height:30px;border-radius:50%;background:#25D366;box-shadow:0 4px 12px rgba(0,0,0,.25);transform:translateY(-40px);display:grid;place-items:center}
 .s-wa svg{width:16px;height:16px;fill:#fff}
@@ -295,6 +296,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     { id:'gallery',  tier:1, on:false, en:'Photo gallery (up to 8)', ar:'معرض صور (حتى 8)' },
     { id:'map',      tier:1, on:false, en:'Google Map',      ar:'خريطة Google' },
     { id:'wa',       tier:1, on:false, en:'WhatsApp button', ar:'زر واتساب' },
+    { id:'social',   tier:1, on:false, en:'Follow us: social media links', ar:'تابعونا: روابط السوشيال ميديا' },
     { id:'booking',  tier:3, on:false, en:'Booking form',    ar:'نموذج حجز' }
   ];
   var TIER_LABEL = { en:['Starter','Pro','Premium','Custom'], ar:['Starter','Pro','Premium','حسب الطلب'] };
@@ -309,7 +311,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       s_biz:'Your Business', s_home:'Home', s_about:'About', s_contact:'Contact', s_call:'Call now', s_head:'Quality service, close to you',
       s_sub:'Book in minutes or message us on WhatsApp.', s_book:'Book now', s_more:'Our services', s_services:'Services', s_svc:['Service one','Service two','Service three'],
       s_hours:'Working hours', s_days:[['Mon – Fri','9:00 – 18:00'],['Saturday','10:00 – 16:00'],['Sunday','Closed']], s_gal:'Gallery', s_map:'Find us',
-      s_bookt:'Book an appointment', s_f:['Name','Phone','Date','Time'], s_send:'Request booking', s_reach:'Get in touch', s_enq:['Name','Phone or email','Your message'], s_enqsend:'Send message', s_foot:'© Your Business' },
+      s_bookt:'Book an appointment', s_f:['Name','Phone','Date','Time'], s_send:'Request booking', s_reach:'Get in touch', s_enq:['Name','Phone or email','Your message'], s_enqsend:'Send message', s_foot:'© Your Business', s_follow:'Follow us' },
     ar:{ back:'→ العودة لباقات المواقع', eyebrow:'معرض المواقع', title:'صمّم موقعك واعرف باقتك',
       lead:'اختر القالب والثيم والمزايا التي تريدها. المعاينة تتغير مع كل اختيار، والشريط في الأسفل يوضح الباقة المناسبة وسعرها.',
       preview:'معاينة مباشرة', preview_note:'هنا يظهر شعارك وصورك ونصوصك', your_plan:'باقتك', features:'المزايا',
@@ -319,7 +321,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
       s_biz:'اسم نشاطك', s_home:'الرئيسية', s_about:'من نحن', s_contact:'تواصل', s_call:'اتصل الآن', s_head:'خدمة مميزة بالقرب منك',
       s_sub:'احجز في دقائق أو راسلنا على واتساب.', s_book:'احجز الآن', s_more:'خدماتنا', s_services:'الخدمات', s_svc:['خدمة أولى','خدمة ثانية','خدمة ثالثة'],
       s_hours:'ساعات العمل', s_days:[['الأحد – الخميس','9:00 – 18:00'],['السبت','10:00 – 16:00'],['الجمعة','مغلق']], s_gal:'معرض الصور', s_map:'موقعنا',
-      s_bookt:'احجز موعداً', s_f:['الاسم','الهاتف','التاريخ','الوقت'], s_send:'أرسل طلب الحجز', s_reach:'تواصل معنا', s_enq:['الاسم','الهاتف أو الإيميل','رسالتك'], s_enqsend:'إرسال', s_foot:'© اسم نشاطك' }
+      s_bookt:'احجز موعداً', s_f:['الاسم','الهاتف','التاريخ','الوقت'], s_send:'أرسل طلب الحجز', s_reach:'تواصل معنا', s_enq:['الاسم','الهاتف أو الإيميل','رسالتك'], s_enqsend:'إرسال', s_foot:'© اسم نشاطك', s_follow:'تابعونا' }
   };
 
   var lang = 'en';
@@ -446,7 +448,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 
     var services = state.services ? svcBody.cards : '', gallery = state.gallery ? galGrid : '';
     var parts = [];
-    var foot = '<div class="s-foot">' + esc(s.s_foot) + '</div>';
+    var foot = '<div class="s-foot">' + (state.social ? '<div class="s-soc"><b>' + esc(s.s_follow) + '</b><span><i></i><i></i><i></i><i></i></span></div>' : '') + esc(s.s_foot) + '</div>';
     var tail = function(order){ order.forEach(function(k){
       if (k === 'services' && state.services) parts.push(sec(s.s_services, services));
       if (k === 'gallery' && state.gallery) parts.push(sec(s.s_gal, gallery));
