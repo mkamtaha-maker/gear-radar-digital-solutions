@@ -474,7 +474,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <h3 data-i18n="s1_title">Tala</h3>
         <p class="sub" data-i18n="s1_sub">Your personal assistant, in your Telegram or WhatsApp, handling your email and diary.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b1">Reads and summarises your Gmail, drafts replies and sends them only after you confirm</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b1">Writes your emails and sends them from your Gmail only after you confirm</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b2">Books, moves and checks Google Calendar events</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b3">Daily morning brief with your schedule, weather and route suggestions</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b4">Reminders, voice notes and PDF summaries</span></li>
@@ -541,7 +541,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     <div class="jh-show reveal">
       <div>
         <span class="eyebrow" data-i18n="s1_title">Tala</span>
-        <h3 data-i18n="as_title">Your inbox and diary, handled</h3>
+        <h3 data-i18n="as_title">Your email and diary, handled</h3>
         <p data-i18n="s1_sub">Your personal assistant, in your Telegram or WhatsApp, handling your email and diary.</p>
         <a href="#plans-assistant" class="btn btn-gold" data-i18n="see_plans">See plans</a>
       </div>
@@ -551,10 +551,10 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <div><b data-i18n="chat_name">Your AI Assistant</b><small data-i18n="chat_status">online · Telegram / WhatsApp</small></div>
         </div>
         <div class="chat">
-          <div class="msg me" data-i18n="as1">Anything urgent in my inbox?</div>
-          <div class="msg bot" data-i18n-html="as2"><b>2 emails</b> need you. The supplier wants to move Thursday's call.</div>
-          <div class="msg me" data-i18n="as3">Say yes, same time Friday.</div>
-          <div class="msg bot"><span data-i18n="as4">Reply drafted. I'll send it once you confirm.</span><div class="chip-row"><span class="chip yes" data-i18n="chat_yes">✓ Send</span><span class="chip" data-i18n="chat_no">Edit</span></div></div>
+          <div class="msg me" data-i18n="as1">Email the supplier: Friday, same time, works for me.</div>
+          <div class="msg bot" data-i18n-html="as2">Draft ready for <b>supplier@acme.co.uk</b>: "Friday at the same time works for me."</div>
+          <div class="msg me" data-i18n="as3">Great, send it.</div>
+          <div class="msg bot"><span data-i18n="as4">Tap Send to confirm and it goes from your Gmail.</span><div class="chip-row"><span class="chip yes" data-i18n="chat_yes">✓ Send</span><span class="chip" data-i18n="chat_no">Edit</span></div></div>
         </div>
       </div>
     </div>
@@ -908,10 +908,10 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     jh3:'أعطني نقاطاً لسيرتي لهذه الوظيفة.',
     jh4:'هذه 3 نقاط من خبرتك الحقيقية. بدون اختلاق أي شيء.', jh_show:'✓ اعرضها', jh_next:'الوظيفة التالية',
     as_title:'بريدك ومواعيدك مرتّبة',
-    as1:'هل في شيء عاجل في بريدي؟',
-    as2:'<b>رسالتان</b> تحتاجان قرارك. المورّد يريد تأجيل مكالمة الخميس.',
-    as3:'قل له موافق، في نفس الوقت يوم الجمعة.',
-    as4:'جهّزت الرد، وسأرسله عندما تؤكد.',
+    as1:'أرسل للمورّد: الجمعة في نفس الوقت مناسب لي.',
+    as2:'جهّزت الإيميل لـ <b>supplier@acme.co.uk</b>: "الجمعة في نفس الوقت مناسب لي."',
+    as3:'ممتاز، أرسله.',
+    as4:'اضغط إرسال للتأكيد ويخرج الإيميل من Gmail بتاعك.',
     ws_title:'الزوار يتحوّلون إلى مكالمات ورسائل', ws_name:'نشاطك التجاري', ws_hours:'مفتوح اليوم 9:00 – 17:00',
     ws_call:'اتصل الآن', ws_wa:'واتساب', ws_r1:'الخدمات والأسعار', ws_r2:'معرض الصور', ws_r3:'موقعنا على خرائط Google',
     qr_title:'قائمتك على بُعد مسحة واحدة', qr_scan:'امسح لتشاهد قائمتنا', qr_name:'مقهاك',
@@ -923,7 +923,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     tag_popular:'الأكثر طلباً', tag_core:'منتجنا الرئيسي', tag_fast:'تسليم سريع', tag_rest:'للمطاعم والمحلات', tag_job:'إضافة لتالا', see_addons:'شاهد الإضافات',
     s1_title:'تالا',
     s1_sub:'مساعدتك الشخصية في تيليجرام أو واتساب، تتولى بريدك ومواعيدك.',
-    s1_b1:'يقرأ بريد Gmail ويلخّصه، ويكتب الردود ولا يرسلها إلا بعد موافقتك',
+    s1_b1:'يكتب إيميلاتك ويرسلها من Gmail فقط بعد موافقتك',
     s1_b2:'يحجز مواعيد Google Calendar ويعدّلها ويراجعها',
     s1_b3:'ملخص صباحي يومي بجدولك والطقس واقتراحات الطريق',
     s1_b4:'تذكيرات، وتفريغ الرسائل الصوتية، وتلخيص ملفات PDF',
