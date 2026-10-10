@@ -448,7 +448,9 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
 
     var services = state.services ? svcBody.cards : '', gallery = state.gallery ? galGrid : '';
     var parts = [];
-    var foot = '<div class="s-foot">' + (state.social ? '<div class="s-soc"><b>' + esc(s.s_follow) + '</b><span><i></i><i></i><i></i><i></i></span></div>' : '') + esc(s.s_foot) + '</div>';
+    // Pro and Premium sites always show their "Follow us" links, so the preview does too once the choices need Pro or Premium.
+    var planTier = picks().reduce(function(m, p){ return Math.max(m, p.tier); }, 0);
+    var foot = '<div class="s-foot">' + (state.social || planTier === 1 || planTier === 2 ? '<div class="s-soc"><b>' + esc(s.s_follow) + '</b><span><i></i><i></i><i></i><i></i></span></div>' : '') + esc(s.s_foot) + '</div>';
     var tail = function(order){ order.forEach(function(k){
       if (k === 'services' && state.services) parts.push(sec(s.s_services, services));
       if (k === 'gallery' && state.gallery) parts.push(sec(s.s_gal, gallery));
