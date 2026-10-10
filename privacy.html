@@ -44,7 +44,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
 </header>
 <main class="container">
   <h1>Privacy Notice</h1>
-  <p class="updated">Last updated: 6 October 2026</p>
+  <p class="updated">Last updated: 8 October 2026</p>
 
   <p>This notice explains how Gear Radar Digital Solutions ("we", "us") uses personal information collected through this website, www.gearradar.co.uk. We are based in Manchester, United Kingdom, and we handle personal information in line with UK data protection law (UK GDPR and the Data Protection Act 2018).</p>
 
@@ -89,21 +89,37 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
   <h2>7. Google user data (Tala, your personal assistant)</h2>
   <div class="box">
     <p>Tala, your personal assistant (formerly AI Executive Assistant, also called Gear Radar Assistant), lets you link your own Google account so the assistant can help you from Telegram or WhatsApp. It only asks for access when you choose to connect, and Google shows you each permission before you agree.</p>
-    <p><b>What we access and why</b></p>
+    <p><b>What Google data we access</b></p>
     <ul>
-      <li><b>Gmail, read only</b> (gmail.readonly) – to search and read your emails when you ask about them, for example "did the bank email me?", and to include important emails in your morning brief. We never delete or change your emails.</li>
-      <li><b>Gmail, send</b> (gmail.send) – to send an email from your account only after the assistant shows you the draft and you tap confirm.</li>
-      <li><b>Google Calendar</b> (calendar) – to read your events for your daily schedule and travel times, and to create or update an event only when you ask and confirm.</li>
-      <li><b>Google Drive, files created by the app</b> (drive.file) – to save documents and photos you send to a "Gear Radar Assistant" folder in your Drive, only when you ask. We cannot see any other files in your Drive.</li>
+      <li><b>Gmail, send</b> (gmail.send) – permission to send an email from your account. We use it only after the assistant shows you the draft and you tap Confirm.</li>
+      <li><b>Google Calendar events</b> (calendar.events) – the title, time and location of your events, so the assistant can tell you your schedule and travel times, and permission to add an event when you ask and tap Confirm.</li>
+      <li><b>Google Drive, files created by the app</b> (drive.file) – only the files the assistant saves for you in a "Gear Radar Assistant" folder. We cannot see any other files in your Drive.</li>
+      <li>Your Google account email address and the sign-in tokens Google gives us when you connect.</li>
     </ul>
-    <p><b>How it is processed and stored</b></p>
-    <p>Google data is processed only to answer your own request. To understand or summarise an email or event, the relevant text is sent to Google's Gemini AI service, which processes it for us. We store your Google sign-in token securely so the assistant can act for you, and a short recent chat history so it can follow the conversation. We do not keep copies of your emails, events or files beyond what is needed to answer you.</p>
-    <p><b>Sharing</b></p>
-    <p>We do not sell Google user data, use it for advertising, or share it with anyone except the service providers needed to run the assistant (n8n for automation, Google Gemini for AI processing, and Telegram or WhatsApp to deliver the reply to you). We do not use it to train AI or machine learning models.</p>
-    <p><b>Limited Use</b></p>
-    <p>Gear Radar Assistant's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
-    <p><b>Disconnecting and deleting</b></p>
-    <p>You can disconnect at any time from your Google account at <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>. To have your stored token and assistant data deleted, email <a href="mailto:info@gearradar.co.uk">info@gearradar.co.uk</a> and we will delete it within 30 days.</p>
+    <p>We do not request access to read your Gmail inbox. If you want help with an email you received, you can paste or forward its text into the chat yourself.</p>
+    <p>We do not create aggregated or anonymised data sets from Google user data.</p>
+    <p><b>How we use it</b></p>
+    <p>Google user data is used only to provide the assistant's features to you: answering your questions about your calendar, preparing your morning brief, sending emails and adding events you have confirmed, and saving files you asked to save. It is never used for advertising, marketing, credit or lending decisions, or any other purpose. No email is sent and no event is created without your confirmation.</p>
+    <p><b>Who we share it with</b></p>
+    <p>We do not sell or transfer Google user data to data brokers, advertisers or any other third party. It is passed only to the service providers needed to run the assistant for you, and only for that purpose:</p>
+    <ul>
+      <li><b>n8n</b> – the automation platform that runs the assistant and stores your sign-in token and settings;</li>
+      <li><b>Google Gemini API</b> – the AI service that reads the relevant event details, or the text you send in the chat, to write the answer for you. We use the paid Gemini API, which under Google's terms does not use our requests to train its models;</li>
+      <li><b>Telegram or WhatsApp</b> – to deliver the assistant's reply to you in the chat you chose.</li>
+    </ul>
+    <p>We may also disclose data if required by law.</p>
+    <p><b>How we protect it</b></p>
+    <p>All data moves over encrypted connections (HTTPS/TLS). Your Google sign-in tokens are stored only in our automation platform's private database, which is hosted on encrypted infrastructure and can be accessed only by Gear Radar's administrator account. Each assistant request can only use the Google account of the user who sent it. Our staff do not read your emails, events or files.</p>
+    <p><b>How long we keep it and how to delete it</b></p>
+    <ul>
+      <li>The content of your calendar events and Drive files is not stored by us. It is fetched when needed to answer you and discarded once the reply is sent.</li>
+      <li>Drafts of emails and events you asked for, your reminders, contacts and settings are kept while your plan is active, and deleted within 30 days after you cancel or when you ask us to.</li>
+      <li>The assistant keeps only your last few chat messages so it can follow the conversation. Send /reset at any time to clear them.</li>
+      <li>Your Google sign-in tokens are kept while your Google account is connected. They stop working as soon as you remove access at <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>, and we delete them within 30 days after you cancel your plan.</li>
+      <li>To have your tokens and all assistant data deleted at any time, email <a href="mailto:info@gearradar.co.uk">info@gearradar.co.uk</a> and we will delete it within 30 days.</li>
+    </ul>
+    <p><b>Limited Use and AI</b></p>
+    <p>Gear Radar Assistant's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements. The use of raw or derived user data received from Google Workspace APIs will adhere to the Google User Data Policy, including the Limited Use requirements. We do not use Google user data to develop, improve or train AI or machine learning models, and we do not transfer it to any AI service that uses it to train models.</p>
   </div>
 
   <h2>8. Changes</h2>
@@ -112,7 +128,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
   <section class="ar" lang="ar">
     <h2>ملخص بالعربية</h2>
     <p>عند استخدامك نموذج التواصل نجمع اسمك وبريدك الإلكتروني ورسالتك، وأيضاً رقم هاتفك واسم نشاطك التجاري إذا اخترت إضافتهما. نستخدم هذه البيانات فقط للرد على استفسارك وإعداد عرض السعر. لا نبيع بياناتك، ونحتفظ بها لمدة أقصاها 24 شهراً من آخر تواصل. يمكنك طلب نسخة من بياناتك أو تصحيحها أو حذفها بمراسلتنا على <a href="mailto:info@gearradar.co.uk">info@gearradar.co.uk</a>.</p>
-    <p>إذا ربطت حساب قوقل بالمساعد الشخصي، نستخدم بيانات Gmail والتقويم وDrive فقط لتنفيذ طلباتك، ولا نرسل إيميل أو ننشئ موعداً إلا بعد تأكيدك. لا نبيع هذه البيانات ولا نستخدمها للإعلانات أو لتدريب الذكاء الاصطناعي، ويمكنك فصل الحساب في أي وقت.</p>
+    <p>إذا ربطت حساب قوقل بالمساعد الشخصي، نستخدم بيانات Gmail والتقويم وDrive فقط لتنفيذ طلباتك، ولا نرسل إيميل أو ننشئ موعداً إلا بعد تأكيدك. لا نقرأ صندوق بريدك، ولا نبيع هذه البيانات ولا نستخدمها للإعلانات أو لتدريب الذكاء الاصطناعي، ولا نحتفظ بنسخ من مواعيدك أو ملفاتك. يمكنك فصل الحساب في أي وقت، أو طلب حذف كل بياناتك عبر info@gearradar.co.uk خلال 30 يوماً.</p>
   </section>
 </main>
 <footer><div class="container">© 2026 Gear Radar Digital Solutions · Manchester, UK</div></footer>
