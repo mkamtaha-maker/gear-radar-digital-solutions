@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"Gear Radar Digital Solutions","url":"https://www.gearradar.co.uk/","email":"info@gearradar.co.uk","telephone":"+447442309417","address":{"@type":"PostalAddress","addressLocality":"Greater Manchester","addressCountry":"GB"},"areaServed":"GB","knowsLanguage":["en","ar"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Gear Radar Digital Solutions","url":"https://www.gearradar.co.uk/","email":"info@gearradar.co.uk","telephone":"+447442309417","address":{"@type":"PostalAddress","addressLocality":"Greater Manchester","addressCountry":"GB"},"areaServed":"GB","knowsLanguage":["en","ar"],"sameAs":["https://www.facebook.com/profile.php?id=61595085009628","https://www.tiktok.com/@gearradarservices"]}
 </script>
 <style>
 :root{
@@ -352,6 +352,10 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
 .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
 .foot-links{display:flex;gap:22px;flex-wrap:wrap}
 .foot-links a:hover{color:var(--gold)}
+.foot-social{display:flex;gap:12px;margin-inline-end:auto}
+.foot-social a{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);transition:background .2s,color .2s}
+.foot-social a:hover{background:var(--gold);color:#15171C}
+.foot-social svg{width:18px;height:18px}
 .copy{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.06);font-size:.82rem}
 
 .wa-float{position:fixed;inset-inline-end:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);transition:transform .2s}
@@ -871,6 +875,10 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
   <div class="container">
     <div class="foot">
       <a href="#top" class="brand" style="color:#fff"><svg viewBox="0 0 120 120" aria-hidden="true" style="width:32px;height:32px"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg><span>Gear Radar</span></a>
+      <div class="foot-social">
+        <a href="https://www.facebook.com/profile.php?id=61595085009628" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.5c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg></a>
+        <a href="https://www.tiktok.com/@gearradarservices" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.2 6.2 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.6 1.5V6.8A4.6 4.6 0 0 1 16.6 2z"/></svg></a>
+      </div>
       <nav class="foot-links" aria-label="Footer">
         <a href="#services" data-i18n="nav_services">Services</a>
         <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
