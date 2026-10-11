@@ -218,6 +218,7 @@ footer a:hover{color:var(--gold)}
 .paywith .rec{font-size:.72rem;color:#15803d;font-weight:600;margin-inline-start:6px}
 @media(max-width:560px){.paywith{grid-template-columns:1fr}}
 </style>
+<script src="ref.js?v=20261011"></script>
 </head>
 <body>
 <header>
@@ -1076,7 +1077,8 @@ footer a:hover{color:var(--gold)}
   if (prePage === 'en' || prePage === 'ar' || prePage === 'both') $('q_lang').value = prePage;
   if (preType === 'menu' || preType === 'services' || preType === 'products') $('q_type').value = preType;
   fillDesigns();
-  var pre = params.get('code'); if (pre) { $('promo').value = cleanCode(pre); appliedCode = cleanCode(pre); }
+  // A code in the link wins; otherwise use a partner code remembered from ?ref= (ref.js).
+  var pre = params.get('code') || params.get('ref') || (window.grRef ? window.grRef() : ''); if (pre) { $('promo').value = cleanCode(pre); appliedCode = cleanCode(pre); }
   updateQuote(true);
   if (params.get('paid') === '1') {
     var h = $('done').querySelector('h2'); h.setAttribute('data-i18n', 'd_paid'); h.textContent = t('d_paid');
