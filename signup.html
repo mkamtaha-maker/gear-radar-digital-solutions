@@ -357,6 +357,7 @@ footer a:hover{color:var(--gold)}
     <div class="field"><label for="q_phone" data-i18n="f_phone2">Phone number</label><input id="q_phone" type="tel" maxlength="30"><span class="err-text" data-i18n="e_phone">Please enter a phone number.</span></div>
     <div class="field"><label for="q_currency" data-i18n="f_currency">Currency</label><select id="q_currency"><option>GBP</option><option>USD</option><option>EUR</option><option>AED</option><option>SAR</option><option>QAR</option><option>KWD</option><option>BHD</option><option>JOD</option><option>EGP</option><option>CAD</option><option>AUD</option></select></div>
     <div class="field"><label for="q_lang" data-i18n="f_pagelang">Page language</label><select id="q_lang"><option value="en">English</option><option value="ar">العربية</option><option value="both" class="pro-opt" data-i18n="both">Arabic + English</option></select></div>
+    <div class="field pro-only" id="q_tablesField"><label for="q_tables"><span data-i18n="f_tables">How many tables?</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="q_tables" type="number" min="1" max="200" step="1" inputmode="numeric" placeholder="10"><span class="hint" data-i18n="h_tables">We make one QR card per table, so every order shows its table number.</span><span class="err-text" data-i18n="e_tables">Please enter a number from 1 to 200.</span></div>
     <label class="check" style="align-self:end"><input type="checkbox" id="q_stand" checked><span data-i18n="f_stand">Include a printable table card</span></label>
     <div class="field full"><label for="q_items_en" data-i18n="f_items_en">Items in English (one per line)</label><textarea id="q_items_en" maxlength="8000" dir="ltr" placeholder="# Burgers&#10;Double Beef Burger - 8.50 - with special sauce&#10;Chicken Burger - 7.00"></textarea><span class="hint" data-i18n="h_items">Name - Price - Description. Start a line with # for a section title.</span><span class="err-text" data-i18n="e_items">Please add your items in English or Arabic.</span></div>
     <div class="field full"><label for="q_items_ar" data-i18n="f_items_ar">Items in Arabic (one per line)</label><textarea id="q_items_ar" maxlength="8000" dir="rtl" placeholder="# برغر&#10;برغر لحم دبل - 8.50 - مع صلصة خاصة"></textarea></div>
@@ -486,7 +487,7 @@ footer a:hover{color:var(--gold)}
     f_items_ar:'Items in Arabic (one per line)', pro_note_qr:'Logo, item photos, WhatsApp ordering, both languages and live search come with QR Pro and Premium. More themes and layouts unlock with Pro and Premium.',
     f_waorder:'WhatsApp number (for orders / bookings)', f_theme:'Theme', f_layout:'Layout', f_itemphotos:'Item photos (optional)',
     h_itemphotos:'Name each photo exactly like the item (English or Arabic), e.g. Chicken Burger.jpg · up to 40 · max 5 MB each',
-    f_cover:'Cover photo (optional)', h_cover:'Shown behind your name at the top of the page · max 5 MB', f_footer:'Note at the bottom of the page',
+    f_cover:'Cover photo (optional)', h_cover:'Shown behind your name at the top of the page · max 5 MB', f_footer:'Note at the bottom of the page', f_tables:'How many tables?', h_tables:'We make one QR card per table, so every order shows its table number.', e_tables:'Please enter a number from 1 to 200.',
     s_upimg:'Uploading your images…', d_3web:'We build your site and check it ourselves, then email you the link, Client ID and Edit Code (usually within one working day).', d_3qr:'Your page, QR code and printable table card are emailed to you within minutes of approval.', d_3combo:'Your QR page preview is emailed within minutes of approval; your website preview follows after our design check (usually within one working day).', lead:'Takes about 3 minutes. We review every signup and email you your activation link within one working day.',
     l_plan:'Choose your plan', monthly:'Monthly', annual:'Annual', save:'2 months free',
     cat_butler:'Tala', best:'Best value', popular:'Most popular',
@@ -552,7 +553,7 @@ footer a:hover{color:var(--gold)}
     f_items_ar:'الأصناف بالعربي (سطر لكل صنف)', pro_note_qr:'الشعار وصور الأصناف والطلب عبر واتساب واللغتين والبحث متاحة في QR Pro و Premium. وتتوفر ثيمات وطرق عرض أكثر في Pro و Premium.',
     f_waorder:'رقم واتساب (للطلبات / الحجوزات)', f_theme:'الثيم', f_layout:'طريقة العرض', f_itemphotos:'صور الأصناف (اختياري)',
     h_itemphotos:'سمِّ كل صورة باسم الصنف بالضبط (عربي أو إنجليزي)، مثل شاورما.jpg · حتى 40 صورة · 5 ميغابايت لكل صورة',
-    f_cover:'صورة الغلاف (اختياري)', h_cover:'تظهر خلف اسم المحل أعلى الصفحة · حتى 5 ميغابايت', f_footer:'ملاحظة أسفل الصفحة',
+    f_cover:'صورة الغلاف (اختياري)', h_cover:'تظهر خلف اسم المحل أعلى الصفحة · حتى 5 ميغابايت', f_footer:'ملاحظة أسفل الصفحة', f_tables:'كم طاولة عندك؟', h_tables:'نجهّز رمز QR لكل طاولة، فيظهر رقم الطاولة مع كل طلب.', e_tables:'يرجى إدخال رقم من 1 إلى 200.',
     s_upimg:'جارٍ رفع الصور…', d_3web:'نبني موقعك ونراجعه بأنفسنا، ثم نرسل لك الرابط ورقم العميل وكود التعديل بالبريد (عادةً خلال يوم عمل واحد).', d_3qr:'تصلك الصفحة ورمز QR وكرت الطاولة بالبريد خلال دقائق من الموافقة.', d_3combo:'تصلك معاينة صفحة الـ QR بالبريد خلال دقائق من الموافقة، ومعاينة الموقع بعد مراجعتنا للتصميم (عادةً خلال يوم عمل واحد).', lead:'يستغرق حوالي 3 دقائق. نراجع كل طلب ونرسل لك رابط التفعيل بالبريد خلال يوم عمل واحد.',
     l_plan:'اختر باقتك', monthly:'شهري', annual:'سنوي', save:'شهران مجاناً',
     cat_butler:'تالا', best:'الأفضل قيمة', popular:'الأكثر طلباً',
@@ -733,6 +734,8 @@ footer a:hover{color:var(--gold)}
     $('w_care').closest('label').classList.toggle('section-hide', g === 'combo');
     $('q_care').closest('label').classList.toggle('section-hide', g === 'combo');
     document.querySelectorAll('.pro-only').forEach(function(el){ el.classList.toggle('section-hide', basic); });
+    // Per-table QR codes come with Pro and Premium menu pages only
+    $('q_tablesField').classList.toggle('section-hide', basic || $('q_type').value !== 'menu');
     $('w_note').classList.toggle('section-hide', !basic); $('q_note').classList.toggle('section-hide', !basic);
     document.querySelectorAll('.pro-opt').forEach(function(o){ o.disabled = basic; if (basic && o.selected) o.parentNode.value = 'en'; });
     fillDesigns();
@@ -792,6 +795,7 @@ footer a:hover{color:var(--gold)}
     });
   });
   document.querySelectorAll('input[name="channel"]').forEach(function(r){ r.addEventListener('change', update); });
+  $('q_type').addEventListener('change', update);
   document.querySelectorAll('[data-group]').forEach(function(b){
     b.addEventListener('click', function(){ planKey = DEFAULT_PLAN[b.getAttribute('data-group')]; renderPlans(); update(); });
   });
@@ -899,6 +903,11 @@ footer a:hover{color:var(--gold)}
         include_stand: $('q_stand').checked, care_plan: $('q_care').checked, theme: $('q_theme').value, layout: $('q_layout').value };
       if (tier() !== 'basic') {
         qrPayload.whatsapp = $('q_wa').value.replace(/\D/g, '');
+        if ($('q_type').value === 'menu') {
+          var tc = $('q_tables').value.trim(), tn = parseInt(tc, 10);
+          if (mark($('q_tables'), tc !== '' && !(/^\d+$/.test(tc) && tn >= 1 && tn <= 200))) bad.push($('q_tables'));
+          else if (tc) qrPayload.table_count = tn;
+        }
         var ql = imgList($('q_logo'), 1), qc = imgList($('q_cover'), 1), qph = imgList($('q_photos'), 40);
         if (!ql) bad.push($('q_logo')); if (!qc) bad.push($('q_cover')); if (!qph) bad.push($('q_photos'));
         qrFiles = { logo: (ql || [])[0] || null, cover: (qc || [])[0] || null, photos: qph || [], names: true };
@@ -1076,6 +1085,7 @@ footer a:hover{color:var(--gold)}
   if (preLayout) $('q_layout').setAttribute('data-want', preLayout);
   if (prePage === 'en' || prePage === 'ar' || prePage === 'both') $('q_lang').value = prePage;
   if (preType === 'menu' || preType === 'services' || preType === 'products') $('q_type').value = preType;
+  $('q_tablesField').classList.toggle('section-hide', tier() === 'basic' || $('q_type').value !== 'menu');
   fillDesigns();
   // A code in the link wins; otherwise use a partner code remembered from ?ref= (ref.js).
   var pre = params.get('code') || params.get('ref') || (window.grRef ? window.grRef() : ''); if (pre) { $('promo').value = cleanCode(pre); appliedCode = cleanCode(pre); }
