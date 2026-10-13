@@ -326,6 +326,14 @@ section{padding:100px 0}
 .pcard.oneoff.star{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
 .pcard .once{font-size:.82rem;color:var(--muted)}
 .pcard .addon{font-size:.82rem;font-weight:600;color:#C2410C}
+/* Launch offer: launch prices are 50% of the regular price, which starts on a set date (shown next to each price). */
+.launch{display:inline-block;margin:14px auto 0;padding:9px 16px;border-radius:999px;background:#FFF4EC;border:1px dashed #F3C9B0;color:#9A3412;font-size:.9rem;max-width:720px}
+.launch b{color:#C2410C}
+.pcard .reg{font-size:.8rem;color:var(--muted)}
+.pgroup.feature .pcard .reg,.pcard.core.star .reg{color:var(--on-ink-muted)}
+.pcard .reg s,.pcard .addon s{opacity:.8}
+.ao-reg{opacity:.6;font-weight:500;margin-inline-end:3px}
+.tot-lock{display:block;color:#15803d;font-weight:600}
 .web-care{margin:18px auto 0;max-width:720px;text-align:center;font-size:.92rem;font-weight:600;color:#C2410C}
 @media (max-width:980px){.biz-cards{grid-template-columns:1fr}}
 
@@ -680,6 +688,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       <h2 data-i18n="pr_title">Tala</h2>
       <p class="tagline" data-i18n="pr_tag">Your personal assistant</p>
       <p data-i18n="pr_lead">One assistant in your Telegram or WhatsApp for your email, diary and reminders. Pick a plan, then add only what you need. Cancel any time.</p>
+      <p class="launch" data-i18n-html="launch_tala"><b>Launch offer: 50% off.</b> These are launch prices until 31 January 2027. Sign up now and your monthly price stays locked for 12 months.</p>
       <div class="bill-toggle" role="group" aria-label="Billing period">
         <button type="button" data-bill="monthly" aria-pressed="true" data-i18n="monthly">Monthly</button>
         <button type="button" data-bill="annual" aria-pressed="false"><span data-i18n="annual">Annual</span> · <span class="save" data-i18n="save">2 months free</span></button>
@@ -690,6 +699,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <h4>Tala Essential</h4>
         <div class="amount"><b class="p-amt">£7</b><span class="p-per" data-i18n="per_m">/month</span></div>
         <div class="per-note"></div>
+        <div class="reg"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s class="reg-price"></s></div>
         <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic1">Tala on Telegram</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic2">30 messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_basic3">Gmail, Google Calendar &amp; reminders</span></li></ul>
         <a class="btn btn-dark p-go" href="signup.html?service=butler&amp;plan=basic&amp;billing=monthly" data-i18n="start">Get started</a>
       </div>
@@ -697,6 +707,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <div class="core-top"><h4>Tala Pro</h4><span class="tag pop" data-i18n="tag_popular">Most popular</span></div>
         <div class="amount"><b class="p-amt">£12</b><span class="p-per" data-i18n="per_m">/month</span></div>
         <div class="per-note"></div>
+        <div class="reg"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s class="reg-price"></s></div>
         <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro1">Telegram or WhatsApp</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro2">150 messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro3">Voice notes and PDF reading</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pf_pro4">Daily morning brief</span></li></ul>
         <a class="btn btn-dark p-go" href="signup.html?service=butler&amp;plan=pro&amp;billing=monthly" data-i18n="start">Get started</a>
       </div>
@@ -708,14 +719,14 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <p data-i18n="ao_lead">Add-ons work with either plan and are billed together with it. Tick any to see your total.</p>
       </div>
       <div class="ao-grid" role="group" aria-label="Add-ons">
-        <div class="ao"><input type="checkbox" id="ao_jobs" value="jobs" data-m="10" data-y="100" data-excl="jobs_plus"><label for="ao_jobs"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span class="ao-tick" aria-hidden="true"></span></span><span class="ao-name" data-i18n="ao_jobs">Job Hunter</span><span class="ao-line" data-i18n="ao_jobs_d">Daily job matches in Tala: 6 job titles in 3 cities, 40 tailored CVs + 20 cover letters a month.</span><span class="ao-pr"><b class="ao-price">£10</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
-        <div class="ao"><input type="checkbox" id="ao_jobs_plus" value="jobs_plus" data-m="20" data-y="200" data-excl="jobs"><label for="ao_jobs_plus"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 11v6M9 14h6"/></svg></span><span class="ao-tick" aria-hidden="true"></span></span><span class="ao-name" data-i18n="ao_jobsp">Job Hunter Plus</span><span class="ao-line" data-i18n="ao_jobsp_d">10 job titles in 5 cities, 100 tailored CVs + 60 cover letters a month.</span><span class="ao-pr"><b class="ao-price">£20</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
-        <div class="ao"><input type="checkbox" id="ao_messages" value="messages" data-m="4" data-y="40"><label for="ao_messages"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v6M9 10h6"/></svg></span><span class="ao-tick" aria-hidden="true"></span></span><span class="ao-name" data-i18n="ao_msg">Extra messages</span><span class="ao-line" data-i18n="ao_msg_d">+100 messages a day on top of your plan.</span><span class="ao-pr"><b class="ao-price">£4</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
-        <div class="ao"><input type="checkbox" id="ao_scan" value="scan" data-m="3" data-y="30"><label for="ao_scan"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9h8M8 12h8M8 15h5"/></svg></span></span><span class="ao-name" data-i18n="ao_scan">Scan to PDF</span><span class="ao-line" data-i18n="ao_scan_d">Send a photo of a document and get a clean PDF back.</span><span class="ao-pr"><b class="ao-price">£3</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
-        <div class="ao"><input type="checkbox" id="ao_diary" value="logbook" data-m="5" data-y="50"><label for="ao_diary"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/></svg></span></span><span class="ao-name" data-i18n="ao_diary">Diary / Logbook</span><span class="ao-line" data-i18n="ao_diary_d">Keep a daily diary or work log just by messaging Tala.</span><span class="ao-pr"><b class="ao-price">£5</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
+        <div class="ao"><input type="checkbox" id="ao_jobs" value="jobs" data-m="10" data-y="100" data-excl="jobs_plus"><label for="ao_jobs"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span class="ao-tick" aria-hidden="true"></span></span><span class="ao-name" data-i18n="ao_jobs">Job Hunter</span><span class="ao-line" data-i18n="ao_jobs_d">Daily job matches in Tala: 6 job titles in 3 cities, 40 tailored CVs + 20 cover letters a month.</span><span class="ao-pr"><s class="ao-reg"></s> <b class="ao-price">£10</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
+        <div class="ao"><input type="checkbox" id="ao_jobs_plus" value="jobs_plus" data-m="20" data-y="200" data-excl="jobs"><label for="ao_jobs_plus"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 11v6M9 14h6"/></svg></span><span class="ao-tick" aria-hidden="true"></span></span><span class="ao-name" data-i18n="ao_jobsp">Job Hunter Plus</span><span class="ao-line" data-i18n="ao_jobsp_d">10 job titles in 5 cities, 100 tailored CVs + 60 cover letters a month.</span><span class="ao-pr"><s class="ao-reg"></s> <b class="ao-price">£20</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
+        <div class="ao"><input type="checkbox" id="ao_messages" value="messages" data-m="4" data-y="40"><label for="ao_messages"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v6M9 10h6"/></svg></span><span class="ao-tick" aria-hidden="true"></span></span><span class="ao-name" data-i18n="ao_msg">Extra messages</span><span class="ao-line" data-i18n="ao_msg_d">+100 messages a day on top of your plan.</span><span class="ao-pr"><s class="ao-reg"></s> <b class="ao-price">£4</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
+        <div class="ao"><input type="checkbox" id="ao_scan" value="scan" data-m="3" data-y="30"><label for="ao_scan"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9h8M8 12h8M8 15h5"/></svg></span></span><span class="ao-name" data-i18n="ao_scan">Scan to PDF</span><span class="ao-line" data-i18n="ao_scan_d">Send a photo of a document and get a clean PDF back.</span><span class="ao-pr"><s class="ao-reg"></s> <b class="ao-price">£3</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
+        <div class="ao"><input type="checkbox" id="ao_diary" value="logbook" data-m="5" data-y="50"><label for="ao_diary"><span class="ao-top"><span class="ao-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/></svg></span></span><span class="ao-name" data-i18n="ao_diary">Diary / Logbook</span><span class="ao-line" data-i18n="ao_diary_d">Keep a daily diary or work log just by messaging Tala.</span><span class="ao-pr"><s class="ao-reg"></s> <b class="ao-price">£5</b><span class="ao-per" data-i18n="per_m">/month</span></span></label></div>
       </div>
       <div class="ao-total" aria-live="polite">
-        <div><small data-i18n="tot_label">Your total</small><div class="tot-line"><b class="tot-amt">£12</b><span class="tot-per" data-i18n="per_m">/month</span></div><small class="tot-names">Tala Pro</small></div>
+        <div><small data-i18n="tot_label">Your total</small><div class="tot-line"><b class="tot-amt">£12</b><span class="tot-per" data-i18n="per_m">/month</span></div><small class="tot-names">Tala Pro</small><small class="tot-lock" data-i18n="lock_note">Launch price locked for 12 months</small></div>
         <a class="btn btn-gold tot-go" href="signup.html?service=butler&amp;plan=pro&amp;billing=monthly" data-i18n="tot_cta">Continue to sign up</a>
       </div>
       <p class="ao-foot" data-i18n="ao_foot">Job matches arrive inside Tala, and in your morning brief on Pro. Choose Job Hunter or Job Hunter Plus, not both.</p>
@@ -730,6 +741,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       <span class="eyebrow" data-i18n="biz_eyebrow">For businesses</span>
       <h2 data-i18n="biz_title">Websites and QR menus — pay once</h2>
       <p data-i18n="biz_lead">Send us your details online, we build it and check it before it goes live. Hosting on our link is included.</p>
+      <p class="launch" data-i18n-html="launch_biz"><b>Launch offer: 50% off</b> every website, QR menu and bundle until 31 January 2027.</p>
     </div>
     <div class="biz-group reveal" id="plans-web">
       <h4 data-i18n="s2_title">Websites for Businesses</h4>
@@ -738,26 +750,26 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <div class="pcard oneoff">
             <h4>Website Starter</h4>
             <div class="amount"><b>£10</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£20</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b1">One-page site, one language</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b2">Services & prices, opening hours, enquiry form</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_b3">Call button, 4 templates & 4 themes, hosting included</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=web_basic" data-i18n="start">Get started</a>
           </div>
           <div class="pcard oneoff star">
             <h4>Website Pro</h4>
             <div class="amount"><b>£20</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£40</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p1">Logo + gallery of up to 8 photos</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p2">Google Map, WhatsApp button & social links</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_p3">Arabic + English, 7 templates & 7 themes</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=web_pro" data-i18n="start">Get started</a>
           </div>
           <div class="pcard oneoff">
             <h4>Website Premium</h4>
             <div class="amount"><b>£30</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£60</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m1">Everything in Website Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m2">All 10 templates, including Editorial and Luxury</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wf_m3">All 10 colour themes, including Dark &amp; Gold</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=web_premium" data-i18n="start">Get started</a>
           </div>
       </div>
-      <p class="addon web-care" data-i18n="web_addon">Optional with any plan: monthly care for £15/month (up to 4 updates a month, revision rounds, priority support). Cancel any time.</p>
+      <p class="addon web-care" data-i18n="web_addon">Optional with any plan: monthly care for £15/month (launch price, regular <s>£30</s>, locked for 12 months; up to 4 updates a month, revision rounds, priority support). Cancel any time.</p>
     </div>
     <div class="biz-group reveal" id="plans-qr">
       <h4 data-i18n="s3_title">Smart QR Catalogue</h4>
@@ -766,26 +778,26 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <div class="pcard oneoff">
             <h4>QR Starter</h4>
             <div class="amount"><b>£30</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£60</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b1">Menu or catalogue page, one language</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b2">QR code + printable table card</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_b3">Change prices any time with your edit code, 4 themes & 4 layouts</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=qr_basic" data-i18n="start">Get started</a>
           </div>
           <div class="pcard oneoff star">
             <h4>QR Pro</h4>
             <div class="amount"><b>£50</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£100</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p1">Logo and item photos</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p2">Order or book on WhatsApp</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_p3">Arabic + English, live search, 7 themes & 7 layouts</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=qr_pro" data-i18n="start">Get started</a>
           </div>
           <div class="pcard oneoff">
             <h4>QR Premium</h4>
             <div class="amount"><b>£70</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£140</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m1">Everything in QR Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m2">All 10 themes, including Midnight Neon and Emerald & Brass</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="qf_m3">All 10 layouts, including Magazine and Bento</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=qr_premium" data-i18n="start">Get started</a>
           </div>
       </div>
-      <p class="addon web-care" data-i18n="qr_addon">Optional with any plan: monthly menu updates for £9/month (we update your items, prices and offers up to 4 times a month, priority support). Cancel any time.</p>
+      <p class="addon web-care" data-i18n="qr_addon">Optional with any plan: monthly menu updates for £9/month (launch price, regular <s>£18</s>, locked for 12 months; we update your items, prices and offers up to 4 times a month, priority support). Cancel any time.</p>
     </div>
     <div class="biz-group reveal" id="plans-combo">
       <h4 data-i18n="g_combo">Website + QR bundles</h4>
@@ -794,26 +806,26 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <div class="pcard oneoff">
             <h4>Website + QR Starter</h4>
             <div class="amount"><b>£35</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"><span data-i18n="was">Instead of</span> <s>£40</s></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£70</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_b1">Website Starter + QR Starter</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_b2">4 designs and 4 themes in each</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_b3">1 revision round for each</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=combo_basic" data-i18n="start">Get started</a>
           </div>
           <div class="pcard oneoff star">
             <h4>Website + QR Pro</h4>
             <div class="amount"><b>£60</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"><span data-i18n="was">Instead of</span> <s>£70</s></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£120</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_p1">Website Pro + QR Pro</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_p2">Logo, photos, WhatsApp, Arabic + English on both</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_p3">7 designs and 7 themes in each, 2 revision rounds each</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=combo_pro" data-i18n="start">Get started</a>
           </div>
           <div class="pcard oneoff">
             <h4>Website + QR Premium</h4>
             <div class="amount"><b>£85</b><span class="once" data-i18n="oneoff">one-off</span></div>
-            <div class="addon"><span data-i18n="was">Instead of</span> <s>£100</s></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£170</s></div>
             <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_m1">Website Premium + QR Premium</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_m2">Every design and theme on both</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cb_m3">3 revision rounds for each</span></li></ul>
             <a class="btn btn-dark" href="signup.html?plan=combo_premium" data-i18n="start">Get started</a>
           </div>
       </div>
-      <p class="addon web-care" data-i18n="combo_addon">Optional with any bundle: monthly care for both for £20/month (website and menu updates, up to 4 each a month, priority support). Cancel any time.</p>
+      <p class="addon web-care" data-i18n="combo_addon">Optional with any bundle: monthly care for both for £20/month (launch price, regular <s>£40</s>, locked for 12 months; website and menu updates, up to 4 each a month, priority support). Cancel any time.</p>
     </div>
     <div class="price-foot reveal">
       <p data-i18n-html="b2b"><b>Teams and groups?</b> Want Tala or Job Hunter for your staff, students or members? Contact us and we'll put together a group price.</p>
@@ -860,7 +872,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     </div>
     <div class="faq">
       <details class="reveal"><summary data-i18n="q1">Do I need any technical knowledge?</summary><p data-i18n="a1">No. We do the setup. If you can use WhatsApp or Telegram, you can use what we build.</p></details>
-      <details class="reveal"><summary data-i18n="q2">How much does it cost?</summary><p data-i18n-html="a2">Tala, our personal assistant, starts at £7 a month, and you can add extras such as Job Hunter (£10 a month) to either plan. Websites start at £10 and QR menus at £30, paid once. See <a href="#pricing" style="text-decoration:underline">Pricing</a> for everything included.</p></details>
+      <details class="reveal"><summary data-i18n="q2">How much does it cost?</summary><p data-i18n-html="a2">These are launch prices, 50% off until 31 January 2027, and monthly prices stay locked for 12 months from sign-up. Tala, our personal assistant, starts at £7 a month, and you can add extras such as Job Hunter (£10 a month) to either plan. Websites start at £10 and QR menus at £30, paid once. See <a href="#pricing" style="text-decoration:underline">Pricing</a> for everything included.</p></details>
       <details class="reveal"><summary data-i18n="q3">Is my data safe?</summary><p data-i18n="a3">The assistant only accesses the accounts you choose to connect, and asks before taking any action on your behalf. You can disconnect at any time.</p></details>
       <details class="reveal"><summary data-i18n="q4">How long does setup take?</summary><p data-i18n="a4">Websites and QR catalogues are usually ready within a few days of receiving your details. We'll give you a timeline for other services when we quote.</p></details>
       <details class="reveal"><summary data-i18n="q5">Do you work with clients outside Greater Manchester?</summary><p data-i18n="a5">Yes. Everything is set up remotely, so we can work with you wherever you are.</p></details>
@@ -1031,7 +1043,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     wf_m1:'كل مزايا Website Pro',
     wf_m2:'كل القوالب العشرة، ومنها المجلة والعرض الفاخر',
     wf_m3:'كل الثيمات العشرة، ومنها الداكن والذهبي',
-    web_addon:'إضافة اختيارية مع أي باقة: رعاية شهرية بـ £15 شهرياً (حتى 4 تحديثات شهرياً، جولات مراجعة، دعم بأولوية). تقدر تلغيها في أي وقت.',
+    web_addon:'إضافة اختيارية مع أي باقة: رعاية شهرية بـ £15 شهرياً (سعر الإطلاق، والعادي <s>£30</s>، وثابت لمدة 12 شهراً؛ حتى 4 تحديثات شهرياً، جولات مراجعة، دعم بأولوية). تقدر تلغيها في أي وقت.',
     qf_b1:'صفحة قائمة أو كتالوج بلغة واحدة',
     qf_b2:'رمز QR + كرت طاولة للطباعة',
     qf_b3:'غيّر الأسعار أي وقت بكود التعديل، 4 ثيمات و4 طرق عرض',
@@ -1044,11 +1056,14 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     g_combo:'باقات الموقع + QR',
     biz_combo_sub:'خذ موقعك وقائمة الـ QR معاً بنفس المستوى، وادفع أقل من شراء الاثنين.',
     was:'بدلاً من',
+    launch_tala:'<b>عرض الإطلاق: خصم 50%.</b> هذه أسعار الإطلاق حتى 31 يناير 2027. اشترك الآن وسعرك الشهري يبقى ثابتاً لمدة 12 شهراً.',
+    launch_biz:'<b>عرض الإطلاق: خصم 50%</b> على كل المواقع وقوائم QR والباقات حتى 31 يناير 2027.',
+    reg_label:'السعر العادي من 1 فبراير 2027', lock_note:'سعر الإطلاق ثابت لمدة 12 شهراً',
     cb_b1:'Website Starter و QR Starter', cb_b2:'4 تصاميم و4 ثيمات لكل منهما', cb_b3:'جولة تعديل لكل منهما',
     cb_p1:'Website Pro و QR Pro', cb_p2:'شعار وصور وواتساب وعربي وإنجليزي في الاثنين', cb_p3:'7 تصاميم و7 ثيمات لكل منهما، وجولتا تعديل لكل منهما',
     cb_m1:'Website Premium و QR Premium', cb_m2:'كل التصاميم والثيمات في الاثنين', cb_m3:'3 جولات تعديل لكل منهما',
-    combo_addon:'إضافة اختيارية مع أي باقة مشتركة: رعاية شهرية للاثنين بـ £20 شهرياً (تحديثات الموقع والقائمة حتى 4 مرات شهرياً لكل منهما، ودعم بأولوية). تقدر تلغيها في أي وقت.',
-    qr_addon:'إضافة اختيارية مع أي باقة: تحديثات شهرية للقائمة بـ £9 شهرياً (نحدّث أصنافك وأسعارك وعروضك حتى 4 مرات شهرياً، ودعم بأولوية). تقدر تلغيها في أي وقت.',
+    combo_addon:'إضافة اختيارية مع أي باقة مشتركة: رعاية شهرية للاثنين بـ £20 شهرياً (سعر الإطلاق، والعادي <s>£40</s>، وثابت لمدة 12 شهراً؛ تحديثات الموقع والقائمة حتى 4 مرات شهرياً لكل منهما، ودعم بأولوية). تقدر تلغيها في أي وقت.',
+    qr_addon:'إضافة اختيارية مع أي باقة: تحديثات شهرية للقائمة بـ £9 شهرياً (سعر الإطلاق، والعادي <s>£18</s>، وثابت لمدة 12 شهراً؛ نحدّث أصنافك وأسعارك وعروضك حتى 4 مرات شهرياً، ودعم بأولوية). تقدر تلغيها في أي وقت.',
     custom_title:'تحتاج أتمتة شيء آخر؟',
     custom_text:'المتابعات، الحجوزات، التقارير، تنبيهات العملاء… إذا كنت تكرر المهمة مرة بعد مرة، فغالباً نستطيع أتمتتها. أخبرنا عنها وسنقول لك بصراحة إن كانت تستحق.',
     custom_cta:'أخبرنا بفكرتك',
@@ -1063,7 +1078,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     w4_t:'قريبون ومتاحون', w4_p:'مقرّنا في مانشستر الكبرى. راسلنا على واتساب وتحدّث مع الشخص الذي بنى نظامك.',
     faq_eyebrow:'أسئلة', faq_title:'الأسئلة الشائعة',
     q1:'هل أحتاج أي خبرة تقنية؟', a1:'لا. نحن نتولى الإعداد. إذا كنت تستخدم واتساب أو تيليجرام، ستستخدم ما نبنيه بسهولة.',
-    q2:'كم التكلفة؟', a2:'تالا، مساعدنا الشخصي، تبدأ من £7 شهرياً، ويمكنك إضافة صائد الوظائف (£10 شهرياً) وغيره لأي باقة. المواقع تبدأ من £10 وقوائم QR من £30 تدفع مرة واحدة. راجع <a href="#pricing" style="text-decoration:underline">الأسعار</a> لكل التفاصيل.',
+    q2:'كم التكلفة؟', a2:'هذه أسعار الإطلاق بخصم 50% حتى 31 يناير 2027، والأسعار الشهرية تبقى ثابتة 12 شهراً من تاريخ اشتراكك. تالا، مساعدنا الشخصي، تبدأ من £7 شهرياً، ويمكنك إضافة صائد الوظائف (£10 شهرياً) وغيره لأي باقة. المواقع تبدأ من £10 وقوائم QR من £30 تدفع مرة واحدة. راجع <a href="#pricing" style="text-decoration:underline">الأسعار</a> لكل التفاصيل.',
     q3:'هل بياناتي آمنة؟', a3:'المساعد يصل فقط إلى الحسابات التي تختار ربطها، ويستأذنك قبل أي إجراء نيابةً عنك. ويمكنك فصلها في أي وقت.',
     q4:'كم يستغرق التجهيز؟', a4:'المواقع والكتالوجات الذكية تكون جاهزة عادةً خلال أيام قليلة من استلام بياناتك. أما الخدمات الأخرى فنحدد مدتها مع عرض السعر.',
     q5:'هل تعملون مع عملاء خارج مانشستر الكبرى؟', a5:'نعم. كل شيء يتم عن بُعد، لذلك نعمل معك أينما كنت.',
@@ -1112,6 +1127,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
 
   // Pricing: monthly / annual toggle, the assistant plan (Essential / Pro), add-ons and the signup link.
   // Assistant prices are in pounds; currency.js shows them in the visitor's currency.
+  // Launch offer: the regular price (struck through) is twice the launch price that is actually charged.
   var bill = 'monthly', corePlan = 'pro';
   var coreCards = document.querySelectorAll('.pcard.core'), aoInputs = document.querySelectorAll('.ao input:not(:disabled)');
   function gbp(n){ return '£' + (n % 1 ? n.toFixed(2) : String(n)); }
@@ -1125,6 +1141,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     coreCards.forEach(function(c){
       var m = +c.getAttribute('data-m'), y = +c.getAttribute('data-y'), key = c.getAttribute('data-plan');
       c.querySelector('.p-amt').textContent = gbp(annual ? y : m);
+      c.querySelector('.reg-price').textContent = gbp(2 * (annual ? y : m));
       var per = c.querySelector('.p-per'); per.setAttribute('data-i18n', annual ? 'per_y' : 'per_m'); per.textContent = t(annual ? 'per_y' : 'per_m');
       var eq = (y / 12).toFixed(2).replace(/\.00$/, '');
       c.querySelector('.per-note').textContent = annual ? t('per_mo_eq').replace('{x}', eq) : '';
@@ -1136,6 +1153,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     document.querySelectorAll('.ao input').forEach(function(i){
       var lab = i.nextElementSibling;
       lab.querySelector('.ao-price').textContent = gbp(+i.getAttribute(annual ? 'data-y' : 'data-m'));
+      lab.querySelector('.ao-reg').textContent = gbp(2 * i.getAttribute(annual ? 'data-y' : 'data-m'));
       var per = lab.querySelector('.ao-per'); per.setAttribute('data-i18n', annual ? 'per_y' : 'per_m'); per.textContent = t(annual ? 'per_y' : 'per_m');
       if (i.checked && !i.disabled) { total += +i.getAttribute(annual ? 'data-y' : 'data-m'); names.push(lab.querySelector('.ao-name').textContent); }
     });
@@ -1220,7 +1238,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
 })();
 </script>
 <script src="chat.js?v=20261006" defer></script>
-<script>window.grFxExtra = '.ao-price, .tot-amt';</script>
+<script>window.grFxExtra = '.ao-price, .tot-amt, .reg-price, .ao-reg';</script>
 <script src="currency.js?v=20261005" defer></script>
 </body>
 </html>
