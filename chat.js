@@ -1,4 +1,4 @@
-/* Gear Radar website chat — talks to the same sales assistant as our WhatsApp number.
+/* Gear Radar website chat with Tala — the same assistant as our WhatsApp number.
    Include once per page:  <script src="chat.js" defer></script>  */
 (function () {
   'use strict';
@@ -11,16 +11,16 @@
 
   var T = {
     en: {
-      open: 'Chat with us', title: 'Gear Radar assistant', sub: 'Usually replies in seconds ⚡',
-      hello: 'Hey there! 👋 Lovely to see you. I can help you find the right fit: Tala, your personal assistant (Tala Essential or Tala Pro, with add-ons like JobRadar), a website for your business, or a QR menu 😊 What are you looking for?',
+      open: 'Chat with Tala', title: 'Tala · Gear Radar', sub: 'Usually replies in seconds ⚡',
+      hello: 'Hey there! 👋 I\'m Tala from Gear Radar. I can help you find the right fit: me as your personal assistant (Tala Essential or Tala Pro, with add-ons like JobRadar), a website for your business, or a QR menu 😊 What are you looking for?',
       ph: 'Type your message…', send: 'Send', close: 'Close chat',
       chips: ['See prices', 'QR menu for my business', 'A website for my business', 'Tala personal assistant'],
       err: 'Sorry, something went wrong. Please try again, or message us on WhatsApp.',
       wa: 'WhatsApp us instead', note: 'Chats are saved so we can follow up. See our <a href="privacy.html">privacy notice</a>.'
     },
     ar: {
-      open: 'تحدّث معنا', title: 'مساعد Gear Radar', sub: 'يرد عادةً خلال ثوانٍ ⚡',
-      hello: 'أهلاً وسهلاً! 👋 نورتنا. أنا هنا عشان أساعدك تلقى الأنسب ليك: تالا، مساعدتك الشخصية (Tala Essential أو Tala Pro، مع إضافات زي JobRadar)، موقع لنشاطك، أو قائمة QR 😊 قول لي بتدور على شنو؟',
+      open: 'كلّم تالا', title: 'تالا · Gear Radar', sub: 'يرد عادةً خلال ثوانٍ ⚡',
+      hello: 'أهلاً وسهلاً! 👋 أنا تالا من Gear Radar. بساعدك تلقى الأنسب ليك: أكون مساعدتك الشخصية (Tala Essential أو Tala Pro، مع إضافات زي JobRadar)، أو موقع لنشاطك، أو قائمة QR 😊 قول لي بتدور على شنو؟',
       ph: 'اكتب رسالتك…', send: 'إرسال', close: 'إغلاق المحادثة',
       chips: ['الأسعار', 'قائمة QR لنشاطي', 'موقع لنشاطي', 'تالا، مساعدتك الشخصية'],
       err: 'عذراً، حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب.',
@@ -60,6 +60,7 @@
     + '.grc-head{flex:none;background:#15171C;color:#F5F5F4;padding:14px 16px;display:flex;align-items:center;gap:12px}'
     + '.grc-av{width:38px;height:38px;border-radius:50%;background:rgba(255,138,80,.15);display:grid;place-items:center;flex:none}'
     + '.grc-av svg{width:22px;height:22px;color:#FF8A50}'
+    + '.grc-av img{width:30px;height:30px;display:block}'
     + '.grc-head b{display:block;font-size:15px}.grc-head small{color:#A8A29E;font-size:12px}'
     + '.grc-x{margin-inline-start:auto;background:none;border:0;color:#A8A29E;font-size:26px;line-height:1;cursor:pointer;padding:4px 6px}'
     + '.grc-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:16px;background:#F7F5F0;display:flex;flex-direction:column;gap:10px}'
@@ -103,7 +104,7 @@
   panel.className = 'grc-panel';
   panel.setAttribute('role', 'dialog');
   panel.innerHTML = ''
-    + '<div class="grc-head"><div class="grc-av">' + ICON_CHAT + '</div><div><b class="grc-title"></b><small class="grc-sub"></small></div><button type="button" class="grc-x">×</button></div>'
+    + '<div class="grc-head"><div class="grc-av"><img src="/images/brand/tala-dark.svg" alt="" width="30" height="30"></div><div><b class="grc-title"></b><small class="grc-sub"></small></div><button type="button" class="grc-x">×</button></div>'
     + '<div class="grc-body" aria-live="polite"></div>'
     + '<div class="grc-foot"><form class="grc-form"><input class="grc-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><textarea class="grc-in" rows="1" maxlength="' + MAX_LEN + '"></textarea><button class="grc-send" type="submit">' + ICON_SEND + '</button></form>'
     + '<div class="grc-meta"><span class="grc-note"></span><a class="grc-wa" href="' + WA + '" target="_blank" rel="noopener"></a></div></div>';
