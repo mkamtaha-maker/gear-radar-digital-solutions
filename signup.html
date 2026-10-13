@@ -135,7 +135,7 @@ html[lang="ar"] .plan .cat{letter-spacing:0;font-size:.78rem}
 .section-hide{display:none !important}
 .groups{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
 .groups button{border:1.5px solid var(--line);background:var(--paper);padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--text)}
-.plan s.was{opacity:.55;font-weight:500;margin-inline-end:2px}
+.plan s.was,.ao-pr s.was{opacity:.55;font-weight:500;margin-inline-end:2px}
 .groups button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--white)}
 .plans.three{grid-template-columns:repeat(3,1fr)}
 .plan .add{display:block;font-size:.78rem;color:#C2410C;font-weight:600}
@@ -344,7 +344,7 @@ footer a:hover{color:var(--gold)}
     <div class="field full pro-only"><label for="w_address" data-i18n="f_address">Address (for Google Maps)</label><input id="w_address" maxlength="200"></div>
     <div class="field full pro-only"><label for="w_social"><span data-i18n="f_social">Social media links ("Follow us")</span> <span class="opt" data-i18n="optional">(optional)</span></label><textarea id="w_social" maxlength="1200" placeholder="instagram.com/yourshop&#10;facebook.com/yourshop&#10;tiktok.com/@yourshop"></textarea><span class="hint" data-i18n="h_social">One link per line. They appear as icons in your website footer.</span></div>
     <div class="field pro-only files"><label for="w_logo" data-i18n="f_logo">Logo (optional)</label><input id="w_logo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span></div>
-    <label class="check full care"><input type="checkbox" id="w_care"><span data-i18n-html="f_care">Add monthly care for <b class="care-p">£15</b>/month: up to 4 updates a month, revision rounds and priority support. Cancel any time.</span></label>
+    <label class="check full care"><input type="checkbox" id="w_care"><span data-i18n-html="f_care">Add monthly care for <b class="care-p">£15</b>/month (launch price, locked for 12 months): up to 4 updates a month, revision rounds and priority support. Cancel any time.</span></label>
     <div class="field pro-only files"><label for="w_photos" data-i18n="f_photos8">Photos (up to 8)</label><input id="w_photos" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span><span class="err-text" data-i18n="e_files">Please use JPG, PNG or WebP images under 5 MB (too many files?).</span></div>
   </fieldset>
 
@@ -369,7 +369,7 @@ footer a:hover{color:var(--gold)}
     <div class="field pro-only files"><label for="q_logo" data-i18n="f_logo">Logo (optional)</label><input id="q_logo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_img">JPG, PNG or WebP · max 5 MB</span></div>
     <div class="field pro-only files"><label for="q_cover" data-i18n="f_cover">Cover photo (optional)</label><input id="q_cover" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_cover">Shown behind your name at the top of the page · max 5 MB</span></div>
     <div class="field full pro-only files"><label for="q_photos" data-i18n="f_itemphotos">Item photos (optional)</label><input id="q_photos" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="hint" data-i18n="h_itemphotos">Name each photo exactly like the item (English or Arabic), e.g. Chicken Burger.jpg · up to 40 · max 5 MB each</span><span class="err-text" data-i18n="e_files">Please use JPG, PNG or WebP images under 5 MB (too many files?).</span></div>
-    <label class="check full care"><input type="checkbox" id="q_care"><span data-i18n-html="f_qcare">Add monthly menu updates for <b class="care-p">£9</b>/month: we update your items, prices and offers for you (up to 4 times a month) with priority support. Cancel any time.</span></label>
+    <label class="check full care"><input type="checkbox" id="q_care"><span data-i18n-html="f_qcare">Add monthly menu updates for <b class="care-p">£9</b>/month (launch price, locked for 12 months): we update your items, prices and offers for you (up to 4 times a month) with priority support. Cancel any time.</span></label>
     <div class="field full"><label for="q_foot"><span data-i18n="f_footer">Note at the bottom of the page</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="q_foot" maxlength="300" dir="auto" placeholder="Please tell our staff about any allergies."></div>
   </fieldset>
 
@@ -377,7 +377,7 @@ footer a:hover{color:var(--gold)}
   <fieldset>
     <legend><span class="n" id="lastStep">6</span><span data-i18n="l_finish">Confirm</span></legend>
     <!-- Website + QR bundle: one optional add-on for both parts -->
-    <label class="check full care section-hide" id="comboCare"><input type="checkbox" id="c_care"><span data-i18n-html="f_ccare">Add monthly care for both for <b class="care-p">£20</b>/month: website updates and QR menu updates (up to 4 each a month), revision rounds and priority support. Cancel any time.</span></label>
+    <label class="check full care section-hide" id="comboCare"><input type="checkbox" id="c_care"><span data-i18n-html="f_ccare">Add monthly care for both for <b class="care-p">£20</b>/month (launch price, locked for 12 months): website updates and QR menu updates (up to 4 each a month), revision rounds and priority support. Cancel any time.</span></label>
     <div class="paybox" id="paybox">
       <div class="field full"><label for="promo"><span data-i18n="f_promo">Promo code</span> <span class="opt" data-i18n="optional">(optional)</span></label>
         <div class="promo"><input id="promo" maxlength="30" autocomplete="off" spellcheck="false" dir="ltr"><button type="button" class="btn btn-line" id="promoApply" data-i18n="apply">Apply</button><span class="msg" id="promoMsg" aria-live="polite"></span></div></div>
@@ -441,11 +441,13 @@ footer a:hover{color:var(--gold)}
     { key:'qr_pro',      service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Pro',          once:50, cur:'GBP', feats:['qf_p1','qf_p2','qf_p3'], best:true },
     { key:'qr_premium',  service:'smart_qr', group:'qr',  cat:'cat_qr',  name:'QR Premium',      once:70, cur:'GBP', feats:['qf_m1','qf_m2','qf_m3'] },
     // Website + QR bundles: the same tier of each, cheaper than both. Must match plan_prices (service web_qr).
-    { key:'combo_basic',   service:'web_qr', group:'combo', cat:'cat_combo', name:'Website + QR Starter', once:35, cur:'GBP', was:40,  feats:['cf_b1','cf_b2','cf_b3'] },
-    { key:'combo_pro',     service:'web_qr', group:'combo', cat:'cat_combo', name:'Website + QR Pro',     once:60, cur:'GBP', was:70,  feats:['cf_p1','cf_p2','cf_p3'], best:true },
-    { key:'combo_premium', service:'web_qr', group:'combo', cat:'cat_combo', name:'Website + QR Premium', once:85, cur:'GBP', was:100, feats:['cf_m1','cf_m2','cf_m3'] }
+    { key:'combo_basic',   service:'web_qr', group:'combo', cat:'cat_combo', name:'Website + QR Starter', once:35, cur:'GBP',  feats:['cf_b1','cf_b2','cf_b3'] },
+    { key:'combo_pro',     service:'web_qr', group:'combo', cat:'cat_combo', name:'Website + QR Pro',     once:60, cur:'GBP',  feats:['cf_p1','cf_p2','cf_p3'], best:true },
+    { key:'combo_premium', service:'web_qr', group:'combo', cat:'cat_combo', name:'Website + QR Premium', once:85, cur:'GBP', feats:['cf_m1','cf_m2','cf_m3'] }
   ];
   PLANS.forEach(function(p){ if (!p.group) p.group = 'subs'; });
+  // Launch offer: every price above is a launch price, 50% of the regular price shown struck through. Charged prices are unchanged.
+  function reg(n, cur){ return '<s class="was">' + money(2 * n, cur) + '</s> '; }
   // Monthly add-ons for Tala (either plan), billed with the plan in pounds. Annual = 10 x monthly.
   // jobs and jobs_plus can't be taken together. Must match the add-on prices in Supabase.
   var ADDONS = [
@@ -464,7 +466,7 @@ footer a:hover{color:var(--gold)}
   var EN = {
     back:'Back to plans', title:'Set up your account',
     g_subs:'Tala · your personal assistant', g_web:'Business website', g_qr:'QR menu / catalogue', g_combo:'Tala Duo (save)',
-    cat_web:'Website', cat_qr:'QR menu', cat_combo:'Website + QR', save_vs:'you save {p}', once:'one-off', addon:'+ {n}/month',
+    cat_web:'Website', cat_qr:'QR menu', cat_combo:'Website + QR', save_vs:'you save {p}', launch_off:'launch offer, 50% off until 31 January 2027', launch_lock:'launch price, locked for 12 months', once:'one-off', addon:'+ {n}/month',
     wf_b1:'One-page site, one language', wf_b2:'Services & prices, opening hours, enquiry form', wf_b3:'Call button, 4 templates & 4 themes, hosting included',
     wf_p1:'Logo + gallery of up to 8 photos', wf_p2:'Google Map, WhatsApp button & social links', wf_p3:'Arabic + English, 7 templates & 7 themes',
     wf_m1:'Everything in Website Pro', wf_m2:'All 10 templates, including Editorial and Luxury', wf_m3:'All 10 colour themes, including Dark & Gold',
@@ -478,7 +480,7 @@ footer a:hover{color:var(--gold)}
     f_activity:'What you do', f_desc:'Short description', f_services:'Services and prices (one per line)', e_services:'Please add at least one service.',
     f_hours:'Opening hours', f_phone:'Phone (Call button)', f_sitelang:'Website language', both:'Arabic + English',
     pro_note_web:'Logo, photos, Google Map, WhatsApp button and social media links come with Website Pro and Premium. More templates and themes unlock with Pro and Premium.', f_template:'Template (layout)', h_gallery:'See them in the gallery', locked:'needs {plan}',
-    f_wabtn:'WhatsApp number (for the WhatsApp button)', f_social:'Social media links ("Follow us")', h_social:'One link per line. They appear as icons in your website footer.', f_ccare:'Add monthly care for both for <b class="care-p">£20</b>/month: website updates and QR menu updates (up to 4 each a month), revision rounds and priority support. Cancel any time.', f_qcare:'Add monthly menu updates for <b class="care-p">£9</b>/month: we update your items, prices and offers for you (up to 4 times a month) with priority support. Cancel any time.', f_care:'Add monthly care for <b class="care-p">£15</b>/month: up to 4 updates a month, revision rounds and priority support. Cancel any time.', f_palette:'Colour theme', f_address:'Address (for Google Maps)',
+    f_wabtn:'WhatsApp number (for the WhatsApp button)', f_social:'Social media links ("Follow us")', h_social:'One link per line. They appear as icons in your website footer.', f_ccare:'Add monthly care for both for <b class="care-p">£20</b>/month (launch price, locked for 12 months): website updates and QR menu updates (up to 4 each a month), revision rounds and priority support. Cancel any time.', f_qcare:'Add monthly menu updates for <b class="care-p">£9</b>/month (launch price, locked for 12 months): we update your items, prices and offers for you (up to 4 times a month) with priority support. Cancel any time.', f_care:'Add monthly care for <b class="care-p">£15</b>/month (launch price, locked for 12 months): up to 4 updates a month, revision rounds and priority support. Cancel any time.', f_palette:'Colour theme', f_address:'Address (for Google Maps)',
     f_logo:'Logo (optional)', h_img:'JPG, PNG or WebP · max 5 MB', f_photos8:'Photos (up to 8)', e_files:'Please use JPG, PNG or WebP images under 5 MB (too many files?).',
     f_btype:'Type', bt_menu:'Restaurant / café menu', bt_services:'Services (salon, clinic, repair…)', bt_products:'Shop / products catalogue',
     f_slug:'Your page link', h_slug:'English letters, numbers and hyphens only. This link stays the same forever.', e_slug:'Use at least 3 characters: a–z, 0–9 and hyphens.',
@@ -530,7 +532,7 @@ footer a:hover{color:var(--gold)}
   var AR = {
     back:'العودة للباقات', title:'جهّز حسابك',
     g_subs:'تالا · مساعدتك الشخصية', g_web:'موقع لنشاطك', g_qr:'قائمة / كتالوج QR', g_combo:'Tala Duo (توفير)',
-    cat_web:'موقع', cat_qr:'قائمة QR', cat_combo:'موقع + QR', save_vs:'توفّر {p}', once:'لمرة واحدة', addon:'+ {n} شهرياً',
+    cat_web:'موقع', cat_qr:'قائمة QR', cat_combo:'موقع + QR', save_vs:'توفّر {p}', launch_off:'عرض الإطلاق، خصم 50% حتى 31 يناير 2027', launch_lock:'سعر الإطلاق، ثابت لمدة 12 شهراً', once:'لمرة واحدة', addon:'+ {n} شهرياً',
     wf_b1:'موقع من صفحة واحدة بلغة واحدة', wf_b2:'الخدمات والأسعار وساعات العمل ونموذج استفسار', wf_b3:'زر اتصال، 4 قوالب و4 ثيمات، والاستضافة مشمولة',
     wf_p1:'الشعار ومعرض حتى 8 صور', wf_p2:'خريطة Google وزر واتساب وروابط السوشيال', wf_p3:'عربي + إنجليزي، 7 قوالب و7 ثيمات',
     wf_m1:'كل مزايا Website Pro', wf_m2:'كل القوالب العشرة، ومنها المجلة والعرض الفاخر', wf_m3:'كل الثيمات العشرة، ومنها الداكن والذهبي',
@@ -544,7 +546,7 @@ footer a:hover{color:var(--gold)}
     f_activity:'مجال النشاط', f_desc:'وصف مختصر', f_services:'الخدمات والأسعار (سطر لكل خدمة)', e_services:'يرجى إضافة خدمة واحدة على الأقل.',
     f_hours:'ساعات العمل', f_phone:'رقم الهاتف (زر الاتصال)', f_sitelang:'لغة الموقع', both:'عربي + إنجليزي',
     pro_note_web:'الشعار والصور وخريطة Google وزر واتساب وروابط السوشيال متاحة في Website Pro و Premium. وتتوفر قوالب وثيمات أكثر في Pro و Premium.', f_template:'القالب (شكل الصفحة)', h_gallery:'شاهدها في المعرض', locked:'يتطلب {plan}',
-    f_wabtn:'رقم واتساب (لزر واتساب)', f_social:'روابط السوشيال ميديا (تابعونا)', h_social:'رابط في كل سطر. تظهر كأيقونات في أسفل موقعك.', f_ccare:'أضف الرعاية الشهرية للاثنين بـ <b class="care-p">£20</b> شهرياً: تحديثات الموقع وتحديثات قائمة الـ QR (حتى 4 مرات شهرياً لكل منهما)، جولات مراجعة، ودعم بأولوية. تقدر تلغيها في أي وقت.', f_qcare:'أضف التحديثات الشهرية للقائمة بـ <b class="care-p">£9</b> شهرياً: نحدّث أصنافك وأسعارك وعروضك بدلاً عنك (حتى 4 مرات شهرياً) مع دعم بأولوية. تقدر تلغيها في أي وقت.', f_care:'أضف الرعاية الشهرية بـ <b class="care-p">£15</b> شهرياً: حتى 4 تحديثات شهرياً، جولات مراجعة، ودعم بأولوية. تقدر تلغيها في أي وقت.', f_palette:'الألوان', f_address:'العنوان (لخريطة Google)',
+    f_wabtn:'رقم واتساب (لزر واتساب)', f_social:'روابط السوشيال ميديا (تابعونا)', h_social:'رابط في كل سطر. تظهر كأيقونات في أسفل موقعك.', f_ccare:'أضف الرعاية الشهرية للاثنين بـ <b class="care-p">£20</b> شهرياً (سعر الإطلاق، ثابت لمدة 12 شهراً): تحديثات الموقع وتحديثات قائمة الـ QR (حتى 4 مرات شهرياً لكل منهما)، جولات مراجعة، ودعم بأولوية. تقدر تلغيها في أي وقت.', f_qcare:'أضف التحديثات الشهرية للقائمة بـ <b class="care-p">£9</b> شهرياً (سعر الإطلاق، ثابت لمدة 12 شهراً): نحدّث أصنافك وأسعارك وعروضك بدلاً عنك (حتى 4 مرات شهرياً) مع دعم بأولوية. تقدر تلغيها في أي وقت.', f_care:'أضف الرعاية الشهرية بـ <b class="care-p">£15</b> شهرياً (سعر الإطلاق، ثابت لمدة 12 شهراً): حتى 4 تحديثات شهرياً، جولات مراجعة، ودعم بأولوية. تقدر تلغيها في أي وقت.', f_palette:'الألوان', f_address:'العنوان (لخريطة Google)',
     f_logo:'الشعار (اختياري)', h_img:'JPG أو PNG أو WebP · حتى 5 ميغابايت', f_photos8:'صور (حتى 8)', e_files:'استخدم صور JPG أو PNG أو WebP أقل من 5 ميغابايت (أو قلّل عدد الملفات).',
     f_btype:'النوع', bt_menu:'قائمة مطعم / مقهى', bt_services:'خدمات (صالون، عيادة، صيانة…)', bt_products:'كتالوج منتجات / متجر',
     f_slug:'رابط صفحتك', h_slug:'حروف إنجليزية وأرقام وشرطات فقط. الرابط يبقى ثابتاً دائماً.', e_slug:'3 أحرف على الأقل: a–z و 0–9 والشرطة.',
@@ -631,8 +633,8 @@ footer a:hover{color:var(--gold)}
     box.classList.toggle('two', group() === 'subs');
     PLANS.filter(function(p){ return p.group === group(); }).forEach(function(p){
       var wrap = document.createElement('div'); wrap.className = 'plan';
-      var price = p.once ? (p.was ? '<s class="was">' + money(p.was, p.cur) + '</s> ' : '') + money(p.once, p.cur) + ' <span>' + t('once') + '</span>' + (p.add ? '<span class="add">' + t('addon').replace('{n}', money(p.add, p.cur)) + '</span>' : '')
-        : (billing === 'annual' ? money(p.y, p.cur) + '<span>' + t('per_y') + '</span>' : money(p.m, p.cur) + '<span>' + t('per_m') + '</span>');
+      var price = p.once ? reg(p.once, p.cur) + money(p.once, p.cur) + ' <span>' + t('once') + '</span>' + (p.add ? '<span class="add">' + t('addon').replace('{n}', money(p.add, p.cur)) + '</span>' : '')
+        : (billing === 'annual' ? reg(p.y, p.cur) + money(p.y, p.cur) + '<span>' + t('per_y') + '</span>' : reg(p.m, p.cur) + money(p.m, p.cur) + '<span>' + t('per_m') + '</span>');
       wrap.innerHTML = '<input type="radio" name="plan" id="p_' + p.key + '" value="' + p.key + '"' + (p.key === planKey ? ' checked' : '') + '>' +
         '<label for="p_' + p.key + '"><span class="cat">' + t(p.cat) + '</span><span class="nm">' + p.name + '</span><span class="pr"><b>' + price + '</b></span></label>' +
         (p.best ? '<span class="best">' + t('best') + '</span>' : '') + (p.pop ? '<span class="best">' + t('popular') + '</span>' : '');
@@ -648,7 +650,7 @@ footer a:hover{color:var(--gold)}
       var wrap = document.createElement('div'); wrap.className = 'ao';
       wrap.innerHTML = '<input type="checkbox" id="ao_' + a.code + '" value="' + a.code + '"' + (addons.indexOf(a.code) > -1 ? ' checked' : '') + '>' +
         '<label for="ao_' + a.code + '"><span class="bx" aria-hidden="true"></span><span class="tx"><span class="nm">' + t(a.nm) + '</span><span class="ds">' + t(a.ds) + '</span>' +
-        '<span class="ao-pr"><b>' + money(annual ? a.y : a.m, a.cur) + '</b>' + t(annual ? 'per_y' : 'per_m') + '</span></span></label>';
+        '<span class="ao-pr"><b>' + reg(annual ? a.y : a.m, a.cur) + money(annual ? a.y : a.m, a.cur) + '</b>' + t(annual ? 'per_y' : 'per_m') + '</span></span></label>';
       box.appendChild(wrap);
     });
     box.querySelectorAll('input').forEach(function(i){
@@ -671,11 +673,11 @@ footer a:hover{color:var(--gold)}
         var a = addonInfo(c), v = annual ? a.y : a.m; sum += v;
         rows += '<br>+ <b>' + t(a.nm) + '</b> · ' + money(v, a.cur) + per;
       });
-      rows += '<div class="tot"><b>' + t('total') + ': ' + money(sum, p.cur) + per + '</b>' + (annual ? ' <span class="hint">(' + t('billed_y') + ')</span>' : '') + '</div>';
+      rows += '<div class="tot"><b>' + t('total') + ': ' + money(sum, p.cur) + per + '</b>' + (annual ? ' <span class="hint">(' + t('billed_y') + ')</span>' : '') + ' <span class="hint">(' + t('launch_lock') + ')</span></div>';
       $('summary').innerHTML = rows + '<ul>' + p.feats.map(function(f){ return '<li>' + t(f) + '</li>'; }).join('') + '</ul>';
       return;
     }
-    var line = '<b>' + p.name + '</b> · ' + money(p.once, p.cur) + ' ' + t('once') + (p.was ? ' <span class="hint">(' + t('save_vs').replace('{p}', money(p.was - p.once, p.cur)) + ')</span>' : '') + (p.add ? ' ' + t('addon').replace('{n}', money(p.add, p.cur)) : '');
+    var line = '<b>' + p.name + '</b> · ' + money(p.once, p.cur) + ' ' + t('once') + ' <span class="hint">(' + t('launch_off') + ')</span>' + (p.add ? ' ' + t('addon').replace('{n}', money(p.add, p.cur)) : '');
     $('summary').innerHTML = line + '<ul>' + p.feats.map(function(f){ return '<li>' + t(f) + '</li>'; }).join('') + '</ul>';
   }
   function areaRow(label, code){
