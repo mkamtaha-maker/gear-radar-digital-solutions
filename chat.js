@@ -12,7 +12,7 @@
   var T = {
     en: {
       open: 'Chat with us', title: 'Gear Radar assistant', sub: 'Usually replies in seconds ⚡',
-      hello: 'Hey there! 👋 Lovely to see you. I can help you find the right fit: Tala, your personal assistant (Tala Essential or Tala Pro, with add-ons like Job Hunter), a website for your business, or a QR menu 😊 What are you looking for?',
+      hello: 'Hey there! 👋 Lovely to see you. I can help you find the right fit: Tala, your personal assistant (Tala Essential or Tala Pro, with add-ons like Tala Jobs), a website for your business, or a QR menu 😊 What are you looking for?',
       ph: 'Type your message…', send: 'Send', close: 'Close chat',
       chips: ['See prices', 'QR menu for my business', 'A website for my business', 'Tala personal assistant'],
       err: 'Sorry, something went wrong. Please try again, or message us on WhatsApp.',
@@ -20,7 +20,7 @@
     },
     ar: {
       open: 'تحدّث معنا', title: 'مساعد Gear Radar', sub: 'يرد عادةً خلال ثوانٍ ⚡',
-      hello: 'أهلاً وسهلاً! 👋 نورتنا. أنا هنا عشان أساعدك تلقى الأنسب ليك: تالا، مساعدتك الشخصية (Tala Essential أو Tala Pro، مع إضافات زي صائد الوظائف)، موقع لنشاطك، أو قائمة QR 😊 قول لي بتدور على شنو؟',
+      hello: 'أهلاً وسهلاً! 👋 نورتنا. أنا هنا عشان أساعدك تلقى الأنسب ليك: تالا، مساعدتك الشخصية (Tala Essential أو Tala Pro، مع إضافات زي Tala Jobs)، موقع لنشاطك، أو قائمة QR 😊 قول لي بتدور على شنو؟',
       ph: 'اكتب رسالتك…', send: 'إرسال', close: 'إغلاق المحادثة',
       chips: ['الأسعار', 'قائمة QR لنشاطي', 'موقع لنشاطي', 'تالا، مساعدتك الشخصية'],
       err: 'عذراً، حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب.',
