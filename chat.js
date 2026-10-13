@@ -19,8 +19,8 @@
       wa: 'WhatsApp us instead', note: 'Chats are saved so we can follow up. See our <a href="privacy.html">privacy notice</a>.'
     },
     ar: {
-      open: 'كلّم تالا', title: 'تالا · Gear Radar', sub: 'يرد عادةً خلال ثوانٍ ⚡',
-      hello: 'أهلاً وسهلاً! 👋 أنا تالا من Gear Radar. بساعدك تلقى الأنسب ليك: أكون مساعدتك الشخصية (Tala Essential أو Tala Pro، مع إضافات زي JobRadar)، أو موقع لنشاطك، أو قائمة QR 😊 قول لي بتدور على شنو؟',
+      open: 'تحدّث مع تالا', title: 'تالا · Gear Radar', sub: 'تردّ عادةً خلال ثوانٍ ⚡',
+      hello: 'أهلاً وسهلاً! 👋 أنا تالا من Gear Radar، ويسعدني أن أساعدك في اختيار الأنسب لك: أن أكون مساعدتك الشخصية (Tala Essential أو Tala Pro، مع إضافات مثل JobRadar)، أو موقعًا لنشاطك، أو قائمة QR 😊 ما الذي تبحث عنه؟',
       ph: 'اكتب رسالتك…', send: 'إرسال', close: 'إغلاق المحادثة',
       chips: ['الأسعار', 'قائمة QR لنشاطي', 'موقع لنشاطي', 'تالا، مساعدتك الشخصية'],
       err: 'عذراً، حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب.',
