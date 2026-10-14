@@ -554,7 +554,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s4_b4">Tailored CV points for each match — never invented experience</span></li>
         </ul>
         <p class="for" data-i18n-html="s4_for"><b>Ideal for:</b> professionals looking for their next role at home or abroad.</p>
-        <a href="#addons" class="btn btn-dark" data-i18n="see_addons">See add-ons</a>
+        <a href="jobradar.html" class="btn btn-dark jr-link" data-i18n="jr_learn">Learn more</a>
       </article>
       <!-- 2. Websites -->
       <article class="card reveal">
@@ -620,7 +620,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <span class="eyebrow" data-i18n="jh_eyebrow">JobRadar add-on</span>
         <h3 data-i18n="jh_title">The right jobs, delivered every day</h3>
         <p data-i18n="s4_sub">Add it to Tala and stop scrolling job boards. The roles that actually fit your CV arrive in the same chat, every day.</p>
-        <a href="#addons" class="btn btn-gold" data-i18n="see_addons">See add-ons</a>
+        <div class="hero-btns"><a href="#addons" class="btn btn-gold" data-i18n="see_addons">See add-ons</a><a href="jobradar.html" class="btn btn-ghost jr-link" data-i18n="jr_more">How JobRadar works</a></div>
       </div>
       <div class="phone" aria-label="Example of JobRadar matches inside Tala" role="img">
         <div class="phone-top">
@@ -941,6 +941,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
         <a href="#faq" data-i18n="nav_faq">FAQ</a>
         <a href="work.html" data-i18n="nav_work">Our work</a>
+        <a href="jobradar.html" class="jr-link" data-i18n="nav_jobradar">JobRadar: job search</a>
         <a href="partners.html" data-i18n="nav_partners">Partner programme</a>
         <a href="#contact" data-i18n="nav_contact">Contact</a>
         <a href="privacy.html" data-i18n="privacy">Privacy</a>
@@ -1009,6 +1010,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     s3_b4:'غيّر الأسعار في أي وقت — بدون إعادة طباعة',
     s3_for:'<b>مناسب لـ:</b> المقاهي والمطاعم ومحلات الوجبات والتجزئة.',
     s4_title:'JobRadar',
+    jr_more:'كيف يعمل JobRadar', jr_learn:'اعرف المزيد', nav_jobradar:'JobRadar: البحث عن عمل',
     s4_sub:'أضفه إلى تالا وتوقّف عن تصفح مواقع الوظائف. الوظائف المناسبة لسيرتك تصلك في نفس المحادثة كل يوم.',
     s4_b1:'يبحث في آلاف مواقع التوظيف في بريطانيا وأمريكا وكندا والخليج',
     s4_b2:'يفلتر حسب موقعك ونوع الوظيفة وخيارات العمل عن بُعد أو الهجين',
@@ -1119,6 +1121,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
     var ls = document.getElementById('langSelect'); ls.value = l; ls.setAttribute('aria-label', l === 'ar' ? 'اللغة' : 'Language');
     document.querySelectorAll('.flip').forEach(function(s){ s.style.transform = l === 'ar' ? 'scaleX(-1)' : ''; });
+    document.querySelectorAll('.jr-link').forEach(function(a){ a.href = l === 'ar' ? 'jobradar-ar.html' : 'jobradar.html'; });
     try { localStorage.setItem('gr_lang', l); } catch(e) {}
   }
   var initial = 'en';
