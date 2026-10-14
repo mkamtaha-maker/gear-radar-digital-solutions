@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JobRadar: Daily Job Matches for Your CV on WhatsApp & Telegram | Gear Radar</title>
-<meta name="description" content="JobRadar finds UK jobs that fit your CV and sends them to you every day on WhatsApp or Telegram, with a match score and tailored CV points. From £10 a month with Tala.">
+<meta name="description" content="JobRadar finds UK jobs that fit your CV and sends them to you every day on Telegram or WhatsApp, with a match score and tailored CV points. From £17 a month, everything included.">
 <link rel="canonical" href="https://www.gearradar.co.uk/jobradar.html">
 <link rel="alternate" hreflang="en" href="https://www.gearradar.co.uk/jobradar.html">
 <link rel="alternate" hreflang="ar" href="https://www.gearradar.co.uk/jobradar-ar.html">
 <link rel="alternate" hreflang="x-default" href="https://www.gearradar.co.uk/jobradar.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="JobRadar: the right jobs, sent to you every day">
-<meta property="og:description" content="JobRadar finds UK jobs that fit your CV and sends them to you every day on WhatsApp or Telegram, with a match score and tailored CV points. From £10 a month with Tala.">
+<meta property="og:description" content="JobRadar finds UK jobs that fit your CV and sends them to you every day on Telegram or WhatsApp, with a match score and tailored CV points. From £17 a month, everything included.">
 <meta property="og:url" content="https://www.gearradar.co.uk/jobradar.html">
 <meta property="og:image" content="https://www.gearradar.co.uk/images/brand/jobradar-icon.png">
 <meta property="og:locale" content="en_GB">
@@ -28,7 +28,7 @@
  "@id": "https://www.gearradar.co.uk/jobradar.html#service",
  "name": "JobRadar",
  "serviceType": "Job search and job matching service",
- "description": "JobRadar finds UK jobs that fit your CV and sends them to you every day on WhatsApp or Telegram, with a match score and tailored CV points. From £10 a month with Tala.",
+ "description": "JobRadar finds UK jobs that fit your CV and sends them to you every day on Telegram or WhatsApp, with a match score and tailored CV points. From £17 a month, everything included.",
  "url": "https://www.gearradar.co.uk/jobradar.html",
  "inLanguage": "en",
  "image": "https://www.gearradar.co.uk/images/brand/jobradar-icon.png",
@@ -80,12 +80,12 @@
  "offers": [
   {
    "@type": "Offer",
-   "name": "JobRadar",
-   "price": "10.00",
+   "name": "JobRadar (includes Tala Essential)",
+   "price": "17.00",
    "priceCurrency": "GBP",
    "priceSpecification": {
     "@type": "UnitPriceSpecification",
-    "price": "10.00",
+    "price": "17.00",
     "priceCurrency": "GBP",
     "unitCode": "MON",
     "referenceQuantity": {
@@ -99,12 +99,12 @@
   },
   {
    "@type": "Offer",
-   "name": "JobRadar Plus",
-   "price": "20.00",
+   "name": "JobRadar Plus (includes Tala Essential)",
+   "price": "27.00",
    "priceCurrency": "GBP",
    "priceSpecification": {
     "@type": "UnitPriceSpecification",
-    "price": "20.00",
+    "price": "27.00",
     "priceCurrency": "GBP",
     "unitCode": "MON",
     "referenceQuantity": {
@@ -138,7 +138,7 @@
    "name": "How much does JobRadar cost?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "JobRadar is £10 a month and JobRadar Plus is £20 a month. Both are add-ons to Tala, which starts at £7 a month, so the lowest total is £17 a month. These are launch prices, 50% off until 31 January 2027, and your monthly price is locked for 12 months."
+    "text": "JobRadar costs £17 a month in total on Telegram: £10 for JobRadar plus £7 for Tala Essential, the assistant it runs inside. JobRadar Plus is £27 a month in total. On WhatsApp, with Tala Pro, it is £22 or £32 a month. These are launch prices, 50% off until 31 January 2027, and your monthly price is locked for 12 months."
    }
   },
   {
@@ -273,7 +273,13 @@ section{padding:72px 0}
 .plans{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:20px}
 .plan{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column}
 .plan.hl{border:2px solid var(--gold)}
-.plan h3{font-size:1.25rem}
+.plan h3{font-size:1.25rem;margin-top:10px}
+.badge{align-self:flex-start;background:var(--gold-soft);color:#B4501C;font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:999px}
+.reg{font-size:.85rem;color:var(--muted)}
+.calc{margin-top:10px;background:var(--paper);border:1px dashed var(--line);border-radius:10px;padding:8px 12px;font-size:.9rem;font-weight:600;color:var(--text);text-align:start}
+html[lang="ar"] .calc{direction:rtl;unicode-bidi:plaintext}
+.wa{margin-top:12px;font-size:.88rem;color:var(--muted)}
+.wa a{color:#B4501C;font-weight:600}
 .price{font-family:'Sora',sans-serif;font-size:2.2rem;font-weight:700;margin:8px 0 4px}
 .price small{font-size:.95rem;color:var(--muted);font-weight:500}
 .plan ul{list-style:none;margin:14px 0 22px;display:grid;gap:9px;flex:1}
@@ -359,9 +365,9 @@ footer{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid rgba
 
 <section id="plans">
   <div class="container">
-    <div class="sec-head"><h2>Plans</h2><p>JobRadar is an add-on to Tala, your personal assistant. Tala Essential is £7 a month, so JobRadar starts from £17 a month in total. Cancel any time.</p></div>
-    <div class="plans"><div class="plan"><h3>JobRadar</h3><div class="price">£10<small>/month</small></div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>6 job titles in 3 cities</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Daily job matches with scores</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>40 tailored CVs a month</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>20 cover letters a month</span></li></ul><a class="btn btn-dark" href="signup.html?service=butler&amp;plan=basic&amp;addons=jobs&amp;billing=monthly">Choose JobRadar</a></div><div class="plan hl"><h3>JobRadar Plus</h3><div class="price">£20<small>/month</small></div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>10 job titles in 5 cities</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Daily job matches with scores</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>100 tailored CVs a month</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>60 cover letters a month</span></li></ul><a class="btn btn-dark" href="signup.html?service=butler&amp;plan=basic&amp;addons=jobs_plus&amp;billing=monthly">Choose JobRadar Plus</a></div></div>
-    <p class="note">Prices are charged in GBP. With Tala Pro, your matches also appear in your morning brief.</p>
+    <div class="sec-head"><h2>Plans</h2><p>JobRadar is an add-on that runs inside Tala, our assistant on Telegram and WhatsApp, so you need a Tala plan to use it. The prices below already include Tala: what you see is what you pay each month. Cancel any time.</p></div>
+    <div class="plans"><div class="plan"><span class="badge">Add-on to Tala</span><h3>JobRadar</h3><div class="price">£17<small>/month, all in</small></div><div class="reg">Regular price from 1 Feb 2027 <s>£34</s></div><div class="calc" dir="ltr">JobRadar £10 + Tala Essential £7</div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>6 job titles in 3 cities</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Daily job matches with scores</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>40 tailored CVs a month</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>20 cover letters a month</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Matches on Telegram</span></li></ul><a class="btn btn-dark" href="signup.html?service=butler&amp;plan=basic&amp;addons=jobs&amp;billing=monthly">Choose JobRadar · £17</a><p class="wa">Prefer WhatsApp? <a href="signup.html?service=butler&amp;plan=pro&amp;addons=jobs&amp;billing=monthly">£22/month with Tala Pro</a>, which also adds a daily morning brief and voice notes.</p></div><div class="plan hl"><span class="badge">Add-on to Tala</span><h3>JobRadar Plus</h3><div class="price">£27<small>/month, all in</small></div><div class="reg">Regular price from 1 Feb 2027 <s>£54</s></div><div class="calc" dir="ltr">JobRadar Plus £20 + Tala Essential £7</div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>10 job titles in 5 cities</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Daily job matches with scores</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>100 tailored CVs a month</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>60 cover letters a month</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Matches on Telegram</span></li></ul><a class="btn btn-dark" href="signup.html?service=butler&amp;plan=basic&amp;addons=jobs_plus&amp;billing=monthly">Choose JobRadar Plus · £27</a><p class="wa">Prefer WhatsApp? <a href="signup.html?service=butler&amp;plan=pro&amp;addons=jobs_plus&amp;billing=monthly">£32/month with Tala Pro</a>, which also adds a daily morning brief and voice notes.</p></div></div>
+    <p class="note">Prices are charged in GBP. Launch prices are 50% off until 31 January 2027, and your monthly price stays locked for 12 months.</p>
   </div>
 </section>
 
@@ -375,7 +381,7 @@ footer{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid rgba
 <section class="faq" id="faq">
   <div class="container">
     <div class="sec-head"><h2>Questions job seekers ask</h2></div>
-    <details><summary>What is JobRadar?</summary><p>JobRadar is a job search service from Gear Radar. It finds jobs that match your CV every day and sends them to you on WhatsApp or Telegram, with a match score, the gaps to fix, and tailored CV points.</p></details><details><summary>How much does JobRadar cost?</summary><p>JobRadar is £10 a month and JobRadar Plus is £20 a month. Both are add-ons to Tala, which starts at £7 a month, so the lowest total is £17 a month. These are launch prices, 50% off until 31 January 2027, and your monthly price is locked for 12 months.</p></details><details><summary>Which countries does it search?</summary><p>JobRadar searches job sites across the UK, the USA, Canada and the Gulf. You choose the cities, and you can include remote or hybrid roles.</p></details><details><summary>Does it apply for jobs for me?</summary><p>No. JobRadar finds and scores the jobs and prepares tailored CV points and cover letters. You stay in control and apply yourself, using the link in each match.</p></details><details><summary>Will it make up experience on my CV?</summary><p>Never. Every CV point and cover letter is written only from the experience in your own CV.</p></details><details><summary>Do I need to install an app?</summary><p>No. Everything happens in WhatsApp or Telegram, which you already use.</p></details><details><summary>Can I cancel?</summary><p>Yes. You can cancel any time from inside Tala, with no contract.</p></details>
+    <details><summary>What is JobRadar?</summary><p>JobRadar is a job search service from Gear Radar. It finds jobs that match your CV every day and sends them to you on WhatsApp or Telegram, with a match score, the gaps to fix, and tailored CV points.</p></details><details><summary>How much does JobRadar cost?</summary><p>JobRadar costs £17 a month in total on Telegram: £10 for JobRadar plus £7 for Tala Essential, the assistant it runs inside. JobRadar Plus is £27 a month in total. On WhatsApp, with Tala Pro, it is £22 or £32 a month. These are launch prices, 50% off until 31 January 2027, and your monthly price is locked for 12 months.</p></details><details><summary>Which countries does it search?</summary><p>JobRadar searches job sites across the UK, the USA, Canada and the Gulf. You choose the cities, and you can include remote or hybrid roles.</p></details><details><summary>Does it apply for jobs for me?</summary><p>No. JobRadar finds and scores the jobs and prepares tailored CV points and cover letters. You stay in control and apply yourself, using the link in each match.</p></details><details><summary>Will it make up experience on my CV?</summary><p>Never. Every CV point and cover letter is written only from the experience in your own CV.</p></details><details><summary>Do I need to install an app?</summary><p>No. Everything happens in WhatsApp or Telegram, which you already use.</p></details><details><summary>Can I cancel?</summary><p>Yes. You can cancel any time from inside Tala, with no contract.</p></details>
   </div>
 </section>
 
