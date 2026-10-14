@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /signup.html
+Disallow: /orders.html
+Disallow: /partner-dashboard.html
+
+Sitemap: https://www.gearradar.co.uk/sitemap.xml
