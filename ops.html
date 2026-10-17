@@ -107,9 +107,10 @@ tr:last-child td{border-bottom:0}
     </form>
   </section>
   <section id="denied" hidden class="login">
-    <h2>الحساب لسه ما اتفعّل</h2>
-    <p>دخلت بنجاح، لكن الحساب ده ما عنده صلاحية يشوف البيانات.</p>
+    <h2>الإيميل ده ما عنده صلاحية</h2>
+    <p>إنت داخل هسي بالإيميل ده، وهو ما من الحسابات المسموح ليها تشوف البيانات:</p>
     <p class="num" id="deniedEmail"></p>
+    <button class="btn" type="button" id="switchAccount">اخرج وادخل بإيميل تاني</button>
   </section>
   <div id="board" hidden></div>
 </main>
@@ -264,10 +265,18 @@ tr:last-child td{border-bottom:0}
     $('sendLink').disabled = true;
     var r = await sb.auth.signInWithOtp({ email: $('email').value.trim(), options: { emailRedirectTo: location.origin + location.pathname } });
     $('sendLink').disabled = false;
-    if (r.error) { msg.className = 'msg err'; msg.textContent = 'ما قدرنا نرسل الرابط: ' + r.error.message; return; }
-    msg.textContent = 'أرسلنا الرابط. افتح إيميلك واضغط عليه من نفس الجهاز.';
+    if (r.error) {
+      msg.className = 'msg err';
+      // Supabase's built-in mailer only sends a few login emails an hour
+      msg.textContent = (r.error.status === 429 || /rate limit/i.test(r.error.message))
+        ? 'طلبت روابط كتيرة في وقت قصير. استخدم آخر رابط وصلك، أو جرّب تاني بعد ساعة.'
+        : 'ما قدرنا نرسل الرابط: ' + r.error.message;
+      return;
+    }
+    msg.textContent = 'أرسلنا الرابط. افتح آخر إيميل وصلك واضغط الرابط من نفس المتصفح.';
   });
   $('logout').addEventListener('click', async function(){ await sb.auth.signOut(); show(null); });
+  $('switchAccount').addEventListener('click', async function(){ await sb.auth.signOut(); show(null); });
   $('refresh').addEventListener('click', load);
   sb.auth.onAuthStateChange(function(_e, session){ show(session); });
   setInterval(function(){ if (!$('board').hidden && document.visibilityState === 'visible') load(); }, 10 * 60 * 1000);
