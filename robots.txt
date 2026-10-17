@@ -3,5 +3,6 @@ Allow: /
 Disallow: /signup.html
 Disallow: /orders.html
 Disallow: /partner-dashboard.html
+Disallow: /ops.html
 
 Sitemap: https://www.gearradar.co.uk/sitemap.xml
