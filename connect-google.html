@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Connect Google – Gear Radar</title>
+<style>
+  :root { --ink:#15171C; --gold:#FF8A50; --text:#1F2937; --muted:#5B6475; --line:#E3E8EE; --bg:#F6F8FA; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:'Segoe UI',Helvetica,Arial,sans-serif; line-height:1.65; }
+  header { background:var(--ink); color:#fff; padding:40px 20px 32px; }
+  .wrap { max-width:620px; margin:0 auto; }
+  header p.brand { margin:0; color:var(--gold); font-size:13px; letter-spacing:.06em; }
+  header h1 { margin:6px 0 0; font-size:28px; font-weight:600; }
+  main { background:#fff; max-width:620px; margin:-12px auto 40px; padding:28px 32px 32px; border:1px solid var(--line); border-radius:8px; }
+  p, li { font-size:15.5px; }
+  ul { padding-left:22px; }
+  a { color:var(--ink); }
+  .btn { display:inline-block; margin:18px 0 6px; padding:13px 28px; background:var(--gold); color:#15171C; text-decoration:none; border-radius:999px; font-weight:600; }
+  .muted { color:var(--muted); font-size:14px; }
+  .err { background:#FFF4EC; border-left:4px solid var(--gold); padding:12px 16px; border-radius:4px; }
+  footer { text-align:center; color:var(--muted); font-size:13px; padding:0 20px 40px; }
+  @media (max-width:600px){ main { padding:22px 18px 26px; margin:-12px 10px 30px; } header h1 { font-size:24px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="brand">GEAR RADAR DIGITAL SOLUTIONS</p>
+    <h1>Connect your Google account</h1>
+  </div>
+</header>
+
+<main>
+  <div id="ok" hidden>
+    <p>Tala needs your permission to work with your Google account. You will be taken to Google's own sign-in page, where you can review and approve these permissions:</p>
+    <ul>
+      <li><b>Gmail – send email:</b> Tala sends emails only after you confirm them. Tala cannot read your inbox.</li>
+      <li><b>Google Calendar – events:</b> to show your day and add events you confirm.</li>
+      <li><b>Google Drive – files Tala creates:</b> to save scans and photos you choose. Tala cannot see your other files.</li>
+    </ul>
+    <a class="btn" id="go" href="#">Continue to Google</a>
+    <p class="muted">After you approve, you will see a button to start Tala on Telegram or WhatsApp. You can remove access at any time from your Google account settings. See our <a href="privacy.html">Privacy Policy</a>.</p>
+  </div>
+  <p id="bad" class="err" hidden>This link is not complete. Please open the button in your approval email again, or reply to that email and we will help.</p>
+</main>
+
+<footer>© 2026 Gear Radar Digital Solutions · <a href="mailto:info@gearradar.co.uk">info@gearradar.co.uk</a></footer>
+
+<script>
+(function(){
+  // The approval email links here (on our own domain) instead of straight to Google, so mail filters don't flag it.
+  var t = (new URLSearchParams(location.search).get('t') || '').trim();
+  if (!/^[A-Za-z0-9]{6,40}$/.test(t)) { document.getElementById('bad').hidden = false; return; }
+  var url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=908695975875-vtjc49vmt5pkme7k9htc4btdmr0smm0l.apps.googleusercontent.com'
+    + '&redirect_uri=' + encodeURIComponent('https://kamtyler.app.n8n.cloud/webhook/google-oauth-callback')
+    + '&response_type=code&access_type=offline&prompt=consent&scope='
+    + encodeURIComponent('https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/drive.file')
+    + '&state=' + encodeURIComponent(t);
+  document.getElementById('go').href = url;
+  document.getElementById('ok').hidden = false;
+})();
+</script>
+</body>
+</html>
