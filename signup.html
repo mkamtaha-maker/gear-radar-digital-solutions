@@ -544,7 +544,7 @@ footer a:hover{color:var(--gold)}
     pay_note:"Secure payment by Stripe or PayPal. If we can't accept your request, we refund you in full. Monthly plans can be cancelled any time.",
     s_redirect:'Taking you to secure payment…', s_payerr:"We couldn't open the payment page. Please try again, or choose the other payment method.",
     s_cancelled:'Payment was cancelled and nothing was charged. You can sign up again below.', s_payfailed:"Your payment didn't go through and nothing was charged. Please try again, or use the other payment method.",
-    d_paid:'Payment received. Thank you!',
+    d_paid:'Payment received. Thank you!', d_trial:'Your free trial has started!', d_2trial:'Nothing has been charged. We set up your account automatically, so check your email for the activation step. We will remind you a day before the first charge.',
     s_check:'Please check the highlighted fields.', s_upload:'Uploading your CV…', s_sending:'Sending…', s_err:'Something went wrong. Please try again, or message us on WhatsApp: +44 7442 309417.', s_uperr:"We couldn't upload your CV. Please try again, or try a smaller PDF.",
     d_title:"We've got your signup", d_ref:'Your reference', d_1:"We've emailed you a confirmation. Check your spam folder if you don't see it.", d_2:'We review your details and set up your account within one working day.',
     d_3tg:'You get an activation link. One tap opens Telegram and connects your account.', d_3wa:'You get a WhatsApp message from our business number to activate your account.', d_dup:"We already have a signup from you for this service, so we didn't create a new one. Your reference is below.",
@@ -616,7 +616,7 @@ footer a:hover{color:var(--gold)}
     pay_note:'دفع آمن عبر Stripe أو PayPal. إذا لم نتمكن من قبول طلبك نعيد لك المبلغ كاملاً، ويمكن إلغاء الباقات الشهرية في أي وقت.',
     s_redirect:'جارٍ تحويلك إلى صفحة الدفع الآمنة…', s_payerr:'تعذّر فتح صفحة الدفع. حاول مرة أخرى أو اختر طريقة الدفع الأخرى.',
     s_cancelled:'تم إلغاء الدفع ولم يُخصم أي مبلغ. يمكنك التسجيل مرة أخرى بالأسفل.', s_payfailed:'لم تتم عملية الدفع ولم يُخصم أي مبلغ. حاول مرة أخرى أو استخدم طريقة الدفع الأخرى.',
-    d_paid:'استلمنا دفعتك. شكراً لك!',
+    d_paid:'استلمنا دفعتك. شكراً لك!', d_trial:'بدأت تجربتك المجانية!', d_2trial:'لم يُخصم أي مبلغ. نجهّز حسابك تلقائياً، فتابع بريدك لخطوة التفعيل. وسنذكّرك قبل أول خصم بيوم.',
     s_check:'يرجى مراجعة الحقول المحددة.', s_upload:'جارٍ رفع سيرتك الذاتية…', s_sending:'جارٍ الإرسال…', s_err:'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب: ‎+44 7442 309417.', s_uperr:'تعذّر رفع سيرتك الذاتية. حاول مرة أخرى أو جرّب ملفاً أصغر.',
     d_title:'وصلنا طلبك', d_ref:'رقم طلبك', d_1:'أرسلنا لك بريد تأكيد. راجع مجلد الرسائل غير المرغوبة إن لم تجده.', d_2:'نراجع بياناتك ونجهّز حسابك خلال يوم عمل واحد.',
     d_3tg:'يصلك رابط تفعيل، وبضغطة واحدة يفتح تيليجرام ويربط حسابك.', d_3wa:'تصلك رسالة واتساب من رقمنا التجاري لتفعيل حسابك.', d_dup:'لدينا طلب سابق منك لهذه الخدمة، لذلك لم ننشئ طلباً جديداً. رقم طلبك بالأسفل.',
@@ -650,7 +650,7 @@ footer a:hover{color:var(--gold)}
   function jobsAddon(){ var a = chosenAddons().map(addonInfo).filter(function(a){ return a.jobs; })[0] || null; return a && trialOn() ? Object.assign({}, a, { titles: 3, areas: 1 }) : a; }
   // Free trial: Tala Essential, monthly, with no add-on other than JobRadar.
   // Switch on once the free trial is live in payments.
-  var TRIAL_ENABLED = false;
+  var TRIAL_ENABLED = true;
   function trialEligible(){ return TRIAL_ENABLED && planKey === 'basic' && billing === 'monthly' && chosenAddons().every(function(c){ return c === 'jobs'; }); }
   function trialOn(){ return trialEligible() && $('trial').checked; }
   function trialEnd(){ return new Date(Date.now() + 3 * 86400000).toLocaleDateString(lang === 'ar' ? 'ar-EG' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
@@ -1060,7 +1060,11 @@ footer a:hover{color:var(--gold)}
         var se = String((res.j && res.j.error) || '');
         throw new Error(/^trial_/.test(se) ? se : (se === 'payment_unavailable' ? 'payerr' : 'rejected'));
       }
-      if (res.j.checkout_url) { setStatus('s_redirect'); window.location.href = res.j.checkout_url; return; }
+      if (res.j.checkout_url) {
+        // Remember a free-trial checkout so the return page says the trial started, not "payment received".
+        try { if (c.body.payload && c.body.payload.trial) sessionStorage.setItem('grTrialRef', String(res.j.ref || '')); else sessionStorage.removeItem('grTrialRef'); } catch (e) {}
+        setStatus('s_redirect'); window.location.href = res.j.checkout_url; return;
+      }
       showDone(res.j);
     }).catch(function(e){
       setStatus(e && e.upload ? 's_uperr' : (e && /^trial_/.test(e.message) && t('s_' + e.message) ? 's_' + e.message : (e && e.message === 'payerr' ? 's_payerr' : (e && e.message === 'rejected' ? 's_check' : 's_err'))), 'err');
@@ -1152,8 +1156,12 @@ footer a:hover{color:var(--gold)}
   var pre = params.get('code') || params.get('ref') || (window.grRef ? window.grRef() : ''); if (pre) { $('promo').value = cleanCode(pre); appliedCode = cleanCode(pre); }
   updateQuote(true);
   if (params.get('paid') === '1') {
-    var h = $('done').querySelector('h2'); h.setAttribute('data-i18n', 'd_paid'); h.textContent = t('d_paid');
-    $('ref').textContent = (params.get('ref') || '—').replace(/[^A-Za-z0-9]/g, '').slice(0, 12);
+    var paidRef = (params.get('ref') || '—').replace(/[^A-Za-z0-9]/g, '').slice(0, 12), trialRef = '';
+    try { trialRef = sessionStorage.getItem('grTrialRef') || ''; } catch (e) {}
+    var isTrial = trialRef !== '' && trialRef.toUpperCase() === paidRef.toUpperCase();
+    var h = $('done').querySelector('h2'); h.setAttribute('data-i18n', isTrial ? 'd_trial' : 'd_paid'); h.textContent = t(isTrial ? 'd_trial' : 'd_paid');
+    if (isTrial) { var d2 = document.querySelector('#done [data-i18n="d_2"]'); if (d2) { d2.setAttribute('data-i18n', 'd_2trial'); d2.textContent = t('d_2trial'); } }
+    $('ref').textContent = paidRef;
     $('signup').classList.add('section-hide'); $('done').classList.remove('section-hide');
   } else if (params.get('cancelled') === '1') { setStatus('s_cancelled', 'err'); }
   else if (params.get('payfailed') === '1') { setStatus('s_payfailed', 'err'); }
