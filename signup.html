@@ -649,7 +649,9 @@ footer a:hover{color:var(--gold)}
   // During the free trial JobRadar searches up to 3 job titles in 1 city.
   function jobsAddon(){ var a = chosenAddons().map(addonInfo).filter(function(a){ return a.jobs; })[0] || null; return a && trialOn() ? Object.assign({}, a, { titles: 3, areas: 1 }) : a; }
   // Free trial: Tala Essential, monthly, with no add-on other than JobRadar.
-  function trialEligible(){ return planKey === 'basic' && billing === 'monthly' && chosenAddons().every(function(c){ return c === 'jobs'; }); }
+  // Switch on once the free trial is live in payments.
+  var TRIAL_ENABLED = false;
+  function trialEligible(){ return TRIAL_ENABLED && planKey === 'basic' && billing === 'monthly' && chosenAddons().every(function(c){ return c === 'jobs'; }); }
   function trialOn(){ return trialEligible() && $('trial').checked; }
   function trialEnd(){ return new Date(Date.now() + 3 * 86400000).toLocaleDateString(lang === 'ar' ? 'ar-EG' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
   function trialPrice(){ var p = plan(); return (p.m || 0) + chosenAddons().reduce(function(s, c){ return s + addonInfo(c).m; }, 0); }
