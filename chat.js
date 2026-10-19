@@ -43,7 +43,11 @@
     return d;
   }
   var session = get('localStorage', 'gr_chat_session');
-  if (!/^9\d{17}$/.test(session || '')) { session = newSession(); set('localStorage', 'gr_chat_session', session); }
+  // Only stored once the visitor sends a message (strictly necessary for the chat, so no consent needed).
+  function sessionId() {
+    if (!/^9\d{17}$/.test(session || '')) { session = newSession(); set('localStorage', 'gr_chat_session', session); }
+    return session;
+  }
 
   var history = [];
   try { history = JSON.parse(get('sessionStorage', 'gr_chat_log') || '[]') || []; } catch (e) { history = []; }
@@ -188,7 +192,7 @@
     fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ session: session, text: text, lang: lang(), page: location.pathname, website: hp.value }),
+      body: JSON.stringify({ session: sessionId(), text: text, lang: lang(), page: location.pathname, website: hp.value }),
       signal: ctrl ? ctrl.signal : undefined
     }).then(function (r) { return r.json(); }).then(function (j) {
       if (!j || !j.ok || !j.reply) throw new Error('bad reply');

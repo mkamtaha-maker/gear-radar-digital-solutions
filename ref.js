@@ -1,5 +1,5 @@
 /* Gear Radar Partners: remembers the partner code from ?ref=CODE for 60 days
-   so signup.html can apply it, and counts one visit per code per visitor per day. */
+   (only after the visitor accepts cookies, see consent.js) so signup.html can apply it, and counts one visit per code per visitor per day. */
 (function(){
   var KEY = 'gr_ref', DAYS = 60;
   var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-affiliate';
@@ -14,10 +14,11 @@
   window.grRef = read;
   var code = clean(new URLSearchParams(location.search).get('ref'));
   if (!code) return;
-  // Last click wins.
-  try { localStorage.setItem(KEY, JSON.stringify({ code: code, t: Date.now() })); } catch(e) {}
+  // Remembering the code is optional storage, so it waits for cookie consent (consent.js). Last click wins.
+  var C = window.grConsent;
+  if (C) C.whenGranted(function(){ try { localStorage.setItem(KEY, JSON.stringify({ code: code, t: Date.now() })); } catch(e) {} });
   var seen = 'gr_ref_seen_' + code;
-  try { if (sessionStorage.getItem(seen)) return; sessionStorage.setItem(seen, '1'); } catch(e) {}
+  if (C && C.granted()) try { if (sessionStorage.getItem(seen)) return; sessionStorage.setItem(seen, '1'); } catch(e) {}
   try {
     fetch(ENDPOINT, { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: 'click', code: code, page: location.pathname }) }).catch(function(){});
