@@ -216,6 +216,12 @@ footer a:hover{color:var(--gold)}
 .paywith input{width:auto;padding:0;margin-top:4px;accent-color:var(--ink)}
 .paywith label:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
 .paywith small{color:var(--muted)}
+.trialbox{display:grid;gap:10px;padding:14px 16px;border:1px solid #BBF7D0;background:#F0FDF4;border-radius:14px}
+.trialbox .check b{font-weight:700}
+.trialbox small{color:var(--muted);font-weight:400}
+.keyinfo{font-size:.86rem;line-height:1.55;color:#14532d}
+.keyinfo ul{margin:0;padding-inline-start:18px}
+.paywith label:has(input:disabled){opacity:.45;cursor:not-allowed}
 .paywith .rec{font-size:.72rem;color:#15803d;font-weight:600;margin-inline-start:6px}
 @media(max-width:560px){.paywith{grid-template-columns:1fr}}
 </style>
@@ -382,18 +388,24 @@ footer a:hover{color:var(--gold)}
     <!-- Website + QR bundle: one optional add-on for both parts -->
     <label class="check full care section-hide" id="comboCare"><input type="checkbox" id="c_care"><span data-i18n-html="f_ccare">Add monthly care for both for <b class="care-p">£20</b>/month (launch price, locked for 12 months): website updates and QR menu updates (up to 4 each a month), revision rounds and priority support. Cancel any time.</span></label>
     <div class="paybox" id="paybox">
-      <div class="field full"><label for="promo"><span data-i18n="f_promo">Promo code</span> <span class="opt" data-i18n="optional">(optional)</span></label>
+      <div class="trialbox section-hide" id="trialBox">
+        <label class="check"><input type="checkbox" id="trial" checked><span><b data-i18n="tr_title">Start with a 3-day free trial</b><br><small data-i18n="tr_sub">Pay by card. Nothing is charged today.</small></span></label>
+        <div class="keyinfo" id="trialInfo" aria-live="polite"></div>
+      </div>
+      <div class="field full" id="promoField"><label for="promo"><span data-i18n="f_promo">Promo code</span> <span class="opt" data-i18n="optional">(optional)</span></label>
         <div class="promo"><input id="promo" maxlength="30" autocomplete="off" spellcheck="false" dir="ltr"><button type="button" class="btn btn-line" id="promoApply" data-i18n="apply">Apply</button><span class="msg" id="promoMsg" aria-live="polite"></span></div></div>
       <div class="due" aria-live="polite"><div><span data-i18n="due_today">Due today</span><small id="dueNext"></small><small class="lines" id="dueLines"></small></div><div class="due-amt"><b id="dueAmt">—</b><small id="dueUsd"></small></div></div>
       <div class="paywith" role="radiogroup" aria-label="Payment method">
         <label><input type="radio" name="paywith" value="card" checked><span><b data-i18n="pw_card">Card</b><span class="rec" data-i18n="recommended">Recommended</span><br><small data-i18n="pw_card_h">Visa, Mastercard, Apple Pay, Google Pay</small></span></label>
         <label><input type="radio" name="paywith" value="paypal"><span><b>PayPal</b><br><small data-i18n="pw_pp_h">Pay with your PayPal account</small></span></label>
       </div>
-      <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="pay_note">Secure payment by Stripe or PayPal. If we can't accept your request, we refund you in full. Monthly plans can be cancelled any time.</span></div>
+      <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span id="payNote" data-i18n="pay_note">Secure payment by Stripe or PayPal. If we can't accept your request, we refund you in full. Monthly plans can be cancelled any time.</span></div>
     </div>
     <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" tabindex="-1" autocomplete="off"></div>
     <label class="check full" id="consentWrap"><input type="checkbox" id="consent"><span data-i18n-html="consent">I agree that Gear Radar may store and process my details (including my CV, if uploaded) to provide this service, as described in the <a href="privacy.html" target="_blank">privacy notice</a>.</span></label>
     <span class="err-text full" id="consentErr" data-i18n="e_consent">Please tick the box to continue.</span>
+    <label class="check full section-hide" id="trialAckWrap"><input type="checkbox" id="trialAck"><span id="trialAckText"></span></label>
+    <span class="err-text full" id="trialAckErr" data-i18n="e_trial_ack">Please confirm to start your free trial.</span>
     <div class="foot full">
       <button class="btn btn-gold" type="submit" id="submit" data-i18n="submit">Send my signup</button>
       <span class="status" id="status" role="status" aria-live="polite"></span>
@@ -520,7 +532,13 @@ footer a:hover{color:var(--gold)}
     consent:'I agree that Gear Radar may store and process my details (including my CV, if uploaded) to provide this service, as described in the <a href="privacy.html" target="_blank">privacy notice</a>.',
     e_consent:'Please tick the box to continue.', submit:'Continue to payment',
     f_promo:'Promo code', apply:'Apply', due_today:'Due today', then_m:'then {p} a month', then_y:'then {p} a year', then_addon:'then {p} a month for updates', one_off_note:'One-off payment', charged_usd:'Charged in US dollars: {p}', charged_gbp:'Charged in British pounds: {p}',
-    free_first:'First month free, then {p} a month', code_ok:'Code applied: {d} off', code_free:'Code applied: your first month is free', code_bad:"This code isn't valid.",
+    free_first:'First month free, then {p} a month',
+    tr_title:'Start with a 3-day free trial', tr_sub:'Pay by card. Nothing is charged today.', tr_next:'Free for 3 days, then {p} a month',
+    tr_info:'<ul><li><b>Free for 3 days</b>, until {d}.</li><li>Then <b>{p} a month</b>: the first charge is on <b>{d}</b>, then every month until you cancel. If you don\'t cancel, the least you pay is {p} (one month).</li><li>We remind you by email and in Tala about 24 hours before the first charge.</li><li>Cancel any time before {d} and you pay nothing: send /cancel to Tala or email info@gearradar.co.uk.</li><li>After the first charge you can still cancel within 14 days and get back the days you did not use.</li></ul>',
+    tr_ack:'I understand that after my 3-day free trial my card will be charged {p} on {d} and then every month until I cancel.',
+    e_trial_ack:'Please confirm to start your free trial.', submit_trial:'Start my free trial', pay_note_trial:'Secure card payment by Stripe. Nothing is charged today, and you can cancel any time before the trial ends.',
+    s_trial_used:'A free trial has already been used with this email. Untick the free trial box to subscribe without one.', s_trial_full:"Today's free trial places are full. Please try again tomorrow, or untick the free trial box to subscribe now.",
+    s_trial_card_only:'The free trial needs a card. Please choose Card.', s_trial_not_for_plan:'The free trial is for Tala Essential (monthly), with JobRadar if you like. Untick the free trial box to continue.', code_ok:'Code applied: {d} off', code_free:'Code applied: your first month is free', code_bad:"This code isn't valid.",
     cr_expired:'This code has expired.', cr_not_started:"This code isn't active yet.", cr_used_up:'This code has been fully used.', cr_not_for_this_plan:"This code doesn't apply to this plan.", cr_not_for_this_billing:"This code doesn't apply to this billing option.", cr_monthly_plans_only:'This code only works with monthly plans.',
     pw_card:'Card', recommended:'Recommended', pw_card_h:'Visa, Mastercard, Apple Pay, Google Pay', pw_pp_h:'Pay with your PayPal account',
     pay_note:"Secure payment by Stripe or PayPal. If we can't accept your request, we refund you in full. Monthly plans can be cancelled any time.",
@@ -586,7 +604,13 @@ footer a:hover{color:var(--gold)}
     consent:'أوافق على أن تحفظ Gear Radar بياناتي وتعالجها (بما فيها سيرتي الذاتية إن رفعتها) لتقديم هذه الخدمة، كما هو موضح في <a href="privacy.html" target="_blank">إشعار الخصوصية</a>.',
     e_consent:'يرجى الموافقة للمتابعة.', submit:'المتابعة إلى الدفع',
     f_promo:'كود الخصم', apply:'تطبيق', due_today:'المطلوب اليوم', then_m:'ثم {p} شهرياً', then_y:'ثم {p} سنوياً', then_addon:'ثم {p} شهرياً للتحديثات', one_off_note:'دفعة واحدة', charged_usd:'يُدفع بالدولار الأمريكي: {p}', charged_gbp:'يُدفع بالجنيه الإسترليني: {p}',
-    free_first:'الشهر الأول مجاناً، ثم {p} شهرياً', code_ok:'تم تطبيق الكود: خصم {d}', code_free:'تم تطبيق الكود: شهرك الأول مجاني', code_bad:'هذا الكود غير صحيح.',
+    free_first:'الشهر الأول مجاناً، ثم {p} شهرياً',
+    tr_title:'ابدأ بتجربة مجانية لمدة 3 أيام', tr_sub:'الدفع بالبطاقة، ولا يُخصم أي مبلغ اليوم.', tr_next:'مجاناً لمدة 3 أيام، ثم {p} شهرياً',
+    tr_info:'<ul><li><b>مجاناً لمدة 3 أيام</b> حتى {d}.</li><li>بعدها <b>{p} شهرياً</b>: أول خصم يوم <b>{d}</b>، ثم كل شهر حتى تلغي الاشتراك. إذا لم تلغِ، فأقل مبلغ تدفعه هو {p} (شهر واحد).</li><li>سنذكّرك بالبريد الإلكتروني وفي تالا قبل الخصم الأول بنحو 24 ساعة.</li><li>يمكنك الإلغاء في أي وقت قبل {d} ولن تدفع شيئاً: أرسل /cancel إلى تالا أو راسلنا على info@gearradar.co.uk.</li><li>بعد الخصم الأول يمكنك أيضاً الإلغاء خلال 14 يوماً واسترداد قيمة الأيام التي لم تستخدمها.</li></ul>',
+    tr_ack:'أفهم أنه بعد انتهاء التجربة المجانية لمدة 3 أيام سيُخصم من بطاقتي مبلغ {p} يوم {d}، ثم كل شهر حتى ألغي الاشتراك.',
+    e_trial_ack:'يرجى التأكيد لبدء التجربة المجانية.', submit_trial:'ابدأ تجربتي المجانية', pay_note_trial:'دفع آمن بالبطاقة عبر Stripe. لا يُخصم أي مبلغ اليوم، ويمكنك الإلغاء في أي وقت قبل انتهاء التجربة.',
+    s_trial_used:'سبق استخدام التجربة المجانية بهذا البريد الإلكتروني. ألغِ تحديد خيار التجربة المجانية للاشتراك مباشرة.', s_trial_full:'اكتملت أماكن التجربة المجانية لهذا اليوم. حاول غداً، أو ألغِ تحديد خيار التجربة للاشتراك الآن.',
+    s_trial_card_only:'التجربة المجانية تتطلب الدفع بالبطاقة. يرجى اختيار البطاقة.', s_trial_not_for_plan:'التجربة المجانية متاحة لباقة Tala Essential الشهرية، مع JobRadar إن رغبت. ألغِ تحديد خيار التجربة للمتابعة.', code_ok:'تم تطبيق الكود: خصم {d}', code_free:'تم تطبيق الكود: شهرك الأول مجاني', code_bad:'هذا الكود غير صحيح.',
     cr_expired:'انتهت صلاحية هذا الكود.', cr_not_started:'هذا الكود لم يبدأ بعد.', cr_used_up:'تم استخدام هذا الكود بالكامل.', cr_not_for_this_plan:'هذا الكود لا ينطبق على هذه الباقة.', cr_not_for_this_billing:'هذا الكود لا ينطبق على طريقة الدفع هذه.', cr_monthly_plans_only:'هذا الكود للباقات الشهرية فقط.',
     pw_card:'بطاقة', recommended:'مُوصى به', pw_card_h:'فيزا، ماستركارد، Apple Pay، Google Pay', pw_pp_h:'ادفع من حسابك في PayPal',
     pay_note:'دفع آمن عبر Stripe أو PayPal. إذا لم نتمكن من قبول طلبك نعيد لك المبلغ كاملاً، ويمكن إلغاء الباقات الشهرية في أي وقت.',
@@ -622,7 +646,26 @@ footer a:hover{color:var(--gold)}
   function addonInfo(code){ return ADDONS.filter(function(a){ return a.code === code; })[0]; }
   // Add-ons only apply to the assistant plans.
   function chosenAddons(){ return group() === 'subs' ? ADDONS.filter(function(a){ return addons.indexOf(a.code) > -1; }).map(function(a){ return a.code; }) : []; }
-  function jobsAddon(){ return chosenAddons().map(addonInfo).filter(function(a){ return a.jobs; })[0] || null; }
+  // During the free trial JobRadar searches up to 3 job titles in 1 city.
+  function jobsAddon(){ var a = chosenAddons().map(addonInfo).filter(function(a){ return a.jobs; })[0] || null; return a && trialOn() ? Object.assign({}, a, { titles: 3, areas: 1 }) : a; }
+  // Free trial: Tala Essential, monthly, with no add-on other than JobRadar.
+  function trialEligible(){ return planKey === 'basic' && billing === 'monthly' && chosenAddons().every(function(c){ return c === 'jobs'; }); }
+  function trialOn(){ return trialEligible() && $('trial').checked; }
+  function trialEnd(){ return new Date(Date.now() + 3 * 86400000).toLocaleDateString(lang === 'ar' ? 'ar-EG' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function trialPrice(){ var p = plan(); return (p.m || 0) + chosenAddons().reduce(function(s, c){ return s + addonInfo(c).m; }, 0); }
+  function updateTrial(){
+    var on = trialOn(), price = money(trialPrice(), plan().cur), d = trialEnd();
+    $('trialBox').classList.toggle('section-hide', !trialEligible());
+    $('trialInfo').innerHTML = on ? t('tr_info').replace(/\{p\}/g, price).replace(/\{d\}/g, d) : '';
+    $('promoField').classList.toggle('section-hide', on);
+    var pp = document.querySelector('input[name="paywith"][value="paypal"]');
+    pp.disabled = on; if (on && pp.checked) document.querySelector('input[name="paywith"][value="card"]').checked = true;
+    $('trialAckWrap').classList.toggle('section-hide', !on);
+    $('trialAckText').textContent = t('tr_ack').replace('{p}', price).replace('{d}', d);
+    if (!on) $('trialAckErr').style.display = 'none';
+    $('submit').textContent = t(on ? 'submit_trial' : 'submit');
+    $('payNote').textContent = t(on ? 'pay_note_trial' : 'pay_note');
+  }
   function group(){ return plan().group; }
   function tier(){ return String(planKey).replace(/^(web|qr|combo)_/, ''); }
   function hasWeb(){ return group() === 'web' || group() === 'combo'; }
@@ -725,6 +768,7 @@ footer a:hover{color:var(--gold)}
     });
   }
   function update(){
+    updateTrial();
     var p = plan(), g = group(), basic = tier() === 'basic';
     document.querySelectorAll('[data-group]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-group') === g); });
     document.querySelector('.billing').classList.toggle('section-hide', g !== 'subs');
@@ -820,6 +864,7 @@ footer a:hover{color:var(--gold)}
     var f = e.target.closest('.field'); if (f) f.classList.remove('invalid');
     if (e.target.classList.contains('a-label')) { e.target.classList.remove('invalid'); $('areasErr').style.display = 'none'; }
     if (e.target.id === 'consent') $('consentErr').style.display = 'none';
+    if (e.target.id === 'trialAck') $('trialAckErr').style.display = 'none';
   });
 
   // CV drop zone
@@ -925,12 +970,18 @@ footer a:hover{color:var(--gold)}
     var consent = $('consent').checked;
     $('consentErr').style.display = consent ? 'none' : 'block';
     if (!consent) bad.push($('consent'));
+    var trial = trialOn();
+    if (trial) {
+      payload.trial = true;
+      $('trialAckErr').style.display = $('trialAck').checked ? 'none' : 'block';
+      if (!$('trialAck').checked) bad.push($('trialAck'));
+    }
     return { bad: bad, files: files, body: {
       service: p.service, plan: p.key, billing: p.group === 'subs' ? billing : (p.add ? 'monthly' : 'one_off'),
       full_name: name, email: email, country: $('country').value, language: $('language').value,
       channel: p.group === 'subs' ? channel : 'email', whatsapp_number: p.group === 'subs' && channel === 'whatsapp' ? waDigits : '',
       payload: payload, website: $('website').value,
-      pay_with: payWith(), promo_code: cleanCode($('promo').value)
+      pay_with: trial ? 'card' : payWith(), promo_code: trial ? '' : cleanCode($('promo').value)
     } };
   }
 
@@ -1004,12 +1055,13 @@ footer a:hover{color:var(--gold)}
       if (!res.ok || !res.j.ok) {
         var errs = (res.j && res.j.errors) || [];
         errs.forEach(function(e){ if (e === 'business_name') { if (hasWeb() && $('w_name').value.trim().length < 2) mark($('w_name'), true); if (hasQr() && $('q_name').value.trim().length < 2) mark($('q_name'), true); } if (SERVER_FIELDS[e]) mark($(SERVER_FIELDS[e]), true); if (e === 'cv_file') drop.classList.add('invalid-drop'); if (e === 'areas') $('areasErr').style.display = 'block'; });
-        throw new Error(res.j && res.j.error === 'payment_unavailable' ? 'payerr' : 'rejected');
+        var se = String((res.j && res.j.error) || '');
+        throw new Error(/^trial_/.test(se) ? se : (se === 'payment_unavailable' ? 'payerr' : 'rejected'));
       }
       if (res.j.checkout_url) { setStatus('s_redirect'); window.location.href = res.j.checkout_url; return; }
       showDone(res.j);
     }).catch(function(e){
-      setStatus(e && e.upload ? 's_uperr' : (e && e.message === 'payerr' ? 's_payerr' : (e && e.message === 'rejected' ? 's_check' : 's_err')), 'err');
+      setStatus(e && e.upload ? 's_uperr' : (e && /^trial_/.test(e.message) && t('s_' + e.message) ? 's_' + e.message : (e && e.message === 'payerr' ? 's_payerr' : (e && e.message === 'rejected' ? 's_check' : 's_err'))), 'err');
     }).then(function(){ btn.disabled = false; });
   });
 
@@ -1038,13 +1090,13 @@ footer a:hover{color:var(--gold)}
   function updateQuote(showMsg){
     var p = plan(), my = ++qSeq;
     var bill = p.group === 'subs' ? billing : 'monthly';
-    fetch(QUOTE, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ plan: p.key, billing: bill, code: appliedCode, addon: (p.group === 'web' && $('w_care').checked) || (p.group === 'qr' && $('q_care').checked) || (p.group === 'combo' && $('c_care').checked), addons: chosenAddons() }) })
+    fetch(QUOTE, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ plan: p.key, billing: bill, code: trialOn() ? '' : appliedCode, addon: (p.group === 'web' && $('w_care').checked) || (p.group === 'qr' && $('q_care').checked) || (p.group === 'combo' && $('c_care').checked), addons: chosenAddons() }) })
       .then(function(r){ return r.json(); })
       .then(function(q){
         if (my !== qSeq || !q || !q.ok) return;
         qCur = String(q.currency || 'USD').toUpperCase();
         // price_usd is the total of the plan and its add-ons, in the row's currency; due_now_usd also counts any promo code.
-        var dueNow = q.due_now_usd != null ? q.due_now_usd : q.price_usd;
+        var dueNow = trialOn() ? 0 : (q.due_now_usd != null ? q.due_now_usd : q.price_usd);
         $('dueAmt').textContent = usd(dueNow);
         dueUsdNow = Number(dueNow || 0); showUsd();
         // One line per item the server priced (plan + accepted add-ons).
@@ -1055,7 +1107,8 @@ footer a:hover{color:var(--gold)}
         }).join(' · ');
         var next = '';
         var rec = q.recurring_usd != null ? q.recurring_usd : q.price_usd;
-        if (q.kind === 'subscription') next = Number(q.trial_days) > 0 ? t('free_first').replace('{p}', usd(rec)) : t(q.recurring_interval === 'year' ? 'then_y' : 'then_m').replace('{p}', usd(rec));
+        if (trialOn()) next = t('tr_next').replace('{p}', usd(rec));
+        else if (q.kind === 'subscription') next = Number(q.trial_days) > 0 ? t('free_first').replace('{p}', usd(rec)) : t(q.recurring_interval === 'year' ? 'then_y' : 'then_m').replace('{p}', usd(rec));
         else next = q.addon_monthly_usd ? t('then_addon').replace('{p}', usd(q.addon_monthly_usd)) : t('one_off_note');
         $('dueNext').textContent = next;
         if (!appliedCode) promoMsg('');
@@ -1071,6 +1124,7 @@ footer a:hover{color:var(--gold)}
   var updateBase = update;
   update = function(){ var r = updateBase.apply(this, arguments); scheduleQuote(); return r; };
   document.addEventListener('click', function(e){ if (e.target.closest && e.target.closest('[data-billing],[data-group]')) scheduleQuote(); });
+  $('trial').addEventListener('change', function(){ update(); });
   document.addEventListener('change', function(e){ if (e.target && (e.target.name === 'plan' || e.target.id === 'w_care' || e.target.id === 'q_care' || e.target.id === 'c_care')) scheduleQuote(); });
 
   // ---------- Init ----------
