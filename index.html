@@ -132,10 +132,13 @@ select.lang option{color:#15171C;background:#fff}
 .hero h1 em{font-style:normal;color:var(--gold)}
 .hero p.lead{font-size:1.14rem;color:var(--on-ink-muted);max-width:560px}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-.trial-pill{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:9px 16px;border-radius:999px;background:rgba(255,138,80,.14);border:1px solid rgba(255,138,80,.45);color:#fff;font-size:.92rem;text-decoration:none}
-.trial-pill b{color:var(--gold)}
-.trial-pill:hover{background:rgba(255,138,80,.24)}
-.trial-note{margin:0 0 12px;font-size:.9rem;color:#9A3412}
+.btn-trial{font-size:1.05rem;padding:16px 28px;box-shadow:0 0 0 4px rgba(255,138,80,.25)}
+.trial-sub{margin:12px 0 0;font-size:.9rem;color:var(--on-ink-muted)}
+.trial-ribbon{display:block;margin:-6px 0 14px;padding:8px 12px;border-radius:10px;background:var(--gold);color:var(--ink);font-weight:700;font-size:.92rem;text-align:center}
+.trial-ribbon[hidden]{display:none}
+.trial-note{margin:0 0 14px;font-size:.95rem}
+.trial-note a{color:#C2410C;text-decoration:none}
+.trial-note a:hover{text-decoration:underline}
 .trial-line{margin:6px 0 0;font-size:.85rem;font-weight:600;color:#C2410C}
 .hero-points{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:34px;font-size:.9rem;color:var(--on-ink-muted)}
 .hero-points span{display:inline-flex;align-items:center;gap:8px}
@@ -494,10 +497,11 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       <h1 data-i18n="hero_title">AI that works <em>while you do.</em></h1>
       <p class="lead" data-i18n="hero_lead">We build personal AI assistants, business websites and smart tools that save you hours every week — set up for you, reviewed by a person, in English and Arabic.</p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn btn-gold"><span data-i18n="cta_consult">Get a free consultation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flip"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="signup.html?service=butler&amp;plan=basic&amp;billing=monthly" class="btn btn-gold btn-trial"><span aria-hidden="true">🎁</span><span data-i18n="cta_trial">Try Tala free for 3 days</span></a>
+        <a href="#contact" class="btn btn-ghost"><span data-i18n="cta_consult">Get a free consultation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flip"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="https://wa.me/447442309417" target="_blank" rel="noopener" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg><span data-i18n="cta_whatsapp">WhatsApp us</span></a>
       </div>
-      <a class="trial-pill" href="signup.html?service=butler&amp;plan=basic&amp;billing=monthly"><span aria-hidden="true">🎁</span><span data-i18n-html="trial_pill"><b>Try Tala free for 3 days.</b> Cancel before day 3 and you pay nothing.</span></a>
+      <p class="trial-sub" data-i18n="trial_sub">Nothing is charged for 3 days. Cancel before then and you pay nothing.</p>
       <div class="hero-points">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pt1">Done-for-you setup</span></span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pt2">English &amp; Arabic</span></span>
@@ -537,7 +541,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         </div>
         <h3 data-i18n="s1_title">Tala</h3>
         <p class="sub" data-i18n="s1_sub">Your personal assistant, in your Telegram or WhatsApp, handling your email and diary.</p>
-        <p class="trial-note" data-i18n-html="s1_trial"><b>3-day free trial</b> on Tala Essential.</p>
+        <p class="trial-note"><a href="signup.html?service=butler&amp;plan=basic&amp;billing=monthly" data-i18n-html="s1_trial">🎁 <b>Try it free for 3 days</b> on Tala Essential →</a></p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b1">Writes your emails and sends them from your Gmail only after you confirm</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s1_b2">Books, moves and checks Google Calendar events</span></li>
@@ -710,7 +714,8 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     </div>
     <div class="core-plans" id="plans-assistant">
       <div class="pcard core reveal" data-plan="basic" data-m="7" data-y="70" role="button" tabindex="0" aria-pressed="false">
-        <div class="core-top"><h4>Tala Essential</h4><span class="tag pop trial-tag" data-i18n="tag_trial">3 days free</span></div>
+        <span class="trial-ribbon trial-tag" data-i18n="tag_trial">🎁 3-day free trial</span>
+        <h4>Tala Essential</h4>
         <div class="amount"><b class="p-amt">£7</b><span class="p-per" data-i18n="per_m">/month</span></div>
         <div class="per-note"></div>
         <div class="reg"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s class="reg-price"></s></div>
@@ -1038,7 +1043,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     nav_pricing:'الأسعار', see_plans:'شاهد الباقات', start:'ابدأ الآن',
     pr_eyebrow:'منتجنا الرئيسي', pr_title:'تالا', pr_tag:'مساعدتك الشخصية', pr_lead:'مساعدة واحدة في تيليجرام أو واتساب لبريدك ومواعيدك وتذكيراتك. اختر باقتك ثم أضف ما تحتاجه فقط. يمكنك الإلغاء في أي وقت.',
     monthly:'شهري', annual:'سنوي', save:'شهران مجاناً', per_m:'/شهرياً', per_y:'/سنوياً',
-    trial_pill:'<b>جرّب تالا مجاناً لمدة 3 أيام.</b> ألغِ قبل اليوم الثالث ولن تدفع شيئاً.', s1_trial:'<b>تجربة مجانية لمدة 3 أيام</b> على باقة تالا Essential.', tag_trial:'3 أيام مجاناً', trial_line:'مجاناً لمدة 3 أيام، ثم ⁦£7⁩ شهرياً. تحتاج إلى بطاقة، ويمكنك الإلغاء في أي وقت.',
+    cta_trial:'جرّب تالا مجاناً لمدة 3 أيام', trial_sub:'لا يُخصم أي مبلغ خلال 3 أيام، وإذا ألغيت قبلها فلن تدفع شيئاً.', start_trial:'ابدأ التجربة المجانية', s1_trial:'🎁 <b>جرّبها مجاناً لمدة 3 أيام</b> على باقة تالا Essential ←', tag_trial:'🎁 تجربة مجانية لمدة 3 أيام', trial_line:'مجاناً لمدة 3 أيام، ثم ⁦£7⁩ شهرياً. تحتاج إلى بطاقة، ويمكنك الإلغاء في أي وقت.',
     q_trial:'هل يمكنني تجربة تالا مجاناً؟', a_trial:'نعم. باقة تالا Essential (الشهرية) تأتي مع تجربة مجانية لمدة 3 أيام، ويمكنك إضافة JobRadar إليها. تضيف بطاقتك عند الاشتراك لكن لا يُخصم أي مبلغ خلال التجربة. نذكّرك قبل أول دفعة بيوم، وإذا ألغيت قبل انتهاء التجربة فلن تدفع شيئاً. تجربة واحدة لكل شخص.',
     pf_basic1:'تالا على تيليجرام', pf_basic2:'30 رسالة يومياً', pf_basic3:'Gmail وتقويم Google والتذكيرات',
     pf_pro1:'تيليجرام أو واتساب', pf_pro2:'150 رسالة يومياً', pf_pro3:'الرسائل الصوتية وقراءة ملفات PDF', pf_pro4:'ملخص صباحي يومي',
@@ -1117,7 +1122,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     f_send:'أرسل الرسالة', privacy:'الخصوصية', rights:'جميع الحقوق محفوظة.',
     msg_sending:'جارٍ الإرسال…', msg_ok:'شكراً! وصلتنا رسالتك، وأرسلنا لك بريد تأكيد.', msg_err:'تعذّر الإرسال. حاول مرة أخرى أو راسلنا على واتساب.', msg_invalid:'يرجى إدخال الاسم وبريد إلكتروني صحيح ورسالة، والموافقة على إشعار الخصوصية.'
   };
-  var EN_EXTRA = { per_y:'/year', per_mo_eq:'= £{x}/month', msg_sending:'Sending…', msg_ok:'Thank you! We\'ve got your message and sent you a confirmation email.', msg_err:'Something went wrong. Please try again or message us on WhatsApp.', msg_invalid:'Please add your name, a valid email and a message, and tick the privacy box.' };
+  var EN_EXTRA = { start_trial:'Start free trial', per_y:'/year', per_mo_eq:'= £{x}/month', msg_sending:'Sending…', msg_ok:'Thank you! We\'ve got your message and sent you a confirmation email.', msg_err:'Something went wrong. Please try again or message us on WhatsApp.', msg_invalid:'Please add your name, a valid email and a message, and tick the privacy box.' };
 
   var nodes = document.querySelectorAll('[data-i18n],[data-i18n-html]');
   var EN = {};
@@ -1176,6 +1181,11 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       c.querySelector('.p-go').href = signupUrl(key);
       // The free trial is monthly only, so its tag and line hide on annual.
       c.querySelectorAll('.trial-tag, .trial-line').forEach(function(el){ el.hidden = annual; });
+      if (c.querySelector('.trial-tag')) {
+        var go = c.querySelector('.p-go'), k = annual ? 'start' : 'start_trial';
+        go.setAttribute('data-i18n', k); go.textContent = t(k);
+        go.classList.toggle('btn-gold', !annual); go.classList.toggle('btn-dark', annual);
+      }
       var on = key === corePlan;
       c.classList.toggle('sel', on); c.setAttribute('aria-pressed', on);
       if (on) { total += annual ? y : m; names.push(c.querySelector('h4').textContent); }
