@@ -5,12 +5,14 @@
    3. rewrites every "$<number>", "<number>$" or "£<number>" inside the price elements listed in SEL below, including after the monthly/yearly toggle,
    4. adds a small currency picker above the plans. If anything fails, prices stay as written. */
 (function () {
-  var CURRENCIES = ['USD', 'GBP', 'EUR', 'CAD', 'AED', 'SAR', 'QAR', 'KWD', 'BHD', 'OMR', 'EGP'];
+  var CURRENCIES = ['USD', 'GBP', 'EUR', 'CAD', 'AED', 'SAR', 'QAR', 'KWD', 'BHD', 'OMR', 'EGP', 'SGD', 'MYR', 'ZAR', 'INR'];
   var DECIMALS = { KWD: 1, BHD: 1, OMR: 1 };
   var TZ = {
     'Europe/London': 'GBP', 'Europe/Belfast': 'GBP', 'Europe/Guernsey': 'GBP', 'Europe/Jersey': 'GBP', 'Europe/Isle_of_Man': 'GBP',
     'Asia/Dubai': 'AED', 'Asia/Riyadh': 'SAR', 'Asia/Qatar': 'QAR', 'Asia/Kuwait': 'KWD', 'Asia/Bahrain': 'BHD', 'Asia/Muscat': 'OMR',
-    'Africa/Cairo': 'EGP'
+    'Africa/Cairo': 'EGP',
+    'Asia/Singapore': 'SGD', 'Asia/Kuala_Lumpur': 'MYR', 'Asia/Kuching': 'MYR', 'Africa/Johannesburg': 'ZAR',
+    'Asia/Kolkata': 'INR', 'Asia/Calcutta': 'INR'
   };
   var EURO = ['Dublin', 'Paris', 'Berlin', 'Madrid', 'Rome', 'Amsterdam', 'Brussels', 'Vienna', 'Lisbon', 'Athens', 'Helsinki',
     'Luxembourg', 'Monaco', 'Malta', 'Bratislava', 'Ljubljana', 'Tallinn', 'Riga', 'Vilnius', 'Zagreb'];
