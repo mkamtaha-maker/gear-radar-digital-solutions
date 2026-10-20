@@ -203,6 +203,7 @@ tr:last-child td{border-bottom:0}
     var err = res.find(function(r){ return r.error; });
     if (err) { $('stamp').textContent = 'حصل خطأ: ' + err.error.message; return; }
     var metrics = res[0].data, checks = res[1].data, events = res[2].data, hist = res[3].data;
+    var eng = await sb.rpc('ops_client_engagement');
     var byHist = {}; hist.forEach(function(h){ (byHist[h.key] = byHist[h.key] || []).push(h); });
     var latest = metrics.concat(checks).map(function(x){ return x.updated_at || x.checked_at; }).sort().pop();
     $('stamp').innerHTML = latest ? 'آخر تحديث <span class="num">' + esc(when(latest)) + '</span> · كل 3 ساعات' : 'لسه ما في بيانات';
@@ -235,6 +236,24 @@ tr:last-child td{border-bottom:0}
       + '<section><h2>الخدمات الخارجية</h2><div class="tbl"><table><thead><tr><th>الخدمة</th><th>آخر فحص</th><th>الحالة</th></tr></thead><tbody>'
       + hl.map(function(c){ return '<tr><td>' + esc(LABELS[c.key] || c.label) + '</td><td class="num">' + esc(note(c.note)) + '</td><td>' + pill(c.status) + '</td></tr>'; }).join('')
       + '</tbody></table></div></section></div>';
+    // 4. client engagement (counts only, never message content)
+    var ENG = { 'active': ['ok', 'نشط'], 'light': ['unknown', 'استخدام خفيف'], 'at risk': ['warn', 'ممكن يلغي'], 'inactive': ['bad', 'خامل'], 'no data yet': ['unknown', 'لسه ما في بيانات'] };
+    var KIND = { text: 'نص', voice: 'صوت', photo: 'صورة', document: 'ملف', location: 'موقع', before_tracking: 'قبل التتبع' };
+    var engRows = eng.error ? [] : (eng.data || []);
+    html += '<section><h2>تفاعل العملاء</h2>' + (eng.error ? '<div class="sub">ما قدرنا نجيب أرقام التفاعل: ' + esc(eng.error.message) + '</div>'
+      : !engRows.length ? '<div class="sub">ما في عملاء نشطين لسه</div>'
+      : '<div class="tbl"><table><thead><tr><th>العميل</th><th>آخر 7 أيام</th><th>الأسبوع القبله</th><th>30 يوم</th><th>أيام نشاط</th><th>آخر نشاط</th><th>الحالة</th></tr></thead><tbody>'
+        + engRows.map(function(r){
+            var e = ENG[r.engagement] || ['unknown', r.engagement];
+            var kinds = Object.keys(r.kinds_30d || {}).sort(function(x, y){ return r.kinds_30d[y] - r.kinds_30d[x]; })
+              .map(function(k){ return (KIND[k] || k.replace(/^cmd:/, '')) + ' ' + r.kinds_30d[k]; }).join(' · ');
+            return '<tr><td>' + esc(r.full_name) + '<div class="sub">' + esc(r.channel === 'whatsapp' ? 'واتساب' : r.channel === 'telegram' ? 'تيليجرام' : r.channel) + (kinds ? ' · ' + esc(kinds) : '') + '</div></td>'
+              + '<td class="num">' + fmt(r.msgs_7d) + '</td><td class="num">' + fmt(r.msgs_prev_7d) + '</td><td class="num">' + fmt(r.msgs_30d) + '</td>'
+              + '<td class="num">' + fmt(r.active_days_30d) + '</td><td class="num">' + esc(r.last_active ? day(r.last_active) : '—') + '</td>'
+              + '<td><span class="pill ' + e[0] + '">' + esc(e[1]) + '</span></td></tr>';
+          }).join('')
+        + '</tbody></table></div><p class="sub">عدد الرسايل ونوعها بس، من غير أي محتوى. الأرقام بتتسجّل من 20 أكتوبر 2026.</p>')
+      + '</section>';
     html += '<p class="foot">البيانات من فلو Ops Monitor في n8n. الأعطال بتتسجّل لحظة حصولها وبيجيك تنبيه في تيليجرام.</p>';
     $('board').innerHTML = html;
   }
