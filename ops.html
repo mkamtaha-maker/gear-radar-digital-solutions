@@ -8,60 +8,101 @@
 <meta name="theme-color" content="#15171C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 /* Private ops dashboard (Kamal only). The page itself holds no data or keys: it signs in with a Supabase magic link,
    then reads the ops_* tables, which row-level security opens only to accounts listed in ops_admins.
-   The n8n workflow "Gear Radar — Ops Monitor" fills them every 3 hours; "Gear Radar — Error Alerts" logs failures live. */
+   The n8n workflow "Gear Radar — Ops Monitor" fills them every 3 hours; "Gear Radar — Error Alerts" logs failures live.
+   Arabic (MSA) / English: the toggle in the header re-renders from the last loaded data; the choice is kept in localStorage. */
 :root{
-  --bg:#F3F4F6;--panel:#FFFFFF;--line:#E2E5EA;--fg:#15171C;--muted:#5B6475;--accent:#E8763E;--ink:#15171C;
+  --bg:#F3F4F6;--panel:#FFFFFF;--line:#E2E5EA;--fg:#15171C;--muted:#5B6475;--accent:#E8763E;--accent-bg:#FCEBE1;--ink:#15171C;
   --ok:#16824A;--warn:#B26A00;--bad:#C2402F;--unk:#6B7280;
   --ok-bg:#E3F4EA;--warn-bg:#FCF0DC;--bad-bg:#FBE5E1;--unk-bg:#EEF0F3;--track:#E6E9EE;
-  --f-body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;--f-num:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --f-ar:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  --f-en:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,Menlo,monospace;--f-body:var(--f-ar);
 }
+:root[lang="en"]{--f-body:var(--f-en)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0F1216;--panel:#171B21;--line:#262C35;--fg:#E8EAED;--muted:#98A2AF;--accent:#FF8A50;--ink:#0B0D10;
+  --bg:#0F1216;--panel:#171B21;--line:#262C35;--fg:#E8EAED;--muted:#98A2AF;--accent:#FF8A50;--accent-bg:#3A2418;--ink:#0B0D10;
   --ok:#4CC98A;--warn:#E3A849;--bad:#EF7A68;--unk:#9AA3AE;
   --ok-bg:#14301F;--warn-bg:#33270F;--bad-bg:#3A1A15;--unk-bg:#20252C;--track:#232A33;color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0F1216;--panel:#171B21;--line:#262C35;--fg:#E8EAED;--muted:#98A2AF;--accent:#FF8A50;--ink:#0B0D10;
+  --bg:#0F1216;--panel:#171B21;--line:#262C35;--fg:#E8EAED;--muted:#98A2AF;--accent:#FF8A50;--accent-bg:#3A2418;--ink:#0B0D10;
   --ok:#4CC98A;--warn:#E3A849;--bad:#EF7A68;--unk:#9AA3AE;
   --ok-bg:#14301F;--warn-bg:#33270F;--bad-bg:#3A1A15;--unk-bg:#20252C;--track:#232A33;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
+html{scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6;overflow-x:hidden}
 button{font:inherit;cursor:pointer}
+a{color:inherit}
 .num{font-family:var(--f-num);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
-.top{position:sticky;top:0;z-index:5;background:var(--ink);color:#F3F4F6;padding:12px max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left))}
-.top .in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.top h1{margin:0;font-size:18px;font-weight:700;flex:1 1 auto}
-.top h1 span{color:#FF8A50}
-.top .stamp{font-size:13px;color:#A8B0BB}
-.top button{background:transparent;border:1px solid #3A414B;color:#F3F4F6;border-radius:999px;padding:5px 14px;font-size:13px}
-.top button:focus-visible,.btn:focus-visible,.done:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-#board:not([hidden]){display:grid;gap:26px}
-.wrap{max-width:1120px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-right)) 48px max(16px,env(safe-area-inset-left));display:grid;gap:26px}
-h2{margin:0 0 10px;font-size:16px;font-weight:600}
+.dt{font-variant-numeric:tabular-nums;unicode-bidi:isolate;white-space:nowrap}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* header */
+.top{position:sticky;top:0;z-index:5;background:var(--ink);color:#F3F4F6;padding:10px max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))}
+.top .in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;flex:1 1 auto;min-width:0}
+.brand img{width:30px;height:30px;border-radius:8px;background:#fff;flex:none}
+.brand h1{margin:0;font-size:17px;font-weight:700;line-height:1.2}
+.brand h1 .hl{color:#FF8A50}
+.brand .stamp{display:block;font-size:12px;color:#A8B0BB;font-weight:400}
+.tools{display:flex;align-items:center;gap:8px}
+.ghost{background:transparent;border:1px solid #3A414B;color:#F3F4F6;border-radius:999px;padding:4px 13px;font-size:13px;line-height:1.5}
+.ghost:hover{border-color:#6B7380}
+.lang{display:inline-flex;border:1px solid #3A414B;border-radius:999px;padding:2px;gap:2px}
+.lang button{border:0;background:transparent;color:#A8B0BB;border-radius:999px;padding:2px 11px;font-size:13px;line-height:1.5}
+.lang button[aria-pressed="true"]{background:#FF8A50;color:#15171C;font-weight:600}
+.lang button:first-child{font-family:var(--f-ar)}.lang button:last-child{font-family:var(--f-en)}
+.nav{max-width:1180px;margin:8px auto 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:8px}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:#C7CDD5;font-size:13px;padding:3px 12px;border-radius:999px;background:#1F242B;white-space:nowrap}
+.nav a:hover{color:#fff;background:#2A3039}
+.nav a .c{display:inline-block;min-width:18px;margin-inline-start:6px;padding:0 5px;border-radius:99px;background:var(--bad);color:#fff;font-size:11px;text-align:center;font-family:var(--f-num)}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-right)) 48px max(16px,env(safe-area-inset-left))}
+#board:not([hidden]){display:grid;gap:28px}
+section>h2,.sh{margin:0 0 10px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+.sh .meta{font-weight:400;font-size:13px;color:var(--muted);margin-inline-start:auto}
 .muted{color:var(--muted)}
+.sub{font-size:13px;color:var(--muted);word-break:break-word}
+
+/* login */
 .login{max-width:420px;margin:48px auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}
-.login h2{font-size:20px}
+.login h2{font-size:20px;margin:0 0 8px}
 .login p{margin:0 0 14px;color:var(--muted);font-size:14px}
 .login input{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:16px;background:var(--bg);color:var(--fg);direction:ltr}
 .btn{width:100%;margin-top:14px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#15171C;font-weight:600;font-size:16px}
 .msg{font-size:14px;margin-top:10px;min-height:1.4em}
 .msg.err{color:var(--bad)}
+
+/* summary tiles */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px;align-content:start;min-width:0;border-top:3px solid var(--line)}
+.kpi.ok{border-top-color:var(--ok)}.kpi.warn{border-top-color:var(--warn)}.kpi.bad{border-top-color:var(--bad)}
+.kpi .k{font-size:13px;color:var(--muted)}
+.kpi .v{font-size:26px;font-weight:600;line-height:1.15}
+.kpi .v small{font-size:13px;color:var(--muted);font-weight:500}
+.kpi.ok .v.word{color:var(--ok)}.kpi.bad .v.word{color:var(--bad)}.kpi.warn .v.word{color:var(--warn)}
+.kpi .v.word{font-family:var(--f-body);font-size:20px}
+
+/* attention */
 .alerts{display:grid;gap:8px}
 .alert{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;background:var(--bad-bg);border-inline-start:4px solid var(--bad);padding:10px 14px;border-radius:8px}
 .alert.warn{background:var(--warn-bg);border-color:var(--warn)}
 .alert .dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--bad)}
 .alert.warn .dot{background:var(--warn)}
-.alert b{display:block}
-.alert .sub{font-size:13px;color:var(--muted);word-break:break-word}
+.alert b{display:block;word-break:break-word}
 .alert .side{display:grid;gap:6px;justify-items:end;font-size:12px;color:var(--muted)}
-.alert a{color:inherit}
+@media (max-width:560px){.alert{grid-template-columns:auto 1fr}.alert .side{grid-column:2;justify-items:start;display:flex;gap:10px;align-items:center}}
 .done{border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:999px;padding:2px 12px;font-size:12px}
 .allgood{background:var(--ok-bg);color:var(--ok);border-radius:8px;padding:10px 14px;font-weight:500}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
 .card .head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .card h3{margin:0;font-size:14px;font-weight:600}
 .big{font-size:22px;font-weight:600}
@@ -69,48 +110,93 @@ h2{margin:0 0 10px;font-size:16px;font-weight:600}
 .bar{height:8px;background:var(--track);border-radius:99px;overflow:hidden}
 .bar i{display:block;height:100%;border-radius:99px;background:var(--ok)}
 .bar i.warn{background:var(--warn)}.bar i.bad{background:var(--bad)}.bar i.unknown{background:var(--unk)}
-.sub{font-size:13px;color:var(--muted);word-break:break-word}
 .pill{font-size:12px;padding:1px 10px;border-radius:99px;white-space:nowrap;font-weight:500}
 .pill.ok{background:var(--ok-bg);color:var(--ok)}.pill.warn{background:var(--warn-bg);color:var(--warn)}
 .pill.bad{background:var(--bad-bg);color:var(--bad)}.pill.unknown{background:var(--unk-bg);color:var(--unk)}
-.two{display:grid;grid-template-columns:3fr 2fr;gap:12px}
-@media (max-width:780px){.two{grid-template-columns:1fr}}
-.tbl{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{text-align:start;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-weight:500;color:var(--muted);font-size:12px}
-tr:last-child td{border-bottom:0}
 .spark{width:100%;height:34px;display:block}
 .spark path.l{fill:none;stroke:var(--accent);stroke-width:1.6}
 .spark path.a{fill:var(--accent);opacity:.12}
+
+/* JSearch accounts panel */
+.js{background:var(--panel);border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:260px 1fr;min-width:0}
+.js .tot{padding:16px;border-inline-end:1px solid var(--line);display:grid;gap:8px;align-content:start}
+.js .tot .big{font-size:30px}
+.js .accts{padding:6px 16px}
+.acct{display:grid;grid-template-columns:92px 1fr 128px 120px auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.acct:last-child{border-bottom:0}
+.acct .name{font-weight:500;font-size:14px}
+.acct .bar{height:10px}
+.acct .left{font-size:13px;text-align:end}
+.acct .left b{font-family:var(--f-num);font-weight:600;font-size:15px}
+.acct .rs{font-size:12px;color:var(--muted);text-align:end}
+@media (max-width:820px){
+  .js{grid-template-columns:1fr}.js .tot{border-inline-end:0;border-bottom:1px solid var(--line)}
+  .acct{grid-template-columns:1fr auto;gap:4px 12px}
+  .acct .bar{grid-column:1/-1;order:3}
+  .acct .left{text-align:start;order:4}.acct .rs{order:5}
+}
+
+/* tables */
+.two{display:grid;grid-template-columns:3fr 2fr;gap:20px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.tbl{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:start;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:12px;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{text-align:end}
+th.n{text-align:end}
+/* engagement table turns into cards on phones */
+@media (max-width:640px){
+  .stack thead{display:none}
+  .stack tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 10px;padding:12px;border-bottom:1px solid var(--line)}
+  .stack tr:last-child{border-bottom:0}
+  .stack td{border:0;padding:0;text-align:start}
+  .stack td.who{grid-row:1;grid-column:1/3}
+  .stack td.st{grid-row:1;grid-column:3;justify-self:end}
+  .stack td.n::before{content:attr(data-l);display:block;font-family:var(--f-body);font-size:11px;color:var(--muted)}
+}
 .foot{font-size:12px;color:var(--muted)}
-@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:560px){.brand h1{font-size:15px}.ghost{padding:3px 10px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:12px}.card .head{flex-wrap:wrap}.big{font-size:19px}.kpi .v{font-size:22px}.kpi .v.word{font-size:17px}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 </style>
 </head>
 <body>
-<header class="top"><div class="in">
-  <h1>غرفة <span>التشغيل</span></h1>
-  <span class="stamp" id="stamp"></span>
-  <button id="refresh" type="button" hidden>تحديث</button>
-  <button id="logout" type="button" hidden>خروج</button>
-</div></header>
+<header class="top">
+  <div class="in">
+    <div class="brand">
+      <img src="images/gear-radar-logo.png" alt="">
+      <h1><span data-t="titleA">غرفة</span> <span class="hl" data-t="titleB">التشغيل</span><small class="stamp" id="stamp"></small></h1>
+    </div>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language / اللغة">
+        <button type="button" data-lang="ar" aria-pressed="true">ع</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="ghost" id="refresh" type="button" hidden data-t="refresh">تحديث</button>
+      <button class="ghost" id="logout" type="button" hidden data-t="logout">خروج</button>
+    </div>
+  </div>
+  <nav class="nav" id="nav" hidden></nav>
+</header>
 
 <main class="wrap" id="app">
   <section class="login" id="login" hidden>
-    <h2>دخول</h2>
-    <p>اكتب إيميلك، وحيجيك رابط دخول. الصفحة دي لأصحاب الحساب بس.</p>
+    <h2 data-t="loginTitle">تسجيل الدخول</h2>
+    <p data-t="loginText">أدخل بريدك الإلكتروني وسيصلك رابط للدخول. هذه الصفحة مخصّصة لأصحاب الحساب فقط.</p>
     <form id="loginForm">
-      <label for="email" class="muted" style="font-size:13px">الإيميل</label>
+      <label for="email" class="muted" style="font-size:13px" data-t="email">البريد الإلكتروني</label>
       <input id="email" type="email" autocomplete="email" required placeholder="you@example.com">
-      <button class="btn" type="submit" id="sendLink">أرسل رابط الدخول</button>
+      <button class="btn" type="submit" id="sendLink" data-t="sendLink">أرسل رابط الدخول</button>
       <div class="msg" id="loginMsg" role="status"></div>
     </form>
   </section>
   <section id="denied" hidden class="login">
-    <h2>الإيميل ده ما عنده صلاحية</h2>
-    <p>إنت داخل هسي بالإيميل ده، وهو ما من الحسابات المسموح ليها تشوف البيانات:</p>
+    <h2 data-t="deniedTitle">هذا البريد لا يملك صلاحية</h2>
+    <p data-t="deniedText">أنت مسجّل الدخول الآن بهذا البريد، وهو ليس من الحسابات المسموح لها برؤية البيانات:</p>
     <p class="num" id="deniedEmail"></p>
-    <button class="btn" type="button" id="switchAccount">اخرج وادخل بإيميل تاني</button>
+    <button class="btn" type="button" id="switchAccount" data-t="switchAccount">سجّل الخروج وادخل ببريد آخر</button>
   </section>
   <div id="board" hidden></div>
 </main>
@@ -123,76 +209,175 @@ tr:last-child td{border-bottom:0}
   var sb = window.supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, detectSessionInUrl: true, flowType: 'implicit' } });
   var $ = function(id){ return document.getElementById(id); };
   var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
-  var fmt = function(n){ return n == null ? '—' : Number(n).toLocaleString('en-GB', { maximumFractionDigits: 2 }); };
-  var when = function(iso){ if (!iso) return ''; var d = new Date(iso); return d.toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit', timeZone:'Europe/London' }); };
-  var day = function(iso){ return iso ? new Date(iso).toLocaleDateString('en-GB', { day:'numeric', month:'short', timeZone:'Europe/London' }) : ''; };
-  var STATUS = { ok:'سليم', warn:'انتبه', bad:'محتاج تدخل', unknown:'غير معروف' };
-  var pill = function(s){ return '<span class="pill ' + esc(s) + '">' + (STATUS[s] || esc(s)) + '</span>'; };
 
-  var LABELS = {
-    'n8n.month':'عمليات n8n هذا الشهر','n8n.today':'عمليات n8n اليوم',
-    'jsearch.total':'JSearch: المتبقي في كل الحسابات','jsearch.1':'JSearch حساب 1','jsearch.2':'JSearch حساب 2','jsearch.3':'JSearch حساب 3',
+  // ---------- language ----------
+  var T = {
+    ar: {
+      titleA:'غرفة', titleB:'التشغيل', pageTitle:'غرفة التشغيل | Gear Radar', refresh:'تحديث', logout:'خروج',
+      loginTitle:'تسجيل الدخول', loginText:'أدخل بريدك الإلكتروني وسيصلك رابط للدخول. هذه الصفحة مخصّصة لأصحاب الحساب فقط.',
+      email:'البريد الإلكتروني', sendLink:'أرسل رابط الدخول', sending:'جارٍ الإرسال…',
+      sent:'أرسلنا الرابط. افتح آخر رسالة وصلتك واضغط الرابط من المتصفح نفسه.',
+      rateLimit:'طلبت روابط كثيرة في وقت قصير. استخدم آخر رابط وصلك، أو حاول مجددًا بعد ساعة.', sendErr:'تعذّر إرسال الرابط: ',
+      deniedTitle:'هذا البريد لا يملك صلاحية', deniedText:'أنت مسجّل الدخول الآن بهذا البريد، وهو ليس من الحسابات المسموح لها برؤية البيانات:',
+      switchAccount:'سجّل الخروج وادخل ببريد آخر',
+      loading:'جارٍ التحميل…', loadErr:'حدث خطأ: ', updated:'آخر تحديث', every3h:'كل 3 ساعات', noData:'لا توجد بيانات بعد',
+      navAttention:'التنبيهات', navUsage:'الاستهلاك', navJobs:'المهام اليومية', navClients:'العملاء',
+      kHealth:'الحالة العامة', kAllOk:'كل شيء سليم', kIssues:'{n} تحتاج تدخّلًا', kWarn:'{n} للمتابعة', kOpen:'{n} عطل مفتوح',
+      kN8n:'عمليات n8n هذه الدورة', kJs:'طلبات JSearch المتبقية', kJsAcc:'{a} من {b} حسابات تعمل', kTala:'عملاء تالا النشطون',
+      kSign:'{n} تسجيل هذا الشهر',
+      attention:'يحتاج انتباهك', allGood:'كل شيء يعمل بشكل سليم', failed:'تعطّل {w}', workflow:'سير عمل', step:'الخطوة',
+      openRun:'افتح التشغيل', resolve:'تمّ الحل', notSaved:'لم يُحفظ', resets:'يتجدد',
+      jsTitle:'حسابات JSearch', jsTotal:'المتبقي في كل الحسابات', account:'الحساب {n}', jsAcct:'حساب JSearch رقم {n}', left:'متبقٍ', usedOf:'{u} من {l}',
+      daily:'هل تمّت المهام اليومية؟', task:'المهمة', expected:'المتوقع', actual:'الفعلي', status:'الحالة',
+      services:'الخدمات الخارجية', service:'الخدمة', lastCheck:'آخر فحص',
+      engagement:'تفاعل العملاء', client:'العميل', d7:'آخر 7 أيام', prev7:'الأسبوع السابق', d30:'30 يومًا', activeDays:'أيام النشاط', lastActive:'آخر نشاط',
+      engErr:'تعذّر جلب أرقام التفاعل: ', engNone:'لا يوجد عملاء نشطون بعد',
+      engNote:'عدد الرسائل ونوعها فقط، دون أي محتوى. بدأ التسجيل في 20 أكتوبر 2026.',
+      foot:'البيانات من سير العمل Ops Monitor في n8n. تُسجَّل الأعطال لحظة حدوثها ويصلك تنبيه على تيليجرام.',
+      whatsapp:'واتساب', telegram:'تيليجرام'
+    },
+    en: {
+      titleA:'Ops', titleB:'Room', pageTitle:'Ops Room | Gear Radar', refresh:'Refresh', logout:'Sign out',
+      loginTitle:'Sign in', loginText:'Enter your email and we will send you a sign-in link. This page is for the account owners only.',
+      email:'Email', sendLink:'Send sign-in link', sending:'Sending…',
+      sent:'Link sent. Open the latest email you received and tap the link in this same browser.',
+      rateLimit:'Too many links requested in a short time. Use the latest link you received, or try again in an hour.', sendErr:'Could not send the link: ',
+      deniedTitle:'This email has no access', deniedText:'You are signed in with this email, which is not one of the accounts allowed to see the data:',
+      switchAccount:'Sign out and use another email',
+      loading:'Loading…', loadErr:'Something went wrong: ', updated:'Updated', every3h:'every 3 hours', noData:'No data yet',
+      navAttention:'Alerts', navUsage:'Usage', navJobs:'Daily jobs', navClients:'Clients',
+      kHealth:'Overall health', kAllOk:'All good', kIssues:'{n} need action', kWarn:'{n} to watch', kOpen:'{n} open failures',
+      kN8n:'n8n executions this cycle', kJs:'JSearch requests left', kJsAcc:'{a} of {b} accounts working', kTala:'Active Tala clients',
+      kSign:'{n} signups this month',
+      attention:'Needs your attention', allGood:'Everything is running fine', failed:'{w} failed', workflow:'Workflow', step:'Step',
+      openRun:'Open run', resolve:'Resolved', notSaved:'Not saved', resets:'Resets',
+      jsTitle:'JSearch accounts', jsTotal:'Left across all accounts', account:'Account {n}', jsAcct:'JSearch account {n}', left:'left', usedOf:'{u} of {l}',
+      daily:'Did the daily jobs run?', task:'Job', expected:'Expected', actual:'Actual', status:'Status',
+      services:'Outside services', service:'Service', lastCheck:'Last check',
+      engagement:'Client engagement', client:'Client', d7:'Last 7 days', prev7:'Week before', d30:'30 days', activeDays:'Active days', lastActive:'Last active',
+      engErr:'Could not load engagement numbers: ', engNone:'No active clients yet',
+      engNote:'Message counts and types only, never content. Recording started on 20 October 2026.',
+      foot:'Data comes from the Ops Monitor workflow in n8n. Failures are logged as they happen and you get a Telegram alert.',
+      whatsapp:'WhatsApp', telegram:'Telegram'
+    }
+  };
+  var STATUS = { ar:{ ok:'سليم', warn:'انتبه', bad:'يحتاج تدخّلًا', unknown:'غير معروف' }, en:{ ok:'Healthy', warn:'Watch', bad:'Needs action', unknown:'Unknown' } };
+  var LABELS_AR = {
+    'n8n.month':'عمليات n8n في هذه الدورة','n8n.today':'عمليات n8n اليوم',
+    'jsearch.total':'JSearch: المتبقي في كل الحسابات',
     'wa.quality':'جودة رقم واتساب','wa.templates':'قوالب واتساب المعتمدة',
     'stripe.balance':'رصيد Stripe','paypal.balance':'رصيد PayPal',
-    'apify.month':'رصيد Apify (ليدز كام)','kam.emails':'إيميلات كام اليوم',
+    'apify.month':'رصيد Apify (عملاء كام المحتملون)','kam.emails':'رسائل كام البريدية اليوم',
     'supabase.db':'قاعدة بيانات Supabase','supabase.storage':'ملفات Supabase',
-    'biz.tala':'عملاء تالا النشطين','biz.jobradar':'عملاء JobRadar النشطين','biz.signups':'تسجيلات هذا الشهر',
-    'hb.failures24':'تشغيلات فشلت آخر 24 ساعة','hb.tala':'جدولة تالا (البريف والتذكيرات)','hb.collector':'جمع الوظائف','hb.matcher':'تقييم الوظائف',
+    'biz.tala':'عملاء تالا النشطون','biz.jobradar':'عملاء JobRadar النشطون','biz.signups':'تسجيلات هذا الشهر',
+    'hb.failures24':'تشغيلات فشلت خلال 24 ساعة','hb.tala':'جدولة تالا (الملخص والتذكيرات)','hb.collector':'جمع الوظائف','hb.matcher':'تقييم الوظائف',
     'hb.alerts':'تنبيهات JobRadar','hb.affiliate':'مدفوعات الشركاء (10:00)','hb.referral':'مكافآت الإحالة (10:00)',
     'health.openmeteo':'Open-Meteo (الطقس)','health.erapi':'open.er-api (العملات)','health.nominatim':'Nominatim (العناوين)',
     'health.gemini':'Gemini API','health.site':'gearradar.co.uk'
   };
-  var GROUPS = [['n8n','n8n'],['jsearch','OpenWeb Ninja · JSearch'],['whatsapp','واتساب'],['money','الفلوس'],['supabase','Supabase'],['other','خدمات تانية'],['business','العملاء']];
+  var GROUPS = [['n8n','n8n','n8n'],['whatsapp','واتساب','WhatsApp'],['money','المال','Money'],['supabase','Supabase','Supabase'],['other','خدمات أخرى','Other services'],['business','العملاء','Clients']];
+  var ENG = { 'active':['ok','نشط','Active'], 'light':['unknown','استخدام خفيف','Light use'], 'at risk':['warn','قد يلغي','At risk'], 'inactive':['bad','خامل','Inactive'], 'no data yet':['unknown','لا توجد بيانات بعد','No data yet'] };
+  var KIND = { ar:{ text:'نص', voice:'صوت', photo:'صورة', document:'ملف', location:'موقع', before_tracking:'قبل التتبّع' },
+               en:{ text:'text', voice:'voice', photo:'photo', document:'file', location:'location', before_tracking:'before tracking' } };
 
-  // Notes come from the monitor in English; show the common ones in Arabic.
+  var lang = 'ar';
+  try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('ops-lang') || 'ar'; } catch (e) {}
+  if (!T[lang]) lang = 'ar';
+  var t = function(k, v){ var s = T[lang][k] || k; if (v) Object.keys(v).forEach(function(x){ s = s.replace('{' + x + '}', v[x]); }); return s; };
+  var label = function(x){
+    var m = /^jsearch\.(\d+)$/.exec(x.key);
+    if (m) return t('jsAcct', { n: m[1] });
+    return lang === 'ar' ? (LABELS_AR[x.key] || x.label) : (x.label || x.key);
+  };
+  var MONTHS_AR = { Jan:'يناير', Feb:'فبراير', Mar:'مارس', Apr:'أبريل', May:'مايو', Jun:'يونيو', Jul:'يوليو', Aug:'أغسطس', Sep:'سبتمبر', Oct:'أكتوبر', Nov:'نوفمبر', Dec:'ديسمبر' };
+  var LOC = function(){ return lang === 'ar' ? 'ar-u-nu-latn' : 'en-GB'; };
+  var fmt = function(n){ return n == null ? '—' : Number(n).toLocaleString('en-GB', { maximumFractionDigits: 2 }); };
+  var when = function(iso){ return iso ? new Date(iso).toLocaleString(LOC(), { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Europe/London' }) : ''; };
+  var day = function(iso){ return iso ? new Date(iso).toLocaleDateString(LOC(), { day:'numeric', month:'short', timeZone:'Europe/London' }) : ''; };
+  var pill = function(s){ return '<span class="pill ' + esc(s) + '">' + esc(STATUS[lang][s] || s) + '</span>'; };
+
+  function applyLang(){
+    var root = document.documentElement;
+    root.lang = lang; root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = t('pageTitle');
+    document.querySelectorAll('[data-t]').forEach(function(el){ el.textContent = t(el.getAttribute('data-t')); });
+    document.querySelectorAll('[data-lang]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+  }
+
+  // Notes come from the monitor in English; in Arabic mode the common ones are translated.
   function note(s){
     if (!s) return '';
-    var t = String(s), m;
-    if (/NOT_AUTHORIZED|insufficient permissions|balance permission/i.test(t)) return 'تطبيق PayPal محتاج صلاحية قراءة الرصيد';
-    if (t === 'n8n API key not connected') return 'مفتاح n8n API لسه ما اتربط';
-    if (t === 'used up') return 'خلص';
-    if (t === 'key works') return 'المفتاح شغال';
-    if (t === 'check failed') return 'الفحص فشل';
-    if (t === 'no data') return 'ما في بيانات';
-    if (t === 'no runs yet') return 'ما اشتغل لسه';
-    if (t === 'none') return 'ولا واحد';
-    if (t === 'daily warm-up limit') return 'حد التسخين اليومي';
-    if (t === 'none rejected or paused') return 'ما في قالب مرفوض أو موقوف';
-    if (t === 'refunds possible') return 'الاسترداد ممكن';
-    if ((m = t.match(/^(\d+) left$/))) return 'متبقي ' + m[1];
-    if ((m = t.match(/^about (\d+) days at (\d+)\/day$/))) return 'يكفي حوالي ' + m[1] + ' يوم (' + m[2] + ' طلب في اليوم)';
-    if ((m = t.match(/^projected (\d+) by month end( · plan limit not set)?$/))) return 'المتوقع لآخر الشهر ' + m[1] + (m[2] ? ' · حد الباقة ما اتحدد' : '');
-    if ((m = t.match(/^last (\d\d:\d\d)$/))) return 'آخر مرة ' + m[1];
-    if ((m = t.match(/^(\d+) failed today, last at (\d\d:\d\d)$/))) return m[1] + ' فشل اليوم، آخرها ' + m[2];
-    if ((m = t.match(/^(\d+) failed today$/))) return m[1] + ' فشل اليوم';
-    if ((m = t.match(/^(\d+) failed$/))) return m[1] + ' فشل';
-    if ((m = t.match(/^(\d+) ms$/))) return m[1] + ' ms';
-    return t.replace('pending £', 'معلّق £').replace('WhatsApp', 'واتساب').replace('Telegram', 'تيليجرام').replace(' paid', ' مدفوع');
+    var x = String(s), m;
+    if (lang === 'en') return x;
+    if (/NOT_AUTHORIZED|insufficient permissions|balance permission/i.test(x)) return 'تطبيق PayPal يحتاج صلاحية قراءة الرصيد';
+    if (x === 'n8n API key not connected') return 'مفتاح n8n API غير مربوط بعد';
+    if (x === 'used up') return 'نفد الرصيد';
+    if (x === 'key works') return 'المفتاح يعمل';
+    if (x === 'check failed') return 'فشل الفحص';
+    if (x === 'no data') return 'لا توجد بيانات';
+    if (x === 'no runs yet') return 'لم يعمل بعد';
+    if (x === 'none') return 'لا شيء';
+    if (x === 'daily warm-up limit') return 'حدّ الإحماء اليومي';
+    if (x === 'none rejected or paused') return 'لا يوجد قالب مرفوض أو موقوف';
+    if (x === 'refunds possible') return 'الاسترداد ممكن';
+    if (x === 'refunds from PayPal will fail') return 'الاسترداد عبر PayPal سيفشل';
+    if ((m = x.match(/^(\d+) left$/))) return 'متبقٍ ' + m[1];
+    if ((m = x.match(/^about (\d+) days at (\d+)\/day$/))) return 'يكفي نحو ' + m[1] + ' يومًا (' + m[2] + ' طلبًا يوميًا)';
+    if ((m = x.match(/^projected (\d+) by month end( · plan limit not set)?$/))) return 'المتوقع حتى نهاية الشهر ' + m[1] + (m[2] ? ' · حدّ الباقة غير محدّد' : '');
+    if ((m = x.match(/^projected (\d+) by (\d+) (\w{3})$/))) return 'المتوقع ' + m[1] + ' بحلول ' + m[2] + ' ' + (MONTHS_AR[m[3]] || m[3]);
+    if ((m = x.match(/^last (\d\d:\d\d)$/))) return 'آخر مرة ' + m[1];
+    if ((m = x.match(/^(\d+) failed today, last at (\d\d:\d\d)$/))) return m[1] + ' فشل اليوم، آخرها ' + m[2];
+    if ((m = x.match(/^(\d+) failed today$/))) return m[1] + ' فشل اليوم';
+    if ((m = x.match(/^(\d+) failed$/))) return m[1] + ' فشل';
+    if ((m = x.match(/^(\d+) ms$/))) return m[1] + ' ms';
+    return x.replace('pending £', 'معلّق £').replace(/WhatsApp/g, 'واتساب').replace(/Telegram/g, 'تيليجرام').replace(/ paid\b/, ' مدفوع')
+      .replace(/^limit /, 'الحد ').replace('status CONNECTED', 'متصل');
   }
 
   function spark(rows){
-    var v = rows.map(function(r){ return Number(r.used); }).filter(function(x){ return !isNaN(x); });
+    var v = (rows || []).map(function(r){ return r.used == null ? NaN : Number(r.used); }).filter(function(x){ return !isNaN(x); });
     if (v.length < 2) return '';
     var W = 240, H = 34, min = Math.min.apply(null, v), max = Math.max.apply(null, v), span = (max - min) || 1;
     var pts = v.map(function(y, i){ return [ (i / (v.length - 1)) * W, H - 3 - ((y - min) / span) * (H - 6) ]; });
     var d = pts.map(function(p, i){ return (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' ');
     return '<svg class="spark" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" aria-hidden="true"><path class="a" d="' + d + ' L' + W + ' ' + H + ' L0 ' + H + ' Z"/><path class="l" d="' + d + '"/></svg>';
   }
+  var pctOf = function(m){ var lim = m.lim != null ? Number(m.lim) : null, used = m.used != null ? Number(m.used) : null; return (lim && used != null) ? Math.min(100, Math.max(2, used / lim * 100)) : null; };
+  var resetTxt = function(iso){ return iso ? t('resets') + ' <span class="dt">' + esc(day(iso)) + '</span>' : ''; };
 
   function card(m, hist){
-    var lim = m.lim != null ? Number(m.lim) : null, used = m.used != null ? Number(m.used) : null;
-    var pct = (lim && used != null) ? Math.min(100, Math.max(2, used / lim * 100)) : null;
+    var used = m.used != null ? Number(m.used) : null, pct = pctOf(m);
     var big = m.key === 'wa.quality' ? '<span class="num">' + esc(m.unit || '—') + '</span>'
-      : '<span class="num">' + fmt(used) + '</span>' + (lim != null ? ' <small class="num">/ ' + fmt(lim) + '</small>' : '') + (m.unit === 'GBP' || m.unit === 'USD' ? ' <small>' + esc(m.unit) + '</small>' : '');
-    return '<div class="card"><div class="head"><h3>' + esc(LABELS[m.key] || m.label) + '</h3>' + pill(m.status) + '</div>'
+      : '<span class="num">' + fmt(used) + '</span>' + (m.lim != null ? ' <small class="num">/ ' + fmt(m.lim) + '</small>' : '') + (m.unit === 'GBP' || m.unit === 'USD' ? ' <small>' + esc(m.unit) + '</small>' : '');
+    var sub = [esc(note(m.note)), resetTxt(m.reset_at)].filter(Boolean).join(' · ');
+    return '<div class="card"><div class="head"><h3>' + esc(label(m)) + '</h3>' + pill(m.status) + '</div>'
       + '<div class="big">' + big + '</div>'
       + (pct != null ? '<div class="bar"><i class="' + esc(m.status) + '" style="width:' + pct.toFixed(1) + '%"></i></div>' : '')
-      + (hist && hist.length > 1 ? spark(hist) : '')
-      + '<div class="sub">' + esc(note(m.note)) + (m.reset_at ? (m.note ? ' · ' : '') + 'يتجدد <span class="num">' + esc(day(m.reset_at)) + '</span>' : '') + '</div></div>';
+      + spark(hist)
+      + (sub ? '<div class="sub">' + sub + '</div>' : '') + '</div>';
   }
 
+  function jsearchPanel(metrics, hist){
+    var total = metrics.find(function(m){ return m.key === 'jsearch.total'; });
+    var accts = metrics.filter(function(m){ return /^jsearch\.\d+$/.test(m.key); });
+    if (!total && !accts.length) return '';
+    var rows = accts.map(function(m){
+      var n = m.key.split('.')[1], lim = Number(m.lim || 0), used = Number(m.used || 0), left = Math.max(0, lim - used), pct = pctOf(m);
+      return '<div class="acct"><div class="name">' + esc(t('account', { n: n })) + '</div>'
+        + '<div class="bar" title="' + esc(t('usedOf', { u: fmt(used), l: fmt(lim) })) + '"><i class="' + esc(m.status) + '" style="width:' + (pct == null ? 0 : pct.toFixed(1)) + '%"></i></div>'
+        + '<div class="left"><b>' + fmt(left) + '</b> <span class="muted">/ <span class="num">' + fmt(lim) + '</span> ' + esc(t('left')) + '</span></div>'
+        + '<div class="rs">' + resetTxt(m.reset_at) + '</div>'
+        + '<div>' + pill(m.status) + '</div></div>';
+    }).join('');
+    return '<section id="s-jsearch"><h2 class="sh">' + esc(t('jsTitle')) + '<span class="meta">OpenWeb Ninja · JSearch</span></h2><div class="js">'
+      + (total ? '<div class="tot"><div class="head" style="display:flex;justify-content:space-between;gap:8px"><span class="sub">' + esc(t('jsTotal')) + '</span>' + pill(total.status) + '</div>'
+        + '<div class="big"><span class="num">' + fmt(total.used) + '</span></div>' + spark(hist) + '<div class="sub">' + esc(note(total.note)) + '</div></div>' : '')
+      + '<div class="accts">' + rows + '</div></div></section>';
+  }
+
+  var last = null;
   async function load(){
-    $('stamp').textContent = 'بيحمّل…';
+    $('stamp').textContent = t('loading');
     var since = new Date(Date.now() - 7 * 864e5).toISOString();
     var res = await Promise.all([
       sb.from('ops_metrics').select('*').order('sort'),
@@ -201,76 +386,119 @@ tr:last-child td{border-bottom:0}
       sb.from('ops_metric_history').select('key,used,taken_at').in('key', ['n8n.month', 'jsearch.total', 'n8n.today']).gte('taken_at', new Date(Date.now() - 30 * 864e5).toISOString()).order('taken_at')
     ]);
     var err = res.find(function(r){ return r.error; });
-    if (err) { $('stamp').textContent = 'حصل خطأ: ' + err.error.message; return; }
-    var metrics = res[0].data, checks = res[1].data, events = res[2].data, hist = res[3].data;
+    if (err) { $('stamp').textContent = t('loadErr') + err.error.message; return; }
     var eng = await sb.rpc('ops_client_engagement');
-    var byHist = {}; hist.forEach(function(h){ (byHist[h.key] = byHist[h.key] || []).push(h); });
-    var latest = metrics.concat(checks).map(function(x){ return x.updated_at || x.checked_at; }).sort().pop();
-    $('stamp').innerHTML = latest ? 'آخر تحديث <span class="num">' + esc(when(latest)) + '</span> · كل 3 ساعات' : 'لسه ما في بيانات';
+    last = { metrics: res[0].data, checks: res[1].data, events: res[2].data, hist: res[3].data, eng: eng };
+    render();
+  }
 
-    var html = '';
-    // 1. what needs attention
+  function render(){
+    if (!last) return;
+    var metrics = last.metrics, checks = last.checks, events = last.events, eng = last.eng;
+    var byHist = {}; last.hist.forEach(function(h){ (byHist[h.key] = byHist[h.key] || []).push(h); });
+    var get = function(k){ return metrics.find(function(m){ return m.key === k; }); };
+    var latest = metrics.concat(checks).map(function(x){ return x.updated_at || x.checked_at; }).filter(Boolean).sort().pop();
+    $('stamp').innerHTML = latest ? esc(t('updated')) + ' <span class="dt">' + esc(when(latest)) + '</span> · ' + esc(t('every3h')) : esc(t('noData'));
+
     var red = checks.filter(function(c){ return c.status === 'bad' && c.key !== 'hb.failures24'; })
       .concat(metrics.filter(function(m){ return m.status === 'bad'; }));
-    var items = red.map(function(x){ return '<div class="alert"><i class="dot"></i><div><b>' + esc(LABELS[x.key] || x.label) + '</b><div class="sub">' + esc(note(x.note)) + '</div></div><div class="side"></div></div>'; })
-      .concat(events.map(function(e){
-        return '<div class="alert warn"><i class="dot"></i><div><b>' + esc(e.workflow_name || 'فلو') + ' وقع</b><div class="sub">'
-          + (e.node ? 'الخطوة: <span class="num">' + esc(e.node) + '</span> · ' : '') + '<span dir="auto">' + esc(e.message) + '</span>'
-          + (e.url ? ' · <a href="' + esc(e.url) + '" target="_blank" rel="noopener">افتح التشغيل</a>' : '') + '</div></div>'
-          + '<div class="side"><span class="num">' + esc(when(e.occurred_at)) + '</span><button class="done" type="button" data-ev="' + e.id + '">اتحلّت</button></div></div>';
-      }));
-    html += '<section><h2>محتاج انتباهك</h2>' + (items.length ? '<div class="alerts">' + items.join('') + '</div>' : '<div class="allgood">كل حاجة شغالة تمام</div>') + '</section>';
+    var amber = metrics.concat(checks).filter(function(x){ return x.status === 'warn'; });
+    var html = '';
 
-    // 2. quotas by group
-    GROUPS.forEach(function(g){
+    // 0. summary tiles
+    var n8 = get('n8n.month'), js = get('jsearch.total'), tala = get('biz.tala'), sign = get('biz.signups');
+    var jsAcc = metrics.filter(function(m){ return /^jsearch\.\d+$/.test(m.key); });
+    var health = red.length ? 'bad' : (amber.length || events.length) ? 'warn' : 'ok';
+    var hv = red.length ? t('kIssues', { n: red.length }) : amber.length ? t('kWarn', { n: amber.length }) : t('kAllOk');
+    html += '<div class="kpis">'
+      + '<div class="kpi ' + health + '"><div class="k">' + esc(t('kHealth')) + '</div><div class="v word">' + esc(hv) + '</div><div class="sub">'
+        + (events.length ? esc(t('kOpen', { n: events.length })) : '') + '</div></div>'
+      + (n8 ? '<div class="kpi ' + esc(n8.status) + '"><div class="k">' + esc(t('kN8n')) + '</div><div class="v"><span class="num">' + fmt(n8.used) + '</span>'
+        + (n8.lim ? ' <small class="num">/ ' + fmt(n8.lim) + '</small>' : '') + '</div>'
+        + (pctOf(n8) != null ? '<div class="bar"><i class="' + esc(n8.status) + '" style="width:' + pctOf(n8).toFixed(1) + '%"></i></div>' : '')
+        + '<div class="sub">' + resetTxt(n8.reset_at) + '</div></div>' : '')
+      + (js ? '<div class="kpi ' + esc(js.status) + '"><div class="k">' + esc(t('kJs')) + '</div><div class="v"><span class="num">' + fmt(js.used) + '</span></div><div class="sub">'
+        + esc(t('kJsAcc', { a: jsAcc.filter(function(m){ return m.status !== 'bad'; }).length, b: jsAcc.length })) + '</div></div>' : '')
+      + (tala ? '<div class="kpi ' + esc(tala.status) + '"><div class="k">' + esc(t('kTala')) + '</div><div class="v"><span class="num">' + fmt(tala.used) + '</span></div><div class="sub">'
+        + (sign ? esc(t('kSign', { n: fmt(sign.used) })) : esc(note(tala.note))) + '</div></div>' : '')
+      + '</div>';
+
+    // 1. what needs attention
+    var items = red.map(function(x){ return '<div class="alert"><i class="dot"></i><div><b>' + esc(label(x)) + '</b><div class="sub">' + esc(note(x.note)) + '</div></div><div class="side"></div></div>'; })
+      .concat(events.map(function(e){
+        return '<div class="alert warn"><i class="dot"></i><div><b>' + esc(t('failed', { w: e.workflow_name || t('workflow') })) + '</b><div class="sub">'
+          + (e.node ? esc(t('step')) + ': <span class="num">' + esc(e.node) + '</span> · ' : '') + '<span dir="auto">' + esc(e.message) + '</span>'
+          + (e.url ? ' · <a href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(t('openRun')) + '</a>' : '') + '</div></div>'
+          + '<div class="side"><span class="dt">' + esc(when(e.occurred_at)) + '</span><button class="done" type="button" data-ev="' + e.id + '">' + esc(t('resolve')) + '</button></div></div>';
+      }));
+    html += '<section id="s-attention"><h2>' + esc(t('attention')) + '</h2>' + (items.length ? '<div class="alerts">' + items.join('') + '</div>' : '<div class="allgood">' + esc(t('allGood')) + '</div>') + '</section>';
+
+    // 2. usage: n8n, then the JSearch accounts panel, then the other groups
+    var groupHtml = function(g){
       var list = metrics.filter(function(m){ return m.grp === g[0]; });
-      if (!list.length) return;
-      html += '<section><h2>' + esc(g[1]) + '</h2><div class="grid">' + list.map(function(m){ return card(m, byHist[m.key]); }).join('') + '</div></section>';
-    });
+      return list.length ? '<section' + (g[0] === 'n8n' ? ' id="s-usage"' : '') + '><h2>' + esc(lang === 'ar' ? g[1] : g[2]) + '</h2><div class="grid">' + list.map(function(m){ return card(m, byHist[m.key]); }).join('') + '</div></section>' : '';
+    };
+    html += groupHtml(GROUPS[0]) + jsearchPanel(metrics, byHist['jsearch.total']);
+    GROUPS.slice(1).forEach(function(g){ html += groupHtml(g); });
 
     // 3. heartbeats + outside services
     var hb = checks.filter(function(c){ return c.kind === 'heartbeat'; }), hl = checks.filter(function(c){ return c.kind === 'health'; });
-    html += '<div class="two"><section><h2>هل الشغل اليومي حصل؟</h2><div class="tbl"><table><thead><tr><th>المهمة</th><th>المتوقع</th><th>حصل</th><th>الحالة</th></tr></thead><tbody>'
-      + hb.map(function(c){ return '<tr><td>' + esc(LABELS[c.key] || c.label) + '<div class="sub">' + esc(note(c.note)) + '</div></td><td class="num">' + fmt(c.expected) + '</td><td class="num">' + fmt(c.actual) + '</td><td>' + pill(c.status) + '</td></tr>'; }).join('')
+    html += '<div class="two" id="s-jobs"><section><h2>' + esc(t('daily')) + '</h2><div class="tbl"><table><thead><tr><th>' + esc(t('task')) + '</th><th class="n">' + esc(t('expected')) + '</th><th class="n">' + esc(t('actual')) + '</th><th>' + esc(t('status')) + '</th></tr></thead><tbody>'
+      + hb.map(function(c){ return '<tr><td>' + esc(label(c)) + '<div class="sub">' + esc(note(c.note)) + '</div></td><td class="num n">' + fmt(c.expected) + '</td><td class="num n">' + fmt(c.actual) + '</td><td>' + pill(c.status) + '</td></tr>'; }).join('')
       + '</tbody></table></div></section>'
-      + '<section><h2>الخدمات الخارجية</h2><div class="tbl"><table><thead><tr><th>الخدمة</th><th>آخر فحص</th><th>الحالة</th></tr></thead><tbody>'
-      + hl.map(function(c){ return '<tr><td>' + esc(LABELS[c.key] || c.label) + '</td><td class="num">' + esc(note(c.note)) + '</td><td>' + pill(c.status) + '</td></tr>'; }).join('')
+      + '<section><h2>' + esc(t('services')) + '</h2><div class="tbl"><table><thead><tr><th>' + esc(t('service')) + '</th><th>' + esc(t('lastCheck')) + '</th><th>' + esc(t('status')) + '</th></tr></thead><tbody>'
+      + hl.map(function(c){ return '<tr><td>' + esc(label(c)) + '</td><td><span dir="auto">' + esc(note(c.note)) + '</span></td><td>' + pill(c.status) + '</td></tr>'; }).join('')
       + '</tbody></table></div></section></div>';
+
     // 4. client engagement (counts only, never message content)
-    var ENG = { 'active': ['ok', 'نشط'], 'light': ['unknown', 'استخدام خفيف'], 'at risk': ['warn', 'ممكن يلغي'], 'inactive': ['bad', 'خامل'], 'no data yet': ['unknown', 'لسه ما في بيانات'] };
-    var KIND = { text: 'نص', voice: 'صوت', photo: 'صورة', document: 'ملف', location: 'موقع', before_tracking: 'قبل التتبع' };
     var engRows = eng.error ? [] : (eng.data || []);
-    html += '<section><h2>تفاعل العملاء</h2>' + (eng.error ? '<div class="sub">ما قدرنا نجيب أرقام التفاعل: ' + esc(eng.error.message) + '</div>'
-      : !engRows.length ? '<div class="sub">ما في عملاء نشطين لسه</div>'
-      : '<div class="tbl"><table><thead><tr><th>العميل</th><th>آخر 7 أيام</th><th>الأسبوع القبله</th><th>30 يوم</th><th>أيام نشاط</th><th>آخر نشاط</th><th>الحالة</th></tr></thead><tbody>'
+    var ch = function(c){ return c === 'whatsapp' ? t('whatsapp') : c === 'telegram' ? t('telegram') : c; };
+    var numTd = function(k, v){ return '<td class="num n" data-l="' + esc(t(k)) + '">' + v + '</td>'; };
+    html += '<section id="s-clients"><h2>' + esc(t('engagement')) + '</h2>' + (eng.error ? '<div class="sub">' + esc(t('engErr')) + esc(eng.error.message) + '</div>'
+      : !engRows.length ? '<div class="sub">' + esc(t('engNone')) + '</div>'
+      : '<div class="tbl"><table class="stack"><thead><tr><th>' + esc(t('client')) + '</th><th class="n">' + esc(t('d7')) + '</th><th class="n">' + esc(t('prev7')) + '</th><th class="n">' + esc(t('d30')) + '</th><th class="n">' + esc(t('activeDays')) + '</th><th class="n">' + esc(t('lastActive')) + '</th><th>' + esc(t('status')) + '</th></tr></thead><tbody>'
         + engRows.map(function(r){
-            var e = ENG[r.engagement] || ['unknown', r.engagement];
+            var e = ENG[r.engagement] || ['unknown', r.engagement, r.engagement];
             var kinds = Object.keys(r.kinds_30d || {}).sort(function(x, y){ return r.kinds_30d[y] - r.kinds_30d[x]; })
-              .map(function(k){ return (KIND[k] || k.replace(/^cmd:/, '')) + ' ' + r.kinds_30d[k]; }).join(' · ');
-            return '<tr><td>' + esc(r.full_name) + '<div class="sub">' + esc(r.channel === 'whatsapp' ? 'واتساب' : r.channel === 'telegram' ? 'تيليجرام' : r.channel) + (kinds ? ' · ' + esc(kinds) : '') + '</div></td>'
-              + '<td class="num">' + fmt(r.msgs_7d) + '</td><td class="num">' + fmt(r.msgs_prev_7d) + '</td><td class="num">' + fmt(r.msgs_30d) + '</td>'
-              + '<td class="num">' + fmt(r.active_days_30d) + '</td><td class="num">' + esc(r.last_active ? day(r.last_active) : '—') + '</td>'
-              + '<td><span class="pill ' + e[0] + '">' + esc(e[1]) + '</span></td></tr>';
+              .map(function(k){ return '<span style="white-space:nowrap"><bdi>' + esc(KIND[lang][k] || k.replace(/^cmd:/, '')) + '</bdi> ' + r.kinds_30d[k] + '</span>'; }).join(' · ');
+            return '<tr><td class="who"><span dir="auto">' + esc(r.full_name) + '</span><div class="sub">' + esc(ch(r.channel)) + (kinds ? ' · ' + kinds : '') + '</div></td>'
+              + numTd('d7', fmt(r.msgs_7d)) + numTd('prev7', fmt(r.msgs_prev_7d)) + numTd('d30', fmt(r.msgs_30d))
+              + numTd('activeDays', fmt(r.active_days_30d)) + '<td class="n" data-l="' + esc(t('lastActive')) + '"><span class="dt">' + esc(r.last_active ? day(r.last_active) : '—') + '</span></td>'
+              + '<td class="st"><span class="pill ' + e[0] + '">' + esc(lang === 'ar' ? e[1] : e[2]) + '</span></td></tr>';
           }).join('')
-        + '</tbody></table></div><p class="sub">عدد الرسايل ونوعها بس، من غير أي محتوى. الأرقام بتتسجّل من 20 أكتوبر 2026.</p>')
+        + '</tbody></table></div><p class="sub">' + esc(t('engNote')) + '</p>')
       + '</section>';
-    html += '<p class="foot">البيانات من فلو Ops Monitor في n8n. الأعطال بتتسجّل لحظة حصولها وبيجيك تنبيه في تيليجرام.</p>';
+    html += '<p class="foot">' + esc(t('foot')) + '</p>';
     $('board').innerHTML = html;
+
+    // section shortcuts
+    $('nav').innerHTML = [['s-attention', t('navAttention'), red.length + events.length], ['s-usage', t('navUsage')], ['s-jsearch', 'JSearch'], ['s-jobs', t('navJobs')], ['s-clients', t('navClients')]]
+      .filter(function(n){ return $(n[0]); })
+      .map(function(n){ return '<a href="#' + n[0] + '">' + esc(n[1]) + (n[2] ? '<span class="c">' + n[2] + '</span>' : '') + '</a>'; }).join('');
+    $('nav').hidden = false;
   }
 
   document.addEventListener('click', async function(ev){
+    var lb = ev.target.closest('[data-lang]');
+    if (lb) {
+      lang = lb.getAttribute('data-lang');
+      try { localStorage.setItem('ops-lang', lang); } catch (e) {}
+      applyLang(); render();
+      return;
+    }
     var b = ev.target.closest('[data-ev]');
     if (!b) return;
     b.disabled = true;
     var r = await sb.from('ops_events').update({ resolved_at: new Date().toISOString() }).eq('id', Number(b.getAttribute('data-ev')));
-    if (r.error) { b.disabled = false; b.textContent = 'ما اتحفظ'; return; }
+    if (r.error) { b.disabled = false; b.textContent = t('notSaved'); return; }
+    if (last) last.events = last.events.filter(function(e){ return String(e.id) !== b.getAttribute('data-ev'); });
     var row = b.closest('.alert'); if (row) row.remove();
   });
 
   async function show(session){
     var signedIn = !!session;
     $('login').hidden = signedIn; $('logout').hidden = !signedIn; $('refresh').hidden = true;
-    $('denied').hidden = true; $('board').hidden = true;
+    $('denied').hidden = true; $('board').hidden = true; $('nav').hidden = true;
     if (!signedIn) { $('stamp').textContent = ''; return; }
     var a = await sb.from('ops_admins').select('user_id').eq('user_id', session.user.id).maybeSingle();
     if (!a.data) { $('denied').hidden = false; $('deniedEmail').textContent = session.user.email || ''; $('stamp').textContent = ''; return; }
@@ -280,23 +508,22 @@ tr:last-child td{border-bottom:0}
 
   $('loginForm').addEventListener('submit', async function(e){
     e.preventDefault();
-    var msg = $('loginMsg'); msg.className = 'msg'; msg.textContent = 'بيرسل…';
+    var msg = $('loginMsg'); msg.className = 'msg'; msg.textContent = t('sending');
     $('sendLink').disabled = true;
     var r = await sb.auth.signInWithOtp({ email: $('email').value.trim(), options: { emailRedirectTo: location.origin + location.pathname } });
     $('sendLink').disabled = false;
     if (r.error) {
       msg.className = 'msg err';
       // Supabase's built-in mailer only sends a few login emails an hour
-      msg.textContent = (r.error.status === 429 || /rate limit/i.test(r.error.message))
-        ? 'طلبت روابط كتيرة في وقت قصير. استخدم آخر رابط وصلك، أو جرّب تاني بعد ساعة.'
-        : 'ما قدرنا نرسل الرابط: ' + r.error.message;
+      msg.textContent = (r.error.status === 429 || /rate limit/i.test(r.error.message)) ? t('rateLimit') : t('sendErr') + r.error.message;
       return;
     }
-    msg.textContent = 'أرسلنا الرابط. افتح آخر إيميل وصلك واضغط الرابط من نفس المتصفح.';
+    msg.textContent = t('sent');
   });
   $('logout').addEventListener('click', async function(){ await sb.auth.signOut(); show(null); });
   $('switchAccount').addEventListener('click', async function(){ await sb.auth.signOut(); show(null); });
   $('refresh').addEventListener('click', load);
+  applyLang();
   sb.auth.onAuthStateChange(function(_e, session){ show(session); });
   setInterval(function(){ if (!$('board').hidden && document.visibilityState === 'visible') load(); }, 10 * 60 * 1000);
 })();
