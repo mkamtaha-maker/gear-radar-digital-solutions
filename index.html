@@ -229,6 +229,8 @@ section{padding:100px 0}
 .card .hero-btns .btn{margin-top:0}
 .card .for{font-size:.86rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:16px;margin-bottom:20px}
 .card .for b{color:var(--text)}
+.card-wide{grid-column:1/-1}
+@media (min-width:900px){.card-wide ul{grid-template-columns:1fr 1fr}}
 
 .custom{margin-top:24px;background:var(--ink);color:var(--on-ink);border-radius:var(--radius);padding:34px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .custom h3{color:var(--white);font-size:1.3rem;margin-bottom:6px}
@@ -528,7 +530,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow" data-i18n="svc_eyebrow">What we do</span>
-      <h2 data-i18n="svc_title">Four ways we save you time</h2>
+      <h2 data-i18n="svc_title">Five ways we save you time</h2>
       <p data-i18n="svc_lead">Each service is set up and looked after by us. You don't need any technical skills — just tell us what you need.</p>
     </div>
 
@@ -603,6 +605,24 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         </ul>
         <p class="for" data-i18n-html="s3_for"><b>Ideal for:</b> cafés, restaurants, takeaways and retail.</p>
         <div class="hero-btns"><a href="#plans-qr" class="btn btn-dark" data-i18n="see_plans">See plans</a><a href="menutap.html" data-ar-href="menutap-ar.html" class="btn btn-outline" data-i18n="learn_more">Learn more</a><a href="qr-gallery.html" class="btn btn-outline" data-i18n="gallery_btn">Gallery</a><a href="work.html?show=qr" class="btn btn-outline" data-i18n="work_btn">Our work</a></div>
+      </article>
+
+      <!-- 5. Polishly (one-off CV service) -->
+      <article class="card reveal card-wide">
+        <div class="card-top">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
+          <span class="tag" data-i18n="tag_cv">One-off · from £3</span>
+        </div>
+        <h3>Polishly</h3>
+        <p class="sub" data-i18n="s5_sub">Upload your old CV and get it back rewritten and redesigned in minutes, as a PDF and a Word file.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b1">12 designs for the UK, USA, modern roles and the Gulf, each in 8 colours</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b2">ATS-friendly, and only facts from your own CV, nothing invented</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b3">Polishly Plus: tailored to one job, with a cover letter</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b4">2 free rounds of edits within 7 days</span></li>
+        </ul>
+        <p class="for" data-i18n-html="s5_for"><b>Ideal for:</b> anyone applying for jobs who wants a CV that stands out. £3, or £5 for Polishly Plus, paid once.</p>
+        <a href="polishly.html" class="btn btn-dark" data-i18n="s5_btn">Polish my CV</a>
       </article>
 
     </div>
@@ -963,6 +983,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <a href="menutap.html" data-ar-href="menutap-ar.html" data-i18n="nav_menutap">MenuTap: QR menus</a>
         <a href="duo.html" data-ar-href="duo-ar.html" data-i18n="nav_duo">Duo: website + QR bundles</a>
         <a href="jobradar.html" class="jr-link" data-i18n="nav_jobradar">JobRadar: job search</a>
+        <a href="polishly.html" data-i18n="nav_polishly">Polishly: CV rewrite</a>
         <a href="qr-menu-restaurants-uk.html" data-i18n="nav_qrguide">QR menu guide</a>
         <a href="partners.html" data-i18n="nav_partners">Partner programme</a>
         <a href="#contact" data-i18n="nav_contact">Contact</a>
@@ -1007,7 +1028,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     qr_c1:'القهوة', qr_c2:'الطعام', qr_c3:'الحلويات',
     qr_i1:'فلات وايت', qr_d1:'إسبريسو مضاعف وحليب ناعم', qr_i2:'توست الأفوكادو', qr_d2:'خبز مخمّر وليمون وفلفل حار',
     qr_order:'اطلب عبر واتساب',
-    svc_eyebrow:'ماذا نقدّم', svc_title:'أربع طرق نوفّر بها وقتك',
+    svc_eyebrow:'ماذا نقدّم', svc_title:'خمس طرق نوفّر بها وقتك',
     svc_lead:'كل خدمة نجهّزها ونتابعها بأنفسنا. لا تحتاج أي خبرة تقنية — فقط أخبرنا بما تحتاجه.',
     tag_popular:'الأكثر طلباً', tag_core:'منتجنا الرئيسي', tag_fast:'تسليم سريع', tag_rest:'للمطاعم والمحلات', tag_job:'إضافة لتالا', see_addons:'شاهد الإضافات',
     s1_title:'تالا',
@@ -1032,6 +1053,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     s3_b4:'غيّر الأسعار في أي وقت — بدون إعادة طباعة',
     s3_for:'<b>مناسب لـ:</b> المقاهي والمطاعم ومحلات الوجبات والتجزئة.',
     s4_title:'JobRadar',
+    tag_cv:'دفعة واحدة · من £3', s5_sub:'ارفع سيرتك الذاتية القديمة واستلمها خلال دقائق بصياغة وتصميم جديدين، بصيغتي PDF وWord.', s5_b1:'12 تصميماً لبريطانيا وأمريكا والوظائف الحديثة والخليج، ولكل تصميم 8 ألوان', s5_b2:'متوافقة مع أنظمة فرز السير (ATS)، ولا نكتب إلا ما في سيرتك، دون أي اختلاق', s5_b3:'Polishly Plus: مخصصة لوظيفة واحدة مع خطاب تقديم', s5_b4:'جولتان مجانيتان من التعديلات خلال 7 أيام', s5_for:'<b>مناسب لـ:</b> كل من يتقدّم لوظائف ويريد سيرة لافتة. £3، أو £5 لـ Polishly Plus، تُدفع مرة واحدة.', s5_btn:'حسّن سيرتي', nav_polishly:'Polishly: إعادة كتابة السيرة الذاتية',
     jr_more:'كيف يعمل JobRadar', jr_learn:'اعرف المزيد', nav_jobradar:'JobRadar: البحث عن عمل', nav_qrguide:'دليل قوائم QR للمطاعم', nav_tala:'تالا: مساعدتك الشخصية', nav_duo:'Duo: باقات الموقع + QR', nav_webly:'Webly: تصميم المواقع', nav_menutap:'MenuTap: قوائم QR', learn_more:'اعرف المزيد',
     s4_sub:'أضفه إلى تالا وتوقّف عن تصفح مواقع الوظائف. الوظائف المناسبة لسيرتك تصلك في نفس المحادثة كل يوم.',
     s4_b1:'يبحث في آلاف مواقع التوظيف في بريطانيا وأمريكا وكندا والخليج',
