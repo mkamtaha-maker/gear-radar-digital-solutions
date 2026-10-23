@@ -430,7 +430,11 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
     }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, j: j }; }); })
     .then(function(res){
       if (!res.ok || !res.j.ok) throw new Error('rejected');
-      if (res.j.checkout_url) { setStatus('s_redirect'); window.location.href = res.j.checkout_url; return; }
+      if (res.j.checkout_url) {
+        // Stripe and PayPal return to signup.html, which sends the customer back here when this ref matches.
+        try { sessionStorage.setItem('grPolishlyRef', String(res.j.ref || '')); } catch (e) {}
+        setStatus('s_redirect'); window.location.href = res.j.checkout_url; return;
+      }
       showDone(res.j.ref);
     }).catch(function(e){ setStatus(e && e.upload ? 's_uperr' : (e && e.message === 'rejected' ? 's_check' : 's_err'), 'err'); })
     .then(function(){ btn.disabled = false; });
