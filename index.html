@@ -350,7 +350,14 @@ section{padding:100px 0}
 .ao-reg{opacity:.6;font-weight:500;margin-inline-end:3px}
 .tot-lock{display:block;color:#15803d;font-weight:600}
 .web-care{margin:18px auto 0;max-width:720px;text-align:center;font-size:.92rem;font-weight:600;color:#C2410C}
-@media (max-width:980px){.biz-cards{grid-template-columns:1fr}}
+.biz-cards.two{grid-template-columns:repeat(2,1fr);max-width:760px;margin-inline:auto}
+@media (max-width:980px){.biz-cards,.biz-cards.two{grid-template-columns:1fr}}
+.cv-fan{position:relative;height:360px;max-width:440px;width:100%;margin-inline:auto}
+.cv-fan img{position:absolute;width:56%;height:auto;border-radius:6px;box-shadow:0 24px 50px -20px rgba(0,0,0,.7)}
+.cv-fan img:nth-child(1){left:0;top:34px;transform:rotate(-6deg)}
+.cv-fan img:nth-child(2){left:22%;top:0;z-index:2}
+.cv-fan img:nth-child(3){right:0;top:34px;transform:rotate(6deg)}
+@media (max-width:520px){.cv-fan{height:260px}}
 
 /* Steps */
 .steps-wrap{background:var(--paper)}
@@ -571,6 +578,24 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <p class="for" data-i18n-html="s4_for"><b>Ideal for:</b> professionals looking for their next role at home or abroad.</p>
         <a href="jobradar.html" class="btn btn-dark jr-link" data-i18n="jr_learn">Learn more</a>
       </article>
+      <!-- 3. Polishly (one-off CV service) -->
+      <article class="card reveal card-wide">
+        <div class="card-top">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
+          <span class="tag" data-i18n="tag_cv">One-off · from £3</span>
+        </div>
+        <h3>Polishly</h3>
+        <p class="sub" data-i18n="s5_sub">Upload your old CV and get it back rewritten and redesigned in minutes, as a PDF and a Word file.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b1">12 designs for the UK, USA, modern roles and the Gulf, each in 8 colours</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b2">ATS-friendly, and only facts from your own CV, nothing invented</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b3">Polishly Plus: tailored to one job, with a cover letter</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b4">2 free rounds of edits within 7 days</span></li>
+        </ul>
+        <p class="for" data-i18n-html="s5_for"><b>Ideal for:</b> anyone applying for jobs who wants a CV that stands out. £3, or £5 for Polishly Plus, paid once.</p>
+        <div class="hero-btns"><a href="#plans-cv" class="btn btn-dark" data-i18n="see_plans">See plans</a><a href="polishly.html#designs" class="btn btn-outline" data-i18n="gallery_btn">Gallery</a><a href="polishly.html" class="btn btn-outline" data-i18n="s5_btn">Polish my CV</a></div>
+      </article>
+
       <!-- 2. Websites -->
       <article class="card reveal">
         <div class="card-top">
@@ -607,23 +632,6 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
         <div class="hero-btns"><a href="#plans-qr" class="btn btn-dark" data-i18n="see_plans">See plans</a><a href="menutap.html" data-ar-href="menutap-ar.html" class="btn btn-outline" data-i18n="learn_more">Learn more</a><a href="qr-gallery.html" class="btn btn-outline" data-i18n="gallery_btn">Gallery</a><a href="work.html?show=qr" class="btn btn-outline" data-i18n="work_btn">Our work</a></div>
       </article>
 
-      <!-- 5. Polishly (one-off CV service) -->
-      <article class="card reveal card-wide">
-        <div class="card-top">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
-          <span class="tag" data-i18n="tag_cv">One-off · from £3</span>
-        </div>
-        <h3>Polishly</h3>
-        <p class="sub" data-i18n="s5_sub">Upload your old CV and get it back rewritten and redesigned in minutes, as a PDF and a Word file.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b1">12 designs for the UK, USA, modern roles and the Gulf, each in 8 colours</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b2">ATS-friendly, and only facts from your own CV, nothing invented</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b3">Polishly Plus: tailored to one job, with a cover letter</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="s5_b4">2 free rounds of edits within 7 days</span></li>
-        </ul>
-        <p class="for" data-i18n-html="s5_for"><b>Ideal for:</b> anyone applying for jobs who wants a CV that stands out. £3, or £5 for Polishly Plus, paid once.</p>
-        <a href="polishly.html" class="btn btn-dark" data-i18n="s5_btn">Polish my CV</a>
-      </article>
 
     </div>
 
@@ -671,6 +679,20 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
 
     <div class="jh-show reveal">
       <div>
+        <span class="eyebrow">Polishly</span>
+        <h3 data-i18n="cvs_title">A CV that gets noticed, in minutes</h3>
+        <p data-i18n="cvs_sub">Upload your old CV. We rewrite it in strong, clear English, keep it ATS-friendly and lay it out in the design and colours you pick. Nothing invented.</p>
+        <div class="hero-btns"><a href="#plans-cv" class="btn btn-gold" data-i18n="see_plans">See plans</a><a href="polishly.html#designs" class="btn btn-ghost" data-i18n="gallery_btn">Gallery</a></div>
+      </div>
+      <div class="cv-fan" role="img" aria-label="Three example CV designs from Polishly">
+        <img src="images/polishly/uk-executive.webp" alt="" loading="lazy" width="400" height="566">
+        <img src="images/polishly/modern-sidebar.webp" alt="" loading="lazy" width="400" height="566">
+        <img src="images/polishly/gulf-premium.webp" alt="" loading="lazy" width="400" height="566">
+      </div>
+    </div>
+
+    <div class="jh-show rev reveal">
+      <div>
         <span class="eyebrow" data-i18n="s2_title">Webly</span>
         <h3 data-i18n="ws_title">Visitors become calls and messages</h3>
         <p data-i18n="s2_sub">A clean, mobile-friendly website that turns visitors into calls and WhatsApp messages.</p>
@@ -689,7 +711,7 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       </div>
     </div>
 
-    <div class="jh-show rev reveal">
+    <div class="jh-show reveal">
       <div>
         <span class="eyebrow" data-i18n="s3_title">MenuTap</span>
         <h3 data-i18n="qr_title">Your menu, one scan away</h3>
@@ -772,6 +794,38 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
       <p class="ao-foot" data-i18n="ao_foot">Job matches arrive inside Tala, and in your morning brief on Pro. Choose JobRadar or JobRadar Plus, not both.</p>
     </div>
     <p class="price-note" data-i18n="pr_note">Prices are shown in your currency as an estimate. The exact amount is shown at checkout, and you pay securely when you sign up.</p>
+  </div>
+</section>
+
+<section id="cv-pricing" class="biz-wrap">
+  <div class="container">
+    <div class="biz-head reveal">
+      <span class="eyebrow" data-i18n="cvp_eyebrow">For job seekers</span>
+      <h2>Polishly</h2>
+      <p data-i18n="cvp_lead">Your CV rewritten and redesigned, delivered by email as PDF and Word. Pay once, no subscription.</p>
+      <p class="launch" data-i18n-html="launch_cv"><b>Launch offer: 50% off</b> both Polishly plans until 31 January 2027.</p>
+    </div>
+    <div class="biz-group reveal" id="plans-cv">
+      <h4>Polishly</h4>
+      <p data-i18n="cvp_sub">12 designs for the UK, USA, modern roles and the Gulf, each in 8 colour themes. Preview any design before you order.</p>
+      <div class="biz-cards two">
+          <div class="pcard oneoff">
+            <h4>Polishly</h4>
+            <div class="amount"><b>£3</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£6</s></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cvf_b1">Rewritten in clear, professional English</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cvf_b2">ATS-friendly, achievements with numbers</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cvf_b3">Your design and colour theme, as PDF and Word</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cvf_b4">2 free rounds of edits within 7 days</span></li></ul>
+            <a class="btn btn-dark" href="polishly.html?plan=cv_basic#order" data-i18n="start">Get started</a>
+          </div>
+          <div class="pcard oneoff star">
+            <h4>Polishly Plus</h4>
+            <div class="amount"><b>£5</b><span class="once" data-i18n="oneoff">one-off</span></div>
+            <div class="addon"><span data-i18n="reg_label">Regular price from 1 Feb 2027</span> <s>£10</s></div>
+            <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cvf_p1">Everything in Polishly</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cvf_p2">Tailored to one job you choose</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cvf_p3">A matching cover letter</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="cvf_b4">2 free rounds of edits within 7 days</span></li></ul>
+            <a class="btn btn-dark" href="polishly.html?plan=cv_plus#order" data-i18n="start">Get started</a>
+          </div>
+      </div>
+      <p class="addon web-care"><a href="polishly.html#designs" data-i18n="cv_gal_link">See all 12 designs and preview them in any colour →</a></p>
+    </div>
   </div>
 </section>
 
@@ -1053,7 +1107,13 @@ footer{background:#070C17;color:var(--on-ink-muted);padding:50px 0 34px;font-siz
     s3_b4:'غيّر الأسعار في أي وقت — بدون إعادة طباعة',
     s3_for:'<b>مناسب لـ:</b> المقاهي والمطاعم ومحلات الوجبات والتجزئة.',
     s4_title:'JobRadar',
-    tag_cv:'دفعة واحدة · من £3', s5_sub:'ارفع سيرتك الذاتية القديمة واستلمها خلال دقائق بصياغة وتصميم جديدين، بصيغتي PDF وWord.', s5_b1:'12 تصميماً لبريطانيا وأمريكا والوظائف الحديثة والخليج، ولكل تصميم 8 ألوان', s5_b2:'متوافقة مع أنظمة فرز السير (ATS)، ولا نكتب إلا ما في سيرتك، دون أي اختلاق', s5_b3:'Polishly Plus: مخصصة لوظيفة واحدة مع خطاب تقديم', s5_b4:'جولتان مجانيتان من التعديلات خلال 7 أيام', s5_for:'<b>مناسب لـ:</b> كل من يتقدّم لوظائف ويريد سيرة لافتة. £3، أو £5 لـ Polishly Plus، تُدفع مرة واحدة.', s5_btn:'حسّن سيرتي', nav_polishly:'Polishly: إعادة كتابة السيرة الذاتية',
+    cvs_title:'سيرة ذاتية تلفت الانتباه خلال دقائق', cvs_sub:'ارفع سيرتك القديمة، ونعيد كتابتها بإنجليزية قوية وواضحة، ونجعلها مناسبة لأنظمة ATS، ونصممها بالتصميم والألوان التي تختارها، دون إضافة أي معلومة غير صحيحة.',
+    cvp_eyebrow:'للباحثين عن عمل', cvp_lead:'سيرتك بصياغة وتصميم جديدين، تصلك بالبريد بصيغتي PDF و Word. دفعة واحدة دون اشتراك.',
+    launch_cv:'<b>عرض الإطلاق: خصم 50%</b> على باقتي Polishly حتى 31 يناير 2027.',
+    cvp_sub:'12 تصميماً لبريطانيا وأمريكا والوظائف الحديثة والخليج، ولكل تصميم 8 ثيمات ألوان. يمكنك معاينة أي تصميم قبل الطلب.',
+    cvf_b1:'إعادة كتابة بإنجليزية مهنية وواضحة', cvf_b2:'مناسبة لأنظمة ATS، والإنجازات بالأرقام', cvf_b3:'التصميم والثيم الذي تختاره، بصيغتي PDF و Word', cvf_b4:'جولتا تعديل مجانيتان خلال 7 أيام',
+    cvf_p1:'كل مزايا Polishly', cvf_p2:'مفصّلة على وظيفة واحدة تختارها', cvf_p3:'خطاب تقديم مطابق لها', cv_gal_link:'شاهد التصاميم الاثني عشر وعاينها بأي لون ←',
+    tag_cv:'دفعة واحدة · من £3', s5_sub:'ارفع سيرتك الذاتية القديمة واستلمها خلال دقائق بصياغة وتصميم جديدين، بصيغتي PDF و Word.', s5_b1:'12 تصميماً لبريطانيا وأمريكا والوظائف الحديثة والخليج، ولكل تصميم 8 ألوان', s5_b2:'متوافقة مع أنظمة فرز السير (ATS)، ولا نكتب إلا ما في سيرتك، دون أي اختلاق', s5_b3:'Polishly Plus: مخصصة لوظيفة واحدة مع خطاب تقديم', s5_b4:'جولتان مجانيتان من التعديلات خلال 7 أيام', s5_for:'<b>مناسب لـ:</b> كل من يتقدّم لوظائف ويريد سيرة لافتة. £3، أو £5 لـ Polishly Plus، تُدفع مرة واحدة.', s5_btn:'حسّن سيرتي', nav_polishly:'Polishly: إعادة كتابة السيرة الذاتية',
     jr_more:'كيف يعمل JobRadar', jr_learn:'اعرف المزيد', nav_jobradar:'JobRadar: البحث عن عمل', nav_qrguide:'دليل قوائم QR للمطاعم', nav_tala:'تالا: مساعدتك الشخصية', nav_duo:'Duo: باقات الموقع + QR', nav_webly:'Webly: تصميم المواقع', nav_menutap:'MenuTap: قوائم QR', learn_more:'اعرف المزيد',
     s4_sub:'أضفه إلى تالا وتوقّف عن تصفح مواقع الوظائف. الوظائف المناسبة لسيرتك تصلك في نفس المحادثة كل يوم.',
     s4_b1:'يبحث في آلاف مواقع التوظيف في بريطانيا وأمريكا وكندا والخليج',
