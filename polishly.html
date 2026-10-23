@@ -65,6 +65,29 @@ section.block h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:8px}
 .card b{display:block;margin-top:8px;font-size:.95rem} .card small{color:var(--muted)}
 .card[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
 .card.hide{display:none}
+.card .thumb{position:relative;display:block}
+.card .pv{position:absolute;inset-inline-end:8px;bottom:8px;background:rgba(21,23,28,.85);color:#fff;font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px}
+.card:hover .pv,.card:focus-visible .pv{background:var(--gold)}
+.mini{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.mini-box{position:relative;width:180px;height:255px;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:zoom-in;flex:none;padding:0}
+.mini-box iframe{position:absolute;top:0;left:0;width:794px;height:1123px;border:0;transform-origin:0 0;pointer-events:none}
+.mini p{flex:1;min-width:180px;color:var(--muted);font-size:.9rem}
+.linkbtn{background:none;border:0;color:#c2410c;font-weight:600;cursor:pointer;text-decoration:underline;padding:0;margin-top:6px}
+dialog.pvd{border:0;border-radius:18px;padding:0;width:min(920px,calc(100vw - 24px));max-height:calc(100vh - 24px);margin:auto;background:#fff;color:var(--text);overflow:hidden}
+dialog.pvd[open]{display:flex;flex-direction:column}
+dialog.pvd::backdrop{background:rgba(15,23,42,.6)}
+.pvd-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.pvd-head h3{flex:1;font-size:1.05rem;margin:0} .pvd-head small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
+.iconbtn{background:#fff;border:1px solid var(--line);border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:1.1rem;line-height:1;flex:none}
+.pvd .swatches{padding:12px 18px 0;gap:8px} .pvd .sw{padding:4px 10px 4px 4px;font-size:.85rem}
+.stage{flex:1;overflow:auto;background:#e9e6df;padding:16px;min-height:200px}
+.sheet{position:relative;margin:0 auto;background:#fff;box-shadow:0 10px 30px -12px rgba(0,0,0,.35);overflow:hidden}
+.sheet iframe{position:absolute;top:0;left:0;width:794px;border:0;transform-origin:0 0}
+.pvd-foot{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 18px;border-top:1px solid var(--line)}
+.pvd-foot p{flex:1;min-width:200px;color:var(--muted);font-size:.85rem}
+.pvd-foot .btn{border:0;cursor:pointer}
+html[dir="rtl"] .iconbtn.flip{transform:scaleX(-1)}
+@media(max-width:560px){.pvd .swatches{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.pvd .sw{flex:none}.stage{padding:10px}.pvd-foot .btn{width:100%}}
 form{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:0 20px 50px -30px rgba(11,18,32,.35)}
 fieldset{border:0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--line)}
 fieldset:last-of-type{border-bottom:0;margin-bottom:0;padding-bottom:0}
@@ -155,7 +178,7 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
 <section class="block" style="padding-top:0">
   <div class="container">
     <h2 data-i18n="designs">Choose your design</h2>
-    <p class="lead" data-i18n="designs_d">Every design works with any of the 8 colour themes. The examples use sample data.</p>
+    <p class="lead" data-i18n="designs_d">Tap any design to preview it in all 8 colour themes. The examples use sample data.</p>
     <div class="tabs" id="tabs" role="group">
       <button type="button" data-type="all" aria-pressed="true" data-i18n="t_all">All</button>
       <button type="button" data-type="uk" aria-pressed="false" data-i18n="t_uk">British CV</button>
@@ -180,6 +203,10 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
       </div>
       <div class="field"><label for="design" data-i18n="f_design">Design</label><select id="design"></select></div>
       <div class="field full"><span class="label" data-i18n="f_theme">Colour theme</span><div class="swatches" id="themes"></div></div>
+      <div class="field full mini">
+        <button type="button" class="mini-box" id="miniBox" aria-label="Enlarge preview" data-i18n-aria="pv_enlarge"><iframe id="miniFrame" title="CV preview" tabindex="-1" aria-hidden="true"></iframe></button>
+        <p><span data-i18n="pv_mini">This is how your CV will look in the design and colours you picked, shown with sample data.</span><br><button type="button" class="linkbtn" id="miniOpen" data-i18n="pv_enlarge">Enlarge preview</button></p>
+      </div>
     </fieldset>
 
     <fieldset>
@@ -234,6 +261,21 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
 
 <footer><div class="container"><span>© <span id="year">2026</span> Gear Radar Digital Solutions</span><span><a href="privacy.html" data-i18n="privacy">Privacy</a> · info@gearradar.co.uk</span></div></footer>
 
+<dialog class="pvd" id="pvd" aria-labelledby="pvTitle">
+  <div class="pvd-head">
+    <button type="button" class="iconbtn flip" id="pvPrev" aria-label="Previous design" data-i18n-aria="pv_prev">‹</button>
+    <h3 id="pvTitle"><span id="pvName"></span><small id="pvType"></small></h3>
+    <button type="button" class="iconbtn flip" id="pvNext" aria-label="Next design" data-i18n-aria="pv_next">›</button>
+    <button type="button" class="iconbtn" id="pvClose" aria-label="Close" data-i18n-aria="pv_close">✕</button>
+  </div>
+  <div class="swatches" id="pvThemes"></div>
+  <div class="stage" id="pvStage"><div class="sheet" id="pvSheet"><iframe id="pvFrame" title="CV preview"></iframe></div></div>
+  <div class="pvd-foot">
+    <p data-i18n="pv_note">Sample data. Your CV is written with your own details.</p>
+    <button type="button" class="btn btn-gold" id="pvChoose" data-i18n="pv_choose">Choose this design</button>
+  </div>
+</dialog>
+<script src="polishly-preview.js?v=20261023"></script>
 <script>
 (function(){
   var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-signup';
@@ -271,7 +313,9 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
     h1:'سيرة ذاتية تلفت الانتباه', sub:'أرسل لنا سيرتك الحالية، ونعيد كتابتها بإنجليزية قوية وواضحة، ونجعلها مناسبة لأنظمة الفرز الآلي (ATS)، ونصممها بالأسلوب البريطاني أو الأمريكي أو المودرن أو الخليجي. بصيغتي PDF وWord خلال دقائق.',
     p_basic:'Polishly · إعادة الكتابة والتصميم', p_plus:'Polishly Plus · مفصّلة على وظيفة + خطاب تقديم', cta:'حسّن سيرتي',
     how:'كيف تعمل الخدمة', s1:'اختر التصميم', s1d:'12 تصميماً في 4 أساليب، ولكل تصميم 8 ثيمات ألوان.', s2:'ارفع سيرتك', s2d:'ملف PDF أو صورة واضحة، مع الوظيفة والدولة التي تستهدفها.', s3:'استلمها خلال دقائق', s3d:'تصلك سيرتك الجديدة بالبريد بصيغتي PDF وWord، مع جولتي تعديل مجانيتين خلال 7 أيام.',
-    designs:'اختر التصميم', designs_d:'كل تصميم يعمل مع أي ثيم من الثيمات الثمانية. الأمثلة ببيانات تجريبية.',
+    designs:'اختر التصميم', designs_d:'اضغط على أي تصميم لمعاينته بالثيمات الثمانية. الأمثلة ببيانات تجريبية.',
+    pv_btn:'معاينة', pv_choose:'اختر هذا التصميم', pv_close:'إغلاق', pv_prev:'التصميم السابق', pv_next:'التصميم التالي', pv_enlarge:'كبّر المعاينة',
+    pv_note:'بيانات تجريبية، وتُكتب سيرتك ببياناتك أنت.', pv_mini:'هكذا ستبدو سيرتك بالتصميم والألوان التي اخترتها، معروضة ببيانات تجريبية.',
     t_all:'الكل', t_uk:'سيرة بريطانية', t_us:'سيرة أمريكية', t_modern:'مودرن مختصرة', t_gulf:'سيرة خليجية',
     l_tier:'باقتك', b1:'إعادة كتابة بإنجليزية مهنية وواضحة', b2:'مناسبة لأنظمة ATS، والإنجازات بالأرقام', b3:'التصميم والثيم الذي تختاره، بصيغتي PDF وWord',
     p1:'كل مزايا Polishly', p2:'مفصّلة على وظيفة واحدة تختارها', p3:'خطاب تقديم مطابق لها',
@@ -294,6 +338,7 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
     s_cancelled:'تم إلغاء الدفع ولم يُخصم أي مبلغ.', s_payfailed:'لم تتم عملية الدفع ولم يُخصم أي مبلغ. حاول مرة أخرى.'
   };
   var EN = {
+    pv_btn:'Preview', pv_prev:'Previous design', pv_next:'Next design', pv_close:'Close',
     s_check:'Please check the highlighted fields.', s_upload:'Uploading your files…', s_sending:'Sending…', s_redirect:'Taking you to secure payment…',
     s_err:'Something went wrong. Please try again, or email info@gearradar.co.uk.', s_uperr:"We couldn't upload your file. Please try again, or try a smaller file.",
     s_cancelled:'Payment was cancelled and nothing was charged.', s_payfailed:"Your payment didn't go through and nothing was charged. Please try again."
@@ -306,9 +351,9 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
   if (params.get('plan') === 'cv_plus') document.querySelector('input[name="tier"][value="cv_plus"]').checked = true;
 
   // English text lives in the HTML; remember it so the page can switch back from Arabic.
-  document.querySelectorAll('[data-i18n],[data-i18n-html],[data-i18n-ph]').forEach(function(el){
-    var k = el.getAttribute('data-i18n'), kh = el.getAttribute('data-i18n-html'), kp = el.getAttribute('data-i18n-ph');
-    if (k) EN[k] = el.textContent; if (kh) EN[kh] = el.innerHTML; if (kp) EN[kp] = el.getAttribute('placeholder');
+  document.querySelectorAll('[data-i18n],[data-i18n-html],[data-i18n-ph],[data-i18n-aria]').forEach(function(el){
+    var k = el.getAttribute('data-i18n'), kh = el.getAttribute('data-i18n-html'), kp = el.getAttribute('data-i18n-ph'), ka = el.getAttribute('data-i18n-aria');
+    if (k) EN[k] = el.textContent; if (kh) EN[kh] = el.innerHTML; if (kp) EN[kp] = el.getAttribute('placeholder'); if (ka) EN[ka] = el.getAttribute('aria-label');
   });
   function t(k){ return (lang === 'ar' ? AR[k] : EN[k]) || EN[k] || ''; }
   function nm(o){ return lang === 'ar' ? o.ar : o.en; }
@@ -320,9 +365,10 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'card' + (type !== 'all' && d.type !== type ? ' hide' : '');
       b.setAttribute('aria-pressed', d.key === design);
-      b.innerHTML = '<img loading="lazy" alt="" src="images/polishly/' + d.key + '.webp"><b></b><small></small>';
+      b.innerHTML = '<span class="thumb"><img loading="lazy" alt="" src="images/polishly/' + d.key + '.webp"><span class="pv"></span></span><b></b><small></small>';
       b.querySelector('b').textContent = nm(d); b.querySelector('small').textContent = nm(TYPE[d.type]);
-      b.addEventListener('click', function(){ design = d.key; update(); $('order').scrollIntoView({ behavior:'smooth' }); });
+      b.querySelector('.pv').textContent = '👁 ' + t('pv_btn');
+      b.addEventListener('click', function(){ openPreview(d.key); });
       g.appendChild(b);
     });
     var sel = $('design'); sel.innerHTML = '';
@@ -343,7 +389,66 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
     document.querySelectorAll('.plus-only').forEach(function(el){ el.classList.toggle('section-hide', tier() !== 'cv_plus'); });
     document.querySelectorAll('.gulf-only').forEach(function(el){ el.classList.toggle('section-hide', !isGulf()); });
     $('dueAmt').textContent = '£' + PRICES[tier()];
+    showMini();
   }
+
+  // Live preview: the sample CV rendered in the chosen design + theme (polishly-preview.js).
+  var canPreview = typeof window.PolishlyPreview === 'function', miniKey = '';
+  function showMini(){
+    if (!canPreview) { $('miniBox').parentNode.classList.add('section-hide'); return; }
+    var k = design + '|' + theme;
+    if (k !== miniKey) { miniKey = k; $('miniFrame').srcdoc = window.PolishlyPreview(design, theme); }
+    $('miniFrame').style.transform = 'scale(' + ($('miniBox').clientWidth / 794) + ')';
+  }
+  var pvd = $('pvd'), pvDesign = design, pvTheme = theme, pvKey = '';
+  function pvRender(){
+    var d = DESIGNS.filter(function(x){ return x.key === pvDesign; })[0];
+    $('pvName').textContent = nm(d); $('pvType').textContent = nm(TYPE[d.type]);
+    var sw = $('pvThemes'); sw.innerHTML = '';
+    THEMES.forEach(function(x){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'sw'; b.setAttribute('aria-pressed', x.key === pvTheme);
+      b.innerHTML = '<i></i><span></span>'; b.querySelector('i').style.background = x.c; b.querySelector('span').textContent = nm(x);
+      b.addEventListener('click', function(){ pvTheme = x.key; pvRender(); });
+      sw.appendChild(b);
+    });
+    var k = pvDesign + '|' + pvTheme;
+    if (k !== pvKey) { pvKey = k; $('pvFrame').srcdoc = window.PolishlyPreview(pvDesign, pvTheme); } else pvFit();
+  }
+  function pvFit(){
+    var f = $('pvFrame'), doc = f.contentDocument, h = 1123;
+    if (doc && doc.documentElement) h = Math.max(1123, doc.documentElement.scrollHeight);
+    var pad = innerWidth <= 560 ? 20 : 32, w = Math.min(794, $('pvStage').clientWidth - pad), sc = w / 794;
+    f.style.height = h + 'px'; f.style.transform = 'scale(' + sc + ')';
+    $('pvSheet').style.width = w + 'px'; $('pvSheet').style.height = Math.ceil(h * sc) + 'px';
+  }
+  $('pvFrame').addEventListener('load', function(){
+    pvFit();
+    // Web fonts can change the height after load.
+    var doc = $('pvFrame').contentDocument;
+    if (doc && doc.fonts && doc.fonts.ready) doc.fonts.ready.then(pvFit);
+  });
+  function openPreview(key){
+    if (!canPreview) { design = key; update(); $('order').scrollIntoView({ behavior:'smooth' }); return; }
+    pvDesign = key || design; pvTheme = theme;
+    if (pvd.showModal) pvd.showModal(); else pvd.setAttribute('open', '');
+    pvRender(); pvFit(); $('pvStage').scrollTop = 0;
+  }
+  function closePreview(){ if (pvd.close) pvd.close(); else pvd.removeAttribute('open'); }
+  function step(n){
+    var i = DESIGNS.map(function(x){ return x.key; }).indexOf(pvDesign);
+    pvDesign = DESIGNS[(i + n + DESIGNS.length) % DESIGNS.length].key; pvRender(); $('pvStage').scrollTop = 0;
+  }
+  $('pvPrev').addEventListener('click', function(){ step(-1); });
+  $('pvNext').addEventListener('click', function(){ step(1); });
+  $('pvClose').addEventListener('click', closePreview);
+  pvd.addEventListener('click', function(e){ if (e.target === pvd) closePreview(); });
+  $('pvChoose').addEventListener('click', function(){
+    design = pvDesign; theme = pvTheme; closePreview(); update();
+    $('order').scrollIntoView({ behavior:'smooth' });
+  });
+  $('miniBox').addEventListener('click', function(){ openPreview(design); });
+  $('miniOpen').addEventListener('click', function(){ openPreview(design); });
+  window.addEventListener('resize', function(){ showMini(); if (pvd.open) pvFit(); });
   $('tabs').addEventListener('click', function(e){
     var b = e.target.closest('button'); if (!b) return;
     $('tabs').querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
@@ -357,6 +462,7 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
     document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-i18n-html]').forEach(function(el){ el.innerHTML = t(el.getAttribute('data-i18n-html')); });
     document.querySelectorAll('[data-i18n-ph]').forEach(function(el){ el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph'))); });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el){ el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
     $('langToggle').textContent = l === 'ar' ? 'English' : 'العربية';
     if (cvFile) $('dropText').textContent = cvFile.name;
     try { localStorage.setItem('gr_lang', l); } catch (e) {}
