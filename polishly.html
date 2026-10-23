@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script src="consent.js?v=20261019"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polishly: a CV that gets you noticed, from £3 | Gear Radar</title>
+<meta name="description" content="Polishly rewrites and redesigns your CV in British, American, modern or Gulf style. ATS-friendly, PDF + Word, ready in minutes. One-off from £3.">
+<!-- Hidden until launch: not linked from the site and not indexed. -->
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://www.gearradar.co.uk/polishly.html">
+<meta name="theme-color" content="#15171C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171C; --gold:#FF8A50; --gold-2:#FACC15; --gold-soft:rgba(255,138,80,.12);
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#F5F5F4; --on-ink-muted:#A8A29E; --ok:#15803d; --err:#b91c1c;
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+.container{width:min(1080px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-head);line-height:1.2;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0;line-height:1.4}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;border:1px solid transparent;cursor:pointer;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--ink)} .btn-gold:hover{background:var(--gold-2)}
+.btn[disabled]{opacity:.6;cursor:wait}
+header{background:var(--ink);color:var(--on-ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Sora',sans-serif;font-weight:700;text-decoration:none}
+.brand svg{width:34px;height:34px}
+.lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-weight:600;cursor:pointer;font-family:'Cairo','Inter',sans-serif}
+.hero{background:var(--ink);color:var(--on-ink);padding:40px 0 70px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.kicker{color:var(--gold);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+.hero h1{color:#fff;font-size:clamp(2rem,4.6vw,3.1rem);margin:10px 0 14px}
+.hero p{color:var(--on-ink-muted);max-width:560px}
+.prices{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+.pchip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:10px 16px}
+.pchip b{font-family:var(--font-head);font-size:1.4rem;color:#fff} .pchip s{color:var(--on-ink-muted);margin-inline-start:6px}
+.pchip small{display:block;color:var(--on-ink-muted)}
+.stack{position:relative;height:340px}
+.stack img{position:absolute;width:58%;border-radius:6px;box-shadow:0 24px 50px -20px rgba(0,0,0,.6)}
+.stack img:nth-child(1){left:0;top:30px;transform:rotate(-6deg)}
+.stack img:nth-child(2){left:21%;top:0;z-index:2}
+.stack img:nth-child(3){right:0;top:34px;transform:rotate(6deg)}
+section.block{padding:56px 0}
+section.block h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:8px}
+.lead{color:var(--muted);margin-bottom:26px;max-width:680px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.step .n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--gold-soft);color:#c2410c;font-weight:700;margin-bottom:10px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tabs button{background:#fff;border:1px solid var(--line);padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:600}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#fff;border:2px solid var(--line);border-radius:14px;padding:8px;cursor:pointer;text-align:start}
+.card img{width:100%;display:block;border-radius:6px;border:1px solid #eee}
+.card b{display:block;margin-top:8px;font-size:.95rem} .card small{color:var(--muted)}
+.card[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.card.hide{display:none}
+form{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:0 20px 50px -30px rgba(11,18,32,.35)}
+fieldset{border:0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+fieldset:last-of-type{border-bottom:0;margin-bottom:0;padding-bottom:0}
+legend{font-family:var(--font-head);font-weight:700;font-size:1.15rem;margin-bottom:14px;display:flex;gap:10px;align-items:center}
+legend .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-size:.85rem}
+.full{grid-column:1/-1}
+.field label,.field .label{display:block;font-weight:600;margin-bottom:6px;font-size:.93rem}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.field textarea{min-height:110px;resize:vertical}
+.opt,.hint{color:var(--muted);font-weight:400;font-size:.85rem}
+.hint{display:block;margin-top:4px}
+.err-text{display:none;color:var(--err);font-size:.85rem;margin-top:4px}
+.invalid{border-color:var(--err)!important} .invalid + .err-text,.invalid ~ .err-text{display:block}
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tier{border:2px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;display:block}
+.tier input{position:absolute;opacity:0}
+.tier:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.tier b{font-family:var(--font-head);font-size:1.1rem} .tier .pr{float:inline-end;font-weight:700}
+.tier .pr s{color:var(--muted);font-weight:400;margin-inline-end:4px}
+.tier ul{margin:8px 0 0;padding-inline-start:18px;color:var(--muted);font-size:.9rem}
+.swatches{display:flex;flex-wrap:wrap;gap:10px}
+.sw{display:flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:999px;padding:6px 12px 6px 6px;cursor:pointer;background:#fff}
+.sw i{width:22px;height:22px;border-radius:50%;display:block}
+.sw[aria-pressed="true"]{border-color:var(--gold)}
+.drop{border:2px dashed var(--line);border-radius:16px;padding:22px;text-align:center;cursor:pointer;background:#fcfbf8}
+.drop.has{border-color:var(--ok);border-style:solid}
+.drop.invalid-drop{border-color:var(--err)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem}
+.paywith{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.paywith label{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;gap:10px;cursor:pointer}
+.due{display:flex;justify-content:space-between;align-items:center;background:var(--paper);border-radius:14px;padding:14px 18px}
+.due b{font-family:var(--font-head);font-size:1.6rem}
+.status{margin-inline-start:14px;font-size:.92rem} .status.err{color:var(--err)}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.done{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;text-align:center}
+.section-hide{display:none!important}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:10px}
+.faq summary{font-weight:600;cursor:pointer}
+footer{background:var(--ink);color:var(--on-ink-muted);padding:26px 0;font-size:.9rem}
+footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.stack{height:260px}.gallery{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}}
+@media(max-width:560px){fieldset,.tiers,.paywith{grid-template-columns:1fr}form{padding:20px}}
+</style>
+<script data-goatcounter="https://gear-radar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand" aria-label="Gear Radar">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg>
+      <span>Gear Radar</span>
+    </a>
+    <button class="lang" id="langToggle" type="button">العربية</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container wrap">
+    <div>
+      <span class="kicker">Polishly</span>
+      <h1 data-i18n="h1">A CV that gets you noticed</h1>
+      <p data-i18n="sub">Send us your old CV. We rewrite it in strong, clear English, make it ATS-friendly and redesign it in British, American, modern or Gulf style. PDF and Word, ready in minutes.</p>
+      <div class="prices">
+        <div class="pchip"><b>£3</b><s>£6</s><small data-i18n="p_basic">Polishly · rewrite &amp; design</small></div>
+        <div class="pchip"><b>£5</b><s>£10</s><small data-i18n="p_plus">Polishly Plus · tailored to a job + cover letter</small></div>
+      </div>
+      <a class="btn btn-gold" href="#order" data-i18n="cta">Polish my CV</a>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <img src="images/polishly/modern-split.webp" alt="">
+      <img src="images/polishly/gulf-premium.webp" alt="">
+      <img src="images/polishly/uk-executive.webp" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <h2 data-i18n="how">How it works</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h3 data-i18n="s1">Pick a design</h3><p data-i18n="s1d">12 designs in 4 styles, each in 8 colour themes.</p></div>
+      <div class="step"><span class="n">2</span><h3 data-i18n="s2">Upload your CV</h3><p data-i18n="s2d">PDF or a clear photo. Tell us the job and country you're aiming for.</p></div>
+      <div class="step"><span class="n">3</span><h3 data-i18n="s3">Get it in minutes</h3><p data-i18n="s3d">Your new CV arrives by email as PDF and Word. Two free edit rounds within 7 days.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <h2 data-i18n="designs">Choose your design</h2>
+    <p class="lead" data-i18n="designs_d">Every design works with any of the 8 colour themes. The examples use sample data.</p>
+    <div class="tabs" id="tabs" role="group">
+      <button type="button" data-type="all" aria-pressed="true" data-i18n="t_all">All</button>
+      <button type="button" data-type="uk" aria-pressed="false" data-i18n="t_uk">British CV</button>
+      <button type="button" data-type="us" aria-pressed="false" data-i18n="t_us">American resume</button>
+      <button type="button" data-type="modern" aria-pressed="false" data-i18n="t_modern">Modern concise</button>
+      <button type="button" data-type="gulf" aria-pressed="false" data-i18n="t_gulf">Gulf CV</button>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</section>
+
+<section class="block" id="order" style="padding-top:0">
+  <div class="container" style="max-width:880px">
+  <form id="orderForm" novalidate>
+    <fieldset>
+      <legend><span class="n">1</span><span data-i18n="l_tier">Your package</span></legend>
+      <div class="tiers full">
+        <label class="tier"><input type="radio" name="tier" value="cv_basic" checked><b>Polishly</b><span class="pr"><s>£6</s>£3</span>
+          <ul><li data-i18n="b1">Rewritten in clear, professional English</li><li data-i18n="b2">ATS-friendly, achievements with numbers</li><li data-i18n="b3">Your design + theme, PDF and Word</li></ul></label>
+        <label class="tier"><input type="radio" name="tier" value="cv_plus"><b>Polishly Plus</b><span class="pr"><s>£10</s>£5</span>
+          <ul><li data-i18n="p1">Everything in Polishly</li><li data-i18n="p2">Tailored to one job you choose</li><li data-i18n="p3">Matching cover letter</li></ul></label>
+      </div>
+      <div class="field"><label for="design" data-i18n="f_design">Design</label><select id="design"></select></div>
+      <div class="field full"><span class="label" data-i18n="f_theme">Colour theme</span><div class="swatches" id="themes"></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">2</span><span data-i18n="l_cv">Your CV and target job</span></legend>
+      <div class="drop full" id="drop" tabindex="0" role="button">
+        <b id="dropText" data-i18n="drop">Upload your current CV</b>
+        <span class="hint" data-i18n="drop_h">PDF or a clear photo (JPG/PNG) · max 5 MB. From Word, use File › Save as PDF.</span>
+        <input type="file" id="cv" accept="application/pdf,.pdf,image/jpeg,image/png" hidden>
+      </div>
+      <span class="err-text full" id="cvErr" data-i18n="e_cv">Please upload your CV as a PDF or photo under 5 MB.</span>
+      <div class="field"><label for="role" data-i18n="f_role">Job title you're aiming for</label><input id="role" maxlength="120" placeholder="Operations Manager"><span class="err-text" data-i18n="e_role">Please add the job you're aiming for.</span></div>
+      <div class="field"><label for="tcountry" data-i18n="f_tcountry">Country you're applying in</label>
+        <select id="tcountry"><option>United Kingdom</option><option>Ireland</option><option>United States</option><option>Canada</option><option>Saudi Arabia</option><option>United Arab Emirates</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option><option>Other</option></select></div>
+      <div class="field full plus-only"><label for="job_url"><span data-i18n="f_joburl">Link to the job advert</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="job_url" type="url" maxlength="500" placeholder="https://"></div>
+      <div class="field full plus-only"><label for="job_text" data-i18n="f_jobtext">Job description (paste it here)</label><textarea id="job_text" maxlength="8000"></textarea><span class="err-text" data-i18n="e_job">Please paste the job description or add its link.</span></div>
+      <div class="field full gulf-only"><label for="photo"><span data-i18n="f_photo">Your photo for the Gulf CV</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="photo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_photo">A clear, professional head-and-shoulders photo · max 5 MB</span><span class="err-text" data-i18n="e_photo">Please use a JPG, PNG or WebP under 5 MB.</span></div>
+      <div class="field full gulf-only"><label for="gulf_extra"><span data-i18n="f_gulf">Nationality, visa status, driving licence</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="gulf_extra" maxlength="300" data-i18n-ph="ph_gulf" placeholder="British · employment visa (transferable) · GCC licence"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">3</span><span data-i18n="l_you">Your details</span></legend>
+      <div class="field"><label for="full_name" data-i18n="f_name">Full name</label><input id="full_name" autocomplete="name" maxlength="120"><span class="err-text" data-i18n="e_name">Please enter your name.</span></div>
+      <div class="field"><label for="email" data-i18n="f_email">Email (we send your CV here)</label><input id="email" type="email" autocomplete="email" maxlength="160"><span class="err-text" data-i18n="e_email">Please enter a valid email.</span></div>
+      <div class="due full"><div><span data-i18n="due">Due today</span><br><small class="hint" data-i18n="once">One-off payment</small></div><b id="dueAmt">£3</b></div>
+      <div class="paywith full" role="radiogroup">
+        <label><input type="radio" name="paywith" value="card" checked><span><b data-i18n="pw_card">Card</b><br><small class="hint">Visa, Mastercard, Apple Pay, Google Pay</small></span></label>
+        <label><input type="radio" name="paywith" value="paypal"><span><b>PayPal</b><br><small class="hint" data-i18n="pw_pp">Pay with your PayPal account</small></span></label>
+      </div>
+      <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" tabindex="-1" autocomplete="off"></div>
+      <label class="check full"><input type="checkbox" id="consent"><span data-i18n-html="consent">I agree that Gear Radar may store and process my CV and details to provide this service, and delete my CV files after 30 days, as described in the <a href="privacy.html" target="_blank">privacy notice</a>.</span></label>
+      <span class="err-text full" id="consentErr" data-i18n="e_consent">Please tick the box to continue.</span>
+      <div class="full"><button class="btn btn-gold" type="submit" id="submit" data-i18n="submit">Continue to payment</button><span class="status" id="status" role="status" aria-live="polite"></span></div>
+    </fieldset>
+  </form>
+  <div class="done section-hide" id="done" tabindex="-1">
+    <h2 data-i18n="d_title">Payment received. Thank you!</h2>
+    <p data-i18n="d_body">We're polishing your CV now. It arrives by email in a few minutes, with a link to ask for changes.</p>
+    <p style="margin-top:10px"><span data-i18n="d_ref">Your reference</span>: <b id="ref">—</b></p>
+  </div>
+  </div>
+</section>
+
+<section class="block faq" style="padding-top:0">
+  <div class="container" style="max-width:880px">
+    <h2 data-i18n="faq">Questions</h2>
+    <details><summary data-i18n="q1">Will you make things up to impress employers?</summary><p data-i18n="a1">No. We only use what is in your CV and what you tell us. We rewrite it so your real experience reads clearly and strongly.</p></details>
+    <details><summary data-i18n="q2">What is an ATS-friendly CV?</summary><p data-i18n="a2">Many companies scan CVs with software (Applicant Tracking Systems). We use clear headings, standard sections and the keywords from your target job so the software can read it.</p></details>
+    <details><summary data-i18n="q3">Can I ask for changes?</summary><p data-i18n="a3">Yes. You get two free edit rounds within 7 days. Just write what you want changed in plain words.</p></details>
+    <details><summary data-i18n="q4">What happens to my CV?</summary><p data-i18n="a4">We use it only to make your new CV and delete the files after 30 days.</p></details>
+  </div>
+</section>
+
+<footer><div class="container"><span>© <span id="year">2026</span> Gear Radar Digital Solutions</span><span><a href="privacy.html" data-i18n="privacy">Privacy</a> · info@gearradar.co.uk</span></div></footer>
+
+<script>
+(function(){
+  var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-signup';
+  var SB_URL = 'https://nrkydwotserhniczcgqs.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ya3lkd290c2VyaG5pY3pjZ3FzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyMzU0MzMsImV4cCI6MjEwNTgxMTQzM30.6v1fSTrg00Wj7JM0B18aBfwYzNPngv5y4uaf-HmsYq0'; // public anon key: can only upload into signup-files/incoming
+  var MAX = 5 * 1024 * 1024;
+  // Must match plan_prices (service cv) and the Polishly builder in n8n.
+  var PRICES = { cv_basic: 3, cv_plus: 5 };
+  var DESIGNS = [
+    { key:'uk-executive',   type:'uk',     en:'Executive Band',  ar:'الشريط التنفيذي' },
+    { key:'uk-elegant',     type:'uk',     en:'Elegant Serif',   ar:'الأنيق الكلاسيكي' },
+    { key:'uk-classic',     type:'uk',     en:'Classic',         ar:'الكلاسيكي' },
+    { key:'us-bold',        type:'us',     en:'Bold Headings',   ar:'العناوين البارزة' },
+    { key:'us-timeline',    type:'us',     en:'Timeline',        ar:'الخط الزمني' },
+    { key:'us-classic',     type:'us',     en:'Classic',         ar:'الكلاسيكي' },
+    { key:'modern-sidebar', type:'modern', en:'Dark Sidebar',    ar:'العمود الداكن' },
+    { key:'modern-split',   type:'modern', en:'Split Header',    ar:'الرأس المقسوم' },
+    { key:'modern-classic', type:'modern', en:'Two Columns',     ar:'العمودان' },
+    { key:'gulf-premium',   type:'gulf',   en:'Premium Band',    ar:'الشريط الفاخر' },
+    { key:'gulf-sidebar',   type:'gulf',   en:'Photo Sidebar',   ar:'الصورة الجانبية' },
+    { key:'gulf-classic',   type:'gulf',   en:'Classic',         ar:'الكلاسيكي' }
+  ];
+  var THEMES = [
+    { key:'classic-navy', c:'#1F3A5F', en:'Classic Navy',     ar:'كحلي كلاسيكي' },
+    { key:'charcoal',     c:'#2B2B2B', en:'Charcoal Minimal', ar:'فحمي بسيط' },
+    { key:'emerald',      c:'#0F766E', en:'Emerald',          ar:'زمردي' },
+    { key:'burgundy',     c:'#7A1F3D', en:'Burgundy',         ar:'عنابي' },
+    { key:'royal-blue',   c:'#1D4ED8', en:'Royal Blue',       ar:'أزرق ملكي' },
+    { key:'slate-gold',   c:'#334155', en:'Slate & Gold',     ar:'رمادي وذهبي' },
+    { key:'sunset',       c:'#D9541E', en:'Sunset Orange',    ar:'برتقالي الغروب' },
+    { key:'plum',         c:'#5B2A86', en:'Plum',             ar:'بنفسجي' }
+  ];
+  var TYPE = { uk:{en:'British CV',ar:'سيرة بريطانية'}, us:{en:'American resume',ar:'سيرة أمريكية'}, modern:{en:'Modern concise',ar:'مودرن مختصرة'}, gulf:{en:'Gulf CV',ar:'سيرة خليجية'} };
+  var AR = {
+    h1:'سيرة ذاتية تلفت الانتباه', sub:'أرسل لنا سيرتك الحالية، ونعيد كتابتها بإنجليزية قوية وواضحة، ونجعلها مناسبة لأنظمة الفرز الآلي (ATS)، ونصممها بالأسلوب البريطاني أو الأمريكي أو المودرن أو الخليجي. بصيغتي PDF وWord خلال دقائق.',
+    p_basic:'Polishly · إعادة الكتابة والتصميم', p_plus:'Polishly Plus · مفصّلة على وظيفة + خطاب تقديم', cta:'حسّن سيرتي',
+    how:'كيف تعمل الخدمة', s1:'اختر التصميم', s1d:'12 تصميماً في 4 أساليب، ولكل تصميم 8 ثيمات ألوان.', s2:'ارفع سيرتك', s2d:'ملف PDF أو صورة واضحة، مع الوظيفة والدولة التي تستهدفها.', s3:'استلمها خلال دقائق', s3d:'تصلك سيرتك الجديدة بالبريد بصيغتي PDF وWord، مع جولتي تعديل مجانيتين خلال 7 أيام.',
+    designs:'اختر التصميم', designs_d:'كل تصميم يعمل مع أي ثيم من الثيمات الثمانية. الأمثلة ببيانات تجريبية.',
+    t_all:'الكل', t_uk:'سيرة بريطانية', t_us:'سيرة أمريكية', t_modern:'مودرن مختصرة', t_gulf:'سيرة خليجية',
+    l_tier:'باقتك', b1:'إعادة كتابة بإنجليزية مهنية وواضحة', b2:'مناسبة لأنظمة ATS، والإنجازات بالأرقام', b3:'التصميم والثيم الذي تختاره، بصيغتي PDF وWord',
+    p1:'كل مزايا Polishly', p2:'مفصّلة على وظيفة واحدة تختارها', p3:'خطاب تقديم مطابق لها',
+    f_design:'التصميم', f_theme:'ثيم الألوان', l_cv:'سيرتك والوظيفة المستهدفة', drop:'ارفع سيرتك الحالية', drop_h:'ملف PDF أو صورة واضحة (JPG/PNG) · حتى 5 ميغابايت. من Word اختر: ملف › حفظ باسم PDF.',
+    e_cv:'يرجى رفع سيرتك بصيغة PDF أو صورة أقل من 5 ميغابايت.', f_role:'المسمى الوظيفي الذي تستهدفه', e_role:'يرجى كتابة الوظيفة التي تستهدفها.', f_tcountry:'الدولة التي تتقدم فيها',
+    f_joburl:'رابط إعلان الوظيفة', optional:'(اختياري)', f_jobtext:'وصف الوظيفة (الصقه هنا)', e_job:'يرجى لصق وصف الوظيفة أو إضافة رابطها.',
+    f_photo:'صورتك الشخصية للسيرة الخليجية', h_photo:'صورة واضحة ورسمية للوجه والكتفين · حتى 5 ميغابايت', e_photo:'استخدم صورة JPG أو PNG أو WebP أقل من 5 ميغابايت.',
+    f_gulf:'الجنسية، حالة الإقامة أو التأشيرة، رخصة القيادة', ph_gulf:'سوداني · إقامة قابلة للتحويل · رخصة خليجية',
+    l_you:'بياناتك', f_name:'الاسم الكامل', e_name:'يرجى إدخال اسمك.', f_email:'البريد الإلكتروني (نرسل سيرتك عليه)', e_email:'يرجى إدخال بريد إلكتروني صحيح.',
+    due:'المطلوب اليوم', once:'دفعة واحدة', pw_card:'بطاقة', pw_pp:'ادفع من حسابك في PayPal',
+    consent:'أوافق على أن تحفظ Gear Radar سيرتي وبياناتي وتعالجها لتقديم هذه الخدمة، وأن تحذف ملفات السيرة بعد 30 يوماً، كما هو موضح في <a href="privacy.html" target="_blank">إشعار الخصوصية</a>.',
+    e_consent:'يرجى الموافقة للمتابعة.', submit:'المتابعة إلى الدفع',
+    d_title:'استلمنا دفعتك. شكراً لك!', d_body:'نعمل الآن على تحسين سيرتك، وتصلك بالبريد خلال دقائق مع رابط لطلب التعديلات.', d_ref:'رقم طلبك',
+    faq:'أسئلة شائعة', q1:'هل تضيفون معلومات غير صحيحة لإبهار أصحاب العمل؟', a1:'لا. نستخدم فقط ما في سيرتك وما تخبرنا به، ونعيد صياغته لتظهر خبرتك الحقيقية بوضوح وقوة.',
+    q2:'ما معنى سيرة مناسبة لأنظمة ATS؟', a2:'كثير من الشركات تفرز السير ببرامج آلية. نستخدم عناوين واضحة وأقساماً معتادة وكلمات الوظيفة المستهدفة حتى يقرأها البرنامج بسهولة.',
+    q3:'هل يمكنني طلب تعديلات؟', a3:'نعم، لك جولتا تعديل مجانيتان خلال 7 أيام. اكتب التعديل الذي تريده بكلامك العادي.',
+    q4:'ماذا يحدث لسيرتي؟', a4:'نستخدمها فقط لإعداد سيرتك الجديدة، ونحذف الملفات بعد 30 يوماً.', privacy:'الخصوصية',
+    s_check:'يرجى مراجعة الحقول المحددة.', s_upload:'جارٍ رفع الملفات…', s_sending:'جارٍ الإرسال…', s_redirect:'جارٍ تحويلك إلى صفحة الدفع الآمنة…',
+    s_err:'حدث خطأ. حاول مرة أخرى أو راسلنا على info@gearradar.co.uk.', s_uperr:'تعذّر رفع الملف. حاول مرة أخرى أو جرّب ملفاً أصغر.',
+    s_cancelled:'تم إلغاء الدفع ولم يُخصم أي مبلغ.', s_payfailed:'لم تتم عملية الدفع ولم يُخصم أي مبلغ. حاول مرة أخرى.'
+  };
+  var EN = {
+    s_check:'Please check the highlighted fields.', s_upload:'Uploading your files…', s_sending:'Sending…', s_redirect:'Taking you to secure payment…',
+    s_err:'Something went wrong. Please try again, or email info@gearradar.co.uk.', s_uperr:"We couldn't upload your file. Please try again, or try a smaller file.",
+    s_cancelled:'Payment was cancelled and nothing was charged.', s_payfailed:"Your payment didn't go through and nothing was charged. Please try again."
+  };
+  var $ = function(id){ return document.getElementById(id); };
+  var params = new URLSearchParams(location.search);
+  var lang = 'en', design = params.get('design') || 'uk-executive', theme = params.get('theme') || 'classic-navy', cvFile = null;
+  if (!DESIGNS.some(function(d){ return d.key === design; })) design = 'uk-executive';
+  if (!THEMES.some(function(x){ return x.key === theme; })) theme = 'classic-navy';
+  if (params.get('plan') === 'cv_plus') document.querySelector('input[name="tier"][value="cv_plus"]').checked = true;
+
+  // English text lives in the HTML; remember it so the page can switch back from Arabic.
+  document.querySelectorAll('[data-i18n],[data-i18n-html],[data-i18n-ph]').forEach(function(el){
+    var k = el.getAttribute('data-i18n'), kh = el.getAttribute('data-i18n-html'), kp = el.getAttribute('data-i18n-ph');
+    if (k) EN[k] = el.textContent; if (kh) EN[kh] = el.innerHTML; if (kp) EN[kp] = el.getAttribute('placeholder');
+  });
+  function t(k){ return (lang === 'ar' ? AR[k] : EN[k]) || EN[k] || ''; }
+  function nm(o){ return lang === 'ar' ? o.ar : o.en; }
+
+  function renderGallery(){
+    var g = $('gallery'); g.innerHTML = '';
+    var type = document.querySelector('#tabs [aria-pressed="true"]').getAttribute('data-type');
+    DESIGNS.forEach(function(d){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'card' + (type !== 'all' && d.type !== type ? ' hide' : '');
+      b.setAttribute('aria-pressed', d.key === design);
+      b.innerHTML = '<img loading="lazy" alt="" src="images/polishly/' + d.key + '.webp"><b></b><small></small>';
+      b.querySelector('b').textContent = nm(d); b.querySelector('small').textContent = nm(TYPE[d.type]);
+      b.addEventListener('click', function(){ design = d.key; update(); $('order').scrollIntoView({ behavior:'smooth' }); });
+      g.appendChild(b);
+    });
+    var sel = $('design'); sel.innerHTML = '';
+    DESIGNS.forEach(function(d){ var o = document.createElement('option'); o.value = d.key; o.textContent = nm(TYPE[d.type]) + ' · ' + nm(d); sel.appendChild(o); });
+    sel.value = design;
+    var sw = $('themes'); sw.innerHTML = '';
+    THEMES.forEach(function(x){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'sw'; b.setAttribute('aria-pressed', x.key === theme);
+      b.innerHTML = '<i></i><span></span>'; b.querySelector('i').style.background = x.c; b.querySelector('span').textContent = nm(x);
+      b.addEventListener('click', function(){ theme = x.key; update(); });
+      sw.appendChild(b);
+    });
+  }
+  function tier(){ return document.querySelector('input[name="tier"]:checked').value; }
+  function isGulf(){ return /^gulf-/.test(design); }
+  function update(){
+    renderGallery();
+    document.querySelectorAll('.plus-only').forEach(function(el){ el.classList.toggle('section-hide', tier() !== 'cv_plus'); });
+    document.querySelectorAll('.gulf-only').forEach(function(el){ el.classList.toggle('section-hide', !isGulf()); });
+    $('dueAmt').textContent = '£' + PRICES[tier()];
+  }
+  $('tabs').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    $('tabs').querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+    renderGallery();
+  });
+  $('design').addEventListener('change', function(){ design = this.value; update(); });
+  document.querySelectorAll('input[name="tier"]').forEach(function(r){ r.addEventListener('change', update); });
+
+  function applyLang(l){
+    lang = l; document.documentElement.lang = l; document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){ el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){ el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph'))); });
+    $('langToggle').textContent = l === 'ar' ? 'English' : 'العربية';
+    if (cvFile) $('dropText').textContent = cvFile.name;
+    try { localStorage.setItem('gr_lang', l); } catch (e) {}
+    update();
+  }
+  $('langToggle').addEventListener('click', function(){ applyLang(lang === 'ar' ? 'en' : 'ar'); });
+
+  // CV upload box
+  var drop = $('drop');
+  function takeFile(f){
+    var ok = f && /^(application\/pdf|image\/jpeg|image\/png)$/.test(f.type) && f.size <= MAX;
+    cvFile = ok ? f : null;
+    drop.classList.toggle('has', ok); drop.classList.toggle('invalid-drop', !ok);
+    $('cvErr').style.display = ok ? 'none' : 'block';
+    $('dropText').textContent = ok ? f.name : t('drop');
+  }
+  drop.addEventListener('click', function(){ $('cv').click(); });
+  drop.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('cv').click(); } });
+  $('cv').addEventListener('change', function(){ takeFile(this.files[0]); });
+  drop.addEventListener('dragover', function(e){ e.preventDefault(); });
+  drop.addEventListener('drop', function(e){ e.preventDefault(); takeFile(e.dataTransfer.files[0]); });
+
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function mark(el, bad){ el.classList.toggle('invalid', !!bad); return bad; }
+  function collect(){
+    var bad = [];
+    var name = $('full_name').value.trim(), email = $('email').value.trim().toLowerCase(), role = $('role').value.trim();
+    if (mark($('full_name'), name.length < 2)) bad.push($('full_name'));
+    if (mark($('email'), !EMAIL.test(email))) bad.push($('email'));
+    if (mark($('role'), role.length < 2)) bad.push($('role'));
+    if (!cvFile) { drop.classList.add('invalid-drop'); $('cvErr').style.display = 'block'; bad.push(drop); }
+    var plus = tier() === 'cv_plus', jt = $('job_text').value.trim(), ju = $('job_url').value.trim();
+    if (plus && mark($('job_text'), jt.length < 30 && !/^https?:\/\/\S+\.\S+/.test(ju))) bad.push($('job_text'));
+    var photo = isGulf() && $('photo').files[0] ? $('photo').files[0] : null;
+    if (photo && mark($('photo'), !/^image\/(jpeg|png|webp)$/.test(photo.type) || photo.size > MAX)) bad.push($('photo'));
+    var consent = $('consent').checked;
+    $('consentErr').style.display = consent ? 'none' : 'block';
+    if (!consent) bad.push($('consent'));
+    var payWith = document.querySelector('input[name="paywith"]:checked').value;
+    return { bad: bad, photo: photo, body: {
+      service: 'cv', plan: tier(), billing: 'one_off', full_name: name, email: email,
+      country: $('tcountry').value, language: lang, channel: 'email', whatsapp_number: '',
+      payload: { design: design, theme: theme, target_role: role, target_country: $('tcountry').value,
+        job_url: plus ? ju : '', job_text: plus ? jt : '', gulf_details: isGulf() ? $('gulf_extra').value.trim() : '' },
+      website: $('website').value, pay_with: payWith, promo_code: ''
+    } };
+  }
+  function upload(file, base){
+    var d = new Date(), day = d.getUTCFullYear() + ('0' + (d.getUTCMonth() + 1)).slice(-2) + ('0' + d.getUTCDate()).slice(-2);
+    var ext = file.type === 'application/pdf' ? 'pdf' : (file.type === 'image/png' ? 'png' : (file.type === 'image/webp' ? 'webp' : 'jpg'));
+    var id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    var path = 'incoming/' + day + '/' + id + '/' + base + '.' + ext;
+    return fetch(SB_URL + '/storage/v1/object/signup-files/' + path, {
+      method: 'POST', headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': file.type, 'x-upsert': 'false' }, body: file
+    }).then(function(r){ if (!r.ok) throw new Error('upload ' + r.status); return path; });
+  }
+  var status = $('status'), btn = $('submit');
+  function setStatus(k, cls){ status.textContent = k ? t(k) : ''; status.className = 'status ' + (cls || ''); }
+  $('orderForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var c = collect();
+    if (c.bad.length) { setStatus('s_check', 'err'); var f = c.bad[0]; (f.focus ? f : f.querySelector('input')).focus(); return; }
+    btn.disabled = true; setStatus('s_upload');
+    upload(cvFile, 'cv').then(function(p){
+      c.body.payload.cv_file = p; c.body.payload.cv_mime = cvFile.type;
+      return c.photo ? upload(c.photo, 'photo').then(function(pp){ c.body.payload.photo_file = pp; }) : null;
+    }).catch(function(e){ e.upload = true; throw e; }).then(function(){
+      setStatus('s_sending');
+      return fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(c.body) });
+    }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, j: j }; }); })
+    .then(function(res){
+      if (!res.ok || !res.j.ok) throw new Error('rejected');
+      if (res.j.checkout_url) { setStatus('s_redirect'); window.location.href = res.j.checkout_url; return; }
+      showDone(res.j.ref);
+    }).catch(function(e){ setStatus(e && e.upload ? 's_uperr' : (e && e.message === 'rejected' ? 's_check' : 's_err'), 'err'); })
+    .then(function(){ btn.disabled = false; });
+  });
+  function showDone(ref){
+    $('ref').textContent = ref || '—';
+    $('orderForm').classList.add('section-hide'); $('done').classList.remove('section-hide'); $('done').focus();
+  }
+
+  $('year').textContent = new Date().getFullYear();
+  var initial = params.get('lang');
+  if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch (e) { initial = 'en'; } }
+  applyLang(initial === 'ar' ? 'ar' : 'en');
+  if (params.get('paid') === '1') { showDone((params.get('ref') || '').replace(/[^A-Za-z0-9]/g, '').slice(0, 12)); $('order').scrollIntoView(); }
+  else if (params.get('cancelled') === '1') setStatus('s_cancelled', 'err');
+  else if (params.get('payfailed') === '1') setStatus('s_payfailed', 'err');
+})();
+</script>
+</body>
+</html>
