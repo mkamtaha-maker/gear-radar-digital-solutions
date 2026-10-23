@@ -631,6 +631,13 @@ footer a:hover{color:var(--gold)}
 
   var $ = function(id){ return document.getElementById(id); };
   var params = new URLSearchParams(location.search);
+  // Polishly orders share the checkout, which returns here: send them back to polishly.html.
+  try {
+    var cvRef = sessionStorage.getItem('grPolishlyRef') || '';
+    if (cvRef && String(params.get('ref') || '').toUpperCase() === cvRef.toUpperCase() && (params.get('paid') || params.get('cancelled') || params.get('payfailed'))) {
+      location.replace('polishly.html' + location.search); return;
+    }
+  } catch (e) {}
   var lang = 'en', billing = params.get('billing') === 'annual' ? 'annual' : 'monthly';
   var planKey = params.get('plan');
   var addons = String(params.get('addons') || '').split(',').map(function(c){ return c.trim(); });
