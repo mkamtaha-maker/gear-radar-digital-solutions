@@ -12,7 +12,10 @@
     return '';
   }
   window.grRef = read;
-  var code = clean(new URLSearchParams(location.search).get('ref'));
+  var qs = new URLSearchParams(location.search);
+  // Stripe/PayPal send customers back with ?ref=<order ref>&paid=1: that is not a partner code.
+  if (qs.get('paid') || qs.get('cancelled') || qs.get('payfailed')) return;
+  var code = clean(qs.get('ref'));
   if (!code) return;
   // Remembering the code is optional storage, so it waits for cookie consent (consent.js). Last click wins.
   var C = window.grConsent;

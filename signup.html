@@ -225,7 +225,7 @@ footer a:hover{color:var(--gold)}
 .paywith .rec{font-size:.72rem;color:#15803d;font-weight:600;margin-inline-start:6px}
 @media(max-width:560px){.paywith{grid-template-columns:1fr}}
 </style>
-<script src="ref.js?v=20261019"></script>
+<script src="ref.js?v=20261025"></script>
   <!-- GoatCounter: cookie-free visitor stats -->
   <script data-goatcounter="https://gear-radar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -982,6 +982,9 @@ footer a:hover{color:var(--gold)}
     var trial = trialOn();
     if (trial) {
       payload.trial = true;
+      // No discount on a trial, but the partner code is kept so the affiliate earns on the first charge after it.
+      var refc = cleanCode($('promo').value) || (window.grRef ? cleanCode(window.grRef()) : '');
+      if (refc) payload.ref_code = refc;
       $('trialAckErr').style.display = $('trialAck').checked ? 'none' : 'block';
       if (!$('trialAck').checked) bad.push($('trialAck'));
     }
