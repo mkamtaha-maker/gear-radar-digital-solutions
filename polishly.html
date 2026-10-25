@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="consent.js?v=20261019"></script>
+<script src="ref.js?v=20261025"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Polishly: a CV that gets you noticed, from £3 | Gear Radar</title>
 <link rel="icon" href="images/brand/polishly-dark.svg">
@@ -508,8 +509,14 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
       country: $('tcountry').value, language: lang, channel: 'email', whatsapp_number: '',
       payload: { design: design, theme: theme, target_role: role, target_country: $('tcountry').value,
         job_url: plus ? ju : '', job_text: plus ? jt : '', gulf_details: isGulf() ? $('gulf_extra').value.trim() : '' },
-      website: $('website').value, pay_with: payWith, promo_code: ''
+      website: $('website').value, pay_with: payWith, promo_code: refCode()
     } };
+  }
+  // Partner link (?ref=CODE, or remembered by ref.js) so the affiliate gets the commission.
+  function refCode(){
+    var q = new URLSearchParams(location.search), c = q.get('code') || (q.get('paid') || q.get('cancelled') || q.get('payfailed') ? '' : q.get('ref')) || (window.grRef ? window.grRef() : '');
+    c = String(c || '').toUpperCase().replace(/[^A-Z0-9_-]/g, '');
+    return c.length >= 3 && c.length <= 30 ? c : '';
   }
   function upload(file, base){
     var d = new Date(), day = d.getUTCFullYear() + ('0' + (d.getUTCMonth() + 1)).slice(-2) + ('0' + d.getUTCDate()).slice(-2);
