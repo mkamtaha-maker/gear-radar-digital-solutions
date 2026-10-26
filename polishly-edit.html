@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script src="consent.js?v=20261019"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change your CV | Polishly by Gear Radar</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="images/brand/polishly-dark.svg">
+<meta name="theme-color" content="#15171C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171C; --gold:#FF8A50; --gold-2:#FACC15; --gold-soft:rgba(255,138,80,.12);
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#F5F5F4; --on-ink-muted:#A8A29E; --ok:#15803d; --err:#b91c1c;
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+main{flex:1}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+.container{width:min(760px,100% - 32px);margin-inline:auto}
+h1,h2{font-family:var(--font-head);line-height:1.25;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2{letter-spacing:0;line-height:1.45}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+header{background:var(--ink);color:var(--on-ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;width:min(1080px,100% - 32px);margin-inline:auto}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Sora',sans-serif;font-weight:700;text-decoration:none}
+.brand svg{width:34px;height:34px}
+.lang{background:transparent;border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:8px 14px;border-radius:999px;font-weight:600;cursor:pointer;font-family:'Cairo','Inter',sans-serif}
+.top{background:var(--ink);color:var(--on-ink);padding:26px 0 70px}
+.top h1{color:#fff;font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:6px}
+.top p{color:var(--on-ink-muted)}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;margin-top:-46px;margin-bottom:40px;box-shadow:0 20px 50px -30px rgba(11,18,32,.35)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.pill{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.9rem}
+.pill b{font-weight:600}
+.field{margin-bottom:20px}
+.field label,.field .label{display:block;font-weight:600;margin-bottom:6px}
+.hint{display:block;color:var(--muted);font-size:.88rem;margin-top:4px}
+textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--text)}
+textarea{min-height:170px;resize:vertical}
+textarea.invalid{border-color:var(--err)}
+.examples{margin:8px 0 0;padding-inline-start:18px;color:var(--muted);font-size:.88rem}
+details{border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:22px}
+details summary{cursor:pointer;font-weight:600}
+details .inner{padding-top:14px}
+.swatches{display:flex;flex-wrap:wrap;gap:10px}
+.sw{display:flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:999px;padding:6px 12px 6px 6px;cursor:pointer;background:#fff;color:var(--text)}
+.sw i{width:22px;height:22px;border-radius:50%;display:block}
+.sw[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;border:0;cursor:pointer;text-decoration:none;background:var(--gold);color:var(--ink)}
+.btn:hover{background:var(--gold-2)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.status{font-size:.92rem;color:var(--muted)} .status.err{color:var(--err)}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.msg{text-align:center;padding:16px 6px}
+.msg .ic{font-size:2.4rem;line-height:1;margin-bottom:10px}
+.msg h2{font-size:1.35rem;margin-bottom:8px}
+.msg p{color:var(--muted);max-width:520px;margin:0 auto 6px}
+.hide{display:none!important}
+footer{background:var(--ink);color:var(--on-ink-muted);padding:22px 0;font-size:.9rem}
+footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;width:min(1080px,100% - 32px)}
+@media(max-width:560px){.card{padding:20px}.btn{width:100%}}
+</style>
+<script data-goatcounter="https://gear-radar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<body>
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand" aria-label="Gear Radar">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg>
+      <span>Gear Radar</span>
+    </a>
+    <button class="lang" id="langToggle" type="button">العربية</button>
+  </div>
+</header>
+
+
+<main>
+<section class="top">
+  <div class="container">
+    <h1 data-i18n="h1">Change your CV</h1>
+    <p data-i18n="sub">Tell us what to change and we send you the updated CV by email in a few minutes.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="card" id="card" aria-live="polite">
+    <div class="msg" id="loading"><p data-i18n="loading">Loading your order…</p></div>
+
+    <form id="editForm" class="hide" novalidate>
+      <div class="summary">
+        <span class="pill"><span data-i18n="ref">Reference</span>: <b id="sRef"></b></span>
+        <span class="pill"><b id="sLeft"></b></span>
+        <span class="pill"><span data-i18n="until">Until</span> <b id="sUntil"></b></span>
+      </div>
+      <p id="hello" style="margin-bottom:18px"></p>
+
+      <div class="field">
+        <label for="text" data-i18n="f_text">What should we change?</label>
+        <textarea id="text" maxlength="2000" required data-i18n-ph="ph_text" placeholder="Write each change on its own line."></textarea>
+        <span class="hint" data-i18n="h_text">You can write in English or Arabic. Your CV stays in English.</span>
+        <ul class="examples">
+          <li data-i18n="ex1">Change my phone number to 07…</li>
+          <li data-i18n="ex2">Add my new job: Sales Assistant at Boots, Jan 2025 – Present</li>
+          <li data-i18n="ex3">Make the profile shorter and mention customer service</li>
+        </ul>
+      </div>
+
+      <details>
+        <summary data-i18n="d_look">Change the design or colour (optional)</summary>
+        <div class="inner">
+          <div class="field">
+            <label for="design" data-i18n="f_design">Design</label>
+            <select id="design"></select>
+          </div>
+          <div class="field">
+            <span class="label" data-i18n="f_theme">Colour theme</span>
+            <div class="swatches" id="themes"></div>
+          </div>
+        </div>
+      </details>
+
+      <label class="hp" aria-hidden="true">Website <input id="website" tabindex="-1" autocomplete="off"></label>
+      <div class="row">
+        <button class="btn" id="submit" type="submit" data-i18n="submit">Send my changes</button>
+        <span class="status" id="status" role="status"></span>
+      </div>
+    </form>
+
+    <div class="msg hide" id="done">
+      <div class="ic">✅</div>
+      <h2 data-i18n="done_h">Got it, we're on it</h2>
+      <p data-i18n="done_p">Your updated CV will arrive by email in a few minutes, as PDF and Word. If you ordered in the Tala chat, it comes there too.</p>
+      <p id="doneLeft"></p>
+    </div>
+
+    <div class="msg hide" id="stop">
+      <div class="ic" id="stopIc">⏳</div>
+      <h2 id="stopH"></h2>
+      <p id="stopP"></p>
+      <p><a href="mailto:info@gearradar.co.uk">info@gearradar.co.uk</a></p>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer><div class="container"><span>© <span id="year">2026</span> Gear Radar Digital Solutions</span><span><a href="polishly.html">Polishly</a> · <a href="privacy.html" data-i18n="privacy">Privacy</a></span></div></footer>
+
+<script>
+(function(){
+  var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/polishly-edit';
+  var DESIGNS = [
+    { key:'uk-executive', en:'British · Executive Band', ar:'بريطانية · الشريط التنفيذي' },
+    { key:'uk-elegant', en:'British · Elegant Serif', ar:'بريطانية · الأنيق الكلاسيكي' },
+    { key:'uk-classic', en:'British · Classic', ar:'بريطانية · الكلاسيكي' },
+    { key:'us-bold', en:'American · Bold Headings', ar:'أمريكية · العناوين البارزة' },
+    { key:'us-timeline', en:'American · Timeline', ar:'أمريكية · الخط الزمني' },
+    { key:'us-classic', en:'American · Classic', ar:'أمريكية · الكلاسيكي' },
+    { key:'modern-sidebar', en:'Modern · Dark Sidebar', ar:'مودرن · العمود الداكن' },
+    { key:'modern-split', en:'Modern · Split Header', ar:'مودرن · الرأس المقسوم' },
+    { key:'modern-classic', en:'Modern · Two Columns', ar:'مودرن · العمودان' },
+    { key:'gulf-premium', en:'Gulf · Premium Band', ar:'خليجية · الشريط الفاخر' },
+    { key:'gulf-sidebar', en:'Gulf · Photo Sidebar', ar:'خليجية · الصورة الجانبية' },
+    { key:'gulf-classic', en:'Gulf · Classic', ar:'خليجية · الكلاسيكي' }
+  ];
+  var THEMES = [
+    { key:'classic-navy', c:'#1F3A5F', en:'Classic Navy', ar:'كحلي كلاسيكي' },
+    { key:'charcoal', c:'#2B2B2B', en:'Charcoal Minimal', ar:'فحمي بسيط' },
+    { key:'emerald', c:'#0F766E', en:'Emerald', ar:'زمردي' },
+    { key:'burgundy', c:'#7A1F3D', en:'Burgundy', ar:'عنابي' },
+    { key:'royal-blue', c:'#1D4ED8', en:'Royal Blue', ar:'أزرق ملكي' },
+    { key:'slate-gold', c:'#334155', en:'Slate & Gold', ar:'رمادي وذهبي' },
+    { key:'sunset', c:'#D9541E', en:'Sunset Orange', ar:'برتقالي الغروب' },
+    { key:'plum', c:'#5B2A86', en:'Plum', ar:'بنفسجي' }
+  ];
+  var EN = {
+    h1:'Change your CV', sub:'Tell us what to change and we send you the updated CV by email in a few minutes.',
+    loading:'Loading your order…', ref:'Reference', until:'Until',
+    left1:'1 free edit left', left2:'2 free edits left', hello:'Hi {n}, write the changes you want below. We change only what you ask for and keep the rest as it is.',
+    f_text:'What should we change?', ph_text:'Write each change on its own line.', h_text:'You can write in English or Arabic. Your CV stays in English.',
+    ex1:'Change my phone number to 07…', ex2:'Add my new job: Sales Assistant at Boots, Jan 2025 – Present', ex3:'Make the profile shorter and mention customer service',
+    d_look:'Change the design or colour (optional)', f_design:'Design', f_theme:'Colour theme', keep:'Keep my current design', current:'(current)',
+    submit:'Send my changes', sending:'Sending…', e_text:'Please write what you want us to change (at least a few words).', e_net:'Something went wrong. Please try again in a minute.',
+    done_h:"Got it, we're on it", done_p:'Your updated CV will arrive by email in a few minutes, as PDF and Word. If you ordered in the Tala chat, it comes there too.',
+    done_left1:'After this you have 1 free edit left.', done_left0:'This was your last free edit.',
+    not_found_h:'This link does not work', not_found_p:'Please open the link from your Polishly email again. If it still does not work, email us and we will help.',
+    expired_h:'The free edit period has ended', expired_p:'Free edits are available for 7 days after delivery. Email us if you still need a change.',
+    no_edits_left_h:'You have used both free edits', no_edits_left_p:'If something is still wrong, email us with your reference and we will look at it.',
+    deleted_h:'Your files have been deleted', deleted_p:'For your privacy we delete Polishly files after 30 days, so this order can no longer be changed.',
+    busy_h:'Your last change is still being made', busy_p:'Please wait for the email with your updated CV (a few minutes), then come back if you need another change.',
+    privacy:'Privacy'
+  };
+  var AR = {
+    h1:'عدّل سيرتك الذاتية', sub:'اكتب لنا ما تريد تغييره، وسنرسل إليك السيرة المعدّلة بالبريد خلال دقائق.',
+    loading:'جارٍ تحميل طلبك…', ref:'رقم الطلب', until:'حتى',
+    left1:'بقي لك تعديل مجاني واحد', left2:'بقي لك تعديلان مجانيان', hello:'مرحباً {n}، اكتب التعديلات التي تريدها في الأسفل. سنغيّر ما تطلبه فقط ونترك الباقي كما هو.',
+    f_text:'ماذا تريد أن نغيّر؟', ph_text:'اكتب كل تعديل في سطر مستقل.', h_text:'يمكنك الكتابة بالعربية أو الإنجليزية، وتبقى سيرتك بالإنجليزية.',
+    ex1:'غيّر رقم هاتفي إلى 07…', ex2:'أضف وظيفتي الجديدة: Sales Assistant في Boots، من يناير 2025 حتى الآن', ex3:'اجعل النبذة أقصر واذكر خدمة العملاء',
+    d_look:'تغيير التصميم أو اللون (اختياري)', f_design:'التصميم', f_theme:'ثيم الألوان', keep:'أبقِ تصميمي الحالي', current:'(الحالي)',
+    submit:'أرسل التعديلات', sending:'جارٍ الإرسال…', e_text:'اكتب ما تريد تغييره من فضلك (بضع كلمات على الأقل).', e_net:'حدث خطأ. حاول مرة أخرى بعد دقيقة.',
+    done_h:'وصلنا طلبك، ونعمل عليه الآن', done_p:'ستصلك السيرة المعدّلة بالبريد خلال دقائق بصيغتي PDF وWord، وإذا طلبتها من محادثة تالا فستصلك هناك أيضاً.',
+    done_left1:'بعد هذا التعديل يبقى لك تعديل مجاني واحد.', done_left0:'كان هذا آخر تعديل مجاني لك.',
+    not_found_h:'هذا الرابط لا يعمل', not_found_p:'افتح الرابط من رسالة Polishly مرة أخرى. وإذا لم يعمل، راسلنا وسنساعدك.',
+    expired_h:'انتهت مدة التعديل المجاني', expired_p:'التعديلات المجانية متاحة لمدة 7 أيام بعد التسليم. راسلنا إن كنت ما زلت تحتاج إلى تعديل.',
+    no_edits_left_h:'استخدمت التعديلين المجانيين', no_edits_left_p:'إذا بقي خطأ ما، راسلنا مع رقم طلبك وسنراجعه.',
+    deleted_h:'حُذفت ملفاتك', deleted_p:'حفاظاً على خصوصيتك نحذف ملفات Polishly بعد 30 يوماً، لذلك لم يعد ممكناً تعديل هذا الطلب.',
+    busy_h:'ما زلنا نعمل على تعديلك السابق', busy_p:'انتظر رسالة البريد التي تحمل سيرتك المعدّلة (بضع دقائق)، ثم عد إلى هنا إن احتجت تعديلاً آخر.',
+    privacy:'الخصوصية'
+  };
+  var $ = function(id){ return document.getElementById(id); };
+  var q = new URLSearchParams(location.search);
+  var token = String(q.get('t') || '').trim();
+  var lang = q.get('lang') === 'ar' ? 'ar' : (q.get('lang') === 'en' ? 'en' : null);
+  if (!lang) { try { lang = localStorage.getItem('gr_lang') === 'ar' ? 'ar' : 'en'; } catch (e) { lang = 'en'; } }
+  var info = null, design = '', theme = '', stopKey = '', sending = false;
+  function t(k){ return (lang === 'ar' ? AR[k] : EN[k]) || EN[k] || ''; }
+  function nm(o){ return lang === 'ar' ? o.ar : o.en; }
+
+  function renderPickers(){
+    var sel = $('design'); sel.innerHTML = '';
+    var keep = document.createElement('option'); keep.value = ''; keep.textContent = t('keep'); sel.appendChild(keep);
+    DESIGNS.forEach(function(d){
+      var o = document.createElement('option'); o.value = d.key;
+      o.textContent = nm(d) + (info && info.design === d.key ? ' ' + t('current') : ''); sel.appendChild(o);
+    });
+    sel.value = design;
+    var box = $('themes'); box.innerHTML = '';
+    THEMES.forEach(function(th){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'sw';
+      var active = (theme || (info && info.theme)) === th.key;
+      b.setAttribute('aria-pressed', active);
+      b.innerHTML = '<i style="background:' + th.c + '"></i>';
+      b.appendChild(document.createTextNode(nm(th) + (info && info.theme === th.key ? ' ' + t('current') : '')));
+      b.addEventListener('click', function(){ theme = th.key === (info && info.theme) ? '' : th.key; renderPickers(); });
+      box.appendChild(b);
+    });
+  }
+  function fmtDate(iso){
+    try { return new Date(iso).toLocaleDateString(lang === 'ar' ? 'ar' : 'en-GB', { day:'numeric', month:'long', year:'numeric' }); } catch (e) { return ''; }
+  }
+  function renderInfo(){
+    if (!info) return;
+    $('sRef').textContent = info.ref || '';
+    $('sLeft').textContent = info.edits_left === 1 ? t('left1') : t('left2');
+    $('sUntil').textContent = info.edits_until ? fmtDate(info.edits_until) : '';
+    $('hello').textContent = t('hello').replace('{n}', info.first_name || '');
+    renderPickers();
+  }
+  function stop(key){
+    stopKey = key;
+    $('loading').classList.add('hide'); $('editForm').classList.add('hide'); $('done').classList.add('hide'); $('stop').classList.remove('hide');
+    $('stopIc').textContent = key === 'busy' ? '⏳' : key === 'not_found' ? '🔗' : 'ℹ️';
+    $('stopH').textContent = t(key + '_h'); $('stopP').textContent = t(key + '_p');
+  }
+  function applyLang(l){
+    lang = l; document.documentElement.lang = l; document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){ el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph'))); });
+    $('langToggle').textContent = l === 'ar' ? 'English' : 'العربية';
+    try { localStorage.setItem('gr_lang', l); } catch (e) {}
+    renderInfo();
+    if (stopKey) stop(stopKey);
+    if (!$('done').classList.contains('hide') && $('doneLeft').dataset.left) $('doneLeft').textContent = t('done_left' + $('doneLeft').dataset.left);
+  }
+  $('langToggle').addEventListener('click', function(){ applyLang(lang === 'ar' ? 'en' : 'ar'); });
+  $('design').addEventListener('change', function(){ design = this.value; });
+
+  function call(body){
+    return fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(body) })
+      .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); });
+  }
+
+  $('editForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if (sending) return;
+    var text = $('text').value.trim();
+    if (text.length < 5) { $('text').classList.add('invalid'); $('status').textContent = t('e_text'); $('status').className = 'status err'; $('text').focus(); return; }
+    $('text').classList.remove('invalid');
+    sending = true; $('submit').disabled = true; $('status').textContent = t('sending'); $('status').className = 'status';
+    call({ action:'submit', token: token, text: text, design: design, theme: theme, website: $('website').value })
+      .then(function(j){
+        if (j && j.ok) {
+          $('editForm').classList.add('hide'); $('done').classList.remove('hide');
+          var left = Number(j.edits_left) > 0 ? '1' : '0';
+          $('doneLeft').dataset.left = left; $('doneLeft').textContent = t('done_left' + left);
+          return;
+        }
+        var r = (j && j.reason) || '';
+        if (['not_found', 'expired', 'no_edits_left', 'deleted', 'busy'].indexOf(r) >= 0) stop(r);
+        else if (r === 'empty') { $('status').textContent = t('e_text'); $('status').className = 'status err'; }
+        else { $('status').textContent = t('e_net'); $('status').className = 'status err'; }
+      })
+      .catch(function(){ $('status').textContent = t('e_net'); $('status').className = 'status err'; })
+      .then(function(){ sending = false; $('submit').disabled = false; });
+  });
+
+  $('year').textContent = new Date().getFullYear();
+  applyLang(lang);
+  if (!/^[a-f0-9]{24,64}$/i.test(token)) { stop('not_found'); return; }
+  call({ action:'info', token: token }).then(function(j){
+    if (!j || !j.ok) return stop('not_found');
+    info = j;
+    if (j.deleted) return stop('deleted');
+    if (j.expired) return stop('expired');
+    if (Number(j.edits_left) <= 0) return stop('no_edits_left');
+    if (j.busy) return stop('busy');
+    renderInfo();
+    $('loading').classList.add('hide'); $('editForm').classList.remove('hide');
+  }).catch(function(){
+    $('loading').querySelector('p').textContent = t('e_net');
+  });
+})();
+</script>
+</body>
+</html>
