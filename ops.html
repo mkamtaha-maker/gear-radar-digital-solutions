@@ -524,7 +524,9 @@ td.n,th.n{text-align:end;font-variant-numeric:tabular-nums}
           + (e.node ? esc(t('step')) + ': <bdi>' + esc(e.node) + '</bdi> · ' : '') + '<span dir="auto">' + esc(e.message) + '</span>'
           + (e.url ? ' · <a href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(t('openRun')) + '</a>' : '') + '</div></div>'
           + '<div class="side"><span class="dt">' + esc(when(e.occurred_at)) + '</span><button class="done" type="button" data-ev="' + e.id + '">' + esc(t('resolve')) + '</button></div></div>';
-      }));
+      }))
+      // the items the health tile counts "to watch" are listed too, after the ones that need action
+      .concat(amber.map(function(x){ return '<div class="alert warn"><span class="ic">!</span><div><b>' + esc(label(x)) + '</b><div class="sub">' + esc(note(x.note)) + '</div></div><div class="side"></div></div>'; }));
     var accRows = jsAcc.map(function(m){
       var lim = Number(m.lim || 0), left = Math.max(0, lim - Number(m.used || 0)), pct = lim ? left / lim * 100 : 0;
       return '<div class="acc"><span>' + esc(t('account', { n: m.key.split('.')[1] })) + ' <span class="rs">' + resetTxt(m.reset_at) + '</span></span><span class="num" style="font-weight:600">' + fmt(left) + ' <small class="muted" style="font-weight:400">/ ' + fmt(lim) + '</small></span>'
