@@ -254,7 +254,7 @@ td.n,th.n{text-align:end;font-variant-numeric:tabular-nums}
       switchAccount:'سجّل الخروج وادخل ببريد آخر',
       loading:'جارٍ التحميل…', loadErr:'حدث خطأ: ', updated:'آخر تحديث', every3h:'كل 3 ساعات', noData:'لا توجد بيانات بعد',
       tabOverview:'نظرة عامة', tabUsage:'الاستهلاك', tabOps:'التشغيل', tabClients:'العملاء',
-      kHealth:'الحالة العامة', kAllOk:'كل شيء سليم', kIssues:'{n} تحتاج تدخّلًا', kWarn:'{n} للمتابعة', kOpen:'{n} عطل مفتوح',
+      kHealth:'الحالة العامة', kAllOk:'كل شيء سليم', kIssues:'{n} تحتاج تدخّلًا', kWarn:'{n} للمتابعة', kOpen:'منها {n} عطل مفتوح', allResolved:'كلها عولجت',
       kN8n:'عمليات n8n هذه الدورة', kJs:'طلبات JSearch المتبقية', kJsAcc:'{a} من {b} حسابات تعمل', kTala:'عملاء تالا النشطون', kJr:'عملاء JobRadar', kSignups:'تسجيلات هذا الشهر',
       attention:'يحتاج انتباهك', allGood:'كل شيء يعمل بشكل سليم', failed:'تعطّل {w}', workflow:'سير عمل', step:'الخطوة',
       openRun:'افتح التشغيل', resolve:'تمّ الحل', notSaved:'لم يُحفظ', resets:'يتجدد',
@@ -280,7 +280,7 @@ td.n,th.n{text-align:end;font-variant-numeric:tabular-nums}
       switchAccount:'Sign out and use another email',
       loading:'Loading…', loadErr:'Something went wrong: ', updated:'Updated', every3h:'every 3 hours', noData:'No data yet',
       tabOverview:'Overview', tabUsage:'Usage', tabOps:'Operations', tabClients:'Clients',
-      kHealth:'Overall health', kAllOk:'All good', kIssues:'{n} need action', kWarn:'{n} to watch', kOpen:'{n} open failures',
+      kHealth:'Overall health', kAllOk:'All good', kIssues:'{n} need action', kWarn:'{n} to watch', kOpen:'incl. {n} open failure(s)', allResolved:'all marked done',
       kN8n:'n8n executions this cycle', kJs:'JSearch requests left', kJsAcc:'{a} of {b} accounts working', kTala:'Active Tala clients', kJr:'JobRadar clients', kSignups:'Signups this month',
       attention:'Needs your attention', allGood:'Everything is running fine', failed:'{w} failed', workflow:'Workflow', step:'Step',
       openRun:'Open run', resolve:'Resolved', notSaved:'Not saved', resets:'Resets',
@@ -483,6 +483,16 @@ td.n,th.n{text-align:end;font-variant-numeric:tabular-nums}
     var latest = all.map(function(x){ return x.updated_at || x.checked_at; }).filter(Boolean).sort().pop();
     $('stamp').innerHTML = latest ? esc(t('updated')) + ' <span class="dt">' + esc(when(latest)) + '</span> · ' + esc(t('every3h')) : esc(t('noData'));
 
+    // failed runs come from two places: the hb.failures24 check (written every 3 hours) and the open events (live).
+    // Once every failure of the last 24 hours is marked done here, the check stops counting as a problem,
+    // and each open failure counts once in the headline, the status mix and the tab badge alike.
+    var day1 = Date.now() - 864e5;
+    var open24 = events.filter(function(e){ return new Date(e.occurred_at).getTime() >= day1; }).length;
+    checks = checks.map(function(c){
+      if (c.key !== 'hb.failures24' || c.status !== 'bad' || open24) return c;
+      return Object.assign({}, c, { status: 'ok', note: (c.note ? c.note + ' · ' : '') + t('allResolved') });
+    });
+    all = metrics.concat(checks);
     var red = checks.filter(function(c){ return c.status === 'bad' && c.key !== 'hb.failures24'; })
       .concat(metrics.filter(function(m){ return m.status === 'bad'; }));
     var amber = all.filter(function(x){ return x.status === 'warn'; });
@@ -492,9 +502,11 @@ td.n,th.n{text-align:end;font-variant-numeric:tabular-nums}
     var V = {};
 
     // ===== overview =====
-    var health = red.length ? 'bad' : (amber.length || events.length) ? 'warn' : 'ok';
-    var hv = red.length ? t('kIssues', { n: red.length }) : amber.length ? t('kWarn', { n: amber.length }) : t('kAllOk');
-    var cnt = function(s){ return all.filter(function(x){ return x.status === s; }).length; };
+    var health = red.length || events.length ? 'bad' : amber.length ? 'warn' : 'ok';
+    var hv = red.length + events.length ? t('kIssues', { n: red.length + events.length }) : amber.length ? t('kWarn', { n: amber.length }) : t('kAllOk');
+    // status mix: every open failure is one "needs action" item, replacing the summary check while any is open
+    var mixAll = events.length ? all.filter(function(x){ return x.key !== 'hb.failures24'; }).concat(events.map(function(){ return { status: 'bad' }; })) : all;
+    var cnt = function(s){ return mixAll.filter(function(x){ return x.status === s; }).length; };
     var mix = ['ok', 'warn', 'bad', 'unknown'].map(function(s){ return { v: cnt(s), c: COL[s], l: STATUS[lang][s] }; }).filter(function(s){ return s.v; });
     var jsLeft = jsAcc.reduce(function(a, m){ return a + Math.max(0, Number(m.lim || 0) - Number(m.used || 0)); }, 0), jsLim = jsAcc.reduce(function(a, m){ return a + Number(m.lim || 0); }, 0);
     var kpis = '<div class="box kpi c3 ' + health + '"><div class="k">' + esc(t('kHealth')) + '</div><div class="v word">' + esc(hv) + '</div><div class="sub">' + (events.length ? esc(t('kOpen', { n: events.length })) : '&nbsp;') + '</div>' + donut(mix, null, null, 'mini') + '</div>'
@@ -519,7 +531,7 @@ td.n,th.n{text-align:end;font-variant-numeric:tabular-nums}
     if (n8 && n8.reset_at) { var cycleStart = new Date(n8.reset_at); cycleStart.setUTCMonth(cycleStart.getUTCMonth() - 1); n8pts = n8pts.filter(function(p){ return p.x >= cycleStart; }); }
     V.overview = '<div class="bento">' + kpis
       + box('c7', esc(t('attention')), items.length ? '<div class="alerts">' + items.join('') + '</div>' : '<div class="allgood">✓ ' + esc(t('allGood')) + '</div>')
-      + box('c5', esc(t('statusMix')), '<div class="donutRow">' + donut(mix, cnt('ok') + '/' + all.length, t('healthy')) + legend(mix, true) + '</div>')
+      + box('c5', esc(t('statusMix')), '<div class="donutRow">' + donut(mix, cnt('ok') + '/' + mixAll.length, t('healthy')) + legend(mix, true) + '</div>')
       + box('c7', esc(t('n8nTrend')), areaChart(n8pts) + (n8 ? '<div class="sub">' + esc(note(n8.note)) + (n8.lim ? ' · ' + esc(t('limitOf', { l: fmt(n8.lim) })) : '') + '</div>' : ''))
       + box('c5', esc(t('jsTitle')), '<div class="donutRow">' + donut([{ v: jsLeft, c: 'var(--s1)', l: t('left') }, { v: jsLim - jsLeft, c: 'var(--s0)', l: t('used') }], fmt(jsLeft), t('left')) + '<div style="flex:1 1 170px;display:grid;gap:8px">' + accRows + '</div></div>'
         + (js ? '<div class="sub">' + esc(note(js.note)) + '</div>' : ''), 'OpenWeb Ninja')
