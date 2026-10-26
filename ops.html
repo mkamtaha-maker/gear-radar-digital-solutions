@@ -371,7 +371,7 @@ td.n,th.n{text-align:end;font-variant-numeric:tabular-nums}
     if ((m = x.match(/^(\d+) failed today$/))) return m[1] + ' فشل اليوم';
     if ((m = x.match(/^(\d+) failed$/))) return m[1] + ' فشل';
     if ((m = x.match(/^(\d+) ms$/))) return m[1] + ' ms';
-    return x.replace('pending £', 'معلّق £').replace(/WhatsApp/g, 'واتساب').replace(/Telegram/g, 'تيليجرام').replace(/ paid\b/, ' مدفوع')
+    return x.replace('pending £', 'معلّق £').replace('refunds from Stripe will fail', 'الاسترداد عبر Stripe سيفشل').replace(/WhatsApp/g, 'واتساب').replace(/Telegram/g, 'تيليجرام').replace(/ paid\b/, ' مدفوع')
       .replace(/^limit /, 'الحد ').replace('status CONNECTED', 'متصل');
   }
 
