@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<script src="consent.js?v=20261019" data-ads="AW-18518617512"></script>
+<script src="consent.js?v=20261027" data-ads="AW-18518617512"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign up | Gear Radar Digital Solutions</title>
 <meta name="description" content="Sign up for Tala, your personal assistant (with add-ons like JobRadar), a business website or a QR menu. English and Arabic.">
@@ -1075,6 +1075,10 @@ footer a:hover{color:var(--gold)}
       if (res.j.checkout_url) {
         // Remember a free-trial checkout so the return page says the trial started, not "payment received".
         try { if (c.body.payload && c.body.payload.trial) sessionStorage.setItem('grTrialRef', String(res.j.ref || '')); else sessionStorage.removeItem('grTrialRef'); } catch (e) {}
+        // Analytics: remember what is being paid so the return page can report the purchase.
+        var sale = { ref: String(res.j.ref || ''), value: Number(dueUsdNow || 0), currency: qCur, plan: plan().key };
+        try { sessionStorage.setItem('grSale', JSON.stringify(sale)); } catch (e) {}
+        track('begin_checkout', { currency: sale.currency, value: sale.value, items: [{ item_id: sale.plan }] });
         setStatus('s_redirect'); window.location.href = res.j.checkout_url; return;
       }
       showDone(res.j);
@@ -1083,7 +1087,9 @@ footer a:hover{color:var(--gold)}
     }).then(function(){ btn.disabled = false; });
   });
 
+  function track(name, params){ if (window.grConsent && grConsent.track) grConsent.track(name, params); }
   function showDone(j){
+    track('generate_lead', { plan: plan().key });
     $('ref').textContent = j.ref || '—';
     $('d3').textContent = t(group() === 'combo' ? 'd_3combo' : (group() === 'web' ? 'd_3web' : (group() === 'qr' ? 'd_3qr' : ($('ch_wa').checked ? 'd_3wa' : 'd_3tg'))));
     if (j.duplicate) $('done').querySelector('p').textContent = t('d_dup');
@@ -1175,6 +1181,12 @@ footer a:hover{color:var(--gold)}
     if (isTrial) { var d2 = document.querySelector('#done [data-i18n="d_2"]'); if (d2) { d2.setAttribute('data-i18n', 'd_2trial'); d2.textContent = t('d_2trial'); } }
     $('ref').textContent = paidRef;
     $('signup').classList.add('section-hide'); $('done').classList.remove('section-hide');
+    // Analytics: report the payment once (a reload of this page does not count it again).
+    var sale = null; try { sale = JSON.parse(sessionStorage.getItem('grSale') || 'null'); sessionStorage.removeItem('grSale'); } catch (e) {}
+    if (sale && String(sale.ref).toUpperCase() === paidRef.toUpperCase()) {
+      if (isTrial) track('start_trial', { plan: sale.plan });
+      else track('purchase', { transaction_id: paidRef, currency: sale.currency, value: sale.value, items: [{ item_id: sale.plan, price: sale.value, quantity: 1 }] });
+    }
   } else if (params.get('cancelled') === '1') { setStatus('s_cancelled', 'err'); }
   else if (params.get('payfailed') === '1') { setStatus('s_payfailed', 'err'); }
 })();
