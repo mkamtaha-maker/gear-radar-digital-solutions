@@ -1,6 +1,8 @@
 /* Gear Radar cookie consent (UK GDPR + PECR).
    Non-essential storage only starts after the visitor taps Accept:
-   - the Google Ads tag (pages that load this file with data-ads="AW-...");
+   - Google Analytics (GA4, every page that loads this file) and the Google Ads tag
+     (pages that load it with data-ads="AW-..."), in Consent Mode v2 "basic": no Google
+     script loads at all until Accept;
    - the partner code from ?ref= (ref.js asks via grConsent.whenGranted).
    Language and currency choices are essential and are not covered here.
    The choice is kept for 6 months; grConsent.open() shows the banner again. */
@@ -8,12 +10,13 @@
   var KEY = 'gr_consent', MONTHS = 6;
   var me = document.currentScript;
   var ADS = me && me.getAttribute('data-ads');
+  var GA = 'G-7N27X8PRYG';
   var ar = (document.documentElement.lang || '').toLowerCase().indexOf('ar') === 0;
   var T = ar ? {
-    text: 'نستخدم ملفات تعريف الارتباط (الكوكيز) بإذنك فقط: تستخدمها إعلانات Google لقياس أداء إعلاناتنا، ويُحفَظ رمز الشريك عند الدخول من رابطه لمدة 60 يوماً. أمّا الإعدادات الأساسية كاللغة والعملة فتُحفَظ دائماً.',
+    text: 'نستخدم ملفات تعريف الارتباط (الكوكيز) بإذنك فقط: تستخدمها Google Analytics وإعلانات Google لمعرفة كيف يصل الزوار إلى موقعنا وقياس أداء إعلاناتنا، ويُحفَظ رمز الشريك عند الدخول من رابطه لمدة 60 يوماً. أمّا الإعدادات الأساسية كاللغة والعملة فتُحفَظ دائماً.',
     yes: 'موافقة', no: 'رفض', more: 'الخصوصية والكوكيز'
   } : {
-    text: 'We use cookies only with your permission: Google Ads uses them to measure our adverts, and a partner code from a partner link is remembered for 60 days. Essential settings such as your language and currency are always kept.',
+    text: 'We use cookies only with your permission: Google Analytics and Google Ads use them to see how visitors find us and to measure our adverts, and a partner code from a partner link is remembered for 60 days. Essential settings such as your language and currency are always kept.',
     yes: 'Accept', no: 'Reject', more: 'Privacy & cookies'
   };
 
@@ -28,16 +31,18 @@
 
   var state = read(), queue = [], box = null;
 
-  function loadAds(){
-    if (!ADS || window.__grAds) return;
+  function loadTags(){
+    if (window.__grAds) return;
     window.__grAds = 1;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
     gtag('js', new Date());
-    gtag('config', ADS);
+    gtag('config', GA);
+    if (ADS) gtag('config', ADS);
     var s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ADS);
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA;
     document.head.appendChild(s);
   }
   function clearOptional(){
@@ -53,7 +58,7 @@
   function decide(c){
     var was = state;
     state = c; save(c); hide();
-    if (c === 'yes') { loadAds(); queue.splice(0).forEach(function(fn){ try { fn(); } catch(e) {} }); }
+    if (c === 'yes') { loadTags(); queue.splice(0).forEach(function(fn){ try { fn(); } catch(e) {} }); }
     else { queue = []; clearOptional(); if (was === 'yes' && window.__grAds) location.reload(); }
   }
 
@@ -88,9 +93,11 @@
       if (state === 'no') return;
       queue.push(fn); show();
     },
-    open: show
+    open: show,
+    // Sends a GA4 / Google Ads event, only if the visitor accepted (otherwise nothing is sent).
+    track: function(name, params){ if (state === 'yes' && window.gtag) gtag('event', name, params || {}); }
   };
 
-  if (state === 'yes') loadAds();
-  else if (!state && ADS) show();
+  if (state === 'yes') loadTags();
+  else if (!state) show();
 })();
