@@ -936,8 +936,9 @@ html[dir="rtl"] .co-card dd[dir="ltr"]{text-align:right}
 
   var dd = document.getElementById('svcDD'), ddBtn = document.getElementById('svcBtn');
   function ddSet(o){ dd.classList.toggle('open', o); ddBtn.setAttribute('aria-expanded', o); }
-  ddBtn.addEventListener('click', function(e){ e.stopPropagation(); ddSet(!dd.classList.contains('open')); });
-  if (window.matchMedia('(hover:hover)').matches){ dd.addEventListener('mouseenter', function(){ ddSet(true); }); dd.addEventListener('mouseleave', function(){ ddSet(false); }); }
+  var ddHov = window.matchMedia('(hover:hover)').matches;
+  ddBtn.addEventListener('click', function(e){ e.stopPropagation(); ddSet(ddHov ? true : !dd.classList.contains('open')); });
+  if (ddHov){ dd.addEventListener('mouseenter', function(){ ddSet(true); }); dd.addEventListener('mouseleave', function(){ ddSet(false); }); }
   document.addEventListener('click', function(e){ if (!dd.contains(e.target)) ddSet(false); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && dd.classList.contains('open')){ ddSet(false); ddBtn.focus(); } });
   dd.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ ddSet(false); }); });
