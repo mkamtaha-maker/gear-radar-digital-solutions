@@ -4,15 +4,15 @@
 <script src="consent.js?v=20261027" data-ads="AW-18518617512"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tala: AI Personal Assistant on WhatsApp &amp; Telegram from £7/month | Gear Radar</title>
-<meta name="description" content="Tala is an AI personal assistant in your WhatsApp or Telegram. She writes and sends your emails from Gmail after you confirm, manages your Google Calendar, sets reminders and sends a daily morning brief. From £7 a month.">
+<title>Tala: Personal Assistant on WhatsApp &amp; Telegram from £7/month | Gear Radar</title>
+<meta name="description" content="Tala is a personal assistant in your WhatsApp or Telegram. She writes and sends your emails from Gmail after you confirm, manages your Google Calendar, sets reminders and sends a daily morning brief. From £7 a month.">
 <link rel="canonical" href="https://www.gearradar.co.uk/tala.html">
 <link rel="alternate" hreflang="en" href="https://www.gearradar.co.uk/tala.html">
 <link rel="alternate" hreflang="ar" href="https://www.gearradar.co.uk/tala-ar.html">
 <link rel="alternate" hreflang="x-default" href="https://www.gearradar.co.uk/tala.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tala: your personal assistant in WhatsApp and Telegram">
-<meta property="og:description" content="Tala is an AI personal assistant in your WhatsApp or Telegram. She writes and sends your emails from Gmail after you confirm, manages your Google Calendar, sets reminders and sends a daily morning brief. From £7 a month.">
+<meta property="og:description" content="Tala is a personal assistant in your WhatsApp or Telegram. She writes and sends your emails from Gmail after you confirm, manages your Google Calendar, sets reminders and sends a daily morning brief. From £7 a month.">
 <meta property="og:url" content="https://www.gearradar.co.uk/tala.html">
 <meta property="og:image" content="https://www.gearradar.co.uk/images/gear-radar-logo.png">
 <meta property="og:locale" content="en_GB">
@@ -28,8 +28,8 @@
  "@type": "Service",
  "@id": "https://www.gearradar.co.uk/tala.html#service",
  "name": "Tala",
- "serviceType": "AI personal assistant on WhatsApp and Telegram",
- "description": "Tala is an AI personal assistant in your WhatsApp or Telegram. She writes and sends your emails from Gmail after you confirm, manages your Google Calendar, sets reminders and sends a daily morning brief. From £7 a month.",
+ "serviceType": "Personal assistant on WhatsApp and Telegram",
+ "description": "Tala is a personal assistant in your WhatsApp or Telegram. She writes and sends your emails from Gmail after you confirm, manages your Google Calendar, sets reminders and sends a daily morning brief. From £7 a month.",
  "url": "https://www.gearradar.co.uk/tala.html",
  "inLanguage": "en",
  "image": "https://www.gearradar.co.uk/images/gear-radar-logo.png",
@@ -356,6 +356,29 @@ footer{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid rgba
 .trial-sub{margin:12px 0 0;font-size:.9rem;color:var(--on-ink-muted)}
 .plan .badge.trial-badge{background:var(--gold);color:var(--ink);font-weight:700}
 .plan .trial{margin:4px 0 0;font-size:.88rem;font-weight:600;color:#C2410C}
+
+/* Services menu (same as homepage) */
+header{position:relative;z-index:60}
+.gr-dd{position:relative}
+.gr-dd-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:var(--on-ink);font:inherit;font-size:.93rem;font-weight:600;cursor:pointer;padding:8px 4px}
+.gr-dd-btn:hover,.gr-dd.open .gr-dd-btn{color:#fff}
+.gr-chev{width:15px;height:15px;transition:transform .2s}
+.gr-dd.open .gr-chev{transform:rotate(180deg)}
+.gr-dd-menu{position:absolute;top:calc(100% + 14px);inset-inline-end:-90px;width:min(620px,calc(100vw - 32px));display:none;grid-template-columns:1fr 1fr;gap:4px 16px;padding:16px;background:#1B1E25;border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);text-align:start}
+.gr-dd-menu::before{content:"";position:absolute;inset-inline:0;top:-16px;height:16px}
+.gr-dd.open .gr-dd-menu{display:grid}
+.gr-h{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FF8A50;margin:4px 10px 6px}
+html[lang="ar"] .gr-h{letter-spacing:0;font-size:.85rem}
+.gr-item{display:flex;gap:12px;align-items:flex-start;padding:9px 10px;border-radius:12px;color:#F5F5F4;text-decoration:none}
+.gr-item:hover,.gr-item[aria-current]{background:#22252D}
+.gr-item img{width:34px;height:34px;flex:none;border-radius:10px;background:#15171C;padding:4px}
+.gr-item b{font-family:'Sora','Cairo',sans-serif;color:#fff;font-size:.95rem}
+html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
+.gr-item small{display:block;color:#A8A29E;font-size:.8rem;line-height:1.4;margin-top:2px;font-weight:400}
+.gr-core{background:rgba(255,138,80,.08);border:1px solid rgba(255,138,80,.25)}
+.gr-badge{font-style:normal;font-size:.66rem;font-weight:700;background:#FF8A50;color:#15171C;padding:2px 8px;border-radius:999px;margin-inline-start:6px;vertical-align:2px}
+.gr-foot{grid-column:1/-1;margin-top:6px;padding:12px 10px 4px;border-top:1px solid rgba(255,255,255,.08);color:#FF8A50;font-weight:600;font-size:.88rem;text-decoration:none}
+@media (max-width:700px){.gr-dd{position:static}.gr-dd-menu{inset-inline:16px;width:auto;grid-template-columns:1fr;top:100%;max-height:calc(100vh - 90px);overflow:auto}}
 </style>
 <script src="ref.js?v=20261025"></script>
 <!-- GoatCounter: cookie-free visitor stats -->
@@ -366,6 +389,7 @@ footer{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid rgba
   <div class="container nav">
     <a href="index.html" class="brand" aria-label="Gear Radar Digital Solutions"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg><span>Gear Radar</span></a>
     <div class="nav-r">
+      <div class="gr-dd" id="grDD"><button type="button" class="gr-dd-btn" id="grDDBtn" aria-expanded="false" aria-controls="grDDMenu">Services<svg class="gr-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="gr-dd-menu" id="grDDMenu"><div><p class="gr-h">For you</p><a class="gr-item gr-core" href="tala.html" aria-current="page"><img src="images/brand/tala-dark.svg" alt="" width="34" height="34"><span><b>Tala</b> <em class="gr-badge">Main</em><small>Your personal assistant on Telegram and WhatsApp</small></span></a><a class="gr-item" href="jobradar.html"><img src="images/brand/jobradar-dark.svg" alt="" width="34" height="34"><span><b>JobRadar</b><small>Jobs that match your CV, every day · Tala add-on</small></span></a><a class="gr-item" href="polishly.html"><img src="images/brand/polishly-dark.svg" alt="" width="34" height="34"><span><b>Polishly</b><small>Your CV rewritten and redesigned · from £3</small></span></a></div><div><p class="gr-h">For your business</p><a class="gr-item" href="webly.html"><img src="images/brand/webly-dark.svg" alt="" width="34" height="34"><span><b>Webly</b><small>A website that brings calls and WhatsApp messages</small></span></a><a class="gr-item" href="menutap.html"><img src="images/brand/menutap-dark.svg" alt="" width="34" height="34"><span><b>MenuTap</b><small>Smart QR menu with table orders</small></span></a><a class="gr-item" href="duo.html"><img src="images/brand/duo-dark.svg" alt="" width="34" height="34"><span><b>Duo</b><small>Website + QR menu together, for less</small></span></a></div><a class="gr-foot" href="index.html#contact">Not sure which one you need? Talk to us</a></div></div>
       <a class="back" href="index.html">← Gear Radar home</a>
       <a class="lang" href="tala-ar.html" hreflang="ar" lang="ar">العربية</a>
     </div>
@@ -413,7 +437,7 @@ footer{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid rgba
     <div class="plans"><div class="plan"><span class="badge trial-badge">🎁 3-day free trial</span><h3>Tala Essential</h3><div class="price">£7<small class="once"> /month</small></div><div class="reg">Regular price from 1 Feb 2027 <s dir="ltr">£14</s></div><p class="trial">3-day free trial, then £7 a month. Card needed, cancel any time.</p><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Tala on Telegram</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>30 messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Gmail, Google Calendar and reminders</span></li></ul><a class="btn btn-gold" href="signup.html?service=butler&amp;plan=basic&amp;billing=monthly">Start free trial</a></div><div class="plan hl"><span class="badge">Most popular</span><h3>Tala Pro</h3><div class="price">£12<small class="once"> /month</small></div><div class="reg">Regular price from 1 Feb 2027 <s dir="ltr">£24</s></div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Telegram or WhatsApp</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>150 messages a day</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Gmail, Google Calendar and reminders</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Voice notes and PDF reading</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Daily morning brief</span></li></ul><a class="btn btn-dark" href="signup.html?service=butler&amp;plan=pro&amp;billing=monthly">Choose Tala Pro · £12</a></div></div><h3 class="xh">Add only what you need</h3><div class="feats xf"><div><h3>JobRadar <span class="xp" dir="ltr">£10/month</span></h3><p>Daily job matches for your CV inside Tala, with tailored CVs and cover letters. JobRadar Plus is £20.</p><p><a href="jobradar.html">How JobRadar works</a></p></div><div><h3>SnapScan <span class="xp" dir="ltr">£3/month</span></h3><p>Send a photo of a document and get a clean PDF back.</p></div><div><h3>DayLog <span class="xp" dir="ltr">£5/month</span></h3><p>Keep a daily diary or work log just by messaging Tala.</p></div><div><h3>ChatBoost <span class="xp" dir="ltr">£4/month</span></h3><p>100 extra messages a day on top of your plan.</p></div></div>
     <p class="addon-box"><b>Add-ons work with either plan</b> and are billed together with it. You can add or remove them later from inside Tala.</p>
     <p class="note">Prices are charged in GBP and shown in your currency at sign-up. Launch prices are 50% off until 31 January 2027, and your monthly price stays locked for 12 months.</p>
-    <div class="links"><a href="index.html#pricing">Build your plan with add-ons</a><a href="jobradar.html">JobRadar for job seekers</a><a href="webly.html">Webly websites</a><a href="menutap.html">MenuTap QR menus</a></div>
+    <div class="links"><a href="#plans">Build your plan with add-ons</a><a href="jobradar.html">JobRadar for job seekers</a><a href="webly.html">Webly websites</a><a href="menutap.html">MenuTap QR menus</a></div>
   </div>
 </section>
 
@@ -445,7 +469,7 @@ footer{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid rgba
     <span>© 2026 Gear Radar Digital Solutions · Greater Manchester, UK · All rights reserved.</span>
     <nav aria-label="Footer">
       <a href="index.html">Home</a>
-      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact">Contact</a>
       <a href="jobradar.html">JobRadar</a>
       <a href="webly.html">Webly</a>
       <a href="menutap.html">MenuTap</a>
@@ -454,5 +478,17 @@ footer{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid rgba
     </nav>
   </div>
 </footer>
+<script>
+(function(){
+  var dd = document.getElementById('grDD'), b = document.getElementById('grDDBtn');
+  if (!dd) return;
+  function set(o){ dd.classList.toggle('open', o); b.setAttribute('aria-expanded', o); }
+  var hov = window.matchMedia('(hover:hover)').matches;
+  b.addEventListener('click', function(e){ e.stopPropagation(); set(hov ? true : !dd.classList.contains('open')); });
+  if (hov){ dd.addEventListener('mouseenter', function(){ set(true); }); dd.addEventListener('mouseleave', function(){ set(false); }); }
+  document.addEventListener('click', function(e){ if (!dd.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && dd.classList.contains('open')){ set(false); b.focus(); } });
+})();
+</script>
 </body>
 </html>
