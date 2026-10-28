@@ -222,6 +222,7 @@ header{background:var(--ink);color:var(--on-ink)}
 .lang{border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:7px 14px;border-radius:999px;font-size:.88rem;font-weight:600;font-family:'Cairo','Inter',sans-serif;text-decoration:none}
 .lang:hover{border-color:var(--gold);color:var(--gold)}
 .hero{background:var(--ink);color:var(--on-ink);padding:56px 0 72px}
+.hero-art{width:100%;max-width:580px;height:auto;margin-inline:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.35))}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.92rem}
@@ -362,6 +363,9 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
 .gr-badge{font-style:normal;font-size:.66rem;font-weight:700;background:#FF8A50;color:#15171C;padding:2px 8px;border-radius:999px;margin-inline-start:6px;vertical-align:2px}
 .gr-foot{grid-column:1/-1;margin-top:6px;padding:12px 10px 4px;border-top:1px solid rgba(255,255,255,.08);color:#FF8A50;font-weight:600;font-size:.88rem;text-decoration:none}
 @media (max-width:700px){.gr-dd{position:static}.gr-dd-menu{inset-inline:16px;width:auto;grid-template-columns:1fr;top:100%;max-height:calc(100vh - 90px);overflow:auto}}
+select.lang{appearance:none;-webkit-appearance:none;cursor:pointer;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
+html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 13px center}
+select.lang option{color:#15171C;background:#fff}
 </style>
 <script src="ref.js?v=20261025"></script>
 <!-- GoatCounter: cookie-free visitor stats -->
@@ -374,7 +378,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     <div class="nav-r">
       <div class="gr-dd" id="grDD"><button type="button" class="gr-dd-btn" id="grDDBtn" aria-expanded="false" aria-controls="grDDMenu">Services<svg class="gr-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="gr-dd-menu" id="grDDMenu"><div><p class="gr-h">For you</p><a class="gr-item gr-core" href="tala.html"><img src="images/brand/tala-dark.svg" alt="" width="34" height="34"><span><b>Tala</b> <em class="gr-badge">Main</em><small>Your personal assistant on Telegram and WhatsApp</small></span></a><a class="gr-item" href="jobradar.html"><img src="images/brand/jobradar-dark.svg" alt="" width="34" height="34"><span><b>JobRadar</b><small>Jobs that match your CV, every day · Tala add-on</small></span></a><a class="gr-item" href="polishly.html"><img src="images/brand/polishly-dark.svg" alt="" width="34" height="34"><span><b>Polishly</b><small>Your CV rewritten and redesigned · from £3</small></span></a></div><div><p class="gr-h">For your business</p><a class="gr-item" href="webly.html" aria-current="page"><img src="images/brand/webly-dark.svg" alt="" width="34" height="34"><span><b>Webly</b><small>A website that brings calls and WhatsApp messages</small></span></a><a class="gr-item" href="menutap.html"><img src="images/brand/menutap-dark.svg" alt="" width="34" height="34"><span><b>MenuTap</b><small>Smart QR menu with table orders</small></span></a><a class="gr-item" href="duo.html"><img src="images/brand/duo-dark.svg" alt="" width="34" height="34"><span><b>Duo</b><small>Website + QR menu together, for less</small></span></a></div><a class="gr-foot" href="index.html#contact">Not sure which one you need? Talk to us</a></div></div>
       <a class="back" href="index.html">← Gear Radar home</a>
-      <a class="lang" href="webly-ar.html" hreflang="ar" lang="ar">العربية</a>
+      <select class="lang" aria-label="Language" onchange="try{localStorage.setItem('gr_lang',this.options[this.selectedIndex].lang)}catch(e){}location.href=this.value"><option value="webly.html" lang="en" selected>EN</option><option value="webly-ar.html" lang="ar">AR</option></select>
     </div>
   </div>
 </header>
@@ -392,9 +396,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
       </div>
       <p class="launch"><b>Launch offer: 50% off</b> every website until 31 January 2027.</p>
     </div>
-    <div class="phone" role="img" aria-label="Example of a Webly website on a phone">
-      <div class="mock-site"><div class="bar">yourbusiness · Gear Radar</div><div class="top"><b>City Barbers</b><small>Walk-ins welcome · Open 9am to 7pm</small><div class="cta"><span>Call now</span><span class="wa">WhatsApp</span></div></div><ul><li><span>Skin fade</span><b>£18</b></li><li><span>Beard trim</span><b>£10</b></li><li><span>Kids cut</span><b>£12</b></li></ul><div class="form">✉️ Send us an enquiry…</div></div>
-    </div>
+    <img class="hero-art" src="images/services/webly-en.webp" alt="A Webly website on a laptop and a phone, with a new customer enquiry" width="1000" height="860" fetchpriority="high">
   </div>
 </div>
 

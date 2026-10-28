@@ -234,6 +234,7 @@ header{background:var(--ink);color:var(--on-ink)}
 .lang{border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:7px 14px;border-radius:999px;font-size:.88rem;font-weight:600;font-family:'Cairo','Inter',sans-serif;text-decoration:none}
 .lang:hover{border-color:var(--gold);color:var(--gold)}
 .hero{background:var(--ink);color:var(--on-ink);padding:56px 0 72px}
+.hero-art{width:100%;max-width:580px;height:auto;margin-inline:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.35))}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.92rem}
@@ -379,6 +380,9 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
 .gr-badge{font-style:normal;font-size:.66rem;font-weight:700;background:#FF8A50;color:#15171C;padding:2px 8px;border-radius:999px;margin-inline-start:6px;vertical-align:2px}
 .gr-foot{grid-column:1/-1;margin-top:6px;padding:12px 10px 4px;border-top:1px solid rgba(255,255,255,.08);color:#FF8A50;font-weight:600;font-size:.88rem;text-decoration:none}
 @media (max-width:700px){.gr-dd{position:static}.gr-dd-menu{inset-inline:16px;width:auto;grid-template-columns:1fr;top:100%;max-height:calc(100vh - 90px);overflow:auto}}
+select.lang{appearance:none;-webkit-appearance:none;cursor:pointer;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
+html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 13px center}
+select.lang option{color:#15171C;background:#fff}
 </style>
 <script src="ref.js?v=20261025"></script>
 <!-- GoatCounter: cookie-free visitor stats -->
@@ -391,7 +395,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     <div class="nav-r">
       <div class="gr-dd" id="grDD"><button type="button" class="gr-dd-btn" id="grDDBtn" aria-expanded="false" aria-controls="grDDMenu">خدماتنا<svg class="gr-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="gr-dd-menu" id="grDDMenu"><div><p class="gr-h">لك أنت</p><a class="gr-item gr-core" href="tala-ar.html" aria-current="page"><img src="images/brand/tala-dark.svg" alt="" width="34" height="34"><span><b>تالا</b> <em class="gr-badge">الأساسية</em><small>مساعدتك الشخصية في تيليجرام وواتساب</small></span></a><a class="gr-item" href="jobradar-ar.html"><img src="images/brand/jobradar-dark.svg" alt="" width="34" height="34"><span><b>JobRadar</b><small>وظائف تناسب سيرتك يوميًا · إضافة لتالا</small></span></a><a class="gr-item" href="polishly.html"><img src="images/brand/polishly-dark.svg" alt="" width="34" height="34"><span><b>Polishly</b><small>إعادة كتابة سيرتك وتصميمها · من £3</small></span></a></div><div><p class="gr-h">لعملك التجاري</p><a class="gr-item" href="webly-ar.html"><img src="images/brand/webly-dark.svg" alt="" width="34" height="34"><span><b>Webly</b><small>موقع يجلب لك المكالمات ورسائل واتساب</small></span></a><a class="gr-item" href="menutap-ar.html"><img src="images/brand/menutap-dark.svg" alt="" width="34" height="34"><span><b>MenuTap</b><small>قائمة QR ذكية مع طلبات الطاولات</small></span></a><a class="gr-item" href="duo-ar.html"><img src="images/brand/duo-dark.svg" alt="" width="34" height="34"><span><b>Duo</b><small>الموقع وقائمة QR معًا بسعر أقل</small></span></a></div><a class="gr-foot" href="index.html?lang=ar#contact">لست متأكدًا مما تحتاج إليه؟ تحدّث معنا</a></div></div>
       <a class="back" href="index.html?lang=ar">→ الصفحة الرئيسية</a>
-      <a class="lang" href="tala.html" hreflang="en" lang="en">English</a>
+      <select class="lang" aria-label="اللغة" onchange="try{localStorage.setItem('gr_lang',this.options[this.selectedIndex].lang)}catch(e){}location.href=this.value"><option value="tala.html" lang="en">EN</option><option value="tala-ar.html" lang="ar" selected>AR</option></select>
     </div>
   </div>
 </header>
@@ -411,9 +415,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
       <p class="trial-sub">لا يُخصم أي مبلغ خلال 3 أيام، وإذا ألغيت قبلها فلن تدفع شيئاً.</p>
       <p class="launch"><b>عرض الإطلاق: خصم 50%</b> حتى 31 يناير 2027، ويبقى سعرك الشهري ثابتاً لمدة 12 شهراً.</p>
     </div>
-    <div class="phone" role="img" aria-label="مثال لمحادثة مع تالا">
-      <div class="phone-top"><img src="images/brand/tala-icon.png" alt="" width="36" height="36"><div><b>تالا</b><small>واتساب · تيليجرام</small></div></div><div class="msg me">راسلي المورّد: يوم الجمعة في نفس الموعد يناسبني.</div><div class="msg">المسودة جاهزة إلى <b dir="ltr">supplier@acme.co.uk</b>: «يوم الجمعة في نفس الموعد يناسبني». اضغط إرسال للتأكيد. ✉️</div><div class="msg me">أرسليها، وذكّريني الساعة 4 عصراً بالاتصال بسامي.</div><div class="msg">أُرسلت من Gmail ✓ وضبطتُ التذكير الساعة 4:00 عصراً. ⏰</div>
-    </div>
+    <img class="hero-art" src="images/services/tala-ar.webp" alt="تالا في واتساب: ترسل بريدك وتحجز مواعيدك وتضبط تذكيراتك" width="1000" height="860" fetchpriority="high">
   </div>
 </div>
 
