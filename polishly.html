@@ -103,7 +103,7 @@ legend .n{display:inline-grid;place-items:center;width:28px;height:28px;border-r
 .hint{display:block;margin-top:4px}
 .err-text{display:none;color:var(--err);font-size:.85rem;margin-top:4px}
 .invalid{border-color:var(--err)!important} .invalid + .err-text,.invalid ~ .err-text{display:block}
-.tiers{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 .tier{border:2px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;display:block}
 .tier input{position:absolute;opacity:0}
 .tier:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
@@ -227,10 +227,12 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
           <ul><li data-i18n="b1">Rewritten in clear, professional English</li><li data-i18n="b2">ATS-friendly, achievements with numbers</li><li data-i18n="b3">Your design + theme, PDF and Word</li></ul></label>
         <label class="tier"><input type="radio" name="tier" value="cv_plus"><b>Polishly Plus</b><span class="pr"><s>£10</s>£5</span>
           <ul><li data-i18n="p1">Everything in Polishly</li><li data-i18n="p2">Tailored to one job you choose</li><li data-i18n="p3">Matching cover letter</li></ul></label>
+        <label class="tier" id="liTier"><input type="radio" name="tier" value="cv_linkedin"><b>LinkedIn Makeover</b><span class="pr"><s>£10</s>£5</span>
+          <ul><li data-i18n="l1">New headline, About and experience</li><li data-i18n="l2">Skills and keywords recruiters search for</li><li data-i18n="l3">Ready-to-paste kit, PDF + text</li></ul></label>
       </div>
-      <div class="field"><label for="design" data-i18n="f_design">Design</label><select id="design"></select></div>
-      <div class="field full"><span class="label" data-i18n="f_theme">Colour theme</span><div class="swatches" id="themes"></div></div>
-      <div class="field full mini">
+      <div class="field cv-only"><label for="design" data-i18n="f_design">Design</label><select id="design"></select></div>
+      <div class="field full cv-only"><span class="label" data-i18n="f_theme">Colour theme</span><div class="swatches" id="themes"></div></div>
+      <div class="field full mini cv-only">
         <button type="button" class="mini-box" id="miniBox" aria-label="Enlarge preview" data-i18n-aria="pv_enlarge"><iframe id="miniFrame" title="CV preview" tabindex="-1" aria-hidden="true"></iframe></button>
         <p><span data-i18n="pv_mini">This is how your CV will look in the design and colours you picked, shown with sample data.</span><br><button type="button" class="linkbtn" id="miniOpen" data-i18n="pv_enlarge">Enlarge preview</button></p>
       </div>
@@ -244,9 +246,11 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
         <input type="file" id="cv" accept="application/pdf,.pdf,image/jpeg,image/png" hidden>
       </div>
       <span class="err-text full" id="cvErr" data-i18n="e_cv">Please upload your CV as a PDF or photo under 5 MB.</span>
+      <p class="hint full li-only section-hide" data-i18n-html="li_how">Best: your LinkedIn profile as a PDF. On a computer, open your profile › <b>Resources</b> (or <b>More</b>) › <b>Save to PDF</b>. Your CV works too.</p>
       <div class="field"><label for="role" data-i18n="f_role">Job title you're aiming for</label><input id="role" maxlength="120" placeholder="Operations Manager"><span class="err-text" data-i18n="e_role">Please add the job you're aiming for.</span></div>
       <div class="field"><label for="tcountry" data-i18n="f_tcountry">Country you're applying in</label>
         <select id="tcountry"><option>United Kingdom</option><option>Ireland</option><option>United States</option><option>Canada</option><option>Saudi Arabia</option><option>United Arab Emirates</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Oman</option><option>Other</option></select></div>
+      <div class="field full li-only section-hide"><label for="li_notes"><span data-i18n="f_linotes">Anything to add: a new course or certificate, the kind of roles you want</span> <span class="opt" data-i18n="optional">(optional)</span></label><textarea id="li_notes" maxlength="1000"></textarea></div>
       <div class="field full plus-only"><label for="job_url"><span data-i18n="f_joburl">Link to the job advert</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="job_url" type="url" maxlength="500" placeholder="https://"></div>
       <div class="field full plus-only"><label for="job_text" data-i18n="f_jobtext">Job description (paste it here)</label><textarea id="job_text" maxlength="8000"></textarea><span class="err-text" data-i18n="e_job">Please paste the job description or add its link.</span></div>
       <div class="field full gulf-only"><label for="photo"><span data-i18n="f_photo">Your photo for the Gulf CV</span> <span class="opt" data-i18n="optional">(optional)</span></label><input id="photo" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint" data-i18n="h_photo">A clear, professional head-and-shoulders photo · max 5 MB</span><span class="err-text" data-i18n="e_photo">Please use a JPG, PNG or WebP under 5 MB.</span></div>
@@ -310,7 +314,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
   var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ya3lkd290c2VyaG5pY3pjZ3FzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyMzU0MzMsImV4cCI6MjEwNTgxMTQzM30.6v1fSTrg00Wj7JM0B18aBfwYzNPngv5y4uaf-HmsYq0'; // public anon key: can only upload into signup-files/incoming
   var MAX = 5 * 1024 * 1024;
   // Must match plan_prices (service cv) and the Polishly builder in n8n.
-  var PRICES = { cv_basic: 3, cv_plus: 5 };
+  var PRICES = { cv_basic: 3, cv_plus: 5, cv_linkedin: 5 };
   var DESIGNS = [
     { key:'uk-executive',   type:'uk',     en:'Executive Band',  ar:'الشريط التنفيذي' },
     { key:'uk-elegant',     type:'uk',     en:'Elegant Serif',   ar:'الأنيق الكلاسيكي' },
@@ -346,6 +350,9 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     t_all:'الكل', t_uk:'سيرة بريطانية', t_us:'سيرة أمريكية', t_modern:'مودرن مختصرة', t_gulf:'سيرة خليجية',
     l_tier:'باقتك', b1:'إعادة كتابة بإنجليزية مهنية وواضحة', b2:'مناسبة لأنظمة ATS، والإنجازات بالأرقام', b3:'التصميم والثيم الذي تختاره، بصيغتي PDF و Word',
     p1:'كل مزايا Polishly', p2:'مفصّلة على وظيفة واحدة تختارها', p3:'خطاب تقديم مطابق لها',
+    l1:'عنوان مهني ونبذة (About) وخبرات جديدة', l2:'المهارات والكلمات التي يبحث بها مسؤولو التوظيف', l3:'حزمة جاهزة للنسخ واللصق، PDF ونص',
+    drop_li:'ارفع ملفك على LinkedIn (PDF) أو سيرتك الحالية', li_how:'الأفضل: ملفك على LinkedIn بصيغة PDF. من الكمبيوتر افتح ملفك › <b>Resources</b> (أو <b>More</b>) › <b>Save to PDF</b>. وتصلح سيرتك الذاتية أيضاً.',
+    f_linotes:'أي إضافة: دورة أو شهادة جديدة، أو نوع الوظائف التي تريدها', d_body_li:'نكتب الآن ملفك الجديد على LinkedIn، وتصلك الحزمة بالبريد خلال دقائق.',
     f_design:'التصميم', f_theme:'ثيم الألوان', l_cv:'سيرتك والوظيفة المستهدفة', drop:'ارفع سيرتك الحالية', drop_h:'ملف PDF أو صورة واضحة (JPG/PNG) · حتى 5 ميغابايت. من Word اختر: ملف › حفظ باسم PDF.',
     e_cv:'يرجى رفع سيرتك بصيغة PDF أو صورة أقل من 5 ميغابايت.', f_role:'المسمى الوظيفي الذي تستهدفه', e_role:'يرجى كتابة الوظيفة التي تستهدفها.', f_tcountry:'الدولة التي تتقدم فيها',
     f_joburl:'رابط إعلان الوظيفة', optional:'(اختياري)', f_jobtext:'وصف الوظيفة (الصقه هنا)', e_job:'يرجى لصق وصف الوظيفة أو إضافة رابطها.',
@@ -365,6 +372,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     s_cancelled:'تم إلغاء الدفع ولم يُخصم أي مبلغ.', s_payfailed:'لم تتم عملية الدفع ولم يُخصم أي مبلغ. حاول مرة أخرى.'
   };
   var EN = {
+    drop_li:'Upload your LinkedIn profile (PDF) or your CV', d_body_li:'We are writing your new LinkedIn profile now. Your kit arrives by email in a few minutes.',
     pv_btn:'Preview', pv_prev:'Previous design', pv_next:'Next design', pv_close:'Close',
     s_check:'Please check the highlighted fields.', s_upload:'Uploading your files…', s_sending:'Sending…', s_redirect:'Taking you to secure payment…',
     s_err:'Something went wrong. Please try again, or email info@gearradar.co.uk.', s_uperr:"We couldn't upload your file. Please try again, or try a smaller file.",
@@ -375,7 +383,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
   var lang = 'en', design = params.get('design') || 'uk-executive', theme = params.get('theme') || 'classic-navy', cvFile = null;
   if (!DESIGNS.some(function(d){ return d.key === design; })) design = 'uk-executive';
   if (!THEMES.some(function(x){ return x.key === theme; })) theme = 'classic-navy';
-  if (params.get('plan') === 'cv_plus') document.querySelector('input[name="tier"][value="cv_plus"]').checked = true;
+  if (params.get('plan') === 'cv_plus' || params.get('plan') === 'cv_linkedin') document.querySelector('input[name="tier"][value="' + params.get('plan') + '"]').checked = true;
 
   // English text lives in the HTML; remember it so the page can switch back from Arabic.
   document.querySelectorAll('[data-i18n],[data-i18n-html],[data-i18n-ph],[data-i18n-aria]').forEach(function(el){
@@ -410,11 +418,17 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     });
   }
   function tier(){ return document.querySelector('input[name="tier"]:checked').value; }
-  function isGulf(){ return /^gulf-/.test(design); }
+  function isLi(){ return tier() === 'cv_linkedin'; }
+  function isGulf(){ return !isLi() && /^gulf-/.test(design); }
+  function dropLabel(){ return t(isLi() ? 'drop_li' : 'drop'); }
   function update(){
     renderGallery();
     document.querySelectorAll('.plus-only').forEach(function(el){ el.classList.toggle('section-hide', tier() !== 'cv_plus'); });
     document.querySelectorAll('.gulf-only').forEach(function(el){ el.classList.toggle('section-hide', !isGulf()); });
+    // LinkedIn Makeover needs no design: hide the CV look options, show the LinkedIn hint and notes.
+    document.querySelectorAll('.cv-only').forEach(function(el){ el.classList.toggle('section-hide', isLi()); });
+    document.querySelectorAll('.li-only').forEach(function(el){ el.classList.toggle('section-hide', !isLi()); });
+    if (!cvFile) $('dropText').textContent = dropLabel();
     $('dueAmt').textContent = '£' + PRICES[tier()];
     showMini();
   }
@@ -504,7 +518,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     cvFile = ok ? f : null;
     drop.classList.toggle('has', ok); drop.classList.toggle('invalid-drop', !ok);
     $('cvErr').style.display = ok ? 'none' : 'block';
-    $('dropText').textContent = ok ? f.name : t('drop');
+    $('dropText').textContent = ok ? f.name : dropLabel();
   }
   drop.addEventListener('click', function(){ $('cv').click(); });
   drop.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('cv').click(); } });
@@ -532,7 +546,8 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     return { bad: bad, photo: photo, body: {
       service: 'cv', plan: tier(), billing: 'one_off', full_name: name, email: email,
       country: $('tcountry').value, language: lang, channel: 'email', whatsapp_number: '',
-      payload: { design: design, theme: theme, target_role: role, target_country: $('tcountry').value,
+      payload: isLi() ? { target_role: role, target_country: $('tcountry').value, notes: $('li_notes').value.trim() }
+        : { design: design, theme: theme, target_role: role, target_country: $('tcountry').value,
         job_url: plus ? ju : '', job_text: plus ? jt : '', gulf_details: isGulf() ? $('gulf_extra').value.trim() : '' },
       website: $('website').value, pay_with: payWith, promo_code: refCode()
     } };
@@ -570,15 +585,16 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
       if (!res.ok || !res.j.ok) throw new Error('rejected');
       if (res.j.checkout_url) {
         // Stripe and PayPal return to signup.html, which sends the customer back here when this ref matches.
-        try { sessionStorage.setItem('grPolishlyRef', String(res.j.ref || '')); } catch (e) {}
+        try { sessionStorage.setItem('grPolishlyRef', String(res.j.ref || '')); sessionStorage.setItem('grPolishlyTier', tier()); } catch (e) {}
         setStatus('s_redirect'); window.location.href = res.j.checkout_url; return;
       }
-      showDone(res.j.ref);
+      showDone(res.j.ref, tier());
     }).catch(function(e){ setStatus(e && e.upload ? 's_uperr' : (e && e.message === 'rejected' ? 's_check' : 's_err'), 'err'); })
     .then(function(){ btn.disabled = false; });
   });
-  function showDone(ref){
+  function showDone(ref, tr){
     $('ref').textContent = ref || '—';
+    if (tr === 'cv_linkedin') { $('done').querySelector('[data-i18n="d_body"]').setAttribute('data-i18n', 'd_body_li'); $('done').querySelector('[data-i18n="d_body_li"]').textContent = t('d_body_li'); }
     $('orderForm').classList.add('section-hide'); $('done').classList.remove('section-hide'); $('done').focus();
   }
 
@@ -586,7 +602,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
   var initial = params.get('lang');
   if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch (e) { initial = 'en'; } }
   applyLang(initial === 'ar' ? 'ar' : 'en');
-  if (params.get('paid') === '1') { showDone((params.get('ref') || '').replace(/[^A-Za-z0-9]/g, '').slice(0, 12)); $('order').scrollIntoView(); }
+  if (params.get('paid') === '1') { var paidTier = ''; try { paidTier = sessionStorage.getItem('grPolishlyTier') || ''; } catch (e) {} showDone((params.get('ref') || '').replace(/[^A-Za-z0-9]/g, '').slice(0, 12), paidTier); $('order').scrollIntoView(); }
   else if (params.get('cancelled') === '1') setStatus('s_cancelled', 'err');
   else if (params.get('payfailed') === '1') setStatus('s_payfailed', 'err');
 })();
