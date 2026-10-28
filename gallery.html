@@ -483,7 +483,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     }
     else if (slug === 'bold') {
       services = svcBody.tiles;
-      parts.push(nav, hero, '<div class="s-strip">' + (state.call ? '<span>☎ 07700 900123</span>' : '') + (state.hours ? '<span>' + esc(s.s_days[0][0] + ' ' + s.s_days[0][1]) + '</span>' : '') + '<span>📍 Manchester</span></div>');
+      parts.push(nav, hero, '<div class="s-strip">' + (state.call ? '<span>☎ 07700 900123</span>' : '') + (state.hours ? '<span>' + esc(s.s_days[0][0] + ' ' + s.s_days[0][1]) + '</span>' : '') + '<span>📍 London</span></div>');
       tail(std);
     }
     else if (slug === 'photo') {
@@ -505,7 +505,7 @@ html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
     }
     else if (slug === 'local') {
       services = svcBody.list;
-      parts.push('<div class="s-info">' + (state.hours ? '<span>🕘 ' + esc(s.s_days[0][1]) + '</span>' : '') + (state.call ? '<span>☎ 07700 900123</span>' : '') + '<span>📍 Manchester</span></div>', nav, hero);
+      parts.push('<div class="s-info">' + (state.hours ? '<span>🕘 ' + esc(s.s_days[0][1]) + '</span>' : '') + (state.call ? '<span>☎ 07700 900123</span>' : '') + '<span>📍 London</span></div>', nav, hero);
       if (state.hours || state.map) parts.push(sec(s.s_map, '<div class="s-visit">' + (state.hours ? hrs : '') + (state.map ? '<div class="s-map"></div>' : '') + '</div>'));
       tail(['services', 'gallery', 'booking', 'contact']);
     }
