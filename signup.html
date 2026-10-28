@@ -257,6 +257,7 @@ footer a:hover{color:var(--gold)}
     <legend><span class="n">1</span><span data-i18n="l_plan">Choose your plan</span></legend>
     <div class="groups" role="group" aria-label="Service">
       <button type="button" data-group="subs" data-i18n="g_subs">Tala · your personal assistant</button>
+      <button type="button" data-group="jobs" data-i18n="g_jobs">JobRadar by email</button>
       <button type="button" data-group="web" data-i18n="g_web">Business website</button>
       <button type="button" data-group="qr" data-i18n="g_qr">QR menu / catalogue</button>
       <button type="button" data-group="combo" data-i18n="g_combo">Duo (save)</button>
@@ -450,6 +451,9 @@ footer a:hover{color:var(--gold)}
     // Tala, the personal assistant: the core monthly product, priced in pounds. Annual = 10 x monthly.
     { key:'basic', service:'butler', cat:'cat_butler', name:'Tala Essential', m:7,  y:70,  cur:'GBP', assistant:true, wa:false, feats:['pf_basic1','pf_basic2','pf_basic3'] },
     { key:'pro',   service:'butler', cat:'cat_butler', name:'Tala Pro',       m:12, y:120, cur:'GBP', assistant:true, wa:true,  feats:['pf_pro1','pf_pro2','pf_pro3'], pop:true },
+    // JobRadar on its own: the daily job digest by email, no Tala. Annual = 10 x monthly.
+    { key:'jobradar',      service:'job_hunter', group:'jobs', cat:'cat_jobs', name:'JobRadar',      m:5,  y:50,  cur:'GBP', jobs:{ titles:6,  areas:3 }, feats:['jf_1','jf_2','jf_3'] },
+    { key:'jobradar_plus', service:'job_hunter', group:'jobs', cat:'cat_jobs', name:'JobRadar Plus', m:10, y:100, cur:'GBP', jobs:{ titles:10, areas:5 }, feats:['jf_p1','jf_p2','jf_p3'], pop:true },
     // Website and QR plans are priced in pounds (cur:'GBP'), paid once. Must match plan_prices in Supabase.
     { key:'web_basic',   service:'website',  group:'web', cat:'cat_web', name:'Website Starter', once:10, cur:'GBP', feats:['wf_b1','wf_b2','wf_b3'] },
     { key:'web_pro',     service:'website',  group:'web', cat:'cat_web', name:'Website Pro',     once:20, cur:'GBP', feats:['wf_p1','wf_p2','wf_p3'], best:true },
@@ -476,13 +480,13 @@ footer a:hover{color:var(--gold)}
   ];
   // Old links (retired Job Hunter plans and bundles) land on the closest Tala plan + add-ons.
   var LEGACY = { premium:['pro', ['jobs']], executive:['pro', ['jobs_plus', 'messages']], jobs_pro:['pro', ['jobs']], jobs_starter:['basic', ['jobs']] };
-  var DEFAULT_PLAN = { subs:'pro', web:'web_pro', qr:'qr_pro', combo:'combo_pro' };
+  var DEFAULT_PLAN = { subs:'pro', jobs:'jobradar', web:'web_pro', qr:'qr_pro', combo:'combo_pro' };
   var MAX_IMG = 5 * 1024 * 1024;
   var AREA_COUNTRIES = ['gb','us','ca','ae','sa','qa','kw','bh','om'];
 
   var EN = {
     back:'Back to plans', title:'Set up your account',
-    g_subs:'Tala · your personal assistant', g_web:'Business website', g_qr:'QR menu / catalogue', g_combo:'Duo (save)',
+    g_subs:'Tala · your personal assistant', g_jobs:'JobRadar by email', g_web:'Business website', g_qr:'QR menu / catalogue', g_combo:'Duo (save)',
     cat_web:'Website', cat_qr:'QR menu', cat_combo:'Website + QR', save_vs:'you save {p}', launch_off:'launch offer, 50% off until 31 January 2027', launch_lock:'launch price, locked for 12 months', once:'one-off', addon:'+ {n}/month',
     wf_b1:'One-page site, one language', wf_b2:'Services & prices, opening hours, enquiry form', wf_b3:'Call button, 4 templates & 4 themes, hosting included',
     wf_p1:'Logo + gallery of up to 8 photos', wf_p2:'Google Map, WhatsApp button & social links', wf_p3:'Arabic + English, 7 templates & 7 themes',
@@ -509,9 +513,10 @@ footer a:hover{color:var(--gold)}
     f_cover:'Cover photo (optional)', h_cover:'Shown behind your name at the top of the page · max 5 MB', f_footer:'Note at the bottom of the page', f_tables:'How many tables?', h_tables:'We make one QR card per table, so every order shows its table number.', e_tables:'Please enter a number from 1 to 200.',
     s_upimg:'Uploading your images…', d_3web:'We build your site and check it ourselves, then email you the link, Client ID and Edit Code (usually within one working day).', d_3qr:'Your page, QR code and printable table card are emailed to you within minutes of approval.', d_3combo:'Your QR page preview is emailed within minutes of approval; your website preview follows after our design check (usually within one working day).', lead:'Takes about 3 minutes. We review every signup and email you your activation link within one working day.',
     l_plan:'Choose your plan', monthly:'Monthly', annual:'Annual', save:'2 months free',
-    cat_butler:'Tala', best:'Best value', popular:'Most popular',
+    cat_butler:'Tala', cat_jobs:'JobRadar by email', best:'Best value', popular:'Most popular',
     per_m:'/month', per_y:'/year', billed_y:'billed yearly', total:'Total',
     pf_basic1:'Tala on Telegram', pf_basic2:'30 messages a day', pf_basic3:'Gmail, Calendar & reminders',
+    jf_1:'Daily job digest by email', jf_2:'Up to 6 job titles in 3 cities', jf_3:'Every job scored against your CV, with a tailored CV draft', jf_p1:'Daily job digest by email', jf_p2:'Up to 10 job titles in 5 cities', jf_p3:'Every job scored against your CV, with a tailored CV draft',
     pf_pro1:'Telegram or WhatsApp', pf_pro2:'150 messages a day', pf_pro3:'Voice notes, PDF reading & daily morning brief',
     l_addons:'Add what you need',
     ao_jobs:'JobRadar', ao_jobs_d:'Daily job matches in Tala: 6 job titles, 3 cities, 40 tailored CVs + 20 cover letters a month',
@@ -549,12 +554,12 @@ footer a:hover{color:var(--gold)}
     d_paid:'Payment received. Thank you!', d_trial:'Your free trial has started!', d_2trial:'Nothing has been charged. We set up your account for you, so check your email for the activation step. We will remind you a day before the first charge.',
     s_check:'Please check the highlighted fields.', s_upload:'Uploading your CV…', s_sending:'Sending…', s_err:'Something went wrong. Please try again, or message us on WhatsApp: +44 7442 309417.', s_uperr:"We couldn't upload your CV. Please try again, or try a smaller PDF.",
     d_title:"We've got your signup", d_ref:'Your reference', d_1:"We've emailed you a confirmation. Check your spam folder if you don't see it.", d_2:'We review your details and set up your account within one working day.',
-    d_3tg:'You get an activation link. One tap opens Telegram and connects your account.', d_3wa:'You get a WhatsApp message from our business number to activate your account.', d_dup:"We already have a signup from you for this service, so we didn't create a new one. Your reference is below.",
+    d_3tg:'You get an activation link. One tap opens Telegram and connects your account.', d_3wa:'You get a WhatsApp message from our business number to activate your account.', d_3jobs:'Your first job digest arrives by email the next morning, from noreply@gearradar.co.uk.', d_dup:"We already have a signup from you for this service, so we didn't create a new one. Your reference is below.",
     d_home:'Back to Gear Radar', privacy:'Privacy'
   };
   var AR = {
     back:'العودة للباقات', title:'جهّز حسابك',
-    g_subs:'تالا · مساعدتك الشخصية', g_web:'موقع لنشاطك', g_qr:'قائمة / كتالوج QR', g_combo:'Duo (توفير)',
+    g_subs:'تالا · مساعدتك الشخصية', g_jobs:'JobRadar عبر البريد', g_web:'موقع لنشاطك', g_qr:'قائمة / كتالوج QR', g_combo:'Duo (توفير)',
     cat_web:'موقع', cat_qr:'قائمة QR', cat_combo:'موقع + QR', save_vs:'توفّر {p}', launch_off:'عرض الإطلاق، خصم 50% حتى 31 يناير 2027', launch_lock:'سعر الإطلاق، ثابت لمدة 12 شهراً', once:'لمرة واحدة', addon:'+ {n} شهرياً',
     wf_b1:'موقع من صفحة واحدة بلغة واحدة', wf_b2:'الخدمات والأسعار وساعات العمل ونموذج استفسار', wf_b3:'زر اتصال، 4 قوالب و4 ثيمات، والاستضافة مشمولة',
     wf_p1:'الشعار ومعرض حتى 8 صور', wf_p2:'خريطة Google وزر واتساب وروابط السوشيال', wf_p3:'عربي + إنجليزي، 7 قوالب و7 ثيمات',
@@ -581,9 +586,10 @@ footer a:hover{color:var(--gold)}
     f_cover:'صورة الغلاف (اختياري)', h_cover:'تظهر خلف اسم المحل أعلى الصفحة · حتى 5 ميغابايت', f_footer:'ملاحظة أسفل الصفحة', f_tables:'كم طاولة عندك؟', h_tables:'نجهّز رمز QR لكل طاولة، فيظهر رقم الطاولة مع كل طلب.', e_tables:'يرجى إدخال رقم من 1 إلى 200.',
     s_upimg:'جارٍ رفع الصور…', d_3web:'نبني موقعك ونراجعه بأنفسنا، ثم نرسل لك الرابط ورقم العميل وكود التعديل بالبريد (عادةً خلال يوم عمل واحد).', d_3qr:'تصلك الصفحة ورمز QR وكرت الطاولة بالبريد خلال دقائق من الموافقة.', d_3combo:'تصلك معاينة صفحة الـ QR بالبريد خلال دقائق من الموافقة، ومعاينة الموقع بعد مراجعتنا للتصميم (عادةً خلال يوم عمل واحد).', lead:'يستغرق حوالي 3 دقائق. نراجع كل طلب ونرسل لك رابط التفعيل بالبريد خلال يوم عمل واحد.',
     l_plan:'اختر باقتك', monthly:'شهري', annual:'سنوي', save:'شهران مجاناً',
-    cat_butler:'تالا', best:'الأفضل قيمة', popular:'الأكثر طلباً',
+    cat_butler:'تالا', cat_jobs:'JobRadar عبر البريد', best:'الأفضل قيمة', popular:'الأكثر طلباً',
     per_m:'/شهرياً', per_y:'/سنوياً', billed_y:'تُدفع سنوياً', total:'المجموع',
     pf_basic1:'تالا على تيليجرام', pf_basic2:'30 رسالة يومياً', pf_basic3:'Gmail والتقويم والتذكيرات',
+    jf_1:'ملخص وظائف يومي عبر البريد الإلكتروني', jf_2:'حتى 6 مسميات وظيفية في 3 مدن', jf_3:'تقييم كل وظيفة مقارنةً بسيرتك الذاتية، مع مسودة سيرة مخصصة', jf_p1:'ملخص وظائف يومي عبر البريد الإلكتروني', jf_p2:'حتى 10 مسميات وظيفية في 5 مدن', jf_p3:'تقييم كل وظيفة مقارنةً بسيرتك الذاتية، مع مسودة سيرة مخصصة',
     pf_pro1:'تيليجرام أو واتساب', pf_pro2:'150 رسالة يومياً', pf_pro3:'الرسائل الصوتية وقراءة ملفات PDF والملخص الصباحي اليومي',
     l_addons:'أضف ما تحتاجه',
     ao_jobs:'JobRadar', ao_jobs_d:'وظائف مناسبة يومياً داخل تالا: 6 مسميات، 3 مدن، 40 سيرة مخصصة + 20 خطاب تقديم شهرياً',
@@ -621,7 +627,7 @@ footer a:hover{color:var(--gold)}
     d_paid:'استلمنا دفعتك. شكراً لك!', d_trial:'بدأت تجربتك المجانية!', d_2trial:'لم يُخصم أي مبلغ. نجهّز حسابك تلقائياً، فتابع بريدك لخطوة التفعيل. وسنذكّرك قبل أول خصم بيوم.',
     s_check:'يرجى مراجعة الحقول المحددة.', s_upload:'جارٍ رفع سيرتك الذاتية…', s_sending:'جارٍ الإرسال…', s_err:'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب: ‎+44 7442 309417.', s_uperr:'تعذّر رفع سيرتك الذاتية. حاول مرة أخرى أو جرّب ملفاً أصغر.',
     d_title:'وصلنا طلبك', d_ref:'رقم طلبك', d_1:'أرسلنا لك بريد تأكيد. راجع مجلد الرسائل غير المرغوبة إن لم تجده.', d_2:'نراجع بياناتك ونجهّز حسابك خلال يوم عمل واحد.',
-    d_3tg:'يصلك رابط تفعيل، وبضغطة واحدة يفتح تيليجرام ويربط حسابك.', d_3wa:'تصلك رسالة واتساب من رقمنا التجاري لتفعيل حسابك.', d_dup:'لدينا طلب سابق منك لهذه الخدمة، لذلك لم ننشئ طلباً جديداً. رقم طلبك بالأسفل.',
+    d_3tg:'يصلك رابط تفعيل، وبضغطة واحدة يفتح تيليجرام ويربط حسابك.', d_3wa:'تصلك رسالة واتساب من رقمنا التجاري لتفعيل حسابك.', d_3jobs:'يصلك أول ملخص للوظائف عبر البريد الإلكتروني صباح اليوم التالي من العنوان noreply@gearradar.co.uk.', d_dup:'لدينا طلب سابق منك لهذه الخدمة، لذلك لم ننشئ طلباً جديداً. رقم طلبك بالأسفل.',
     d_home:'العودة إلى Gear Radar', privacy:'الخصوصية'
   };
   var COUNTRY_NAMES = {
@@ -656,7 +662,7 @@ footer a:hover{color:var(--gold)}
   // Add-ons only apply to the assistant plans.
   function chosenAddons(){ return group() === 'subs' ? ADDONS.filter(function(a){ return addons.indexOf(a.code) > -1; }).map(function(a){ return a.code; }) : []; }
   // During the free trial JobRadar searches up to 3 job titles in 1 city.
-  function jobsAddon(){ var a = chosenAddons().map(addonInfo).filter(function(a){ return a.jobs; })[0] || null; return a && trialOn() ? Object.assign({}, a, { titles: 3, areas: 1 }) : a; }
+  function jobsAddon(){ if (plan().jobs) return plan().jobs; var a = chosenAddons().map(addonInfo).filter(function(a){ return a.jobs; })[0] || null; return a && trialOn() ? Object.assign({}, a, { titles: 3, areas: 1 }) : a; }
   // Free trial: Tala Essential, monthly, with no add-on other than JobRadar.
   // Switch on once the free trial is live in payments.
   var TRIAL_ENABLED = true;
@@ -678,6 +684,8 @@ footer a:hover{color:var(--gold)}
     $('payNote').textContent = t(on ? 'pay_note_trial' : 'pay_note');
   }
   function group(){ return plan().group; }
+  // Tala and JobRadar by email are paid monthly or yearly; the rest are one-off.
+  function recurring(){ return group() === 'subs' || group() === 'jobs'; }
   function tier(){ return String(planKey).replace(/^(web|qr|combo)_/, ''); }
   function hasWeb(){ return group() === 'web' || group() === 'combo'; }
   function hasQr(){ return group() === 'qr' || group() === 'combo'; }
@@ -686,8 +694,8 @@ footer a:hover{color:var(--gold)}
   // ---------- Rendering ----------
   function renderPlans(){
     var box = $('plans'); box.innerHTML = '';
-    box.classList.toggle('three', group() !== 'subs');
-    box.classList.toggle('two', group() === 'subs');
+    box.classList.toggle('three', !recurring());
+    box.classList.toggle('two', recurring());
     PLANS.filter(function(p){ return p.group === group(); }).forEach(function(p){
       var wrap = document.createElement('div'); wrap.className = 'plan';
       var price = p.once ? reg(p.once, p.cur) + money(p.once, p.cur) + ' <span>' + t('once') + '</span>' + (p.add ? '<span class="add">' + t('addon').replace('{n}', money(p.add, p.cur)) + '</span>' : '')
@@ -782,7 +790,7 @@ footer a:hover{color:var(--gold)}
     updateTrial();
     var p = plan(), g = group(), basic = tier() === 'basic';
     document.querySelectorAll('[data-group]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-group') === g); });
-    document.querySelector('.billing').classList.toggle('section-hide', g !== 'subs');
+    document.querySelector('.billing').classList.toggle('section-hide', !recurring());
     $('channelSet').classList.toggle('section-hide', g !== 'subs');
     $('assistantSet').classList.toggle('section-hide', !p.assistant);
     var ja = jobsAddon();
@@ -816,7 +824,7 @@ footer a:hover{color:var(--gold)}
     if (ja) syncAreas();
     renderSummary();
     var ac = chosenAddons();
-    try { history.replaceState(null, '', '?' + (g === 'subs' ? 'service=butler&' : '') + 'plan=' + planKey + (ac.length ? '&addons=' + ac.join(',') : '') + (g === 'subs' ? '&billing=' + billing : '') + (lang === 'ar' ? '&lang=ar' : '')); } catch(e) {}
+    try { history.replaceState(null, '', '?' + (g === 'subs' ? 'service=butler&' : '') + 'plan=' + planKey + (ac.length ? '&addons=' + ac.join(',') : '') + (recurring() ? '&billing=' + billing : '') + (lang === 'ar' ? '&lang=ar' : '')); } catch(e) {}
   }
   function applyLang(l){
     lang = l;
@@ -991,7 +999,7 @@ footer a:hover{color:var(--gold)}
       if (!$('trialAck').checked) bad.push($('trialAck'));
     }
     return { bad: bad, files: files, body: {
-      service: p.service, plan: p.key, billing: p.group === 'subs' ? billing : (p.add ? 'monthly' : 'one_off'),
+      service: p.service, plan: p.key, billing: recurring() ? billing : (p.add ? 'monthly' : 'one_off'),
       full_name: name, email: email, country: $('country').value, language: $('language').value,
       channel: p.group === 'subs' ? channel : 'email', whatsapp_number: p.group === 'subs' && channel === 'whatsapp' ? waDigits : '',
       payload: payload, website: $('website').value,
@@ -1091,7 +1099,7 @@ footer a:hover{color:var(--gold)}
   function showDone(j){
     track('generate_lead', { plan: plan().key });
     $('ref').textContent = j.ref || '—';
-    $('d3').textContent = t(group() === 'combo' ? 'd_3combo' : (group() === 'web' ? 'd_3web' : (group() === 'qr' ? 'd_3qr' : ($('ch_wa').checked ? 'd_3wa' : 'd_3tg'))));
+    $('d3').textContent = t(group() === 'combo' ? 'd_3combo' : (group() === 'web' ? 'd_3web' : (group() === 'qr' ? 'd_3qr' : group() === 'jobs' ? 'd_3jobs' : ($('ch_wa').checked ? 'd_3wa' : 'd_3tg'))));
     if (j.duplicate) $('done').querySelector('p').textContent = t('d_dup');
     $('signup').classList.add('section-hide');
     $('done').classList.remove('section-hide');
@@ -1113,7 +1121,7 @@ footer a:hover{color:var(--gold)}
   function promoMsg(text, cls){ var m = $('promoMsg'); m.textContent = text || ''; m.className = 'msg ' + (cls || ''); }
   function updateQuote(showMsg){
     var p = plan(), my = ++qSeq;
-    var bill = p.group === 'subs' ? billing : 'monthly';
+    var bill = recurring() ? billing : 'monthly';
     fetch(QUOTE, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ plan: p.key, billing: bill, code: trialOn() ? '' : appliedCode, addon: (p.group === 'web' && $('w_care').checked) || (p.group === 'qr' && $('q_care').checked) || (p.group === 'combo' && $('c_care').checked), addons: chosenAddons() }) })
       .then(function(r){ return r.json(); })
       .then(function(q){
