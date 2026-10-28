@@ -498,6 +498,13 @@ html[lang="ar"] .dd-h{letter-spacing:0;font-size:.85rem}
 .svc-more .flip,.dd-foot .flip{display:inline-block}
 @media (max-width:900px){.svc-tiles,.svc-tiles.three{grid-template-columns:1fr}}
 /* Company card + about */
+.home-art img{width:100%;max-width:560px;height:auto;margin-inline:auto;display:block}
+.home-art .ha-ar{display:none}
+html[lang="ar"] .home-art .ha-en{display:none}
+html[lang="ar"] .home-art .ha-ar{display:block}
+.hero .co-card{margin-top:36px;padding:22px 26px}
+.hero .co-card h2{margin-bottom:6px}
+@media (min-width:900px){.hero .co-card dl{grid-template-columns:repeat(5,1fr);gap:20px}.hero .co-card dl>div{grid-template-columns:1fr;gap:4px;border-top:0;padding:8px 0}}
 .co-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:30px;color:var(--on-ink)}
 .co-card h2{font-size:1.1rem;color:var(--white);margin-bottom:14px}
 .co-card dl{display:grid;gap:0}
@@ -579,6 +586,9 @@ html[dir="rtl"] .co-card dd[dir="ltr"]{text-align:right}
       </div>
     </div>
 
+    <div class="home-art"><img class="ha-en" src="images/services/home-en.webp?v=1" alt="Gear Radar logo: Digital services, done properly." width="1000" height="860" fetchpriority="high"><img class="ha-ar" src="images/services/home-ar.webp?v=1" alt="شعار Gear Radar: خدمات رقمية بإتقان واهتمام." width="1000" height="860" loading="lazy"></div>
+  </div>
+  <div class="container">
     <aside class="co-card" aria-labelledby="coTitle">
       <h2 id="coTitle" data-i18n="co_title">Company details</h2>
       <dl>
