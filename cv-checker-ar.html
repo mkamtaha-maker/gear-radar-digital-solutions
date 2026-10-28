@@ -302,6 +302,9 @@ html[lang="ar"] .kw{justify-content:flex-end}
 .share a{display:inline-flex;padding:8px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-size:.9rem;background:var(--white)}
 .share a:hover{border-color:var(--gold)}
 @media (max-width:760px){.cta-box{grid-template-columns:1fr}.res-top{flex-direction:column;text-align:center}.tool{padding:18px}}
+select.lang{appearance:none;-webkit-appearance:none;cursor:pointer;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
+html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 13px center}
+select.lang option{color:#15171C;background:#fff}
 </style>
 <script src="ref.js?v=20261025"></script>
 <!-- GoatCounter: cookie-free visitor stats -->
@@ -314,7 +317,7 @@ html[lang="ar"] .kw{justify-content:flex-end}
     <div class="nav-r">
       <div class="gr-dd" id="grDD"><button type="button" class="gr-dd-btn" id="grDDBtn" aria-expanded="false" aria-controls="grDDMenu">خدماتنا<svg class="gr-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="gr-dd-menu" id="grDDMenu"><div><p class="gr-h">لك أنت</p><a class="gr-item gr-core" href="tala-ar.html"><img src="images/brand/tala-dark.svg" alt="" width="34" height="34"><span><b>تالا</b> <em class="gr-badge">الأساسية</em><small>مساعدتك الشخصية في تيليجرام وواتساب</small></span></a><a class="gr-item" href="jobradar-ar.html"><img src="images/brand/jobradar-dark.svg" alt="" width="34" height="34"><span><b>JobRadar</b><small>وظائف تناسب سيرتك يوميًا · إضافة لتالا</small></span></a><a class="gr-item" href="polishly.html"><img src="images/brand/polishly-dark.svg" alt="" width="34" height="34"><span><b>Polishly</b><small>إعادة كتابة سيرتك وتصميمها · من £3</small></span></a></div><div><p class="gr-h">لعملك التجاري</p><a class="gr-item" href="webly-ar.html"><img src="images/brand/webly-dark.svg" alt="" width="34" height="34"><span><b>Webly</b><small>موقع يجلب لك المكالمات ورسائل واتساب</small></span></a><a class="gr-item" href="menutap-ar.html"><img src="images/brand/menutap-dark.svg" alt="" width="34" height="34"><span><b>MenuTap</b><small>قائمة QR ذكية مع طلبات الطاولات</small></span></a><a class="gr-item" href="duo-ar.html"><img src="images/brand/duo-dark.svg" alt="" width="34" height="34"><span><b>Duo</b><small>الموقع وقائمة QR معًا بسعر أقل</small></span></a></div><a class="gr-foot" href="index.html?lang=ar#contact">لست متأكدًا مما تحتاج إليه؟ تحدّث معنا</a></div></div>
       <a class="back" href="index.html?lang=ar">→ الصفحة الرئيسية</a>
-      <a class="lang" href="cv-checker.html" hreflang="en" lang="en">English</a>
+      <select class="lang" aria-label="اللغة" onchange="try{localStorage.setItem('gr_lang',this.options[this.selectedIndex].lang)}catch(e){}location.href=this.value"><option value="cv-checker.html" lang="en">EN</option><option value="cv-checker-ar.html" lang="ar" selected>AR</option></select>
     </div>
   </div>
 </header>

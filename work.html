@@ -105,7 +105,7 @@ body.only-web .work{grid-template-columns:repeat(auto-fill,minmax(440px,1fr))}
 <header>
   <div class="container nav">
     <a class="back" href="index.html" data-i18n="back">← Back to Gear Radar</a>
-    <button class="lang" id="langToggle" type="button">العربية</button>
+    <button class="lang" id="langToggle" type="button" hidden aria-hidden="true" tabindex="-1">العربية</button><select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select>
   </div>
   <div class="container hero">
     <span class="eyebrow" data-i18n="eyebrow">Our work</span>
@@ -223,6 +223,16 @@ body.only-web .work{grid-template-columns:repeat(auto-fill,minmax(440px,1fr))}
   var f0 = params.get('show'); if (f0 === 'web' || f0 === 'qr') applyFilter(f0);
   applyLang(initial === 'ar' ? 'ar' : 'en');
 })();
+</script>
+<style>select.lang{appearance:none;-webkit-appearance:none;cursor:pointer;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
+html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 13px center}
+select.lang option{color:#15171C;background:#fff}</style>
+<script>
+(function(){var s=document.getElementById('langSelect'),b=document.getElementById('langToggle');if(!s||!b)return;
+function cur(){return (document.documentElement.lang||'en').slice(0,2)==='ar'?'ar':'en';}
+function sync(){s.value=cur();s.setAttribute('aria-label',cur()==='ar'?'اللغة':'Language');}
+s.addEventListener('change',function(){if(s.value!==cur())b.click();});
+new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});sync();})();
 </script>
 </body>
 </html>
