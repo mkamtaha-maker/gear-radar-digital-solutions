@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<script src="consent.js?v=20261027"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free CV Checker: Score Your CV in Seconds | Gear Radar</title>
+<meta name="description" content="Check your CV for free. Get a score out of 100, see what recruiters and applicant tracking systems look for, and compare your CV with a job advert. Your CV never leaves your browser.">
+<link rel="canonical" href="https://www.gearradar.co.uk/cv-checker.html">
+<link rel="alternate" hreflang="en" href="https://www.gearradar.co.uk/cv-checker.html">
+<link rel="alternate" hreflang="ar" href="https://www.gearradar.co.uk/cv-checker-ar.html">
+<link rel="alternate" hreflang="x-default" href="https://www.gearradar.co.uk/cv-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free CV checker: is your CV ready to send?">
+<meta property="og:description" content="Check your CV for free. Get a score out of 100, see what recruiters and applicant tracking systems look for, and compare your CV with a job advert. Your CV never leaves your browser.">
+<meta property="og:url" content="https://www.gearradar.co.uk/cv-checker.html">
+<meta property="og:image" content="https://www.gearradar.co.uk/images/brand/jobradar-icon.png">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#15171C">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "@id": "https://www.gearradar.co.uk/cv-checker.html#app",
+ "name": "Free CV Checker",
+ "url": "https://www.gearradar.co.uk/cv-checker.html",
+ "description": "Check your CV for free. Get a score out of 100, see what recruiters and applicant tracking systems look for, and compare your CV with a job advert. Your CV never leaves your browser.",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "Any (web browser)",
+ "inLanguage": "en",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "GBP"
+ },
+ "provider": {
+  "@id": "https://www.gearradar.co.uk/#business"
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Is the CV checker really free?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. It is free with no sign-up and no limit. You can check as many CVs and job adverts as you like."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is my CV uploaded anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. The check runs inside your browser. Your CV is not sent to our servers and is not stored. If you close the page, it is gone."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What score should my CV get?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Aim for 80 or more. A score between 60 and 79 means a few quick fixes will make a real difference. Below 60, your CV is likely being skipped."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is an applicant tracking system?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Most medium and large employers use software to sort CVs before a person reads them. It looks for clear section headings and the keywords from the job advert, which is why the job advert match matters."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I check a Word CV?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Open it in Word, select all the text, copy it and paste it into the box. PDF files can be uploaded directly."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can someone fix my CV for me?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Polishly, our CV service, rewrites and redesigns your CV from your real experience, ready for applicant tracking systems, from £3. It takes about ten minutes."
+   }
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://www.gearradar.co.uk/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Free CV checker",
+   "item": "https://www.gearradar.co.uk/cv-checker.html"
+  }
+ ]
+}
+</script>
+<style>
+:root{
+  --ink:#15171C; --ink-2:#1B1E25; --ink-3:#22252D; --gold:#FF8A50; --gold-2:#FACC15; --gold-soft:rgba(255,138,80,.14);
+  --paper:#F7F5F0; --white:#FFFFFF; --text:#0F172A; --muted:#5B6475; --line:#E6E2D8;
+  --on-ink:#F5F5F4; --on-ink-muted:#A8A29E;
+  --radius:18px; --shadow:0 20px 50px -24px rgba(21,23,28,.35);
+  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+}
+html[lang="ar"]{ --font-head:'Cairo',system-ui,sans-serif; --font-body:'Cairo',system-ui,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.container{width:min(1100px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-head);line-height:1.2;letter-spacing:-.02em}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0;line-height:1.45}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+header{background:var(--ink);color:var(--on-ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:700;text-decoration:none;color:var(--white)}
+.brand svg{width:30px;height:30px}
+.nav-r{display:flex;align-items:center;gap:14px}
+.back{color:var(--on-ink-muted);font-size:.93rem;font-weight:500;text-decoration:none}
+.back:hover{color:var(--white)}
+.lang{border:1px solid rgba(232,236,244,.25);color:var(--on-ink);padding:7px 14px;border-radius:999px;font-size:.88rem;font-weight:600;font-family:'Cairo','Inter',sans-serif;text-decoration:none}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.hero{background:var(--ink);color:var(--on-ink);padding:56px 0 72px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.92rem}
+.eyebrow img{width:34px;height:34px}
+.hero h1{font-size:clamp(2rem,4.6vw,3.2rem);color:var(--white);margin:16px 0}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{color:var(--on-ink-muted);font-size:1.08rem;max-width:58ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.98rem;border:2px solid transparent}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-2)}
+.btn-ghost{border-color:rgba(232,236,244,.3);color:var(--white)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-dark{background:var(--ink);color:var(--white)}
+.btn-dark:hover{background:var(--ink-3)}
+.launch{margin-top:20px;font-size:.92rem;color:var(--on-ink-muted)}
+.launch b{color:var(--gold-2)}
+.phone{background:var(--ink-2);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:18px;box-shadow:var(--shadow)}
+.phone-top{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:12px}
+.phone-top img{width:36px;height:36px;border-radius:50%}
+.phone-top b{display:block;color:var(--white);font-size:.95rem}
+.phone-top small{color:var(--on-ink-muted);font-size:.78rem}
+.msg{background:var(--ink-3);color:var(--on-ink);padding:10px 13px;border-radius:14px;font-size:.88rem;margin-bottom:9px;max-width:92%}
+.msg b{color:var(--white)}
+.msg small{display:block;color:var(--on-ink-muted)}
+.msg .score{color:var(--gold-2);font-weight:700}
+.msg.me{background:var(--gold);color:var(--ink);margin-inline-start:auto}
+section{padding:72px 0}
+.sec-head{max-width:720px;margin-bottom:36px}
+.sec-head h2{font-size:clamp(1.6rem,3.2vw,2.3rem)}
+.sec-head p{color:var(--muted);margin-top:10px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;counter-reset:s}
+.steps li{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;counter-increment:s}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--gold-soft);color:var(--gold);font-weight:700;margin-bottom:12px}
+.steps h3,.feats h3{font-size:1.05rem;margin-bottom:6px}
+.steps p,.feats p{color:var(--muted);font-size:.95rem}
+.alt{background:var(--white);border-block:1px solid var(--line)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feats div{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--paper)}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:20px}
+.plan{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column}
+.plan.hl{border:2px solid var(--gold)}
+.plan h3{font-size:1.25rem;margin-top:10px}
+.badge{align-self:flex-start;background:var(--gold-soft);color:#B4501C;font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:999px}
+.reg{font-size:.85rem;color:var(--muted)}
+.calc{margin-top:10px;background:var(--paper);border:1px dashed var(--line);border-radius:10px;padding:8px 12px;font-size:.9rem;font-weight:600;color:var(--text);text-align:start}
+html[lang="ar"] .calc{direction:rtl;unicode-bidi:plaintext}
+.wa{margin-top:12px;font-size:.88rem;color:var(--muted)}
+.wa a{color:#B4501C;font-weight:600}
+.price{font-family:'Sora',sans-serif;font-size:2.2rem;font-weight:700;margin:8px 0 4px}
+.price small{font-size:.95rem;color:var(--muted);font-weight:500}
+.plan ul{list-style:none;margin:14px 0 22px;display:grid;gap:9px;flex:1}
+.plan li{display:flex;gap:9px;align-items:flex-start;font-size:.95rem}
+.plan li svg{width:18px;height:18px;flex:none;color:var(--gold);margin-top:3px}
+.note{color:var(--muted);font-size:.9rem;margin-top:18px;max-width:760px}
+.who{font-size:1.05rem;max-width:820px;color:var(--text)}
+.faq details{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:12px;max-width:860px}
+.faq summary{font-weight:600;cursor:pointer;font-family:var(--font-head)}
+.faq details p{color:var(--muted);margin-top:10px}
+.final{background:var(--ink);color:var(--on-ink);text-align:center}
+.final h2{color:var(--white);font-size:clamp(1.6rem,3.2vw,2.3rem)}
+.final p{color:var(--on-ink-muted);margin-top:10px}
+.final .btns{justify-content:center}
+footer{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid rgba(255,255,255,.08);padding:28px 0;font-size:.9rem}
+.foot{display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:space-between;align-items:center}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 18px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--gold)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .feats{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .steps,.feats{grid-template-columns:1fr}
+  .back{display:none}
+  section{padding:56px 0}
+}
+
+/* Services menu (same as homepage) */
+header{position:relative;z-index:60}
+.gr-dd{position:relative}
+.gr-dd-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:var(--on-ink);font:inherit;font-size:.93rem;font-weight:600;cursor:pointer;padding:8px 4px}
+.gr-dd-btn:hover,.gr-dd.open .gr-dd-btn{color:#fff}
+.gr-chev{width:15px;height:15px;transition:transform .2s}
+.gr-dd.open .gr-chev{transform:rotate(180deg)}
+.gr-dd-menu{position:absolute;top:calc(100% + 14px);inset-inline-end:-90px;width:min(620px,calc(100vw - 32px));display:none;grid-template-columns:1fr 1fr;gap:4px 16px;padding:16px;background:#1B1E25;border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);text-align:start}
+.gr-dd-menu::before{content:"";position:absolute;inset-inline:0;top:-16px;height:16px}
+.gr-dd.open .gr-dd-menu{display:grid}
+.gr-h{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FF8A50;margin:4px 10px 6px}
+html[lang="ar"] .gr-h{letter-spacing:0;font-size:.85rem}
+.gr-item{display:flex;gap:12px;align-items:flex-start;padding:9px 10px;border-radius:12px;color:#F5F5F4;text-decoration:none}
+.gr-item:hover,.gr-item[aria-current]{background:#22252D}
+.gr-item img{width:34px;height:34px;flex:none;border-radius:10px;background:#15171C;padding:4px}
+.gr-item b{font-family:'Sora','Cairo',sans-serif;color:#fff;font-size:.95rem}
+html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
+.gr-item small{display:block;color:#A8A29E;font-size:.8rem;line-height:1.4;margin-top:2px;font-weight:400}
+.gr-core{background:rgba(255,138,80,.08);border:1px solid rgba(255,138,80,.25)}
+.gr-badge{font-style:normal;font-size:.66rem;font-weight:700;background:#FF8A50;color:#15171C;padding:2px 8px;border-radius:999px;margin-inline-start:6px;vertical-align:2px}
+.gr-foot{grid-column:1/-1;margin-top:6px;padding:12px 10px 4px;border-top:1px solid rgba(255,255,255,.08);color:#FF8A50;font-weight:600;font-size:.88rem;text-decoration:none}
+@media (max-width:700px){.gr-dd{position:static}.gr-dd-menu{inset-inline:16px;width:auto;grid-template-columns:1fr;top:100%;max-height:calc(100vh - 90px);overflow:auto}}
+
+/* CV checker */
+.hero{padding:48px 0 40px}
+.hero-one{max-width:820px}
+.privacy{margin-top:14px;font-size:.92rem;color:var(--on-ink-muted)}
+.tool{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-top:-8px}
+.tool label{display:block;font-weight:600;font-family:var(--font-head);margin:14px 0 6px}
+.tool label:first-child{margin-top:0}
+.tool textarea{width:100%;min-height:220px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;font-size:.95rem;background:var(--paper);resize:vertical;direction:ltr;text-align:left}
+.tool textarea#jobText{min-height:120px}
+.file{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.file input{font:inherit;font-size:.92rem;max-width:100%}
+.fmsg{font-size:.9rem;color:#B4501C;min-height:1.2em;margin-top:6px}
+.tool .btns{margin-top:18px}
+.tool .btn-ghost{border-color:var(--line);color:var(--text)}
+.tool .btn-ghost:hover{border-color:var(--gold);color:#B4501C}
+.small{font-size:.86rem;color:var(--muted);margin-top:10px}
+#cvcResult{margin-top:26px;scroll-margin-top:16px}
+.res-top{display:flex;gap:20px;align-items:center;padding:20px;border-radius:var(--radius);background:var(--paper);border:1px solid var(--line)}
+.ring{--c:#16a34a;flex:none;width:104px;height:104px;border-radius:50%;display:grid;place-content:center;text-align:center;background:radial-gradient(closest-side,var(--paper) 78%,transparent 80% 100%),conic-gradient(var(--c) calc(var(--p)*1%),#e7e2d6 0)}
+.res-top.mid .ring{--c:#d97706}.res-top.low .ring{--c:#dc2626}
+.ring b{font-family:'Sora',sans-serif;font-size:1.9rem;line-height:1}
+.ring small{color:var(--muted);font-size:.8rem}
+.res-top h3{font-size:1.25rem}
+.res-top p{color:var(--muted);margin-top:4px}
+.checks{list-style:none;display:grid;gap:10px;margin-top:16px}
+.checks li{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--white)}
+.checks b{font-family:var(--font-head)}
+.pts{font-weight:600;color:var(--muted);font-size:.85rem;margin-inline-start:6px}
+.det{display:block;color:var(--muted);font-size:.86rem;margin-top:2px;word-break:break-word}
+.checks p{margin-top:6px;font-size:.94rem}
+.ic{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;font-weight:700;font-size:.9rem;color:#fff;margin-top:2px}
+.ic.ok{background:#16a34a}.ic.warn{background:#d97706}.ic.bad{background:#dc2626}
+.match{margin-top:18px;border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--paper)}
+.match h3{font-size:1.15rem}
+.match>p{color:var(--muted);margin-top:4px}
+.kw-h{font-weight:600;margin:12px 0 6px}
+.kw{display:flex;flex-wrap:wrap;gap:8px;direction:ltr}
+html[lang="ar"] .kw{justify-content:flex-end}
+.kw span{padding:4px 11px;border-radius:999px;font-size:.88rem}
+.kw .miss{background:#fee2e2;color:#991b1b}.kw .hit{background:#dcfce7;color:#166534}
+.cta-box{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.cta{display:flex;gap:14px;align-items:flex-start;border:2px solid var(--gold);border-radius:var(--radius);padding:20px;background:var(--white)}
+.cta+.cta{border-color:var(--line)}
+.cta img{flex:none;border-radius:10px;background:var(--ink);padding:5px}
+.cta h3{font-size:1.1rem}
+.cta p{color:var(--muted);font-size:.94rem;margin:6px 0 14px}
+.share{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px;font-weight:600}
+.share a{display:inline-flex;padding:8px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-size:.9rem;background:var(--white)}
+.share a:hover{border-color:var(--gold)}
+@media (max-width:760px){.cta-box{grid-template-columns:1fr}.res-top{flex-direction:column;text-align:center}.tool{padding:18px}}
+</style>
+<script src="ref.js?v=20261025"></script>
+<!-- GoatCounter: cookie-free visitor stats -->
+<script data-goatcounter="https://gear-radar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand" aria-label="Gear Radar Digital Solutions"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="#FF8A50"><rect x="53" y="14" width="14" height="16" rx="3"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(45 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(90 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(135 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(180 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(225 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(270 60 60)"/><rect x="53" y="14" width="14" height="16" rx="3" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="34" fill="#FF8A50"/><circle cx="60" cy="60" r="24" fill="#15171C"/><circle cx="60" cy="60" r="14" fill="none" stroke="#FF8A50" stroke-width="2" opacity=".7"/><path d="M60 60L77 43" stroke="#FACC15" stroke-width="3.5" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#FACC15"/><circle cx="72" cy="70" r="2.5" fill="#FACC15"/></svg><span>Gear Radar</span></a>
+    <div class="nav-r">
+      <div class="gr-dd" id="grDD"><button type="button" class="gr-dd-btn" id="grDDBtn" aria-expanded="false" aria-controls="grDDMenu">Services<svg class="gr-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="gr-dd-menu" id="grDDMenu"><div><p class="gr-h">For you</p><a class="gr-item gr-core" href="tala.html"><img src="images/brand/tala-dark.svg" alt="" width="34" height="34"><span><b>Tala</b> <em class="gr-badge">Main</em><small>Your personal assistant on Telegram and WhatsApp</small></span></a><a class="gr-item" href="jobradar.html"><img src="images/brand/jobradar-dark.svg" alt="" width="34" height="34"><span><b>JobRadar</b><small>Jobs that match your CV, every day · Tala add-on</small></span></a><a class="gr-item" href="polishly.html"><img src="images/brand/polishly-dark.svg" alt="" width="34" height="34"><span><b>Polishly</b><small>Your CV rewritten and redesigned · from £3</small></span></a></div><div><p class="gr-h">For your business</p><a class="gr-item" href="webly.html"><img src="images/brand/webly-dark.svg" alt="" width="34" height="34"><span><b>Webly</b><small>A website that brings calls and WhatsApp messages</small></span></a><a class="gr-item" href="menutap.html"><img src="images/brand/menutap-dark.svg" alt="" width="34" height="34"><span><b>MenuTap</b><small>Smart QR menu with table orders</small></span></a><a class="gr-item" href="duo.html"><img src="images/brand/duo-dark.svg" alt="" width="34" height="34"><span><b>Duo</b><small>Website + QR menu together, for less</small></span></a></div><a class="gr-foot" href="index.html#contact">Not sure which one you need? Talk to us</a></div></div>
+      <a class="back" href="index.html">← Gear Radar home</a>
+      <a class="lang" href="cv-checker-ar.html" hreflang="ar" lang="ar">العربية</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="container hero-one">
+    <span class="eyebrow">Free tool for job seekers</span>
+    <h1>Is your CV ready? <em>Check it free in 30 seconds.</em></h1>
+    <p class="lead">Paste your CV or upload a PDF. You get a score out of 100, a clear list of what to fix, and, if you add a job advert, the keywords your CV is missing. No sign-up, no email.</p>
+    <p class="privacy">🔒 Your CV stays on your device. It is checked inside your browser and is never uploaded or stored.</p>
+  </div>
+</div>
+
+<section id="check" style="padding-top:0">
+  <div class="container">
+    <form class="tool" id="cvcForm" novalidate>
+      <label for="cvFile">Upload your CV (PDF)</label>
+      <div class="file"><input type="file" id="cvFile" accept=".pdf,.txt,application/pdf,text/plain"></div>
+      <p class="fmsg" id="fileMsg" role="status" aria-live="polite"></p>
+      <label for="cvText">…or paste your CV text</label>
+      <textarea id="cvText" placeholder="Paste the full text of your CV here" dir="ltr"></textarea>
+      <label for="jobText">Optional: paste the job advert</label>
+      <textarea id="jobText" placeholder="Paste the job description to see which keywords your CV is missing" dir="ltr"></textarea>
+      <div class="btns"><button class="btn btn-gold" type="submit" style="cursor:pointer;font:inherit;font-weight:600">Check my CV</button><button class="btn btn-ghost" type="button" id="sampleBtn" style="cursor:pointer;font:inherit;font-weight:600;background:none">Try a sample CV</button></div>
+      <p class="small">Works best with CVs written in English.</p>
+      <div id="cvcResult" hidden aria-live="polite"></div>
+    </form>
+    <div class="share"><span>Share this free tool:</span><a href="https://wa.me/?text=Free%20CV%20checker%3A%20score%20your%20CV%20in%2030%20seconds%2C%20nothing%20is%20uploaded%20https%3A//www.gearradar.co.uk/cv-checker.html" target="_blank" rel="noopener">WhatsApp</a><a href="https://t.me/share/url?url=https%3A//www.gearradar.co.uk/cv-checker.html&amp;text=Free%20CV%20checker%3A%20score%20your%20CV%20in%2030%20seconds%2C%20nothing%20is%20uploaded" target="_blank" rel="noopener">Telegram</a><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.gearradar.co.uk/cv-checker.html" target="_blank" rel="noopener">Facebook</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//www.gearradar.co.uk/cv-checker.html" target="_blank" rel="noopener">LinkedIn</a></div>
+  </div>
+</section>
+
+<section class="alt" id="what">
+  <div class="container">
+    <div class="sec-head"><h2>What the checker looks at</h2></div>
+    <div class="feats"><div><h3>Contact details</h3><p>Email, phone number and a LinkedIn link, so employers can reach you.</p></div><div><h3>Length</h3><p>One to two pages, around 350 to 900 words, which suits most UK roles.</p></div><div><h3>Key sections</h3><p>Profile, work experience, education and skills, with clear headings that applicant tracking systems can read.</p></div><div><h3>Measurable results</h3><p>Numbers, percentages and amounts that prove what you achieved.</p></div><div><h3>Action verbs</h3><p>Bullet points that start with strong verbs such as led, improved or delivered.</p></div><div><h3>Clichés</h3><p>Phrases like &quot;responsible for&quot; or &quot;hard-working team player&quot; that recruiters skip.</p></div><div><h3>Personal pronouns</h3><p>&quot;I&quot; and &quot;my&quot; make a CV read like a letter. Short, direct bullet points read better.</p></div><div><h3>Personal details</h3><p>UK employers do not need your date of birth, marital status, nationality or photo.</p></div><div><h3>Dates</h3><p>Start and end dates on each role, so there are no unexplained gaps.</p></div><div><h3>Readability</h3><p>Short bullet points instead of long paragraphs.</p></div><div><h3>Job advert match</h3><p>The words the employer uses most, and which of them your CV is missing.</p></div></div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="sec-head"><h2>Questions about the CV checker</h2></div>
+    <details><summary>Is the CV checker really free?</summary><p>Yes. It is free with no sign-up and no limit. You can check as many CVs and job adverts as you like.</p></details><details><summary>Is my CV uploaded anywhere?</summary><p>No. The check runs inside your browser. Your CV is not sent to our servers and is not stored. If you close the page, it is gone.</p></details><details><summary>What score should my CV get?</summary><p>Aim for 80 or more. A score between 60 and 79 means a few quick fixes will make a real difference. Below 60, your CV is likely being skipped.</p></details><details><summary>What is an applicant tracking system?</summary><p>Most medium and large employers use software to sort CVs before a person reads them. It looks for clear section headings and the keywords from the job advert, which is why the job advert match matters.</p></details><details><summary>Can I check a Word CV?</summary><p>Yes. Open it in Word, select all the text, copy it and paste it into the box. PDF files can be uploaded directly.</p></details><details><summary>Can someone fix my CV for me?</summary><p>Yes. Polishly, our CV service, rewrites and redesigns your CV from your real experience, ready for applicant tracking systems, from £3. It takes about ten minutes.</p></details>
+  </div>
+</section>
+
+<section class="alt" id="resources">
+  <div class="container">
+    <div class="sec-head"><h2>More free help for job seekers</h2></div>
+    <ul class="who" style="line-height:1.9;padding-inline-start:20px"><li><a href="https://payhip.com/b/6YZy5" target="_blank" rel="noopener" style="font-weight:600">Free CV templates</a>: 4 Word templates for UK, US, modern and Gulf CVs.</li><li><a href="https://payhip.com/b/oT5PH" target="_blank" rel="noopener" style="font-weight:600">Job hunting guide for the UK &amp; the Gulf</a>: where to search, visas, interviews and scams, in English and Arabic.</li><li><a href="jobradar.html" style="font-weight:600">JobRadar</a>: jobs that match your CV, sent to you every day. Try it free for 3 days.</li></ul>
+  </div>
+</section>
+
+<section class="final">
+  <div class="container">
+    <h2>Found a few things to fix?</h2>
+    <p>Let Polishly rewrite your CV, then let JobRadar find the jobs that fit it.</p>
+    <div class="btns"><a class="btn btn-gold" href="polishly.html#order">Polishly</a><a class="btn btn-ghost" href="signup.html?service=butler&amp;plan=basic&amp;addons=jobs&amp;billing=monthly">JobRadar</a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container foot">
+    <span>© 2026 Gear Radar Digital Solutions · All rights reserved.</span>
+    <nav aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</footer>
+<script>window.CVC_T = {"reading": "Reading your PDF…", "readOk": "Done: text read from {n} page(s). Check it below, then press \"Check my CV\".", "pdfFail": "We could not read this PDF. Please copy the text from your CV and paste it into the box.", "pdfScan": "This PDF looks like a scanned image, so there is no text to read. Please paste your CV text instead.", "wordFile": "For Word files, open the CV, select all the text, copy it and paste it into the box.", "tooShort": "Please paste your full CV (at least 60 words).", "arabicCv": "Tip: most employers in the UK expect a CV in English. The checks below are designed for English CVs.", "missing": "Missing:", "found": "Found:", "foundN": "Found: {n}", "wordsN": "{n} words", "pagesN": "{n} page(s)", "longN": "Long paragraphs: {n}", "bulletsN": "bullet points: {n}", "presentOk": "current role marked", "w_email": "email", "w_phone": "phone number", "sec_profile": "Profile", "sec_experience": "Work experience", "sec_education": "Education", "sec_skills": "Skills", "p_date_of_birth": "date of birth", "p_age": "age", "p_marital_status": "marital status", "p_nationality": "nationality", "p_religion": "religion", "p_gender": "gender", "p_passport_number": "passport number", "p_photo": "photo", "band_good": "Strong CV", "band_mid": "Good start, a few fixes needed", "band_low": "Your CV needs work", "bandTxt_good": "Your CV covers the basics well. Tailor it to each job advert to stand out even more.", "bandTxt_mid": "Fix the points marked below and your CV will be much stronger.", "bandTxt_low": "Recruiters spend a few seconds on each CV. The points below are probably costing you interviews.", "t_contact": "Contact details", "t_length": "Length", "t_sections": "Key sections", "t_numbers": "Measurable results", "t_verbs": "Action verbs", "t_weak": "Clichés and weak phrases", "t_pronouns": "Personal pronouns", "t_personal": "Personal details", "t_dates": "Dates on each role", "t_read": "Readability", "tip_contact": "Put your email, mobile number and LinkedIn link at the top, under your name.", "tip_length": "Keep it to one or two pages. Cut old or unrelated roles to a single line each.", "tip_sections": "Use clear headings: Profile, Work Experience, Education and Skills. Tracking systems look for them.", "tip_numbers": "Add numbers to your bullet points: team size, budget, sales, time saved, customers served.", "tip_verbs": "Start each bullet point with a strong verb: led, improved, delivered, reduced, trained.", "tip_weak": "Replace these with what you actually achieved. \"Responsible for stock\" becomes \"Cut stock losses by 15%\".", "tip_pronouns": "Drop \"I\" and \"my\". Write \"Managed a team of 6\", not \"I managed my team of 6\".", "tip_personal": "Remove these. UK employers do not need them, and they can lead to unfair bias.", "tip_dates": "Add month and year (or year) to each role and course, and mark your current job as \"Present\".", "tip_read": "Break long paragraphs into short bullet points of one or two lines.", "matchTitle": "Job advert match: {p}%", "matchTxt": "These are the words the employer uses most. Add the missing ones to your CV where they are true for you.", "kwMiss": "Missing from your CV", "kwHit": "Already in your CV", "ctaHtml": "<div class=\"cta-box\"><div class=\"cta\"><img src=\"images/brand/polishly-dark.svg\" alt=\"\" width=\"40\" height=\"40\"><div><h3>Want this fixed for you?</h3><p>Polishly rewrites your CV from your real experience: stronger bullet points, the right keywords and a clean design that tracking systems can read. PDF and Word in about 10 minutes.</p><a class=\"btn btn-gold\" data-cta=\"polishly\" href=\"polishly.html#order\">Fix my CV with Polishly, from £3</a></div></div><div class=\"cta\"><img src=\"images/brand/jobradar-dark.svg\" alt=\"\" width=\"40\" height=\"40\"><div><h3>Then let the jobs come to you</h3><p>JobRadar checks thousands of job sites every day and sends you the roles that match your CV on WhatsApp or Telegram, each with a match score.</p><a class=\"btn btn-dark\" data-cta=\"jobradar\" href=\"signup.html?service=butler&amp;plan=basic&amp;addons=jobs&amp;billing=monthly\">Try JobRadar free for 3 days</a></div></div></div>", "sample": "Daniel Hughes\ndaniel.hughes@email.com | 07700 900123\n\nProfile\nHard-working and passionate team player with 5 years experience in retail. I am looking for a new challenge where I can use my skills.\n\nWork Experience\nAssistant Store Manager, City Retail Ltd, 2021 - Present\n- Responsible for opening and closing the store\n- Duties included training new staff and managing stock\n- Helped with rotas and customer complaints\n\nSales Assistant, High Street Fashion, 2018 - 2021\n- Served customers and processed payments\n- Worked on visual displays\n\nEducation\nBTEC Level 3 Business, City College, 2016 - 2018\n\nSkills\nCustomer service, cash handling, stock control, Microsoft Excel, teamwork\n\nPersonal details\nDate of birth: 12/03/1998\nMarital status: Single\n\nReferences available on request"};</script>
+<script src="cv-checker.js?v=20261028"></script>
+<script>
+(function(){
+  var dd = document.getElementById('grDD'), b = document.getElementById('grDDBtn');
+  if (!dd) return;
+  function set(o){ dd.classList.toggle('open', o); b.setAttribute('aria-expanded', o); }
+  var hov = window.matchMedia('(hover:hover)').matches;
+  b.addEventListener('click', function(e){ e.stopPropagation(); set(hov ? true : !dd.classList.contains('open')); });
+  if (hov){ dd.addEventListener('mouseenter', function(){ set(true); }); dd.addEventListener('mouseleave', function(){ set(false); }); }
+  document.addEventListener('click', function(e){ if (!dd.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && dd.classList.contains('open')){ set(false); b.focus(); } });
+})();
+</script>
+</body>
+</html>
