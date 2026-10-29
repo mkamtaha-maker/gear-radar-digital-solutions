@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="consent.js?v=20261027"></script>
-<script src="ref.js?v=20261025"></script>
+<script src="ref.js?v=20261029"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Polishly: a CV that gets you noticed, from £3 | Gear Radar</title>
 <link rel="icon" href="images/brand/polishly-dark.svg">
@@ -549,7 +549,8 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
       payload: isLi() ? { target_role: role, target_country: $('tcountry').value, notes: $('li_notes').value.trim() }
         : { design: design, theme: theme, target_role: role, target_country: $('tcountry').value,
         job_url: plus ? ju : '', job_text: plus ? jt : '', gulf_details: isGulf() ? $('gulf_extra').value.trim() : '' },
-      website: $('website').value, pay_with: payWith, promo_code: refCode()
+      website: $('website').value, pay_with: payWith, promo_code: refCode(),
+      utm: window.grUtm ? window.grUtm() : null
     } };
   }
   // Partner link (?ref=CODE, or remembered by ref.js) so the affiliate gets the commission.
