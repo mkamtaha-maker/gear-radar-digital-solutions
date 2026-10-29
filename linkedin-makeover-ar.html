@@ -150,6 +150,8 @@ header{background:var(--ink);color:var(--on-ink)}
 .hero{background:var(--ink);color:var(--on-ink);padding:56px 0 72px}
 .hero-art{width:100%;max-width:580px;height:auto;margin-inline:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.35))}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero-grid:has(.lm-art){grid-template-columns:1fr;gap:36px}
+.hero-art.lm-art{max-width:1100px;border-radius:18px;direction:ltr}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.92rem}
 .eyebrow img{width:34px;height:34px}
@@ -305,7 +307,7 @@ select.lang option{color:#15171C;background:#fff}
       <div class="btns"><a class="btn btn-gold" data-cta="order-hero" href="polishly.html?plan=cv_linkedin&amp;lang=ar#order">حسّن حسابي على LinkedIn بـ 5 جنيهات</a><a class="btn btn-ghost" href="#get">ماذا ستحصل عليه</a></div>
       <p class="launch"><b>عرض الإطلاق: خصم 50%</b> حتى 31 يناير 2027.</p>
     </div>
-    <div class="mock" role="img" aria-label="تحسين حساب LinkedIn"><div class="pcard old"><span class="tag">قبل</span><div class="prow"><span class="av"></span><div><b>Sam Ahmed</b><small>Warehouse Supervisor at City Logistics</small></div></div></div><div class="pcard new"><span class="tag">بعد</span><div class="prow"><span class="av"></span><div><b>Sam Ahmed</b><small>Operations &amp; Logistics Coordinator | Team Leadership · WMS · Stock Control | Open to office-based roles</small></div></div><p>I lead a team of 8 and keep a busy warehouse running on time: rotas, stock accuracy and deliveries…</p><div class="chips"><span>Operations</span><span>Inventory Management</span><span>Team Leadership</span></div></div></div>
+    <img class="hero-art lm-art" src="images/services/linkedin-makeover.webp?v=1" srcset="images/services/linkedin-makeover-900.webp?v=1 900w, images/services/linkedin-makeover.webp?v=1 1600w" sizes="(max-width:1180px) 100vw, 1100px" alt="تحسين حساب LinkedIn: الحساب قبل التحسين، وبعده بعنوان غني بالكلمات المفتاحية ونبذة أقوى ومهارات مناسبة تظهر في بحث مسؤولي التوظيف" width="1600" height="900" fetchpriority="high">
   </div>
 </section>
 
