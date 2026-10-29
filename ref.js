@@ -1,4 +1,4 @@
-/* Gear Radar Partners: remembers the partner code from ?ref=CODE for 60 days
+/* Gear Radar Partners: remembers the partner code from ?ref=CODE for 60 days (and UTM campaign tags for 30 days)
    (only after the visitor accepts cookies, see consent.js) so signup.html can apply it, and counts one visit per code per visitor per day. */
 (function(){
   var KEY = 'gr_ref', DAYS = 60;
@@ -13,6 +13,19 @@
   }
   window.grRef = read;
   var qs = new URLSearchParams(location.search);
+  // Campaign tags (?utm_source=linkedin...) from social posts: remembered for 30 days (after consent, last click wins)
+  // so the signup can say which post the customer came from.
+  var UKEY = 'gr_utm', UDAYS = 30;
+  function tagv(v){ return String(v || '').toLowerCase().replace(/[^a-z0-9_.-]/g, '').slice(0, 60); }
+  window.grUtm = function(){
+    try {
+      var u = JSON.parse(localStorage.getItem(UKEY) || 'null');
+      if (u && u.source && Date.now() - u.t < UDAYS * 864e5) return { source: u.source, medium: u.medium, campaign: u.campaign, content: u.content };
+    } catch(e) {}
+    return null;
+  };
+  var utm = { source: tagv(qs.get('utm_source')), medium: tagv(qs.get('utm_medium')), campaign: tagv(qs.get('utm_campaign')), content: tagv(qs.get('utm_content')), t: Date.now() };
+  if (utm.source && window.grConsent) window.grConsent.whenGranted(function(){ try { localStorage.setItem(UKEY, JSON.stringify(utm)); } catch(e) {} });
   // Stripe/PayPal send customers back with ?ref=<order ref>&paid=1: that is not a partner code.
   if (qs.get('paid') || qs.get('cancelled') || qs.get('payfailed')) return;
   var code = clean(qs.get('ref'));

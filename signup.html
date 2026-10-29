@@ -227,7 +227,7 @@ footer a:hover{color:var(--gold)}
 .paywith .rec{font-size:.72rem;color:#15803d;font-weight:600;margin-inline-start:6px}
 @media(max-width:560px){.paywith{grid-template-columns:1fr}}
 </style>
-<script src="ref.js?v=20261025"></script>
+<script src="ref.js?v=20261029"></script>
   <!-- GoatCounter: cookie-free visitor stats -->
   <script data-goatcounter="https://gear-radar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -1003,7 +1003,8 @@ footer a:hover{color:var(--gold)}
       full_name: name, email: email, country: $('country').value, language: $('language').value,
       channel: p.group === 'subs' ? channel : 'email', whatsapp_number: p.group === 'subs' && channel === 'whatsapp' ? waDigits : '',
       payload: payload, website: $('website').value,
-      pay_with: trial ? 'card' : payWith(), promo_code: trial ? '' : cleanCode($('promo').value)
+      pay_with: trial ? 'card' : payWith(), promo_code: trial ? '' : cleanCode($('promo').value),
+      utm: window.grUtm ? window.grUtm() : null
     } };
   }
 
