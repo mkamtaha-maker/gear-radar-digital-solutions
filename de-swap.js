@@ -1,11 +1,13 @@
-/* German view for pages that only have English + Arabic built in (work, galleries).
+/* German / Spanish view for pages that only have English + Arabic built in (work, galleries).
    The page keeps running in English; this swaps the visible English text for German
-   using window.DE_SWAP = { map: {en: de}, rx: [[regex source, replacement]], skip: 'css selector' }.
+   using window.DE_SWAP / window.ES_SWAP = { map: {en: de}, rx: [[regex source, replacement]], skip: 'css selector' }.
    Load it in <head> (before the page's own scripts) so it can read the saved language first. */
 (function () {
-  var C = window.DE_SWAP || { map: {} }, MAP = C.map || {}, RX = (C.rx || []).map(function (r) { return [new RegExp(r[0]), r[1]]; });
-  var want = false;
-  try { var q = new URLSearchParams(location.search).get('lang'); want = q === 'de' || (!q && localStorage.getItem('gr_lang') === 'de'); } catch (e) {}
+  var CFG = { de: window.DE_SWAP, es: window.ES_SWAP }, C = { map: {} }, MAP = {}, RX = [], L = '';
+  Object.keys(CFG).forEach(function (k) { if (!CFG[k]) delete CFG[k]; });
+  function use(l) { L = l; C = CFG[l] || { map: {} }; MAP = C.map || {}; RX = (C.rx || []).map(function (r) { return [new RegExp(r[0]), r[1]]; }); }
+  var want = '';
+  try { var q = new URLSearchParams(location.search).get('lang'), g = localStorage.getItem('gr_lang'); want = CFG[q] ? q : (!q && CFG[g] ? g : ''); } catch (e) {}
   var on = false, orig = new Map(), origAttr = [], mo = null;
   function tr(s) {
     var k = s.trim(); if (!k) return null;
@@ -36,10 +38,11 @@
     if (!orig.has(n)) orig.set(n, n.nodeValue);
     n.nodeValue = t;
   }
-  function activate() {
-    on = true;
-    document.documentElement.lang = 'de'; document.documentElement.dir = 'ltr';
-    try { localStorage.setItem('gr_lang', 'de'); } catch (e) {}
+  function activate(l) {
+    if (on) deactivate();
+    use(l); on = true;
+    document.documentElement.lang = l; document.documentElement.dir = 'ltr';
+    try { localStorage.setItem('gr_lang', l); } catch (e) {}
     walk(document.body);
     if (!mo) mo = new MutationObserver(function (ms) {
       if (!on) return;
@@ -49,7 +52,7 @@
       });
     });
     mo.observe(document.body, { childList: true, subtree: true, characterData: true });
-    var s = document.getElementById('langSelect'); if (s) s.value = 'de';
+    var s = document.getElementById('langSelect'); if (s) s.value = l;
   }
   function deactivate() {
     on = false; if (mo) mo.disconnect();
@@ -59,19 +62,19 @@
   }
   function init() {
     var s = document.getElementById('langSelect'), b = document.getElementById('langToggle');
-    if (s && !s.querySelector('option[value="de"]')) { var o = document.createElement('option'); o.value = 'de'; o.textContent = 'DE'; s.appendChild(o); }
+    Object.keys(CFG).forEach(function (l) { if (s && !s.querySelector('option[value="' + l + '"]')) { var o = document.createElement('option'); o.value = l; o.textContent = l.toUpperCase(); s.appendChild(o); } });
     if (s) s.addEventListener('change', function (e) {
-      if (s.value === 'de') {
+      if (CFG[s.value]) {
         e.stopImmediatePropagation();
         if ((document.documentElement.lang || '').slice(0, 2) === 'ar' && b) b.click();
-        activate();
+        activate(s.value);
       } else if (on) { deactivate(); }
     }, true);
-    new MutationObserver(function () { if (on && s && s.value !== 'de') s.value = 'de'; if (on && document.documentElement.lang !== 'de') document.documentElement.lang = 'de'; })
+    new MutationObserver(function () { if (on && s && s.value !== L) s.value = L; if (on && document.documentElement.lang !== L) document.documentElement.lang = L; })
       .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     if (want) {
       if ((document.documentElement.lang || '').slice(0, 2) === 'ar' && b) b.click();
-      activate();
+      activate(want);
     }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
