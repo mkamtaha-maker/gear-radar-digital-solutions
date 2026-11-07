@@ -159,6 +159,22 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
 .choice{display:flex;align-items:center;gap:14px;width:100%;text-align:start;border:1.5px solid var(--line);background:var(--surface);border-radius:18px;padding:14px;font-weight:700;cursor:pointer}
 .choice[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft)}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 26px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:600;font-size:14px;z-index:60;max-width:calc(100% - 32px)}
+/* account */
+.acct{display:flex;align-items:center;gap:14px;padding:16px}
+.acct .av{width:48px;height:48px;border-radius:50%;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;font-weight:800;font-size:20px;flex:none;text-transform:uppercase}
+.acct .tx{flex:1;min-width:0}
+.acct b{display:block;font-size:16px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acct .sub{display:block;color:var(--muted);font-size:13px;line-height:1.45}
+.item.danger b{color:#DC2626}
+:root[data-theme="dark"] .item.danger b{color:#F87171}
+.sheet-bg{position:fixed;inset:0;z-index:70;background:rgba(10,12,16,.45);display:flex;align-items:flex-end;justify-content:center}
+.sheet{width:100%;max-width:560px;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 20px calc(env(safe-area-inset-bottom,0px) + 22px);display:flex;flex-direction:column;gap:12px;max-height:92vh;overflow-y:auto}
+.sheet .grab{width:40px;height:5px;border-radius:3px;background:var(--line);align-self:center;margin-bottom:6px}
+.sheet h2{margin:0;font-size:21px;font-weight:800}
+.sheet .err{color:#DC2626;font-size:13.5px;font-weight:600;min-height:1em}
+.sheet .lnk{background:none;border:0;color:var(--brand-ink);font-weight:700;cursor:pointer;padding:6px;align-self:center}
+.sheet .lnk:disabled{color:var(--muted);font-weight:500;cursor:default}
+#codeIn{letter-spacing:.5em;font-size:24px;font-weight:800;text-align:center;direction:ltr}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -267,6 +283,19 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
       <div style="padding:0 16px 16px" id="installWrap"><button class="btn" type="button" id="installBtn" data-t="install_btn">Install</button></div>
     </div>
 
+    <div class="card" id="acctOut">
+      <div class="acct"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="tx"><b data-t="acct_title">Create your free account</b><span class="sub" data-t="acct_sub">Keep your goal and job search, and sign in on any phone.</span></span></div>
+      <div style="padding:0 16px 16px"><button class="btn" type="button" id="signInBtn" data-t="acct_btn">Sign in with email</button></div>
+    </div>
+    <div class="sec" id="acctIn" hidden>
+      <div class="sec-h"><h2 data-t="s_account">Account</h2></div>
+      <div class="card">
+        <div class="acct"><span class="av" id="acctAv"></span><span class="tx"><b id="acctEmail" dir="ltr" style="text-align:start"></b><span class="sub" data-t="acct_on">Signed in. Your settings are saved.</span></span></div>
+        <button class="item" type="button" id="signOutBtn"><span class="tx"><b data-t="sign_out">Sign out</b></span></button>
+        <button class="item danger" type="button" id="delBtn"><span class="tx"><b data-t="del_acct">Delete my account</b><span class="sub" data-t="del_sub">Removes your account and saved settings for good.</span></span></button>
+      </div>
+    </div>
+
     <div class="sec">
       <div class="sec-h"><h2 data-t="s_general">General</h2></div>
       <div class="card">
@@ -346,6 +375,30 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
   </div>
 </div>
 
+<div class="sheet-bg" id="sheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT">
+    <span class="grab"></span>
+    <div id="stepEmail" class="view" style="gap:12px">
+      <h2 id="sheetT" data-t="si_title">Sign in or create an account</h2>
+      <p class="muted small" data-t="si_sub">Enter your email and we will send you a 6-digit code. No password needed.</p>
+      <div class="field"><label for="emailIn" data-t="email">Email</label><input type="text" id="emailIn" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" dir="ltr" placeholder="name@example.com"></div>
+      <input class="hp" id="hp2" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="err" id="emailErr"></p>
+      <button class="btn" type="button" id="sendCode" data-t="send_code">Send me a code</button>
+      <p class="muted small" style="text-align:center"><span data-t="si_terms">By continuing you agree to our</span> <a href="/terms.html" style="text-decoration:underline" data-t="terms">Terms</a> · <a href="/privacy.html" style="text-decoration:underline" data-t="privacy">Privacy notice</a></p>
+    </div>
+    <div id="stepCode" class="view" style="gap:12px" hidden>
+      <h2 data-t="code_title">Enter your code</h2>
+      <p class="muted small"><span data-t="code_sub">We sent a code to</span> <b id="codeTo" dir="ltr"></b>. <span data-t="code_spam">Check your spam folder if you cannot see it.</span></p>
+      <input type="text" id="codeIn" inputmode="numeric" autocomplete="one-time-code" maxlength="10" aria-label="Code">
+      <p class="err" id="codeErr"></p>
+      <button class="btn" type="button" id="verifyCode" data-t="verify">Sign in</button>
+      <button class="lnk" type="button" id="resend" data-t="resend">Send a new code</button>
+      <button class="lnk" type="button" id="changeEmail" style="font-weight:500;color:var(--muted)" data-t="change_email">Use a different email</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script>
@@ -367,6 +420,12 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
       pol_long:'A full rewrite, PDF and Word, 12 designs', plus_long:'Tailored to one job, plus a cover letter', li_long:'Headline, About and experience, ready to copy',
       member_note:'Tala subscribers pay £1 for Polishly and £2 for Plus. Send /cv to Tala.',
       install:'Install the Tala app', install_sub:'Add Tala to your home screen.', install_btn:'Install', install_ios:'On iPhone: tap Share, then "Add to Home Screen".',
+      acct_title:'Create your free account', acct_sub:'Keep your goal and job search, and sign in on any phone.', acct_btn:'Sign in with email',
+      s_account:'Account', acct_on:'Signed in. Your settings are saved.', sign_out:'Sign out', del_acct:'Delete my account', del_sub:'Removes your account and saved settings for good.',
+      del_confirm:'Delete your Tala account and saved settings? This cannot be undone. Paid subscriptions are not cancelled here: tell Tala in your chat to cancel.', deleted:'Your account has been deleted', signed_out:'Signed out', signed_in:'You are signed in',
+      si_title:'Sign in or create an account', si_sub:'Enter your email and we will send you a 6-digit code. No password needed.', email:'Email', send_code:'Send me a code', sending:'Sending…', si_terms:'By continuing you agree to our',
+      code_title:'Enter your code', code_sub:'We sent a code to', code_spam:'Check your spam folder if you cannot see it.', verify:'Sign in', checking:'Checking…', resend:'Send a new code', resend_in:'Send a new code in ', change_email:'Use a different email',
+      e_email:'Please enter a valid email address.', e_wait:'Too many codes. Please wait 10 minutes and try again.', e_send:'We could not send the code. Please try again.', e_code:'That code is not right or has expired.', e_net:'No connection. Please try again.',
       s_general:'General', language:'Language', appearance:'Appearance', th_auto:'Auto', th_light:'Light', th_dark:'Dark',
       s_jobs:'Job search', job_loc:'Location and job', not_set:'Not set yet', my_goal:'My goal',
       goal_names:{job:"Looking for a job", cv:'A better CV', career:'Finding the right career', linkedin:'A better LinkedIn profile'},
@@ -401,6 +460,12 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
       pol_long:'إعادة كتابة كاملة، PDF وWord، 12 تصميماً', plus_long:'مخصّصة لوظيفة واحدة، مع خطاب تقديم', li_long:'عنوان ونبذة وخبرات جاهزة للنسخ',
       member_note:'مشتركو تالا يدفعون £1 لـ Polishly و£2 لـ Plus. أرسل /cv إلى تالا.',
       install:'ثبّت تطبيق تالا', install_sub:'أضف تالا إلى الشاشة الرئيسية.', install_btn:'تثبيت', install_ios:'على الآيفون: اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية».',
+      acct_title:'أنشئ حسابك المجاني', acct_sub:'احفظ هدفك وبحثك عن عمل، وادخل من أي جوال.', acct_btn:'الدخول بالبريد الإلكتروني',
+      s_account:'الحساب', acct_on:'تم تسجيل الدخول، وإعداداتك محفوظة.', sign_out:'تسجيل الخروج', del_acct:'حذف حسابي', del_sub:'يحذف حسابك وإعداداتك المحفوظة نهائياً.',
+      del_confirm:'هل تريد حذف حساب تالا وإعداداتك المحفوظة؟ لا يمكن التراجع عن ذلك. الاشتراكات المدفوعة لا تُلغى من هنا: أخبر تالا في محادثتك لإلغائها.', deleted:'تم حذف حسابك', signed_out:'تم تسجيل الخروج', signed_in:'تم تسجيل الدخول',
+      si_title:'الدخول أو إنشاء حساب', si_sub:'أدخل بريدك الإلكتروني وسنرسل لك رمزاً من 6 أرقام. لا تحتاج كلمة مرور.', email:'البريد الإلكتروني', send_code:'أرسل لي الرمز', sending:'جارٍ الإرسال…', si_terms:'بالمتابعة فأنت توافق على',
+      code_title:'أدخل الرمز', code_sub:'أرسلنا الرمز إلى', code_spam:'إن لم تجده فابحث في مجلد الرسائل غير المرغوب فيها.', verify:'دخول', checking:'جارٍ التحقق…', resend:'أرسل رمزاً جديداً', resend_in:'أرسل رمزاً جديداً بعد ', change_email:'استخدم بريداً آخر',
+      e_email:'أدخل بريداً إلكترونياً صحيحاً.', e_wait:'طلبت رموزاً كثيرة. انتظر 10 دقائق ثم حاول مرة أخرى.', e_send:'تعذّر إرسال الرمز. حاول مرة أخرى.', e_code:'الرمز غير صحيح أو انتهت صلاحيته.', e_net:'لا يوجد اتصال. حاول مرة أخرى.',
       s_general:'عام', language:'اللغة', appearance:'المظهر', th_auto:'تلقائي', th_light:'فاتح', th_dark:'داكن',
       s_jobs:'البحث عن عمل', job_loc:'المكان والوظيفة', not_set:'لم يُحدَّد بعد', my_goal:'هدفي',
       goal_names:{job:'أبحث عن وظيفة', cv:'سيرة ذاتية أفضل', career:'اكتشاف المسار المناسب', linkedin:'ملف LinkedIn أفضل'},
@@ -453,7 +518,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'); });
     renderGoal(); renderLoc(); renderChat(); renderBar();
   }
-  document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { if (lang === b.dataset.lang) return; lang = b.dataset.lang; set('tala_lang', lang); applyLang(); track('app-lang-' + lang); }); });
+  document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { if (lang === b.dataset.lang) return; lang = b.dataset.lang; set('tala_lang', lang); applyLang(); track('app-lang-' + lang); syncUp(); }); });
 
   function renderBar(){
     var h = new Date().getHours();
@@ -530,7 +595,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
   }
   document.getElementById('saveLoc').addEventListener('click', function () {
     set('tala_loc', JSON.stringify({ country: document.getElementById('country').value, city: document.getElementById('city').value.trim().slice(0,60), title: document.getElementById('title').value.trim().slice(0,60) }));
-    track('app-location-set'); renderLoc();
+    track('app-location-set'); renderLoc(); syncUp();
   });
   var ls = document.getElementById('locSummary');
   ls.addEventListener('click', openLocForm);
@@ -623,7 +688,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
   });
   document.getElementById('wGo').addEventListener('click', function () {
     if (!picked) return;
-    set('tala_goal', picked); set('tala_welcomed', '1'); track('app-goal-' + picked);
+    set('tala_goal', picked); set('tala_welcomed', '1'); track('app-goal-' + picked); syncUp();
     document.getElementById('welcome').hidden = true; renderGoal();
     show(picked === 'job' ? 'jobs' : (picked === 'cv' || picked === 'linkedin' ? 'cv' : 'home'));
   });
@@ -639,6 +704,121 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
     document.getElementById('installCard').hidden = false; document.getElementById('installWrap').hidden = true;
     document.getElementById('installSub').setAttribute('data-t','install_ios');
   }
+
+  /* accounts: email code sign-in (code sent by n8n, verified by Supabase Auth), profile in app_users */
+  var SB_URL = 'https://nrkydwotserhniczcgqs.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ya3lkd290c2VyaG5pY3pjZ3FzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyMzU0MzMsImV4cCI6MjEwNTgxMTQzM30.6v1fSTrg00Wj7JM0B18aBfwYzNPngv5y4uaf-HmsYq0'; // public anon key: app_users rows are readable only by their owner
+  var CODE_URL = 'https://kamtyler.app.n8n.cloud/webhook/tala-app-login';
+  var sb = null, user = null, sbLoading = null;
+  function loadSb(){
+    if (sb) return Promise.resolve(sb);
+    if (sbLoading) return sbLoading;
+    sbLoading = new Promise(function (ok, no) {
+      var sc = document.createElement('script'); sc.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js';
+      sc.onload = function () { try { sb = window.supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, storageKey: 'tala-auth' } }); ok(sb); } catch (e) { no(e); } };
+      sc.onerror = function () { sbLoading = null; no(new Error('load')); };
+      document.head.appendChild(sc);
+    });
+    return sbLoading;
+  }
+  function renderAcct(){
+    document.getElementById('acctOut').hidden = !!user; document.getElementById('acctIn').hidden = !user;
+    if (user) { document.getElementById('acctEmail').textContent = user.email || ''; document.getElementById('acctAv').textContent = (user.email || '?').charAt(0); }
+  }
+  function localProfile(){
+    var loc = loadLoc() || {};
+    return { lang: lang, goal: get('tala_goal') || null, country: loc.country || null, city: loc.city || null, title: loc.title || null };
+  }
+  function syncUp(){
+    if (!user || !sb) return;
+    var row = localProfile(); row.user_id = user.id; row.email = user.email; row.updated_at = new Date().toISOString(); row.last_seen_at = row.updated_at;
+    sb.from('app_users').upsert(row).then(function () {}, function () {});
+  }
+  function pullDown(){
+    return sb.from('app_users').select('lang,goal,country,city,title').eq('user_id', user.id).maybeSingle().then(function (r) {
+      var d = r && r.data;
+      if (!d) { syncUp(); return; }
+      if (d.goal) { set('tala_goal', d.goal); set('tala_welcomed', '1'); document.getElementById('welcome').hidden = true; }
+      if (d.country) set('tala_loc', JSON.stringify({ country: d.country, city: d.city || '', title: d.title || '' }));
+      if (d.lang && d.lang !== lang) { lang = d.lang; set('tala_lang', lang); }
+      applyLang(); syncUp();
+    }, function () {});
+  }
+  // restore an existing session without loading the library for people who never signed in
+  var hasSession = false; try { hasSession = !!localStorage.getItem('tala-auth'); } catch (e) {}
+  if (hasSession) loadSb().then(function () { return sb.auth.getSession(); }).then(function (r) {
+    user = r && r.data && r.data.session ? r.data.session.user : null; renderAcct(); if (user) pullDown();
+  }).catch(function () {});
+
+  var sheet = document.getElementById('sheet'), emailIn = document.getElementById('emailIn'), codeIn = document.getElementById('codeIn');
+  var pendingEmail = '', resendTimer = null;
+  function openSheet(){ sheet.hidden = false; showStep('email'); document.getElementById('emailErr').textContent = ''; setTimeout(function () { emailIn.focus(); }, 50); loadSb().catch(function () {}); track('app-signin-open'); }
+  function closeSheet(){ sheet.hidden = true; clearInterval(resendTimer); }
+  function showStep(x){ document.getElementById('stepEmail').hidden = x !== 'email'; document.getElementById('stepCode').hidden = x !== 'code'; }
+  sheet.addEventListener('click', function (e) { if (e.target === sheet) closeSheet(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
+  document.getElementById('signInBtn').addEventListener('click', openSheet);
+  function startResendTimer(){
+    var b = document.getElementById('resend'), n = 30; b.disabled = true; clearInterval(resendTimer);
+    function tick(){ if (n <= 0) { clearInterval(resendTimer); b.disabled = false; b.textContent = t('resend'); return; } b.textContent = t('resend_in') + n; n--; }
+    tick(); resendTimer = setInterval(tick, 1000);
+  }
+  function requestCode(email, errEl, btn){
+    btn.disabled = true; var label = btn.textContent; btn.textContent = t('sending'); errEl.textContent = '';
+    return fetch(CODE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, lang: lang, website: document.getElementById('hp2').value }) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j && j.ok) return true;
+        errEl.textContent = t(j && j.error === 'wait' ? 'e_wait' : (j && j.error === 'email' ? 'e_email' : 'e_send')); return false;
+      }, function () { errEl.textContent = t('e_send'); return false; })
+      .then(function (ok) { btn.disabled = false; btn.textContent = label; return ok; });
+  }
+  document.getElementById('sendCode').addEventListener('click', function () {
+    var email = emailIn.value.trim().toLowerCase(), err = document.getElementById('emailErr');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = t('e_email'); return; }
+    requestCode(email, err, this).then(function (ok) {
+      if (!ok) return;
+      pendingEmail = email; document.getElementById('codeTo').textContent = email; codeIn.value = ''; document.getElementById('codeErr').textContent = '';
+      showStep('code'); startResendTimer(); setTimeout(function () { codeIn.focus(); }, 50); track('app-signin-code-sent');
+    });
+  });
+  emailIn.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); document.getElementById('sendCode').click(); } });
+  document.getElementById('resend').addEventListener('click', function () {
+    var b = this; requestCode(pendingEmail, document.getElementById('codeErr'), b).then(function (ok) { if (ok) startResendTimer(); });
+  });
+  document.getElementById('changeEmail').addEventListener('click', function () { showStep('email'); clearInterval(resendTimer); });
+  function verify(){
+    var code = codeIn.value.replace(/\D/g, ''), err = document.getElementById('codeErr'), btn = document.getElementById('verifyCode');
+    if (code.length < 6) { err.textContent = t('e_code'); return; }
+    btn.disabled = true; btn.textContent = t('checking'); err.textContent = '';
+    loadSb().then(function () {
+      return sb.auth.verifyOtp({ email: pendingEmail, token: code, type: 'email' }).then(function (r) {
+        if (r.error) return sb.auth.verifyOtp({ email: pendingEmail, token: code, type: 'magiclink' });
+        return r;
+      });
+    }).then(function (r) {
+      if (!r || r.error || !r.data || !r.data.session) { err.textContent = t('e_code'); return; }
+      user = r.data.session.user; renderAcct(); closeSheet(); toast(t('signed_in')); track('app-signin-ok');
+      return pullDown();
+    }, function () { err.textContent = t('e_net'); })
+    .then(function () { btn.disabled = false; btn.textContent = t('verify'); });
+  }
+  document.getElementById('verifyCode').addEventListener('click', verify);
+  codeIn.addEventListener('input', function () { var v = codeIn.value.replace(/\D/g, ''); if (v !== codeIn.value) codeIn.value = v; if (v.length === 6) verify(); });
+  document.getElementById('signOutBtn').addEventListener('click', function () {
+    if (!sb) return;
+    sb.auth.signOut().then(function () { user = null; renderAcct(); toast(t('signed_out')); track('app-signout'); }, function () {});
+  });
+  document.getElementById('delBtn').addEventListener('click', function () {
+    if (!sb || !user) return;
+    if (!window.confirm(t('del_confirm'))) return;
+    sb.rpc('delete_my_account').then(function (r) {
+      if (r.error) { toast(t('e_send')); return; }
+      return sb.auth.signOut({ scope: 'local' }).then(function () {
+        user = null; renderAcct(); toast(t('deleted')); track('app-account-deleted');
+      });
+    }, function () { toast(t('e_net')); });
+  });
 
   function track(name){ try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} }
 
