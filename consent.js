@@ -12,6 +12,8 @@
   var ADS = me && me.getAttribute('data-ads');
   var GA = 'G-7N27X8PRYG';
   var ar = (document.documentElement.lang || '').toLowerCase().indexOf('ar') === 0;
+  /* pages like signup/polishly set the Arabic lang later from ?lang=ar or the saved choice */
+  try { if (!ar && (/[?&]lang=ar\b/.test(location.search) || localStorage.getItem('gr_lang') === 'ar')) ar = true; } catch (e) {}
   var T = ar ? {
     text: 'نستخدم ملفات تعريف الارتباط (الكوكيز) بإذنك فقط: تستخدمها Google Analytics وإعلانات Google لمعرفة كيف يصل الزوار إلى موقعنا وقياس أداء إعلاناتنا، ويُحفَظ رمز الشريك عند الدخول من رابطه لمدة 60 يوماً. أمّا الإعدادات الأساسية كاللغة والعملة فتُحفَظ دائماً.',
     yes: 'موافقة', no: 'رفض', more: 'الخصوصية والكوكيز'
@@ -110,7 +112,7 @@
     var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
     if (location.pathname.indexOf('/app/') === 0) return;
     if (standalone || sessionStorage.getItem('tala_app') === '1') {
-      var s = document.createElement('script'); s.src = '/app/app-mode.js?v=2'; document.head.appendChild(s);
+      var s = document.createElement('script'); s.src = '/app/app-mode.js?v=3'; document.head.appendChild(s);
     }
   } catch (e) {}
 })();

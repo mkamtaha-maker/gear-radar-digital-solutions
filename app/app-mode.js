@@ -1,21 +1,68 @@
 /* Tala app mode: when a site page is opened from the Tala app (installed app, Android app,
-   or the /app page in this tab), hide the website header, footer, menus and sales chat,
-   and show a back bar to the app instead. Loaded by consent.js only in app mode. */
+   or the /app page in this tab), the page takes the app's look: app bar with back button and
+   page title, app colours and fonts, light compact header, and no website header, footer,
+   menus, sales chat or long marketing sections. Loaded by consent.js only in app mode. */
 (function () {
   if (window.__talaAppMode) return; window.__talaAppMode = true;
   function ar() { return (document.documentElement.lang || '').slice(0, 2) === 'ar'; }
+  var TITLES = {
+    'cv-checker': ['CV Checker', 'فحص السيرة'], 'career-finder': ['Career Finder', 'اكتشف مسارك'],
+    'linkedin-makeover': ['LinkedIn Makeover', 'LinkedIn Makeover'], 'polishly': ['Polishly', 'Polishly'],
+    'signup': ['Sign up', 'الاشتراك'], 'privacy': ['Privacy notice', 'سياسة الخصوصية'], 'terms': ['Terms', 'الشروط']
+  };
+  function title() {
+    var k = location.pathname.replace(/^\/|\.html$/g, '').replace(/-ar$/, '');
+    var t = TITLES[k]; if (t) return ar() ? t[1] : t[0];
+    return (document.title || '').split(/[|·–-]/)[0].trim();
+  }
+
+  var fl = document.createElement('link'); fl.rel = 'stylesheet';
+  fl.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap';
+  document.head.appendChild(fl);
+
   var css = ''
+    /* website chrome off */
     + 'body > header, body > footer, header.site, .gr-dd, .grc-btn, .grc-panel, .wa-float, .mm-overlay, .float-cta, .sticky-cta{display:none !important}'
     /* signup: only the job-seeker services inside the app */
     + '[data-group="web"],[data-group="qr"],[data-group="combo"]{display:none !important}'
-    + '.tala-bar{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:6px;background:#15171C;color:#F5F5F4;'
-    + 'padding:calc(env(safe-area-inset-top,0px) + 8px) max(10px,env(safe-area-inset-right,0px)) 8px max(10px,env(safe-area-inset-left,0px));font:600 15px/1.2 system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}'
-    + '.tala-bar button,.tala-bar a{display:flex;align-items:center;gap:6px;background:none;border:0;color:inherit;font:inherit;padding:8px 10px;border-radius:10px;cursor:pointer;text-decoration:none}'
-    + '.tala-bar button:active,.tala-bar a:active{background:rgba(255,255,255,.1)}'
+    /* long marketing sections off: FAQ, how-it-works, resources, closing banners */
+    + 'section.faq, section.final, #resources, #what, #how, #why, #more, .hero-art, .hero .art, section.block:not([id]):not(.faq){display:none !important}'
+    /* app colours and fonts */
+    + ':root{--paper:#F5F6F8 !important;--line:#E7E9ED !important;--muted:#6B7280 !important;--text:#0F1115 !important;--gold:#FF7A3D !important;--tapp-f:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif}'
+    + 'html[lang="ar"]{--tapp-f:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif}'
+    + 'html,body{background:#F5F6F8 !important}'
+    + 'body, body h1, body h2, body h3, body h4, body p, body button, body input, body select, body textarea, body label, body a, body li, body small, body b, body strong{font-family:var(--tapp-f) !important}'
+    + 'body section{padding-top:20px !important;padding-bottom:20px !important}'
+    /* page header: light and compact instead of the dark website hero */
+    + '.hero, section.intro{background:transparent !important;color:#0F1115 !important;padding:18px 0 6px !important;min-height:0 !important;border:0 !important}'
+    + '.hero::before, .hero::after, section.intro::before, section.intro::after{display:none !important}'
+    + '.hero h1, section.intro h1{color:#0F1115 !important;font-size:26px !important;line-height:1.25 !important;font-weight:800 !important;letter-spacing:-.01em !important;margin:4px 0 8px !important}'
+    + '.hero p, section.intro p{color:#6B7280 !important;font-size:15px !important;line-height:1.55 !important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0 0 6px !important}'
+    + '.hero a:not(.btn), section.intro a:not(.btn){color:#C2410C !important}'
+    + '.hero .pchip{background:#fff !important;border:1px solid #E7E9ED !important;color:#0F1115 !important}'
+    + '.hero .pchip small, .hero .pchip s{color:#6B7280 !important}'
+    + '.hero .btn{display:none !important}'
+    + '.hero .container, section.intro .container{padding-top:0 !important}'
+    + '.hero .stack, .hero .visual, .hero picture{display:none !important}'
+    + '.hero .wrap{grid-template-columns:1fr !important}'
+    + '.hero .pchip b{color:#0F1115 !important}'
+    + 'body main.container{margin-top:0 !important}'
+    /* cookie notice as a light bottom sheet */
+    + '.gr-cc{background:#fff !important;color:#0F1115 !important;border:1px solid #E7E9ED;box-shadow:0 10px 40px rgba(16,24,40,.18) !important;border-radius:20px !important;font:13px/1.5 var(--tapp-f) !important;padding:14px 16px !important;bottom:calc(env(safe-area-inset-bottom,0px) + 12px) !important}'
+    + '.gr-cc p{margin:0 0 10px !important}'
+    + '.gr-cc a{color:#C2410C !important}'
+    + '.gr-cc button{border:0 !important;border-radius:12px !important;padding:10px 14px !important;font:700 14px var(--tapp-f) !important;background:#F0F1F4 !important;color:#0F1115 !important}'
+    + '.gr-cc button:last-child{background:#FF7A3D !important;color:#1A0B03 !important}'
+    /* app bar */
+    + '.tala-bar{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:8px;background:rgba(245,246,248,.9);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);color:#0F1115;border-bottom:1px solid #E7E9ED;'
+    + 'padding:calc(env(safe-area-inset-top,0px) + 8px) max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px));font:700 16px/1.2 var(--tapp-f)}'
+    + '.tala-bar .tb-back{width:40px;height:40px;flex:none;display:grid;place-items:center;background:#fff;border:1px solid #E7E9ED;border-radius:12px;color:inherit;cursor:pointer;padding:0}'
+    + '.tala-bar .tb-back:active{transform:scale(.96)}'
     + '.tala-bar svg{width:20px;height:20px}'
     + 'html[dir="rtl"] .tala-bar .tb-back svg{transform:scaleX(-1)}'
-    + '.tala-bar .sp{flex:1}'
-    + '.tala-bar img{width:22px;height:22px}';
+    + '.tala-bar .tb-t{flex:1;min-width:0;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+    + '.tala-bar .tb-home{width:40px;height:40px;flex:none;border-radius:12px;overflow:hidden;display:block}'
+    + '.tala-bar .tb-home img{width:100%;height:100%;display:block}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   function build() {
@@ -23,10 +70,10 @@
     var bar = document.createElement('div');
     bar.className = 'tala-bar';
     bar.innerHTML = '<button type="button" class="tb-back">'
-      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>'
-      + '<span class="tb-l1"></span></button><span class="sp"></span>'
-      + '<a href="/app/" class="tb-home"><img src="/images/brand/tala-dark.svg" alt=""><span class="tb-l2"></span></a>';
-    function labels() { bar.querySelector('.tb-l1').textContent = ar() ? 'رجوع' : 'Back'; bar.querySelector('.tb-l2').textContent = ar() ? 'تالا' : 'Tala'; }
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>'
+      + '<span class="tb-t"></span>'
+      + '<a href="/app/" class="tb-home"><img src="/app/icons/icon-192.png" alt="Tala"></a>';
+    function labels() { bar.querySelector('.tb-back').setAttribute('aria-label', ar() ? 'رجوع' : 'Back'); bar.querySelector('.tb-t').textContent = title(); }
     labels();
     try { new MutationObserver(labels).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); } catch (e) {}
     bar.querySelector('.tb-back').addEventListener('click', function () {

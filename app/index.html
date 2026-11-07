@@ -447,6 +447,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
     document.querySelectorAll('[data-tp]').forEach(function (el) { el.placeholder = t(el.getAttribute('data-tp')); });
     document.querySelectorAll('[data-ar]').forEach(function (el) { if (!el.dataset.en) el.dataset.en = el.getAttribute('href'); el.setAttribute('href', lang === 'ar' ? el.dataset.ar : el.dataset.en); });
     var lq = lang === 'ar' ? '&lang=ar' : '';
+    document.querySelectorAll('a[href^="/polishly.html"]').forEach(function (a) { var h = a.getAttribute('href').replace(/&lang=ar/, ''); if (lang === 'ar') h = h.replace('#', '&lang=ar#'); a.setAttribute('href', h); });
     document.getElementById('trialBtn').href = '/signup.html?service=butler&plan=basic&addons=jobs&billing=monthly' + lq;
     document.getElementById('emailBtn').href = '/signup.html?plan=jobradar&billing=monthly' + lq;
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'); });
