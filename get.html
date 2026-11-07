@@ -55,7 +55,7 @@ html[dir="rtl"] .home svg{transform:scaleX(-1)}
 <body>
 <header class="hero" style="position:relative">
   <a class="home" href="/" id="homeLink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span data-t="home">Gear Radar</span></a>
-  <select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option><option value="de">DE</option><option value="es">ES</option></select>
+  <select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option><option value="de">DE</option><option value="es">ES</option><option value="fr">FR</option></select>
   <img src="/app/icons/icon-192.png" alt="Tala" width="84" height="84">
   <h1 data-t="title">Get the Tala app</h1>
   <p data-t="sub">Daily job matches, a free CV checker and CV services, in one app. Free to install.</p>
@@ -128,20 +128,25 @@ html[dir="rtl"] .home svg{transform:scaleX(-1)}
       a_btn:'Descargar la app para Android',a_h:'Cómo instalarla',a1:'Toca el botón de arriba. Se descarga el archivo (menos de 1 MB).',a2:'Abre el archivo descargado. Si tu móvil lo pide, permite instalar apps desde esta fuente.',a3:'Toca Instalar y luego Abrir. Tala ya está en tu pantalla de inicio.',a_note:'Tala estará pronto también en Google Play.',a_pwa:'O añádela desde el navegador',
       i_h:'Añade Tala a tu iPhone en 3 toques',i_safari:'Abre primero esta página en Safari. Toca el menú ⋯ o Compartir y elige «Abrir en Safari».',i1:'Toca el botón Compartir',i1b:'abajo en Safari.',i2:'Desliza hacia abajo y toca «Añadir a pantalla de inicio».',i3:'Toca «Añadir». Tala ya está en tu pantalla de inicio y se abre a pantalla completa.',open_now:'Abrir Tala ahora',
       d_scan:'Escanea con la cámara del móvil para instalar Tala en iPhone o Android.',d_open:'Abrir Tala en este navegador',
-      f_h:'Qué recibes',f1:'Empleos que encajan con tu CV, cada mañana (3 días de prueba gratis)',f2:'Una revisión de CV gratis con una puntuación sobre 100',f3:'Un CV nuevo desde £3 y un LinkedIn Makeover por £5',f4:'Tala, lista para responder a tus preguntas',home:'Gear Radar',home_foot:'Volver a la página de inicio de Gear Radar',other:'English'}
+      f_h:'Qué recibes',f1:'Empleos que encajan con tu CV, cada mañana (3 días de prueba gratis)',f2:'Una revisión de CV gratis con una puntuación sobre 100',f3:'Un CV nuevo desde £3 y un LinkedIn Makeover por £5',f4:'Tala, lista para responder a tus preguntas',home:'Gear Radar',home_foot:'Volver a la página de inicio de Gear Radar',other:'English'},
+    fr:{title:'Téléchargez l\'application Tala',sub:'Des offres qui vous correspondent chaque jour, une analyse de CV gratuite et des services CV, dans une seule application. L\'installation est gratuite.',
+      a_btn:'Télécharger l\'application Android',a_h:'Comment l\'installer',a1:'Touchez le bouton ci-dessus. Le fichier se télécharge (moins de 1 Mo).',a2:'Ouvrez le fichier téléchargé. Si votre téléphone le demande, autorisez l\'installation d\'applications depuis cette source.',a3:'Touchez Installer puis Ouvrir. Tala est maintenant sur votre écran d\'accueil.',a_note:'Tala sera bientôt aussi sur Google Play.',a_pwa:'Ou ajoutez-la depuis le navigateur',
+      i_h:'Ajoutez Tala à votre iPhone en 3 gestes',i_safari:'Ouvrez d\'abord cette page dans Safari. Touchez le menu ⋯ ou Partager et choisissez « Ouvrir dans Safari ».',i1:'Touchez le bouton Partager',i1b:'en bas dans Safari.',i2:'Faites défiler et touchez « Sur l\'écran d\'accueil ».',i3:'Touchez « Ajouter ». Tala est maintenant sur votre écran d\'accueil et s\'ouvre en plein écran.',open_now:'Ouvrir Tala maintenant',
+      d_scan:'Scannez avec l\'appareil photo de votre téléphone pour installer Tala sur iPhone ou Android.',d_open:'Ouvrir Tala dans ce navigateur',
+      f_h:'Ce que vous obtenez',f1:'Des offres qui correspondent à votre CV, chaque matin (3 jours d\'essai gratuit)',f2:'Une analyse de CV gratuite avec une note sur 100',f3:'Un nouveau CV dès £3 et un LinkedIn Makeover pour £5',f4:'Tala, prête à répondre à vos questions',home:'Gear Radar',home_foot:'Retour à la page d\'accueil de Gear Radar',other:'English'}
   };
   var q = new URLSearchParams(location.search), lang;
   try { lang = localStorage.getItem('tala_lang'); } catch (e) {}
   var nl = (navigator.language || 'en').slice(0,2).toLowerCase();
-  lang = q.get('lang') || lang || (nl === 'ar' || nl === 'de' || nl === 'es' ? nl : 'en');
-  if (lang !== 'ar' && lang !== 'de' && lang !== 'es') lang = 'en';
+  lang = q.get('lang') || lang || (nl === 'ar' || nl === 'de' || nl === 'es' || nl === 'fr' ? nl : 'en');
+  if (lang !== 'ar' && lang !== 'de' && lang !== 'es' && lang !== 'fr') lang = 'en';
   function apply(){
     document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = T[lang][el.getAttribute('data-t')]; });
-    var ls = document.getElementById('langSelect'); ls.value = lang; ls.setAttribute('aria-label', lang === 'ar' ? 'اللغة' : (lang === 'de' ? 'Sprache' : (lang === 'es' ? 'Idioma' : 'Language')));
+    var ls = document.getElementById('langSelect'); ls.value = lang; ls.setAttribute('aria-label', lang === 'ar' ? 'اللغة' : (lang === 'de' ? 'Sprache' : (lang === 'es' ? 'Idioma' : lang === 'fr' ? 'Langue' : 'Language')));
     ['homeLink','homeFoot'].forEach(function (id) { document.getElementById(id).href = '/?lang=' + lang; });
   }
-  document.getElementById('langSelect').addEventListener('change', function () { lang = this.value === 'ar' || this.value === 'de' || this.value === 'es' ? this.value : 'en'; try { localStorage.setItem('tala_lang', lang); } catch (e) {} apply(); });
+  document.getElementById('langSelect').addEventListener('change', function () { lang = this.value === 'ar' || this.value === 'de' || this.value === 'es' || this.value === 'fr' ? this.value : 'en'; try { localStorage.setItem('tala_lang', lang); } catch (e) {} apply(); });
 
   var ua = navigator.userAgent || '';
   var isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);

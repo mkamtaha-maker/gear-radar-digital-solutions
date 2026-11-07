@@ -120,6 +120,7 @@ select:focus,input:focus{outline:none;border-color:var(--brand)}
 
 /* segmented control */
 .seg{display:flex;background:var(--surface-2);border-radius:12px;padding:3px;gap:3px}
+.seg.langs{flex-wrap:wrap}.seg.langs button{flex:1 1 auto;padding:7px 8px}
 .seg button{border:0;background:none;border-radius:9px;padding:7px 12px;font-weight:600;font-size:13px;color:var(--muted);cursor:pointer;white-space:nowrap}
 .seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
 :root[data-theme="dark"] .seg button[aria-pressed="true"]{background:#2C3139}
@@ -209,10 +210,10 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     </div>
 
     <div class="qas">
-      <a class="qa" href="/cv-checker.html" data-ar="/cv-checker-ar.html" data-de="/cv-checker-de.html" data-es="/cv-checker-es.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 13l2 2 4-4"/><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></span><span data-t="q_check">CV check</span></a>
-      <a class="qa" href="/career-finder.html" data-ar="/career-finder-ar.html" data-de="/career-finder-de.html" data-es="/career-finder-es.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><span data-t="q_career">Career finder</span></a>
+      <a class="qa" href="/cv-checker.html" data-ar="/cv-checker-ar.html" data-de="/cv-checker-de.html" data-es="/cv-checker-es.html" data-fr="/cv-checker-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 13l2 2 4-4"/><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></span><span data-t="q_check">CV check</span></a>
+      <a class="qa" href="/career-finder.html" data-ar="/career-finder-ar.html" data-de="/career-finder-de.html" data-es="/career-finder-es.html" data-fr="/career-finder-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><span data-t="q_career">Career finder</span></a>
       <a class="qa" href="/polishly.html?plan=cv_basic#order"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><span data-t="q_cv">New CV</span></a>
-      <a class="qa" href="/linkedin-makeover.html" data-ar="/linkedin-makeover-ar.html" data-de="/linkedin-makeover-de.html" data-es="/linkedin-makeover-es.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg></span><span>LinkedIn</span></a>
+      <a class="qa" href="/linkedin-makeover.html" data-ar="/linkedin-makeover-ar.html" data-de="/linkedin-makeover-de.html" data-es="/linkedin-makeover-es.html" data-fr="/linkedin-makeover-fr.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg></span><span>LinkedIn</span></a>
     </div>
 
     <div class="sec">
@@ -223,9 +224,9 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     <div class="sec">
       <div class="sec-h"><h2 data-t="free_tools">Free tools</h2></div>
       <div class="card">
-        <a class="item" href="/cv-checker.html" data-ar="/cv-checker-ar.html" data-de="/cv-checker-de.html" data-es="/cv-checker-es.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 13l2 2 4-4"/><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></span><span class="tx"><b data-t="cvcheck">CV Checker</b><span class="sub" data-t="cvcheck_sub">A score out of 100 in 30 seconds</span></span><span class="chip free" data-t="free">Free</span></a>
-        <a class="item" href="/career-finder.html" data-ar="/career-finder-ar.html" data-de="/career-finder-de.html" data-es="/career-finder-es.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><span class="tx"><b data-t="career">Career Finder</b><span class="sub" data-t="career_sub">5 questions, 4 career directions</span></span><span class="chip free" data-t="free">Free</span></a>
-        <a class="item" href="/cv-wallet.html" data-ar="/cv-wallet-ar.html" data-de="/cv-wallet-de.html" data-es="/cv-wallet-es.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h7A1.5 1.5 0 0 1 17 4.5V6"/><path d="M16 13h2"/></svg></span><span class="tx"><b data-t="cw">CVs Wallet</b><span class="sub" data-t="cw_sub">Keep up to 5 CVs in one safe place</span></span><span class="chip free" data-t="free">Free</span></a>
+        <a class="item" href="/cv-checker.html" data-ar="/cv-checker-ar.html" data-de="/cv-checker-de.html" data-es="/cv-checker-es.html" data-fr="/cv-checker-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 13l2 2 4-4"/><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></span><span class="tx"><b data-t="cvcheck">CV Checker</b><span class="sub" data-t="cvcheck_sub">A score out of 100 in 30 seconds</span></span><span class="chip free" data-t="free">Free</span></a>
+        <a class="item" href="/career-finder.html" data-ar="/career-finder-ar.html" data-de="/career-finder-de.html" data-es="/career-finder-es.html" data-fr="/career-finder-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><span class="tx"><b data-t="career">Career Finder</b><span class="sub" data-t="career_sub">5 questions, 4 career directions</span></span><span class="chip free" data-t="free">Free</span></a>
+        <a class="item" href="/cv-wallet.html" data-ar="/cv-wallet-ar.html" data-de="/cv-wallet-de.html" data-es="/cv-wallet-es.html" data-fr="/cv-wallet-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h7A1.5 1.5 0 0 1 17 4.5V6"/><path d="M16 13h2"/></svg></span><span class="tx"><b data-t="cw">CVs Wallet</b><span class="sub" data-t="cw_sub">Keep up to 5 CVs in one safe place</span></span><span class="chip free" data-t="free">Free</span></a>
       </div>
     </div>
   </section>
@@ -260,7 +261,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
 
   <!-- CV -->
   <section class="view" id="v-cv" hidden>
-    <a class="hero" href="/cv-checker.html" data-ar="/cv-checker-ar.html" data-de="/cv-checker-de.html" data-es="/cv-checker-es.html">
+    <a class="hero" href="/cv-checker.html" data-ar="/cv-checker-ar.html" data-de="/cv-checker-de.html" data-es="/cv-checker-es.html" data-fr="/cv-checker-fr.html">
       <span class="pill" data-t="free">Free</span>
       <h3 data-t="cvcheck_long">How strong is your CV?</h3>
       <p data-t="cvcheck_long_sub">10 checks and a score out of 100 in 30 seconds. Your CV stays on your phone.</p>
@@ -269,7 +270,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     <div class="sec">
       <div class="sec-h"><h2 data-t="your_cvs">Your CVs</h2></div>
       <div class="card">
-        <a class="item" href="/cv-wallet.html" data-ar="/cv-wallet-ar.html" data-de="/cv-wallet-de.html" data-es="/cv-wallet-es.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h7A1.5 1.5 0 0 1 17 4.5V6"/><path d="M16 13h2"/></svg></span><span class="tx"><b data-t="cw">CVs Wallet</b><span class="sub" data-t="cw_sub">Keep up to 5 CVs in one safe place</span></span><span class="chip free" data-t="free">Free</span></a>
+        <a class="item" href="/cv-wallet.html" data-ar="/cv-wallet-ar.html" data-de="/cv-wallet-de.html" data-es="/cv-wallet-es.html" data-fr="/cv-wallet-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h7A1.5 1.5 0 0 1 17 4.5V6"/><path d="M16 13h2"/></svg></span><span class="tx"><b data-t="cw">CVs Wallet</b><span class="sub" data-t="cw_sub">Keep up to 5 CVs in one safe place</span></span><span class="chip free" data-t="free">Free</span></a>
       </div>
     </div>
     <div class="sec">
@@ -312,7 +313,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       <div class="sec-h"><h2 data-t="s_general">General</h2></div>
       <div class="card">
         <div class="set-row"><span class="ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="tx"><b data-t="language">Language</b></span>
-          <div class="seg" role="group" aria-label="Language"><button type="button" data-lang="ar">العربية</button><button type="button" data-lang="en">English</button><button type="button" data-lang="de">Deutsch</button><button type="button" data-lang="es">Español</button></div></div>
+          <div class="seg langs" role="group" aria-label="Language"><button type="button" data-lang="ar">العربية</button><button type="button" data-lang="en">English</button><button type="button" data-lang="de">Deutsch</button><button type="button" data-lang="es">Español</button><button type="button" data-lang="fr">Français</button></div></div>
         <div class="set-row"><span class="ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span><span class="tx"><b data-t="appearance">Appearance</b></span>
           <div class="seg" role="group" aria-label="Appearance"><button type="button" data-theme-opt="auto" data-t="th_auto">Auto</button><button type="button" data-theme-opt="light" data-t="th_light">Light</button><button type="button" data-theme-opt="dark" data-t="th_dark">Dark</button></div></div>
       </div>
@@ -346,10 +347,11 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     <div class="sec">
       <div class="sec-h"><h2 data-t="help">Help</h2></div>
       <div class="card">
-        <a class="item" href="/privacy.html" data-de="/privacy.html#de" data-es="/privacy.html#es"><span class="tx"><b data-t="privacy">Privacy notice</b></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
-        <a class="item" href="/terms.html" data-de="/terms.html#de" data-es="/terms.html#es"><span class="tx"><b data-t="terms">Terms</b></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
+        <a class="item" href="/privacy.html" data-de="/privacy.html#de" data-es="/privacy.html#es" data-fr="/privacy.html#fr"><span class="tx"><b data-t="privacy">Privacy notice</b></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
+        <a class="item" href="/terms.html" data-de="/terms.html#de" data-es="/terms.html#es" data-fr="/terms.html#fr"><span class="tx"><b data-t="terms">Terms</b></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
         <a class="item de-only" href="/impressum.html" hidden><span class="tx"><b data-t="impressum">Impressum</b></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
         <a class="item es-only" href="/impressum.html#es" hidden><span class="tx"><b data-t="impressum">Aviso legal</b></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
+        <a class="item fr-only" href="/impressum.html#fr" hidden><span class="tx"><b data-t="impressum">Mentions légales</b></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
         <a class="item" href="mailto:info@gearradar.co.uk"><span class="tx"><b data-t="contact">Contact us</b><span class="sub">info@gearradar.co.uk</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -400,7 +402,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       <input class="hp" id="hp2" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="err" id="emailErr"></p>
       <button class="btn" type="button" id="sendCode" data-t="send_code">Send me a code</button>
-      <p class="muted small" style="text-align:center"><span data-t="si_terms">By continuing you agree to our</span> <a href="/terms.html" data-de="/terms.html#de" data-es="/terms.html#es" style="text-decoration:underline" data-t="terms">Terms</a> · <a href="/privacy.html" data-de="/privacy.html#de" data-es="/privacy.html#es" style="text-decoration:underline" data-t="privacy">Privacy notice</a></p>
+      <p class="muted small" style="text-align:center"><span data-t="si_terms">By continuing you agree to our</span> <a href="/terms.html" data-de="/terms.html#de" data-es="/terms.html#es" data-fr="/terms.html#fr" style="text-decoration:underline" data-t="terms">Terms</a> · <a href="/privacy.html" data-de="/privacy.html#de" data-es="/privacy.html#es" data-fr="/privacy.html#fr" style="text-decoration:underline" data-t="privacy">Privacy notice</a></p>
     </div>
     <div id="stepCode" class="view" style="gap:12px" hidden>
       <h2 data-t="code_title">Enter your code</h2>
@@ -578,6 +580,46 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       type_msg:'Escribe a Tala…',
       hello:'¡Hola! Soy Tala, de Gear Radar 👋 Te ayudo a buscar empleo: ofertas diarias que encajan contigo, tu CV o tu perfil de LinkedIn. ¿En qué te ayudo?',
       chips:['¿Cómo funciona JobRadar?','Revisar mi CV','Precios','Prueba gratis'], err:'Lo siento, algo ha fallado. Inténtalo de nuevo o escríbenos por WhatsApp.'
+    },
+    fr: {
+      morning:'Bonjour', afternoon:'Bon après-midi', evening:'Bonsoir', welcome_back:'Votre recherche d\'emploi, au même endroit', w_back:'Retour',
+      t_jobs:'Offres', t_cv:'Votre CV', t_tala:'Tala', t_settings:'Réglages', s_jobs:'JobRadar', s_cv:'Polishly · LinkedIn', s_tala:'Répond généralement en quelques secondes', s_settings:'Application Tala',
+      trial3:'Essai gratuit 3 jours', hero_t:'Des offres qui correspondent à votre CV, chaque matin', hero_p:'Chaque offre arrive avec un pourcentage de correspondance et des points de CV adaptés.', see_jobs:'Voir les offres', ask_tala_s:'Demander à Tala',
+      q_check:'Analyser mon CV', q_career:'Career Finder', q_cv:'Nouveau CV', for_you:'Pour vous', free_tools:'Outils gratuits', free:'Gratuit',
+      cvcheck:'Analyse de CV', cw:'CVs Wallet', cw_sub:'Gardez jusqu\'à 5 CV en lieu sûr', your_cvs:'Vos CV', cvcheck_sub:'Une note sur 100 en 30 secondes', career:'Career Finder', career_sub:'5 questions, 4 pistes de carrière',
+      loc_title:'Où souhaitez-vous travailler ?', loc_sub:'Nous l\'utilisons pour vous montrer les bonnes offres. Vous pouvez le modifier à tout moment dans Réglages.',
+      country:'Pays', city:'Ville', city_eg:'ex. ', city_any:'Votre ville (facultatif)', pick_country:'Choisissez un pays', jobtitle:'Poste recherché', title_ph:'ex. Service client', show_jobs:'Voir les offres',
+      c_remote:'Télétravail uniquement',
+      change:'Modifier', example:'Exemple', jobs_title:'Exemples de ce que vous recevrez',
+      want_all:'Recevez chaque offre qui vous correspond, chaque jour', trial_note:'Carte nécessaire, rien n\'est prélevé aujourd\'hui. Ensuite £17 par mois (Tala £7 + JobRadar £10). Nous vous prévenons un jour avant. Résiliable à tout moment.',
+      start_trial:'Commencer l\'essai gratuit', by_email:'Offres par e-mail uniquement, £5 par mois',
+      cvcheck_long:'Votre CV est-il solide ?', cvcheck_long_sub:'10 vérifications et une note sur 100 en 30 secondes. Votre CV reste sur votre téléphone.', check_now:'Analyser mon CV', improve:'Améliorer',
+      pol_long:'Entièrement réécrit en anglais, PDF et Word, 12 designs', plus_long:'Adapté à une offre, avec lettre de motivation', li_long:'Titre, section Infos et expérience, prêts à copier',
+      member_note:'Les abonnés Tala paient £1 pour Polishly et £2 pour Plus. Envoyez /cv à Tala.',
+      install:'Installez l\'application Tala', install_sub:'Ajoutez Tala à votre écran d\'accueil.', install_btn:'Installer', install_ios:'Sur iPhone : touchez Partager puis « Sur l\'écran d\'accueil ».',
+      acct_title:'Créez un compte gratuit', acct_sub:'Enregistrez votre objectif et votre recherche d\'emploi, et connectez-vous depuis n\'importe quel téléphone.', acct_btn:'Se connecter par e-mail',
+      s_account:'Compte', acct_on:'Vous êtes connecté. Vos réglages sont enregistrés.', sign_out:'Se déconnecter', del_acct:'Supprimer mon compte', del_sub:'Supprime définitivement votre compte, vos réglages et votre CVs Wallet.',
+      del_confirm:'Supprimer votre compte Tala et les réglages enregistrés ? Cette action est irréversible. Les abonnements payants ne sont pas résiliés ici : dites à Tala dans le chat que vous souhaitez résilier.', deleted:'Votre compte a été supprimé', signed_out:'Vous êtes déconnecté', signed_in:'Vous êtes connecté',
+      si_title:'Connectez-vous ou créez un compte', si_sub:'Saisissez votre e-mail et nous vous enverrons un code à 8 chiffres. Sans mot de passe.', email:'E-mail', send_code:'M\'envoyer un code', sending:'Envoi…', si_terms:'En continuant, vous acceptez nos',
+      code_title:'Saisissez le code', code_sub:'Nous avons envoyé un code à', code_spam:'Vérifiez vos spams si vous ne le recevez pas.', verify:'Se connecter', checking:'Vérification…', resend:'Envoyer un nouveau code', resend_in:'Nouveau code dans ', change_email:'Utiliser un autre e-mail',
+      e_email:'Saisissez une adresse e-mail valide.', e_wait:'Trop de codes. Attendez 10 minutes et réessayez.', e_send:'Nous n\'avons pas pu envoyer le code. Réessayez.', e_code:'Le code est incorrect ou a expiré.', e_net:'Pas de connexion. Réessayez.',
+      s_general:'Général', language:'Langue', appearance:'Apparence', th_auto:'Auto', th_light:'Clair', th_dark:'Sombre',
+      s_jobs:'Recherche d\'emploi', job_loc:'Lieu et poste', not_set:'Non défini', my_goal:'Mon objectif',
+      goal_names:{job:'Je cherche un emploi', cv:'Un meilleur CV', career:'Trouver le bon métier', linkedin:'Un meilleur profil LinkedIn'},
+      subscribed:'Déjà abonné ?', open_tg:'Tala sur Telegram', open_wa:'Tala sur WhatsApp', manage_note:'Pour changer de postes ou de villes, ou pour résilier, dites-le simplement à Tala dans le chat.',
+      s_app:'Application', share:'Partagez Tala avec vos amis', share_text:'Tala vous aide à trouver des offres qui correspondent à votre CV, et à analyser et améliorer votre CV gratuitement. Téléchargez l\'application :', copied:'Lien copié',
+      update:'Mettre à jour l\'application', update_sub:'Obtenez la dernière version maintenant', updating:'Mise à jour…', updated:'Vous avez la dernière version',
+      help:'Aide', privacy:'Confidentialité', terms:'Conditions', contact:'Contact', impressum:'Mentions légales',
+      n_home:'Accueil', n_jobs:'Offres', n_cv:'CV', n_tala:'Tala', n_settings:'Réglages',
+      w_title:'Bienvenue. Que souhaitez-vous faire aujourd\'hui ?', w_sub:'Choisissez un objectif et nous préparons l\'application pour vous.',
+      g_job:'Je cherche un emploi', g_cv:'Je veux un meilleur CV', g_career:'Je ne sais pas quel métier me correspond', g_li:'Je veux un meilleur profil LinkedIn', continue:'Continuer', w_note:'Sans inscription et sans carte.',
+      goal_job:['Trouvez votre prochain emploi','Dites-nous où vous souhaitez travailler et découvrez les offres trouvées.'],
+      goal_cv:['Commencez par une analyse de CV gratuite','Découvrez votre note et comblez les manques avec Polishly.'],
+      goal_career:['Découvrez les métiers qui vous correspondent','5 questions rapides, 4 pistes de carrière. Gratuit.'],
+      goal_linkedin:['Faites briller votre LinkedIn','Nouveau titre, section Infos et expérience. £5.'],
+      type_msg:'Écrivez à Tala…',
+      hello:'Bonjour ! Je suis Tala, de Gear Radar 👋 Je vous aide dans votre recherche d\'emploi : des offres quotidiennes qui vous correspondent, votre CV ou votre profil LinkedIn. Comment puis-je vous aider ?',
+      chips:['Comment fonctionne JobRadar ?','Analyser mon CV','Tarifs','Essai gratuit'], err:'Désolée, une erreur s\'est produite. Réessayez ou écrivez-nous sur WhatsApp.'
     }
   };
 
@@ -611,8 +653,8 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
   function set(k,v){ try { localStorage.setItem(k,v); } catch (e) {} }
   var params = new URLSearchParams(location.search);
   var navLang = (navigator.language || 'en').slice(0,2).toLowerCase();
-  var lang = get('tala_lang') || params.get('lang') || (navLang === 'ar' || navLang === 'de' || navLang === 'es' ? navLang : 'en');
-  if (lang !== 'ar' && lang !== 'de' && lang !== 'es') lang = 'en';
+  var lang = get('tala_lang') || params.get('lang') || (navLang === 'ar' || navLang === 'de' || navLang === 'es' || navLang === 'fr' ? navLang : 'en');
+  if (lang !== 'ar' && lang !== 'de' && lang !== 'es' && lang !== 'fr') lang = 'en';
   function t(k){ var v = T[lang][k]; if (v === undefined) v = T.en[k]; return money(v); }
   var tab = 'home';
 
@@ -633,11 +675,12 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     document.querySelectorAll('[data-t]').forEach(function (el) { var v = t(el.getAttribute('data-t')); if (typeof v === 'string') el.textContent = v; });
     document.querySelectorAll('[data-tp]').forEach(function (el) { el.placeholder = t(el.getAttribute('data-tp')); });
     document.querySelectorAll('.price').forEach(function (el) { if (!el.dataset.gbp) el.dataset.gbp = el.textContent; el.textContent = money(el.dataset.gbp); });
-    document.querySelectorAll('[data-ar],[data-de],[data-es]').forEach(function (el) { if (!el.dataset.en) el.dataset.en = el.getAttribute('href'); el.setAttribute('href', lang === 'ar' && el.dataset.ar ? el.dataset.ar : (lang === 'de' && el.dataset.de ? el.dataset.de : (lang === 'es' && el.dataset.es ? el.dataset.es : el.dataset.en))); });
+    document.querySelectorAll('[data-ar],[data-de],[data-es],[data-fr]').forEach(function (el) { if (!el.dataset.en) el.dataset.en = el.getAttribute('href'); el.setAttribute('href', lang === 'ar' && el.dataset.ar ? el.dataset.ar : (lang === 'de' && el.dataset.de ? el.dataset.de : (lang === 'es' && el.dataset.es ? el.dataset.es : (lang === 'fr' && el.dataset.fr ? el.dataset.fr : el.dataset.en)))); });
     var lq = lang === 'en' ? '' : '&lang=' + lang;
-    document.querySelectorAll('a[href^="/polishly.html"]').forEach(function (a) { var h = a.getAttribute('href').replace(/&lang=(ar|de|es)/, ''); if (lq) h = h.replace('#', lq + '#'); a.setAttribute('href', h); });
+    document.querySelectorAll('a[href^="/polishly.html"]').forEach(function (a) { var h = a.getAttribute('href').replace(/&lang=(ar|de|es|fr)/, ''); if (lq) h = h.replace('#', lq + '#'); a.setAttribute('href', h); });
     document.querySelectorAll('.de-only').forEach(function (el) { el.hidden = lang !== 'de'; });
     document.querySelectorAll('.es-only').forEach(function (el) { el.hidden = lang !== 'es'; });
+    document.querySelectorAll('.fr-only').forEach(function (el) { el.hidden = lang !== 'fr'; });
     document.getElementById('trialBtn').href = '/signup.html?service=butler&plan=basic&addons=jobs&billing=monthly' + lq;
     document.getElementById('emailBtn').href = '/signup.html?plan=jobradar&billing=monthly' + lq;
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'); });
@@ -653,7 +696,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     document.getElementById('barSub').textContent = m[0]; document.getElementById('barTitle').textContent = m[1];
   }
 
-  var GOALS = { job:{go:'jobs'}, cv:{href:'/cv-checker.html', ar:'/cv-checker-ar.html', de:'/cv-checker-de.html', es:'/cv-checker-es.html'}, career:{href:'/career-finder.html', ar:'/career-finder-ar.html', de:'/career-finder-de.html', es:'/career-finder-es.html'}, linkedin:{href:'/linkedin-makeover.html', ar:'/linkedin-makeover-ar.html', de:'/linkedin-makeover-de.html', es:'/linkedin-makeover-es.html'} };
+  var GOALS = { job:{go:'jobs'}, cv:{href:'/cv-checker.html', ar:'/cv-checker-ar.html', de:'/cv-checker-de.html', es:'/cv-checker-es.html', fr:'/cv-checker-fr.html'}, career:{href:'/career-finder.html', ar:'/career-finder-ar.html', de:'/career-finder-de.html', es:'/career-finder-es.html', fr:'/career-finder-fr.html'}, linkedin:{href:'/linkedin-makeover.html', ar:'/linkedin-makeover-ar.html', de:'/linkedin-makeover-de.html', es:'/linkedin-makeover-es.html', fr:'/linkedin-makeover-fr.html'} };
   function renderGoal(){
     var g = get('tala_goal') || 'job'; if (!GOALS[g]) g = 'job';
     var conf = GOALS[g], txt = t('goal_' + g);
@@ -917,7 +960,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
   function syncUp(){
     if (!user || !sb) return;
     var row = localProfile(); row.user_id = user.id; row.email = user.email; row.updated_at = new Date().toISOString(); row.last_seen_at = row.updated_at;
-    sb.from('app_users').upsert(row).then(function (r) { if (r && r.error && (row.lang === 'de' || row.lang === 'es')) { row.lang = 'en'; return sb.from('app_users').upsert(row); } }).then(function () {}, function () {});
+    sb.from('app_users').upsert(row).then(function (r) { if (r && r.error && (row.lang === 'de' || row.lang === 'es' || row.lang === 'fr')) { row.lang = 'en'; return sb.from('app_users').upsert(row); } }).then(function () {}, function () {});
   }
   function pullDown(){
     return sb.from('app_users').select('lang,goal,country,city,title').eq('user_id', user.id).maybeSingle().then(function (r) {
@@ -925,7 +968,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       if (!d) { syncUp(); return; }
       if (d.goal) { set('tala_goal', d.goal); set('tala_welcomed', '1'); document.getElementById('welcome').hidden = true; }
       if (d.country) set('tala_loc', JSON.stringify({ country: d.country, city: d.city || '', title: d.title || '' }));
-      if (d.lang && d.lang !== lang && !((lang === 'de' || lang === 'es') && d.lang === 'en')) { lang = d.lang; set('tala_lang', lang); }
+      if (d.lang && d.lang !== lang && !((lang === 'de' || lang === 'es' || lang === 'fr') && d.lang === 'en')) { lang = d.lang; set('tala_lang', lang); }
       applyLang(); syncUp();
     }, function () {});
   }
