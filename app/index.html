@@ -155,6 +155,9 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
 .welcome .in{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
 .welcome .mark{width:68px;height:68px;border-radius:22px;overflow:hidden;margin-bottom:6px;background:var(--hero1)}
 .welcome .mark img{width:100%;height:100%;display:block}
+.w-back{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:9px 16px 9px 12px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;margin-bottom:4px}
+.w-back svg{width:18px;height:18px}
+html[dir=rtl] .w-back svg{transform:scaleX(-1)}
 .welcome h1{margin:0;font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.02em}
 .choice{display:flex;align-items:center;gap:14px;width:100%;text-align:start;border:1.5px solid var(--line);background:var(--surface);border-radius:18px;padding:14px;font-weight:700;cursor:pointer}
 .choice[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft)}
@@ -363,6 +366,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
 
 <div class="welcome" id="welcome" hidden>
   <div class="in">
+    <button class="w-back" type="button" id="wBack" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span data-t="w_back">Back</span></button>
     <div class="mark"><img src="/app/icons/icon-192.png" alt=""></div>
     <h1 data-t="w_title">Welcome. What would you like to do today?</h1>
     <p class="muted" data-t="w_sub">Pick one and we will set up the app around it.</p>
@@ -405,7 +409,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
 (function () {
   var T = {
     en: {
-      morning:'Good morning', afternoon:'Good afternoon', evening:'Good evening', welcome_back:'Your job search, in one place',
+      morning:'Good morning', afternoon:'Good afternoon', evening:'Good evening', welcome_back:'Your job search, in one place', w_back:'Back',
       t_jobs:'Jobs', t_cv:'Your CV', t_tala:'Tala', t_settings:'Settings', s_jobs:'JobRadar', s_cv:'Polishly · LinkedIn', s_tala:'Usually replies in seconds', s_settings:'Tala app',
       trial3:'3-day free trial', hero_t:'Jobs that match your CV, every morning', hero_p:'Each job comes with a match score and CV points written for it.', see_jobs:'See jobs', ask_tala_s:'Ask Tala',
       q_check:'CV check', q_career:'Career finder', q_cv:'New CV', for_you:'For you', free_tools:'Free tools', free:'Free',
@@ -445,7 +449,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
       chips:['How does JobRadar work?','Check my CV','Prices','Free trial'], err:'Sorry, something went wrong. Please try again, or message us on WhatsApp.'
     },
     ar: {
-      morning:'صباح الخير', afternoon:'مساء الخير', evening:'مساء الخير', welcome_back:'بحثك عن عمل في مكان واحد',
+      morning:'صباح الخير', afternoon:'مساء الخير', evening:'مساء الخير', welcome_back:'بحثك عن عمل في مكان واحد', w_back:'رجوع',
       t_jobs:'الوظائف', t_cv:'سيرتك الذاتية', t_tala:'تالا', t_settings:'الإعدادات', s_jobs:'JobRadar', s_cv:'Polishly · LinkedIn', s_tala:'تردّ عادةً خلال ثوانٍ', s_settings:'تطبيق تالا',
       trial3:'تجربة مجانية 3 أيام', hero_t:'وظائف تطابق سيرتك، كل صباح', hero_p:'لكل وظيفة نسبة تطابق ونقاط مكتوبة لها في سيرتك.', see_jobs:'اعرض الوظائف', ask_tala_s:'اسأل تالا',
       q_check:'فحص السيرة', q_career:'اكتشف مسارك', q_cv:'سيرة جديدة', for_you:'لك', free_tools:'أدوات مجانية', free:'مجاني',
@@ -677,8 +681,21 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
     picked = get('tala_goal');
     document.querySelectorAll('.choice').forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.goal === picked ? 'true' : 'false'); });
     document.getElementById('wGo').disabled = !picked;
+    fromSettings = !!get('tala_welcomed');
+    document.getElementById('wBack').hidden = !fromSettings;
     document.getElementById('welcome').hidden = false;
+    if (fromSettings) { try { history.pushState({ talaWelcome: 1 }, ''); } catch (e) {} }
   }
+  var fromSettings = false;
+  function closeWelcome(viaHistory){
+    var w = document.getElementById('welcome');
+    if (w.hidden) return;
+    w.hidden = true;
+    if (fromSettings && !viaHistory) { try { if (history.state && history.state.talaWelcome) history.back(); } catch (e) {} }
+  }
+  document.getElementById('wBack').addEventListener('click', function () { closeWelcome(false); });
+  window.addEventListener('popstate', function () { if (fromSettings) closeWelcome(true); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && fromSettings) closeWelcome(false); });
   document.querySelectorAll('.choice').forEach(function (b) {
     b.addEventListener('click', function () {
       picked = b.dataset.goal;
@@ -689,8 +706,9 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
   document.getElementById('wGo').addEventListener('click', function () {
     if (!picked) return;
     set('tala_goal', picked); set('tala_welcomed', '1'); track('app-goal-' + picked); syncUp();
-    document.getElementById('welcome').hidden = true; renderGoal();
-    show(picked === 'job' ? 'jobs' : (picked === 'cv' || picked === 'linkedin' ? 'cv' : 'home'));
+    var wasSettings = fromSettings;
+    closeWelcome(false); renderGoal();
+    if (!wasSettings) show(picked === 'job' ? 'jobs' : (picked === 'cv' || picked === 'linkedin' ? 'cv' : 'home'));
   });
 
   /* install */
