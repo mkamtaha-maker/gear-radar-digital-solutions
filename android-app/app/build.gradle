@@ -1,0 +1,36 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'uk.co.gearradar.tala'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'uk.co.gearradar.tala'
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName '1.0'
+    }
+    signingConfigs {
+        test {
+            // Test-only key for direct APK installs. Google Play builds use a separate private upload key.
+            storeFile file('../tala-test.jks')
+            storePassword 'talatest123'
+            keyAlias 'tala'
+            keyPassword 'talatest123'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.test
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+}

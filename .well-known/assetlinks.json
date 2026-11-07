@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "uk.co.gearradar.tala",
+    "sha256_cert_fingerprints": ["CD:04:BF:2C:1C:17:07:F2:F5:F7:C1:CC:DB:4E:1A:7A:25:84:B6:43:95:01:50:D2:3F:C0:92:5E:18:B1:5E:FF"]
+  }
+}]
