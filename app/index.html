@@ -174,7 +174,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
 .sheet .err{color:#DC2626;font-size:13.5px;font-weight:600;min-height:1em}
 .sheet .lnk{background:none;border:0;color:var(--brand-ink);font-weight:700;cursor:pointer;padding:6px;align-self:center}
 .sheet .lnk:disabled{color:var(--muted);font-weight:500;cursor:default}
-#codeIn{letter-spacing:.5em;font-size:24px;font-weight:800;text-align:center;direction:ltr}
+#codeIn{letter-spacing:.35em;font-size:22px;font-weight:800;text-align:center;direction:ltr}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -380,7 +380,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
     <span class="grab"></span>
     <div id="stepEmail" class="view" style="gap:12px">
       <h2 id="sheetT" data-t="si_title">Sign in or create an account</h2>
-      <p class="muted small" data-t="si_sub">Enter your email and we will send you a 6-digit code. No password needed.</p>
+      <p class="muted small" data-t="si_sub">Enter your email and we will send you an 8-digit code. No password needed.</p>
       <div class="field"><label for="emailIn" data-t="email">Email</label><input type="text" id="emailIn" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" dir="ltr" placeholder="name@example.com"></div>
       <input class="hp" id="hp2" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="err" id="emailErr"></p>
@@ -423,7 +423,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
       acct_title:'Create your free account', acct_sub:'Keep your goal and job search, and sign in on any phone.', acct_btn:'Sign in with email',
       s_account:'Account', acct_on:'Signed in. Your settings are saved.', sign_out:'Sign out', del_acct:'Delete my account', del_sub:'Removes your account and saved settings for good.',
       del_confirm:'Delete your Tala account and saved settings? This cannot be undone. Paid subscriptions are not cancelled here: tell Tala in your chat to cancel.', deleted:'Your account has been deleted', signed_out:'Signed out', signed_in:'You are signed in',
-      si_title:'Sign in or create an account', si_sub:'Enter your email and we will send you a 6-digit code. No password needed.', email:'Email', send_code:'Send me a code', sending:'Sending…', si_terms:'By continuing you agree to our',
+      si_title:'Sign in or create an account', si_sub:'Enter your email and we will send you an 8-digit code. No password needed.', email:'Email', send_code:'Send me a code', sending:'Sending…', si_terms:'By continuing you agree to our',
       code_title:'Enter your code', code_sub:'We sent a code to', code_spam:'Check your spam folder if you cannot see it.', verify:'Sign in', checking:'Checking…', resend:'Send a new code', resend_in:'Send a new code in ', change_email:'Use a different email',
       e_email:'Please enter a valid email address.', e_wait:'Too many codes. Please wait 10 minutes and try again.', e_send:'We could not send the code. Please try again.', e_code:'That code is not right or has expired.', e_net:'No connection. Please try again.',
       s_general:'General', language:'Language', appearance:'Appearance', th_auto:'Auto', th_light:'Light', th_dark:'Dark',
@@ -463,7 +463,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
       acct_title:'أنشئ حسابك المجاني', acct_sub:'احفظ هدفك وبحثك عن عمل، وادخل من أي جوال.', acct_btn:'الدخول بالبريد الإلكتروني',
       s_account:'الحساب', acct_on:'تم تسجيل الدخول، وإعداداتك محفوظة.', sign_out:'تسجيل الخروج', del_acct:'حذف حسابي', del_sub:'يحذف حسابك وإعداداتك المحفوظة نهائياً.',
       del_confirm:'هل تريد حذف حساب تالا وإعداداتك المحفوظة؟ لا يمكن التراجع عن ذلك. الاشتراكات المدفوعة لا تُلغى من هنا: أخبر تالا في محادثتك لإلغائها.', deleted:'تم حذف حسابك', signed_out:'تم تسجيل الخروج', signed_in:'تم تسجيل الدخول',
-      si_title:'الدخول أو إنشاء حساب', si_sub:'أدخل بريدك الإلكتروني وسنرسل لك رمزاً من 6 أرقام. لا تحتاج كلمة مرور.', email:'البريد الإلكتروني', send_code:'أرسل لي الرمز', sending:'جارٍ الإرسال…', si_terms:'بالمتابعة فأنت توافق على',
+      si_title:'الدخول أو إنشاء حساب', si_sub:'أدخل بريدك الإلكتروني وسنرسل لك رمزاً من 8 أرقام. لا تحتاج كلمة مرور.', email:'البريد الإلكتروني', send_code:'أرسل لي الرمز', sending:'جارٍ الإرسال…', si_terms:'بالمتابعة فأنت توافق على',
       code_title:'أدخل الرمز', code_sub:'أرسلنا الرمز إلى', code_spam:'إن لم تجده فابحث في مجلد الرسائل غير المرغوب فيها.', verify:'دخول', checking:'جارٍ التحقق…', resend:'أرسل رمزاً جديداً', resend_in:'أرسل رمزاً جديداً بعد ', change_email:'استخدم بريداً آخر',
       e_email:'أدخل بريداً إلكترونياً صحيحاً.', e_wait:'طلبت رموزاً كثيرة. انتظر 10 دقائق ثم حاول مرة أخرى.', e_send:'تعذّر إرسال الرمز. حاول مرة أخرى.', e_code:'الرمز غير صحيح أو انتهت صلاحيته.', e_net:'لا يوجد اتصال. حاول مرة أخرى.',
       s_general:'عام', language:'اللغة', appearance:'المظهر', th_auto:'تلقائي', th_light:'فاتح', th_dark:'داكن',
@@ -804,7 +804,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
     .then(function () { btn.disabled = false; btn.textContent = t('verify'); });
   }
   document.getElementById('verifyCode').addEventListener('click', verify);
-  codeIn.addEventListener('input', function () { var v = codeIn.value.replace(/\D/g, ''); if (v !== codeIn.value) codeIn.value = v; if (v.length === 6) verify(); });
+  codeIn.addEventListener('input', function () { var v = codeIn.value.replace(/\D/g, ''); if (v !== codeIn.value) codeIn.value = v; if (v.length === 8) verify(); });
   document.getElementById('signOutBtn').addEventListener('click', function () {
     if (!sb) return;
     sb.auth.signOut().then(function () { user = null; renderAcct(); toast(t('signed_out')); track('app-signout'); }, function () {});
