@@ -155,6 +155,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
 .gr-badge{font-style:normal;font-size:.66rem;font-weight:700;background:#FF8A50;color:#15171C;padding:2px 8px;border-radius:999px;margin-inline-start:6px;vertical-align:2px}
 .gr-foot{grid-column:1/-1;margin-top:6px;padding:12px 10px 4px;border-top:1px solid rgba(255,255,255,.08);color:#FF8A50;font-weight:600;font-size:.88rem;text-decoration:none}
 @media (max-width:700px){.gr-dd{position:static}.gr-dd-menu{inset-inline:16px;width:auto;grid-template-columns:1fr;top:100%;max-height:calc(100vh - 90px);overflow:auto}}
+html:not([lang="de"]) .de-only{display:none}
 </style>
 <script data-goatcounter="https://gear-radar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -166,7 +167,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
       <span>Gear Radar</span>
     </a>
     <div class="nav-r" style="display:flex;align-items:center;gap:14px"><div class="gr-dd" id="grDD"><button type="button" class="gr-dd-btn" id="grDDBtn" aria-expanded="false" aria-controls="grDDMenu">Services<svg class="gr-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="gr-dd-menu" id="grDDMenu"><div><p class="gr-h">For you</p><a class="gr-item gr-core" href="tala.html"><img src="images/brand/tala-dark.svg" alt="" width="34" height="34"><span><b>Tala</b> <em class="gr-badge">Main</em><small>Your personal assistant on Telegram and WhatsApp</small></span></a><a class="gr-item" href="jobradar.html"><img src="images/brand/jobradar-dark.svg" alt="" width="34" height="34"><span><b>JobRadar</b><small>Jobs that match your CV, every day · Tala add-on</small></span></a><a class="gr-item" href="polishly.html" aria-current="page"><img src="images/brand/polishly-dark.svg" alt="" width="34" height="34"><span><b>Polishly</b><small>Your CV rewritten and redesigned · from £3</small></span></a><a class="gr-item" href="linkedin-makeover.html"><img src="images/brand/linkedin-makeover-dark.svg" alt="" width="34" height="34"><span><b>LinkedIn Makeover</b><small>Your LinkedIn profile rewritten · £5</small></span></a><a class="gr-item" href="career-finder.html"><img src="images/brand/career-finder-dark.svg" alt="" width="34" height="34"><span><b>Career Finder</b> <em class="gr-badge">Free</em><small>Find the jobs that suit your experience</small></span></a><a class="gr-item" href="cv-checker.html"><img src="images/brand/cv-checker-dark.svg" alt="" width="34" height="34"><span><b>CV Checker</b> <em class="gr-badge">Free</em><small>Score your CV out of 100 in 30 seconds</small></span></a><a class="gr-item" href="cv-wallet.html"><img src="images/brand/cv-wallet-dark.svg" alt="" width="34" height="34"><span><b>CVs Wallet</b> <em class="gr-badge">Free</em><small>Keep up to 5 CVs in one safe place</small></span></a></div><div><p class="gr-h">For your business</p><a class="gr-item" href="webly.html"><img src="images/brand/webly-dark.svg" alt="" width="34" height="34"><span><b>Webly</b><small>A website that brings calls and WhatsApp messages</small></span></a><a class="gr-item" href="menutap.html"><img src="images/brand/menutap-dark.svg" alt="" width="34" height="34"><span><b>MenuTap</b><small>Smart QR menu with table orders</small></span></a><a class="gr-item" href="duo.html"><img src="images/brand/duo-dark.svg" alt="" width="34" height="34"><span><b>Duo</b><small>Website + QR menu together, for less</small></span></a></div><a class="gr-foot" href="index.html#contact">Not sure which one you need? Talk to us</a></div></div>
-      <button class="lang" id="langToggle" type="button" hidden aria-hidden="true" tabindex="-1">العربية</button><select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select></div>
+      <button class="lang" id="langToggle" type="button" hidden aria-hidden="true" tabindex="-1">العربية</button><select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option><option value="de">DE</option></select></div>
   </div>
 </header>
 
@@ -290,7 +291,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
   </div>
 </section>
 
-<footer><div class="container"><span>© <span id="year">2026</span> Gear Radar Digital Solutions</span><span><a href="privacy.html" data-i18n="privacy">Privacy</a> · info@gearradar.co.uk</span></div></footer>
+<footer><div class="container"><span>© <span id="year">2026</span> Gear Radar Digital Solutions</span><span><a href="privacy.html" data-i18n="privacy">Privacy</a> · <a href="impressum.html" class="de-only" lang="de">Impressum ·</a> info@gearradar.co.uk</span></div></footer>
 
 <dialog class="pvd" id="pvd" aria-labelledby="pvTitle">
   <div class="pvd-head">
@@ -390,7 +391,8 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     var k = el.getAttribute('data-i18n'), kh = el.getAttribute('data-i18n-html'), kp = el.getAttribute('data-i18n-ph'), ka = el.getAttribute('data-i18n-aria');
     if (k) EN[k] = el.textContent; if (kh) EN[kh] = el.innerHTML; if (kp) EN[kp] = el.getAttribute('placeholder'); if (ka) EN[ka] = el.getAttribute('aria-label');
   });
-  function t(k){ return (lang === 'ar' ? AR[k] : EN[k]) || EN[k] || ''; }
+  var DE = {"h1": "Ein Lebenslauf, der auffällt", "sub": "Senden Sie uns Ihren alten Lebenslauf. Wir schreiben ihn in starkem, klarem Englisch neu, machen ihn ATS-tauglich und gestalten ihn im britischen, amerikanischen, modernen oder Golf-Stil. PDF und Word, fertig in wenigen Minuten. Ideal für Bewerbungen bei internationalen Firmen und im Ausland.", "p_basic": "Polishly · Neufassung & Design", "p_plus": "Polishly Plus · auf eine Stelle zugeschnitten + Anschreiben", "cvc_link": "Unsicher, was Ihr Lebenslauf braucht? Erst kostenlos prüfen →", "cta": "Lebenslauf aufpolieren", "how": "So funktioniert es", "s1": "Design wählen", "s1d": "12 Designs in 4 Stilen, jedes in 8 Farbthemen.", "s2": "Lebenslauf hochladen", "s2d": "PDF oder ein gut lesbares Foto. Nennen Sie uns die Stelle und das Land, das Sie anstreben.", "s3": "In Minuten erhalten", "s3d": "Ihr neuer Lebenslauf kommt per E-Mail als PDF und Word. Zwei kostenlose Korrekturrunden innerhalb von 7 Tagen.", "designs": "Wählen Sie Ihr Design", "designs_d": "Tippen Sie auf ein Design, um es in allen 8 Farbthemen anzusehen. Die Beispiele verwenden Musterdaten.", "t_all": "Alle", "t_uk": "Britischer Lebenslauf", "t_us": "Amerikanisches Resume", "t_modern": "Modern & kompakt", "t_gulf": "Golf-Lebenslauf", "l_tier": "Ihr Paket", "b1": "Neu geschrieben in klarem, professionellem Englisch", "b2": "ATS-tauglich, Erfolge mit Zahlen", "b3": "Ihr Design + Farbthema, PDF und Word", "p1": "Alles aus Polishly", "p2": "Zugeschnitten auf eine Stelle Ihrer Wahl", "p3": "Passendes Anschreiben", "l1": "Neue Headline, Info-Bereich und Berufserfahrung", "l2": "Kenntnisse und Suchbegriffe, nach denen Recruiter suchen", "l3": "Fertiges Kit zum Einfügen, PDF + Text", "f_design": "Design", "f_theme": "Farbthema", "pv_enlarge": "Vorschau vergrößern", "pv_mini": "So sieht Ihr Lebenslauf im gewählten Design und in den gewählten Farben aus, hier mit Musterdaten.", "l_cv": "Ihr Lebenslauf und Ihre Wunschstelle", "drop": "Aktuellen Lebenslauf hochladen", "drop_h": "PDF oder ein gut lesbares Foto (JPG/PNG) · max. 5 MB. In Word: Datei › Speichern unter › PDF.", "e_cv": "Bitte laden Sie Ihren Lebenslauf als PDF oder Foto unter 5 MB hoch.", "li_how": "Am besten: Ihr LinkedIn-Profil als PDF. Öffnen Sie am Computer Ihr Profil › <b>Ressourcen</b> (oder <b>Mehr</b>) › <b>Als PDF speichern</b>. Ihr Lebenslauf geht auch.", "f_role": "Angestrebter Jobtitel", "e_role": "Bitte nennen Sie die Stelle, die Sie anstreben.", "f_tcountry": "Land, in dem Sie sich bewerben", "f_linotes": "Ergänzungen: ein neuer Kurs oder ein Zertifikat, die Art von Stellen, die Sie suchen", "optional": "(optional)", "f_joburl": "Link zur Stellenanzeige", "f_jobtext": "Stellenbeschreibung (hier einfügen)", "e_job": "Bitte fügen Sie die Stellenbeschreibung oder den Link ein.", "f_photo": "Ihr Foto für den Golf-Lebenslauf", "h_photo": "Ein klares, professionelles Porträtfoto · max. 5 MB", "e_photo": "Bitte verwenden Sie JPG, PNG oder WebP unter 5 MB.", "f_gulf": "Staatsangehörigkeit, Visum, Führerschein", "ph_gulf": "Deutsch · Arbeitsvisum (übertragbar) · GCC-Führerschein", "l_you": "Ihre Angaben", "f_name": "Vollständiger Name", "e_name": "Bitte geben Sie Ihren Namen ein.", "f_email": "E-Mail (hierhin senden wir Ihren Lebenslauf)", "e_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.", "due": "Heute fällig", "once": "Einmalzahlung", "pw_card": "Karte", "pw_pp": "Mit Ihrem PayPal-Konto bezahlen", "consent": "Ich bin einverstanden, dass Gear Radar meinen Lebenslauf und meine Angaben speichert und verarbeitet, um diesen Service zu erbringen, und meine Lebenslauf-Dateien nach 30 Tagen löscht, wie im <a href=\"privacy.html#de\" target=\"_blank\">Datenschutzhinweis</a> beschrieben.", "e_consent": "Bitte setzen Sie das Häkchen, um fortzufahren.", "submit": "Weiter zur Zahlung", "d_title": "Zahlung erhalten. Vielen Dank!", "d_body": "Wir polieren jetzt Ihren Lebenslauf. Er kommt in wenigen Minuten per E-Mail, mit einem Link für Änderungswünsche.", "d_ref": "Ihre Referenz", "faq": "Fragen", "q1": "Erfinden Sie Dinge, um Arbeitgeber zu beeindrucken?", "a1": "Nein. Wir nutzen nur, was in Ihrem Lebenslauf steht und was Sie uns sagen. Wir schreiben ihn so um, dass Ihre echte Erfahrung klar und stark wirkt.", "q2": "Was ist ein ATS-tauglicher Lebenslauf?", "a2": "Viele Firmen lesen Lebensläufe mit Software (Bewerbermanagementsysteme, ATS). Wir verwenden klare Überschriften, übliche Abschnitte und die Suchbegriffe Ihrer Wunschstelle, damit die Software ihn lesen kann.", "q3": "Kann ich Änderungen anfragen?", "a3": "Ja. Sie haben zwei kostenlose Korrekturrunden innerhalb von 7 Tagen. Schreiben Sie einfach in eigenen Worten, was geändert werden soll.", "q4": "Was passiert mit meinem Lebenslauf?", "a4": "Wir nutzen ihn nur für Ihren neuen Lebenslauf und löschen die Dateien nach 30 Tagen.", "privacy": "Datenschutz", "pv_prev": "Vorheriges Design", "pv_next": "Nächstes Design", "pv_close": "Schließen", "pv_note": "Musterdaten. Ihr Lebenslauf wird mit Ihren eigenen Angaben geschrieben.", "pv_choose": "Dieses Design wählen", "drop_li": "LinkedIn-Profil (PDF) oder Lebenslauf hochladen", "d_body_li": "Wir schreiben jetzt Ihr neues LinkedIn-Profil. Ihr Kit kommt in wenigen Minuten per E-Mail.", "pv_btn": "Vorschau", "s_check": "Bitte prüfen Sie die markierten Felder.", "s_upload": "Ihre Dateien werden hochgeladen…", "s_sending": "Wird gesendet…", "s_redirect": "Sie werden zur sicheren Zahlung weitergeleitet…", "s_err": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an info@gearradar.co.uk.", "s_uperr": "Wir konnten Ihre Datei nicht hochladen. Bitte versuchen Sie es erneut oder nutzen Sie eine kleinere Datei.", "s_cancelled": "Die Zahlung wurde abgebrochen, es wurde nichts abgebucht.", "s_payfailed": "Ihre Zahlung ist nicht durchgegangen, es wurde nichts abgebucht. Bitte versuchen Sie es erneut."};
+  function t(k){ return (lang === 'ar' ? AR[k] : lang === 'de' ? DE[k] : EN[k]) || EN[k] || ''; }
   function nm(o){ return lang === 'ar' ? o.ar : o.en; }
 
   function renderGallery(){
@@ -509,7 +511,7 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
     try { localStorage.setItem('gr_lang', l); } catch (e) {}
     update();
   }
-  $('langToggle').addEventListener('click', function(){ applyLang(lang === 'ar' ? 'en' : 'ar'); });
+  $('langToggle').addEventListener('click', function(){ var s = $('langSelect'); applyLang(s && s.value !== lang ? s.value : (lang === 'ar' ? 'en' : 'ar')); });
 
   // CV upload box
   var drop = $('drop');
@@ -601,8 +603,8 @@ html[lang="ar"] .gr-item b{font-family:'Cairo',sans-serif}
 
   $('year').textContent = new Date().getFullYear();
   var initial = params.get('lang');
-  if (initial !== 'ar' && initial !== 'en') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch (e) { initial = 'en'; } }
-  applyLang(initial === 'ar' ? 'ar' : 'en');
+  if (initial !== 'ar' && initial !== 'en' && initial !== 'de') { try { initial = localStorage.getItem('gr_lang') || 'en'; } catch (e) { initial = 'en'; } }
+  applyLang(initial === 'ar' || initial === 'de' ? initial : 'en');
   if (params.get('paid') === '1') { var paidTier = ''; try { paidTier = sessionStorage.getItem('grPolishlyTier') || ''; } catch (e) {} showDone((params.get('ref') || '').replace(/[^A-Za-z0-9]/g, '').slice(0, 12), paidTier); $('order').scrollIntoView(); }
   else if (params.get('cancelled') === '1') setStatus('s_cancelled', 'err');
   else if (params.get('payfailed') === '1') setStatus('s_payfailed', 'err');
@@ -625,10 +627,11 @@ html[dir="rtl"] select.lang{padding:9px 16px 9px 30px;background-position:left 1
 select.lang option{color:#15171C;background:#fff}</style>
 <script>
 (function(){var s=document.getElementById('langSelect'),b=document.getElementById('langToggle');if(!s||!b)return;
-function cur(){return (document.documentElement.lang||'en').slice(0,2)==='ar'?'ar':'en';}
-function sync(){s.value=cur();s.setAttribute('aria-label',cur()==='ar'?'اللغة':'Language');}
+function cur(){var l=(document.documentElement.lang||'en').slice(0,2);return l==='ar'||l==='de'?l:'en';}
+function sync(){s.value=cur();s.setAttribute('aria-label',cur()==='ar'?'اللغة':cur()==='de'?'Sprache':'Language');}
 s.addEventListener('change',function(){if(s.value!==cur())b.click();});
 new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});sync();})();
 </script>
+<script src="dd-de.js?v=1"></script>
 </body>
 </html>
