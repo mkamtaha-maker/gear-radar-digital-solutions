@@ -45,6 +45,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px)}
 .bar-in{max-width:560px;margin:0 auto;padding:12px max(18px,env(safe-area-inset-right,0px)) 10px max(18px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:12px}
 .bar-in .t{flex:1;min-width:0}
+.bar-back{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--surface);color:var(--ink);border:1px solid var(--line);cursor:pointer;padding:0}
+.bar-back svg{width:22px;height:22px}
+html[dir=rtl] .bar-back svg{transform:scaleX(-1)}
 .bar small{display:block;color:var(--muted);font-size:13px;font-weight:500}
 .bar h1{margin:0;font-size:26px;line-height:1.2;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
 html[lang="ar"] .bar h1{letter-spacing:0}
@@ -186,6 +189,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
 
 <header class="bar">
   <div class="bar-in">
+    <button class="bar-back" type="button" id="barBack" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
     <div class="t"><small id="barSub"></small><h1 id="barTitle"></h1></div>
     <button class="avatar" type="button" data-go="tala" aria-label="Tala"><img src="/app/icons/icon-192.png" alt=""></button>
   </div>
@@ -618,11 +622,14 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     if (conf.go) { c.setAttribute('href', '#'); c.setAttribute('data-go', conf.go); } else c.setAttribute('href', conf[lang] || conf.href);
   }
 
-  var TABS = ['home','jobs','cv','tala','settings'];
-  function show(x){
+  var TABS = ['home','jobs','cv','tala','settings'], tabHist = [];
+  function show(x, isBack){
     if (x === 'account') x = 'settings';
     if (TABS.indexOf(x) === -1) x = 'home';
+    if (!isBack && tab && tab !== x) { tabHist.push(tab); if (tabHist.length > 20) tabHist.shift(); }
+    if (x === 'home') tabHist = [];
     tab = x;
+    var bb = document.getElementById('barBack'); bb.hidden = x === 'home'; bb.setAttribute('aria-label', t('w_back'));
     TABS.forEach(function (k) { document.getElementById('v-' + k).hidden = k !== x; });
     document.querySelectorAll('.nav button').forEach(function (b) { if (b.dataset.tab === x) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
     document.getElementById('composer').hidden = x !== 'tala';
@@ -633,6 +640,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     track('app-tab-' + x);
   }
   document.querySelectorAll('.nav button').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
+  document.getElementById('barBack').addEventListener('click', function () { var p = tabHist.pop(); while (p === tab) p = tabHist.pop(); show(p || 'home', true); track('app-back'); });
   document.addEventListener('click', function (e) { var a = e.target.closest('[data-go]'); if (a) { e.preventDefault(); show(a.getAttribute('data-go')); } });
 
   /* jobs: labelled examples until live results arrive */
