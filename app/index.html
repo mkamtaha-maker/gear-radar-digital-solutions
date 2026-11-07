@@ -234,7 +234,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       <p class="muted small" data-t="loc_sub">We use this to show you the right jobs. You can change it any time in Settings.</p>
       <div class="field"><label for="country" data-t="country">Country</label>
         <select id="country"></select></div>
-      <div class="field"><label for="city" data-t="city">City</label><input type="text" id="city" autocomplete="address-level2" data-tp="city_ph"></div>
+      <div class="field"><label for="city" data-t="city">City</label><input type="text" id="city" autocomplete="address-level2"></div>
       <div class="field"><label for="title" data-t="jobtitle">Job you are looking for</label><input type="text" id="title" data-tp="title_ph"></div>
       <button class="btn" type="button" id="saveLoc" data-t="show_jobs">Show jobs</button>
     </div>
@@ -421,7 +421,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       q_check:'CV check', q_career:'Career finder', q_cv:'New CV', for_you:'For you', free_tools:'Free tools', free:'Free',
       cvcheck:'CV Checker', cw:'CVs Wallet', cw_sub:'Keep up to 5 CVs in one safe place', your_cvs:'Your CVs', cvcheck_sub:'A score out of 100 in 30 seconds', career:'Career Finder', career_sub:'5 questions, 4 career directions',
       loc_title:'Where do you want to work?', loc_sub:'We use this to show you the right jobs. You can change it any time in Settings.',
-      country:'Country', city:'City', city_ph:'e.g. London', jobtitle:'Job you are looking for', title_ph:'e.g. Customer Service', show_jobs:'Show jobs',
+      country:'Country', city:'City', city_eg:'e.g. ', city_any:'Your city (optional)', pick_country:'Choose a country', jobtitle:'Job you are looking for', title_ph:'e.g. Customer Service', show_jobs:'Show jobs',
       c_remote:'Remote only',
       change:'Change', example:'Example', jobs_title:'Examples of what you get',
       want_all:'Get every matching job, every day', trial_note:'Card needed, nothing charged today. Then £17 a month (Tala £7 + JobRadar £10). We remind you a day before. Cancel any time.',
@@ -461,7 +461,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       q_check:'فحص السيرة', q_career:'اكتشف مسارك', q_cv:'سيرة جديدة', for_you:'لك', free_tools:'أدوات مجانية', free:'مجاني',
       cvcheck:'فحص السيرة', cw:'محفظة السير الذاتية', cw_sub:'احفظ حتى 5 سير في مكان آمن', your_cvs:'سيرك الذاتية', cvcheck_sub:'نتيجة من 100 خلال 30 ثانية', career:'اكتشف مسارك', career_sub:'5 أسئلة و4 مسارات مهنية',
       loc_title:'أين تريد أن تعمل؟', loc_sub:'نستخدم هذا لنعرض لك الوظائف المناسبة، ويمكنك تغييره من الإعدادات في أي وقت.',
-      country:'البلد', city:'المدينة', city_ph:'مثلاً: لندن', jobtitle:'الوظيفة التي تبحث عنها', title_ph:'مثلاً: Customer Service', show_jobs:'اعرض الوظائف',
+      country:'البلد', city:'المدينة', city_eg:'مثلاً: ', city_any:'مدينتك (اختياري)', pick_country:'اختر البلد', jobtitle:'الوظيفة التي تبحث عنها', title_ph:'مثلاً: Customer Service', show_jobs:'اعرض الوظائف',
       c_remote:'عن بُعد فقط',
       change:'تغيير', example:'مثال', jobs_title:'أمثلة لما يصلك',
       want_all:'احصل على كل الوظائف المطابقة يومياً', trial_note:'تحتاج بطاقة، ولا يُخصم شيء اليوم. بعدها £17 شهرياً (تالا £7 + JobRadar £10). نذكّرك قبلها بيوم، ويمكنك الإلغاء في أي وقت.',
@@ -501,7 +501,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       q_check:'CV-Check', q_career:'Career Finder', q_cv:'Neuer Lebenslauf', for_you:'Für Sie', free_tools:'Kostenlose Tools', free:'Kostenlos',
       cvcheck:'Lebenslauf-Check', cw:'CVs Wallet', cw_sub:'Bis zu 5 Lebensläufe sicher an einem Ort', your_cvs:'Ihre Lebensläufe', cvcheck_sub:'Eine Bewertung von 100 in 30 Sekunden', career:'Career Finder', career_sub:'5 Fragen, 4 berufliche Richtungen',
       loc_title:'Wo möchten Sie arbeiten?', loc_sub:'Damit zeigen wir Ihnen die passenden Jobs. Sie können das jederzeit in den Einstellungen ändern.',
-      country:'Land', city:'Stadt', city_ph:'z. B. Berlin', jobtitle:'Gesuchter Job', title_ph:'z. B. Kundenservice', show_jobs:'Jobs anzeigen',
+      country:'Land', city:'Stadt', city_eg:'z. B. ', city_any:'Ihre Stadt (optional)', pick_country:'Land wählen', jobtitle:'Gesuchter Job', title_ph:'z. B. Kundenservice', show_jobs:'Jobs anzeigen',
       c_remote:'Nur remote',
       change:'Ändern', example:'Beispiel', jobs_title:'Beispiele für das, was Sie bekommen',
       want_all:'Jeden passenden Job bekommen, jeden Tag', trial_note:'Karte nötig, heute wird nichts abgebucht. Danach £17 im Monat (Tala £7 + JobRadar £10). Wir erinnern Sie einen Tag vorher. Jederzeit kündbar.',
@@ -536,13 +536,39 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     }
   };
 
+  /* prices: shown in the currency of the chosen country (or the phone's region), charged in GBP at checkout */
+  var CUR = {uk:'GBP',us:'USD',ca:'CAD',au:'AUD',nz:'NZD',ch:'CHF',se:'SEK',no:'NOK',dk:'DKK',is:'ISK',pl:'PLN',cz:'CZK',hu:'HUF',ro:'RON',bg:'BGN',
+    ae:'AED',sa:'SAR',qa:'QAR',kw:'KWD',bh:'BHD',om:'OMR',jo:'JOD',iq:'IQD',eg:'EGP',tn:'TND',dz:'DZD',ma:'MAD',tr:'TRY',
+    pk:'PKR',in:'INR',bd:'BDT',lk:'LKR',np:'NPR',my:'MYR',sg:'SGD',id:'IDR',ph:'PHP',th:'THB',vn:'VND',cn:'CNY',hk:'HKD',jp:'JPY',kr:'KRW',
+    za:'ZAR',ng:'NGN',ke:'KES',gh:'GHS',ug:'UGX',tz:'TZS',rw:'RWF',mx:'MXN',br:'BRL',cl:'CLP',co:'COP'};
+  var FX_DEC = {KWD:1,BHD:1,OMR:1,JOD:1};
+  var fxRates = null;
+  function phoneRegion(){ var l = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']); for (var i = 0; i < l.length; i++) { var r = (String(l[i]).split('-')[1] || '').toLowerCase(); if (r === 'gb') r = 'uk'; if (r && r.length === 2) return r; } return ''; }
+  function userCountry(){ var l = null; try { l = JSON.parse(localStorage.getItem('tala_loc') || 'null'); } catch (e) {} return (l && l.country && l.country !== 'remote') ? l.country : phoneRegion(); }
+  function userCurrency(){ var c = userCountry(); if (CUR[c]) return CUR[c]; if (['ie','de','at','nl','be','lu','fr','es','pt','it','fi','gr','hr','si','sk','ee','lv','lt','mt','cy'].indexOf(c) !== -1) return 'EUR'; return 'USD'; }
+  function money(v){
+    if (typeof v === 'string') { var cur = userCurrency(); if (!fxRates || cur === 'GBP' || !fxRates[cur] || !fxRates.GBP) return v;
+      return v.replace(/£\s?(\d+(?:\.\d+)?)/g, function (m, n) { var x = parseFloat(n) / fxRates.GBP * fxRates[cur], d = FX_DEC[cur] || 0;
+        if (!d && x >= 1000) x = Math.round(x / 10) * 10;
+        try { return new Intl.NumberFormat('en-GB', { style:'currency', currency:cur, currencyDisplay:'narrowSymbol', minimumFractionDigits:d, maximumFractionDigits:d }).format(x); } catch (e) { return cur + ' ' + x.toFixed(d); } }); }
+    if (Array.isArray(v)) return v.map(money);
+    return v;
+  }
+  (function loadFx(){
+    try { var c = JSON.parse(localStorage.getItem('gr_fx_rates') || 'null'); if (c && c.rates && Date.now() - c.t < 12 * 3600 * 1000) { fxRates = c.rates; return; } } catch (e) {}
+    fetch('https://open.er-api.com/v6/latest/USD').then(function (r) { return r.json(); }).then(function (j) {
+      if (j.result !== 'success' || !j.rates) return; fxRates = j.rates;
+      try { localStorage.setItem('gr_fx_rates', JSON.stringify({ t: Date.now(), rates: j.rates })); } catch (e) {}
+      if (typeof applyLang === 'function' && document.readyState !== 'loading') applyLang();
+    }).catch(function () {});
+  })();
   function get(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
   function set(k,v){ try { localStorage.setItem(k,v); } catch (e) {} }
   var params = new URLSearchParams(location.search);
   var navLang = (navigator.language || 'en').slice(0,2).toLowerCase();
   var lang = get('tala_lang') || params.get('lang') || (navLang === 'ar' || navLang === 'de' ? navLang : 'en');
   if (lang !== 'ar' && lang !== 'de') lang = 'en';
-  function t(k){ var v = T[lang][k]; return v === undefined ? T.en[k] : v; }
+  function t(k){ var v = T[lang][k]; if (v === undefined) v = T.en[k]; return money(v); }
   var tab = 'home';
 
   /* appearance: auto follows the phone */
@@ -561,6 +587,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-t]').forEach(function (el) { var v = t(el.getAttribute('data-t')); if (typeof v === 'string') el.textContent = v; });
     document.querySelectorAll('[data-tp]').forEach(function (el) { el.placeholder = t(el.getAttribute('data-tp')); });
+    document.querySelectorAll('.price').forEach(function (el) { if (!el.dataset.gbp) el.dataset.gbp = el.textContent; el.textContent = money(el.dataset.gbp); });
     document.querySelectorAll('[data-ar],[data-de]').forEach(function (el) { if (!el.dataset.en) el.dataset.en = el.getAttribute('href'); el.setAttribute('href', lang === 'ar' && el.dataset.ar ? el.dataset.ar : (lang === 'de' && el.dataset.de ? el.dataset.de : el.dataset.en)); });
     var lq = lang === 'en' ? '' : '&lang=' + lang;
     document.querySelectorAll('a[href^="/polishly.html"]').forEach(function (a) { var h = a.getAttribute('href').replace(/&lang=(ar|de)/, ''); if (lq) h = h.replace('#', lq + '#'); a.setAttribute('href', h); });
@@ -568,7 +595,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     document.getElementById('trialBtn').href = '/signup.html?service=butler&plan=basic&addons=jobs&billing=monthly' + lq;
     document.getElementById('emailBtn').href = '/signup.html?plan=jobradar&billing=monthly' + lq;
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'); });
-    fillCountries(); renderGoal(); renderLoc(); renderChat(); renderBar();
+    fillCountries(); cityHint(); renderGoal(); renderLoc(); renderChat(); renderBar();
   }
   document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { if (lang === b.dataset.lang) return; lang = b.dataset.lang; set('tala_lang', lang); applyLang(); track('app-lang-' + lang); syncUp(); }); });
 
@@ -636,14 +663,26 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     try { if (!dn[lang]) dn[lang] = new Intl.DisplayNames([lang], { type: 'region' }); var n = dn[lang].of(iso); if (n && n !== iso) return n; } catch (e) {}
     return COUNTRIES[c] || c.toUpperCase();
   }
+  var CITIES = {uk:['London','لندن','London'],us:['New York','نيويورك','New York'],ca:['Toronto','تورونتو','Toronto'],au:['Sydney','سيدني','Sydney'],ie:['Dublin','دبلن','Dublin'],
+    de:['Berlin','برلين','Berlin'],at:['Vienna','فيينا','Wien'],ch:['Zurich','زيورخ','Zürich'],nl:['Amsterdam','أمستردام','Amsterdam'],fr:['Paris','باريس','Paris'],es:['Madrid','مدريد','Madrid'],it:['Milan','ميلانو','Mailand'],se:['Stockholm','ستوكهولم','Stockholm'],
+    ae:['Dubai','دبي','Dubai'],sa:['Riyadh','الرياض','Riad'],qa:['Doha','الدوحة','Doha'],kw:['Kuwait City','مدينة الكويت','Kuwait-Stadt'],bh:['Manama','المنامة','Manama'],om:['Muscat','مسقط','Maskat'],
+    jo:['Amman','عمّان','Amman'],eg:['Cairo','القاهرة','Kairo'],sd:['Khartoum','الخرطوم','Khartum'],ma:['Casablanca','الدار البيضاء','Casablanca'],tn:['Tunis','تونس','Tunis'],dz:['Algiers','الجزائر','Algier'],
+    iq:['Baghdad','بغداد','Bagdad'],lb:['Beirut','بيروت','Beirut'],tr:['Istanbul','إسطنبول','Istanbul'],in:['Mumbai','مومباي','Mumbai'],pk:['Karachi','كراتشي','Karatschi'],my:['Kuala Lumpur','كوالالمبور','Kuala Lumpur'],sg:['Singapore','سنغافورة','Singapur'],
+    za:['Johannesburg','جوهانسبرغ','Johannesburg'],ng:['Lagos','لاغوس','Lagos'],ke:['Nairobi','نيروبي','Nairobi']};
+  function cityHint(){
+    var sel = document.getElementById('country'), inp = document.getElementById('city'); if (!sel || !inp) return;
+    var c = CITIES[sel.value], i = lang === 'ar' ? 1 : (lang === 'de' ? 2 : 0);
+    inp.placeholder = c ? t('city_eg') + c[i] : t('city_any');
+  }
   function fillCountries(){
     var sel = document.getElementById('country'), cur = sel.value;
     var list = Object.keys(COUNTRIES).map(function (c) { return [c, countryName(c)]; });
     list.sort(function (x, y) { return x[1].localeCompare(y[1], lang); });
     sel.innerHTML = '';
     list.concat([['remote', t('c_remote')]]).forEach(function (x) { var o = document.createElement('option'); o.value = x[0]; o.textContent = x[1]; sel.appendChild(o); });
-    if (!cur) { var reg = ((navigator.language || '').split('-')[1] || '').toLowerCase(); if (reg === 'gb') reg = 'uk'; cur = COUNTRIES[reg] ? reg : (lang === 'de' ? 'de' : 'uk'); }
-    sel.value = cur; if (!sel.value) sel.value = 'uk';
+    if (!cur) { var reg = phoneRegion(); cur = COUNTRIES[reg] ? reg : ''; }
+    var ph = document.createElement('option'); ph.value = ''; ph.textContent = t('pick_country'); ph.disabled = true; sel.insertBefore(ph, sel.firstChild);
+    sel.value = cur;
   }
   function renderLoc(){
     var loc = loadLoc();
@@ -670,12 +709,14 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
   }
   function openLocForm(){
     var loc = loadLoc();
-    if (loc) { document.getElementById('country').value = loc.country; document.getElementById('city').value = loc.city || ''; document.getElementById('title').value = loc.title || ''; }
+    if (loc) { document.getElementById('country').value = loc.country; document.getElementById('city').value = loc.city || ''; document.getElementById('title').value = loc.title || ''; } cityHint();
     document.getElementById('locForm').hidden = false; document.getElementById('jobList').hidden = true;
   }
+  document.getElementById('country').addEventListener('change', cityHint);
   document.getElementById('saveLoc').addEventListener('click', function () {
+    if (!document.getElementById('country').value) { document.getElementById('country').focus(); return; }
     set('tala_loc', JSON.stringify({ country: document.getElementById('country').value, city: document.getElementById('city').value.trim().slice(0,60), title: document.getElementById('title').value.trim().slice(0,60) }));
-    track('app-location-set'); renderLoc(); syncUp();
+    track('app-location-set'); applyLang(); syncUp();
   });
   var ls = document.getElementById('locSummary');
   ls.addEventListener('click', openLocForm);
