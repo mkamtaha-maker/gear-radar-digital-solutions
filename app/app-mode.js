@@ -5,14 +5,15 @@
 (function () {
   if (window.__talaAppMode) return; window.__talaAppMode = true;
   function ar() { return (document.documentElement.lang || '').slice(0, 2) === 'ar'; }
+  function de() { return (document.documentElement.lang || '').slice(0, 2) === 'de'; }
   var TITLES = {
-    'cv-checker': ['CV Checker', 'فحص السيرة'], 'cv-wallet': ['CVs Wallet', 'محفظة السير'], 'career-finder': ['Career Finder', 'اكتشف مسارك'],
-    'linkedin-makeover': ['LinkedIn Makeover', 'LinkedIn Makeover'], 'polishly': ['Polishly', 'Polishly'],
-    'signup': ['Sign up', 'الاشتراك'], 'privacy': ['Privacy notice', 'سياسة الخصوصية'], 'terms': ['Terms', 'الشروط']
+    'cv-checker': ['CV Checker', 'فحص السيرة', 'Lebenslauf-Check'], 'cv-wallet': ['CVs Wallet', 'محفظة السير', 'CVs Wallet'], 'career-finder': ['Career Finder', 'اكتشف مسارك', 'Career Finder'],
+    'linkedin-makeover': ['LinkedIn Makeover', 'LinkedIn Makeover', 'LinkedIn-Makeover'], 'polishly': ['Polishly', 'Polishly', 'Polishly'],
+    'signup': ['Sign up', 'الاشتراك', 'Anmelden'], 'privacy': ['Privacy notice', 'سياسة الخصوصية', 'Datenschutz'], 'terms': ['Terms', 'الشروط', 'AGB'], 'impressum': ['Impressum', 'Impressum', 'Impressum']
   };
   function title() {
-    var k = location.pathname.replace(/^\/|\.html$/g, '').replace(/-ar$/, '');
-    var t = TITLES[k]; if (t) return ar() ? t[1] : t[0];
+    var k = location.pathname.replace(/^\/|\.html$/g, '').replace(/-(ar|de)$/, '');
+    var t = TITLES[k]; if (t) return ar() ? t[1] : (de() ? t[2] : t[0]);
     return (document.title || '').split(/[|·–-]/)[0].trim();
   }
 
@@ -85,7 +86,7 @@
       + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>'
       + '<span class="tb-t"></span>'
       + '<a href="/app/" class="tb-home"><img src="/app/icons/icon-192.png" alt="Tala"></a>';
-    function labels() { bar.querySelector('.tb-back').setAttribute('aria-label', ar() ? 'رجوع' : 'Back'); bar.querySelector('.tb-t').textContent = title(); }
+    function labels() { bar.querySelector('.tb-back').setAttribute('aria-label', ar() ? 'رجوع' : (de() ? 'Zurück' : 'Back')); bar.querySelector('.tb-t').textContent = title(); }
     labels();
     try { new MutationObserver(labels).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); } catch (e) {}
     bar.querySelector('.tb-back').addEventListener('click', function () {

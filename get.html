@@ -55,7 +55,7 @@ html[dir="rtl"] .home svg{transform:scaleX(-1)}
 <body>
 <header class="hero" style="position:relative">
   <a class="home" href="/" id="homeLink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span data-t="home">Gear Radar</span></a>
-  <select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select>
+  <select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option><option value="de">DE</option></select>
   <img src="/app/icons/icon-192.png" alt="Tala" width="84" height="84">
   <h1 data-t="title">Get the Tala app</h1>
   <p data-t="sub">Daily job matches, a free CV checker and CV services, in one app. Free to install.</p>
@@ -118,19 +118,25 @@ html[dir="rtl"] .home svg{transform:scaleX(-1)}
       a_btn:'تنزيل التطبيق للأندرويد',a_h:'طريقة التثبيت',a1:'اضغط الزر أعلاه، وسيُنزَّل الملف (أقل من 1 ميغابايت).',a2:'افتح الملف المُنزَّل. إذا طلب الجوال ذلك، اسمح بتثبيت التطبيقات من هذا المصدر.',a3:'اضغط «تثبيت» ثم «فتح». أصبحت تالا على شاشتك الرئيسية.',a_note:'ستتوفر تالا قريباً على Google Play أيضاً.',a_pwa:'أو أضفها من المتصفح',
       i_h:'أضف تالا إلى الآيفون في 3 خطوات',i_safari:'افتح هذه الصفحة في Safari أولاً: اضغط قائمة ⋯ أو المشاركة واختر «فتح في Safari».',i1:'اضغط زر المشاركة',i1b:'في أسفل Safari.',i2:'مرّر للأسفل واضغط «إضافة إلى الشاشة الرئيسية».',i3:'اضغط «إضافة». أصبحت تالا على شاشتك الرئيسية وتفتح بملء الشاشة.',open_now:'افتح تالا الآن',
       d_scan:'امسح الرمز بكاميرا جوالك لتثبيت تالا على الآيفون أو الأندرويد.',d_open:'افتح تالا في هذا المتصفح',
-      f_h:'ماذا تحصل عليه',f1:'وظائف تطابق سيرتك كل صباح (تجربة مجانية 3 أيام)',f2:'فحص مجاني للسيرة الذاتية بنتيجة من 100',f3:'سيرة جديدة من £3 وتحسين LinkedIn بـ £5',f4:'تالا، جاهزة للإجابة عن أسئلتك',home:'Gear Radar',home_foot:'العودة إلى الصفحة الرئيسية لـ Gear Radar',other:'English'}
+      f_h:'ماذا تحصل عليه',f1:'وظائف تطابق سيرتك كل صباح (تجربة مجانية 3 أيام)',f2:'فحص مجاني للسيرة الذاتية بنتيجة من 100',f3:'سيرة جديدة من £3 وتحسين LinkedIn بـ £5',f4:'تالا، جاهزة للإجابة عن أسئلتك',home:'Gear Radar',home_foot:'العودة إلى الصفحة الرئيسية لـ Gear Radar',other:'English'},
+    de:{title:'Die Tala App holen',sub:'Tägliche passende Jobs, ein kostenloser Lebenslauf-Check und Lebenslauf-Services in einer App. Kostenlos installieren.',
+      a_btn:'App für Android herunterladen',a_h:'So installieren Sie die App',a1:'Tippen Sie oben auf den Button. Die Datei (unter 1 MB) wird heruntergeladen.',a2:'Öffnen Sie die heruntergeladene Datei. Falls Ihr Handy fragt, erlauben Sie die Installation aus dieser Quelle.',a3:'Tippen Sie auf Installieren, dann auf Öffnen. Tala ist jetzt auf Ihrem Startbildschirm.',a_note:'Tala kommt bald auch zu Google Play.',a_pwa:'Oder über den Browser hinzufügen',
+      i_h:'Tala in 3 Schritten zum iPhone hinzufügen',i_safari:'Bitte öffnen Sie diese Seite zuerst in Safari. Tippen Sie auf ⋯ oder Teilen und wählen Sie „In Safari öffnen“.',i1:'Tippen Sie auf Teilen',i1b:'unten in Safari.',i2:'Nach unten scrollen und „Zum Home-Bildschirm“ antippen.',i3:'Auf „Hinzufügen“ tippen. Tala ist jetzt auf Ihrem Startbildschirm und öffnet im Vollbild.',open_now:'Tala jetzt öffnen',
+      d_scan:'Mit der Handykamera scannen, um Tala auf iPhone oder Android zu installieren.',d_open:'Tala in diesem Browser öffnen',
+      f_h:'Was Sie bekommen',f1:'Jobs passend zu Ihrem Lebenslauf, jeden Morgen (3 Tage kostenlos testen)',f2:'Ein kostenloser Lebenslauf-Check mit Bewertung von 100',f3:'Ein neuer Lebenslauf ab £3 und ein LinkedIn-Makeover für £5',f4:'Tala, bereit für Ihre Fragen',home:'Gear Radar',home_foot:'Zurück zur Gear Radar Startseite',other:'English'}
   };
   var q = new URLSearchParams(location.search), lang;
   try { lang = localStorage.getItem('tala_lang'); } catch (e) {}
-  lang = q.get('lang') || lang || ((navigator.language || 'en').slice(0,2) === 'ar' ? 'ar' : 'en');
-  if (lang !== 'ar') lang = 'en';
+  var nl = (navigator.language || 'en').slice(0,2).toLowerCase();
+  lang = q.get('lang') || lang || (nl === 'ar' || nl === 'de' ? nl : 'en');
+  if (lang !== 'ar' && lang !== 'de') lang = 'en';
   function apply(){
     document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = T[lang][el.getAttribute('data-t')]; });
-    var ls = document.getElementById('langSelect'); ls.value = lang; ls.setAttribute('aria-label', lang === 'ar' ? 'اللغة' : 'Language');
-    ['homeLink','homeFoot'].forEach(function (id) { document.getElementById(id).href = lang === 'ar' ? '/?lang=ar' : '/?lang=en'; });
+    var ls = document.getElementById('langSelect'); ls.value = lang; ls.setAttribute('aria-label', lang === 'ar' ? 'اللغة' : (lang === 'de' ? 'Sprache' : 'Language'));
+    ['homeLink','homeFoot'].forEach(function (id) { document.getElementById(id).href = '/?lang=' + lang; });
   }
-  document.getElementById('langSelect').addEventListener('change', function () { lang = this.value === 'ar' ? 'ar' : 'en'; try { localStorage.setItem('tala_lang', lang); } catch (e) {} apply(); });
+  document.getElementById('langSelect').addEventListener('change', function () { lang = this.value === 'ar' || this.value === 'de' ? this.value : 'en'; try { localStorage.setItem('tala_lang', lang); } catch (e) {} apply(); });
 
   var ua = navigator.userAgent || '';
   var isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
