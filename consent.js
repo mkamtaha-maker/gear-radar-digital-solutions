@@ -101,3 +101,16 @@
   if (state === 'yes') loadTags();
   else if (!state) show();
 })();
+
+/* Tala app mode: load the app back bar when this page is opened from the Tala app. */
+(function () {
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.get('app') === '1') sessionStorage.setItem('tala_app', '1');
+    var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+    if (location.pathname.indexOf('/app/') === 0) return;
+    if (standalone || sessionStorage.getItem('tala_app') === '1') {
+      var s = document.createElement('script'); s.src = '/app/app-mode.js?v=2'; document.head.appendChild(s);
+    }
+  } catch (e) {}
+})();

@@ -224,6 +224,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
     <div class="list">
       <button type="button" id="langBtn"><span data-t="language">Language</span><span class="muted" id="langNow"></span></button>
       <button type="button" id="locBtn"><span data-t="job_loc">Job search location</span><span class="muted" id="locNow"></span></button>
+      <button type="button" id="updBtn"><span data-t="update">Update the app</span><span class="muted small" id="updNow"></span></button>
     </div>
     <h2 data-t="help">Help</h2>
     <div class="list">
@@ -290,7 +291,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
       acc_title:'My account', install:'Install the Tala app', install_sub:'Add Tala to your home screen for one-tap access.', install_btn:'Install',
       install_ios:'On iPhone: tap Share, then "Add to Home Screen".',
       subscribed:'Already with Tala?', open_tg:'Open Tala in Telegram', open_wa:'Open Tala in WhatsApp', manage_note:'To change your job titles or cities, or to cancel, just tell Tala in your chat.',
-      settings:'Settings', language:'Language', job_loc:'Job search location', not_set:'Not set', help:'Help', privacy:'Privacy notice', terms:'Terms', site:'Gear Radar website', contact:'Questions?',
+      settings:'Settings', language:'Language', job_loc:'Job search location', not_set:'Not set', update:'Update the app', updating:'Updating…', help:'Help', privacy:'Privacy notice', terms:'Terms', site:'Gear Radar website', contact:'Questions?',
       n_home:'Home', n_jobs:'Jobs', n_cv:'CV', n_tala:'Tala', n_account:'Account',
       w_title:'Welcome. What would you like to do today?', w_sub:'Pick one and we will set up the app around it.',
       g_job:"I'm looking for a job", g_cv:'I want a better CV', g_career:"I'm not sure which job suits me", g_li:'I want a better LinkedIn profile',
@@ -324,7 +325,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
       acc_title:'حسابي', install:'ثبّت تطبيق تالا', install_sub:'أضف تالا إلى الشاشة الرئيسية لتفتحها بضغطة واحدة.', install_btn:'تثبيت',
       install_ios:'على الآيفون: اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية».',
       subscribed:'مشترك مع تالا؟', open_tg:'افتح تالا في تيليجرام', open_wa:'افتح تالا في واتساب', manage_note:'لتغيير الوظائف أو المدن، أو للإلغاء، أخبر تالا في محادثتك.',
-      settings:'الإعدادات', language:'اللغة', job_loc:'مكان البحث عن عمل', not_set:'غير محدد', help:'المساعدة', privacy:'سياسة الخصوصية', terms:'الشروط', site:'موقع Gear Radar', contact:'لديك سؤال؟',
+      settings:'الإعدادات', language:'اللغة', job_loc:'مكان البحث عن عمل', not_set:'غير محدد', update:'تحديث التطبيق', updating:'جارٍ التحديث…', help:'المساعدة', privacy:'سياسة الخصوصية', terms:'الشروط', site:'موقع Gear Radar', contact:'لديك سؤال؟',
       n_home:'الرئيسية', n_jobs:'الوظائف', n_cv:'السيرة', n_tala:'تالا', n_account:'حسابي',
       w_title:'أهلاً بك. بماذا نبدأ اليوم؟', w_sub:'اختر هدفك وسنرتّب لك التطبيق حسبه.',
       g_job:'أبحث عن وظيفة', g_cv:'أريد سيرة ذاتية أفضل', g_career:'لا أعرف أي وظيفة تناسبني', g_li:'أريد ملف LinkedIn أفضل',
@@ -433,6 +434,13 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
   });
   document.getElementById('editLoc').addEventListener('click', openLocForm);
   document.getElementById('locBtn').addEventListener('click', function () { show('jobs'); openLocForm(); });
+  document.getElementById('updBtn').addEventListener('click', function () {
+    document.getElementById('updNow').textContent = t('updating'); track('app-update');
+    var jobs = [];
+    try { if (window.caches) jobs.push(caches.keys().then(function (ks) { return Promise.all(ks.map(function (k) { return caches.delete(k); })); })); } catch (e) {}
+    try { if (navigator.serviceWorker) jobs.push(navigator.serviceWorker.getRegistrations().then(function (rs) { return Promise.all(rs.map(function (r) { return r.update(); })); })); } catch (e) {}
+    Promise.all(jobs).catch(function () {}).then(function () { location.replace('/app/?tab=account&v=' + Date.now()); });
+  });
   document.getElementById('langBtn').addEventListener('click', function () { lang = lang === 'ar' ? 'en' : 'ar'; set('tala_lang', lang); applyLang(); });
 
   /* Tala chat: same endpoint and session format as /chat.js */
@@ -517,6 +525,7 @@ html[dir="rtl"] .composer svg{transform:scaleX(-1)}
   /* GoatCounter (cookieless), same account as the site */
   function track(name){ try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} }
 
+  try { sessionStorage.setItem('tala_app', '1'); } catch (e) {}
   applyLang();
   if (!get('tala_welcomed')) document.getElementById('welcome').hidden = false;
   show(params.get('tab') || 'home');
