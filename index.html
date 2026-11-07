@@ -502,7 +502,16 @@ html[lang="ar"] .dd-h{letter-spacing:0;font-size:.85rem}
 .home-art .ha-ar{display:none}
 html[lang="ar"] .home-art .ha-en{display:none}
 html[lang="ar"] .home-art .ha-ar{display:block}
-.hero .co-card{margin-top:36px;padding:22px 26px}
+.app-promo{margin-top:36px;display:flex;align-items:center;gap:22px;padding:22px 26px;border-radius:var(--radius);background:linear-gradient(120deg,rgba(255,138,80,.16),rgba(255,255,255,.04) 60%);border:1px solid rgba(255,138,80,.35);color:var(--on-ink);transition:border-color .2s,transform .2s}
+.app-promo:hover{border-color:var(--gold);transform:translateY(-2px)}
+.app-promo img{width:64px;height:64px;border-radius:16px;flex:none;box-shadow:0 10px 24px -10px rgba(0,0,0,.6)}
+.app-promo .ap-text{flex:1;min-width:0}
+.app-promo .ap-tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.app-promo h2{font-size:1.15rem;color:var(--white);margin:0 0 4px}
+.app-promo p{color:var(--on-ink-muted);font-size:.93rem;margin:0}
+.app-promo .ap-btn{flex:none}
+.app-promo .ap-btn svg{width:18px;height:18px}
+@media (max-width:720px){.app-promo{flex-wrap:wrap;gap:14px;padding:20px}.app-promo img{width:52px;height:52px;border-radius:13px}.app-promo .ap-btn{flex:1 1 100%}}
 .hero .co-card h2{margin-bottom:6px}
 @media (min-width:900px){.hero .co-card dl{grid-template-columns:repeat(5,1fr);gap:20px}.hero .co-card dl>div{grid-template-columns:1fr;gap:4px;border-top:0;padding:8px 0}}
 .co-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:30px;color:var(--on-ink)}
@@ -589,16 +598,15 @@ html[dir="rtl"] .co-card dd[dir="ltr"]{text-align:right}
     <div class="home-art"><img class="ha-en" src="images/services/home-en.webp?v=1" alt="Gear Radar logo: Digital services, done properly." width="1000" height="860" fetchpriority="high"><img class="ha-ar" src="images/services/home-ar.webp?v=1" alt="شعار Gear Radar: خدمات رقمية بإتقان واهتمام." width="1000" height="860" loading="lazy"></div>
   </div>
   <div class="container">
-    <aside class="co-card" aria-labelledby="coTitle">
-      <h2 id="coTitle" data-i18n="co_title">Company details</h2>
-      <dl>
-        <div><dt data-i18n="co_area">We serve</dt><dd data-i18n="co_area_v">Customers in different countries, fully online</dd></div>
-        <div><dt data-i18n="co_lang">Languages</dt><dd data-i18n="co_lang_v">English and Arabic</dd></div>
-        <div><dt data-i18n="co_phone">Phone</dt><dd dir="ltr"><a href="tel:+447442309417">07442 309417</a></dd></div>
-        <div><dt data-i18n="co_email">Email</dt><dd dir="ltr"><a href="mailto:info@gearradar.co.uk">info@gearradar.co.uk</a></dd></div>
-        <div><dt data-i18n="co_pay">Payments</dt><dd data-i18n="co_pay_v">Card or PayPal, with an invoice for every order</dd></div>
-      </dl>
-    </aside>
+    <a class="app-promo" href="/get?src=home" data-goatcounter-click="home-app-banner">
+      <img src="/app/icons/icon-192.png" alt="" width="64" height="64" loading="lazy">
+      <div class="ap-text">
+        <span class="ap-tag" data-i18n="app_tag">New · Free app</span>
+        <h2 data-i18n="app_title">Meet Tala, now as an app on your phone</h2>
+        <p data-i18n="app_text">Daily job matches, a free CV checker and CV services in one place. Free to install on Android and iPhone.</p>
+      </div>
+      <span class="btn btn-gold ap-btn"><span data-i18n="app_btn">Get the app</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>
+    </a>
   </div>
 </section>
 
@@ -751,7 +759,7 @@ html[dir="rtl"] .co-card dd[dir="ltr"]{text-align:right}
   }
 
   var AR = {
-    nav_about:'من نحن', cta_explore:'استكشف خدماتنا', co_title:'بيانات الشركة', co_area:'نخدم', co_area_v:'عملاء في دول مختلفة، والعمل كله عبر الإنترنت', co_lang:'اللغات', co_lang_v:'العربية والإنجليزية', co_phone:'الهاتف', co_email:'البريد الإلكتروني', co_pay:'الدفع', co_pay_v:'بالبطاقة أو PayPal، مع فاتورة لكل طلب', about_eyebrow:'من نحن', about_title:'خدمات رقمية احترافية أينما كنت', about_p1:'نعمل مع أصحاب الأعمال والأفراد في دول مختلفة، وكل شيء يتم عبر الإنترنت. نتفق معك على ما تحتاج إليه وعلى سعر واضح، وننجز العمل عنك، ونبقى معك بعد التسليم.', about_p2:'اختر خدمة من القائمة في أعلى الصفحة لتعرف ما تتضمنه وكم تكلّف، أو أخبرنا بما تحتاج إليه وسنرشدك إلى الخدمة المناسبة.', w5_t:'أسعار واضحة ومعلنة', w5_p:'لكل خدمة صفحة تعرض سعرها. الأعمال لمرة واحدة تُدفع مرة واحدة، والخدمات الشهرية يمكنك إلغاؤها في أي وقت.', wk_title:'شاهد ما أنجزناه', wk_text:'نماذج لمواقع وقوائم بأساليب مختلفة، لتحكم على الجودة قبل أن تطلب أي شيء.', wk_btn:'شاهد أعمالنا',
+    nav_about:'من نحن', cta_explore:'استكشف خدماتنا', app_tag:'جديد · تطبيق مجاني', app_title:'تعرّف على تالا، الآن تطبيقًا على هاتفك', app_text:'وظائف تناسبك كل يوم، وفاحص مجاني للسيرة الذاتية، وخدمات تحسين السيرة الذاتية في مكان واحد. التثبيت مجاني على أندرويد وآيفون.', app_btn:'حمّل التطبيق', co_title:'بيانات الشركة', co_area:'نخدم', co_area_v:'عملاء في دول مختلفة، والعمل كله عبر الإنترنت', co_lang:'اللغات', co_lang_v:'العربية والإنجليزية', co_phone:'الهاتف', co_email:'البريد الإلكتروني', co_pay:'الدفع', co_pay_v:'بالبطاقة أو PayPal، مع فاتورة لكل طلب', about_eyebrow:'من نحن', about_title:'خدمات رقمية احترافية أينما كنت', about_p1:'نعمل مع أصحاب الأعمال والأفراد في دول مختلفة، وكل شيء يتم عبر الإنترنت. نتفق معك على ما تحتاج إليه وعلى سعر واضح، وننجز العمل عنك، ونبقى معك بعد التسليم.', about_p2:'اختر خدمة من القائمة في أعلى الصفحة لتعرف ما تتضمنه وكم تكلّف، أو أخبرنا بما تحتاج إليه وسنرشدك إلى الخدمة المناسبة.', w5_t:'أسعار واضحة ومعلنة', w5_p:'لكل خدمة صفحة تعرض سعرها. الأعمال لمرة واحدة تُدفع مرة واحدة، والخدمات الشهرية يمكنك إلغاؤها في أي وقت.', wk_title:'شاهد ما أنجزناه', wk_text:'نماذج لمواقع وقوائم بأساليب مختلفة، لتحكم على الجودة قبل أن تطلب أي شيء.', wk_btn:'شاهد أعمالنا',
     dd_main:'الأساسية', dd_personal:'لك أنت', dd_business:'لعملك التجاري', dd_all:'لست متأكدًا مما تحتاج إليه؟ تحدّث معنا',
     dd_tala:'مساعدتك الشخصية في تيليجرام وواتساب', dd_jobradar:'وظائف تناسب سيرتك يوميًا · إضافة لتالا', dd_polishly:'إعادة كتابة سيرتك وتصميمها · من £3', dd_li_t:'تحسين LinkedIn', dd_li:'إعادة كتابة حسابك على LinkedIn · £5', dd_cf_t:'مكتشف المسار المهني', dd_cv_t:'فاحص السيرة الذاتية', dd_cv:'قيّم سيرتك من 100 في 30 ثانية', dd_free:'مجاني', dd_cf:'اعرف الوظائف التي تناسب خبرتك', nav_linkedin:'تحسين حساب LinkedIn',
     dd_webly:'موقع يجلب لك المكالمات ورسائل واتساب', dd_menutap:'قائمة QR ذكية مع طلبات الطاولات', dd_duo:'الموقع وقائمة QR معًا بسعر أقل',
