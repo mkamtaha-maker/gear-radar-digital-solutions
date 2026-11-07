@@ -22,6 +22,11 @@
     yes: 'Accept', no: 'Reject', more: 'Privacy & cookies'
   };
 
+  /* inside the Tala app: one short line instead of the full notice */
+  var inApp = false;
+  try { inApp = /[?&]app=1\b/.test(location.search) || sessionStorage.getItem('tala_app') === '1' || (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) {}
+  if (inApp) T.text = ar ? 'نستخدم الكوكيز للإحصاءات والإعلانات بإذنك فقط.' : 'We use cookies for analytics and ads, only with your permission.';
+
   function read(){
     try {
       var v = JSON.parse(localStorage.getItem(KEY) || 'null');
@@ -112,7 +117,7 @@
     var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
     if (location.pathname.indexOf('/app/') === 0) return;
     if (standalone || sessionStorage.getItem('tala_app') === '1') {
-      var s = document.createElement('script'); s.src = '/app/app-mode.js?v=3'; document.head.appendChild(s);
+      var s = document.createElement('script'); s.src = '/app/app-mode.js?v=4'; document.head.appendChild(s);
     }
   } catch (e) {}
 })();
