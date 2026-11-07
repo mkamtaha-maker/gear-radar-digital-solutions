@@ -52,7 +52,7 @@
     });
   }
   function size(b) { b = b || 0; return b >= 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB'; }
-  function date(s) { try { return new Date(s).toLocaleDateString(AR ? 'ar' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return ''; } }
+  function date(s) { try { return new Date(s).toLocaleDateString(AR ? 'ar' : (document.documentElement.lang === 'de' ? 'de-DE' : 'en-GB'), { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return ''; } }
   function msg(text, bad) { var m = $('cvwMsg'); m.textContent = text || ''; m.className = 'cvw-msg' + (bad ? ' bad' : ''); }
 
   function refresh() {
