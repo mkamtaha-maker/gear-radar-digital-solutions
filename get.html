@@ -46,10 +46,15 @@ ol li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:
 .lang:hover{border-color:#FF8A50}
 html[dir="rtl"] .lang{padding:9px 16px 9px 30px;background-position:left 13px center}
 .lang option{color:#15171C;background:#fff}
+.home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);inset-inline-start:16px;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(232,236,244,.25);color:#F5F5F4;border-radius:999px;font-size:.88rem;font-weight:600;padding:9px 16px;text-decoration:none;font-family:'Cairo','Inter',sans-serif}
+.home:hover,.home:focus-visible{border-color:#FF8A50;color:#FF8A50}
+html[dir="rtl"] .home svg{transform:scaleX(-1)}
+.foot{text-align:center;padding:8px 20px 36px}.foot a{color:inherit;font-weight:600}
 </style>
 </head>
 <body>
 <header class="hero" style="position:relative">
+  <a class="home" href="/" id="homeLink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span data-t="home">Gear Radar</span></a>
   <select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select>
   <img src="/app/icons/icon-192.png" alt="Tala" width="84" height="84">
   <h1 data-t="title">Get the Tala app</h1>
@@ -99,6 +104,7 @@ html[dir="rtl"] .lang{padding:9px 16px 9px 30px;background-position:left 13px ce
     <li data-t="f4">Tala, ready to answer your questions</li>
   </ul>
 </main>
+<p class="foot"><a href="/" id="homeFoot" data-t="home_foot">Back to the Gear Radar homepage</a></p>
 
 <script>
 (function () {
@@ -107,12 +113,12 @@ html[dir="rtl"] .lang{padding:9px 16px 9px 30px;background-position:left 13px ce
       a_btn:'Download the app for Android',a_h:'How to install',a1:'Tap the button above. The file (under 1 MB) downloads.',a2:'Open the downloaded file. If your phone asks, allow installing apps from this source.',a3:'Tap Install, then Open. Tala is now on your home screen.',a_note:'Tala will soon be on Google Play too.',a_pwa:'Or add it from the browser',
       i_h:'Add Tala to your iPhone in 3 taps',i_safari:'Please open this page in Safari first. Tap the ⋯ or share menu and choose "Open in Safari".',i1:'Tap the Share button',i1b:'at the bottom of Safari.',i2:'Scroll down and tap "Add to Home Screen".',i3:'Tap "Add". Tala is now on your home screen and opens full screen.',open_now:'Open Tala now',
       d_scan:'Scan with your phone camera to install Tala on iPhone or Android.',d_open:'Open Tala in this browser',
-      f_h:'What you get',f1:'Jobs that match your CV, every morning (3-day free trial)',f2:'A free CV checker with a score out of 100',f3:'A new CV from £3 and a LinkedIn makeover for £5',f4:'Tala, ready to answer your questions',other:'العربية'},
+      f_h:'What you get',f1:'Jobs that match your CV, every morning (3-day free trial)',f2:'A free CV checker with a score out of 100',f3:'A new CV from £3 and a LinkedIn makeover for £5',f4:'Tala, ready to answer your questions',home:'Gear Radar',home_foot:'Back to the Gear Radar homepage',other:'العربية'},
     ar:{title:'حمّل تطبيق تالا',sub:'وظائف مطابقة كل يوم، وفحص مجاني للسيرة الذاتية، وخدمات السيرة، في تطبيق واحد. التثبيت مجاني.',
       a_btn:'تنزيل التطبيق للأندرويد',a_h:'طريقة التثبيت',a1:'اضغط الزر أعلاه، وسيُنزَّل الملف (أقل من 1 ميغابايت).',a2:'افتح الملف المُنزَّل. إذا طلب الجوال ذلك، اسمح بتثبيت التطبيقات من هذا المصدر.',a3:'اضغط «تثبيت» ثم «فتح». أصبحت تالا على شاشتك الرئيسية.',a_note:'ستتوفر تالا قريباً على Google Play أيضاً.',a_pwa:'أو أضفها من المتصفح',
       i_h:'أضف تالا إلى الآيفون في 3 خطوات',i_safari:'افتح هذه الصفحة في Safari أولاً: اضغط قائمة ⋯ أو المشاركة واختر «فتح في Safari».',i1:'اضغط زر المشاركة',i1b:'في أسفل Safari.',i2:'مرّر للأسفل واضغط «إضافة إلى الشاشة الرئيسية».',i3:'اضغط «إضافة». أصبحت تالا على شاشتك الرئيسية وتفتح بملء الشاشة.',open_now:'افتح تالا الآن',
       d_scan:'امسح الرمز بكاميرا جوالك لتثبيت تالا على الآيفون أو الأندرويد.',d_open:'افتح تالا في هذا المتصفح',
-      f_h:'ماذا تحصل عليه',f1:'وظائف تطابق سيرتك كل صباح (تجربة مجانية 3 أيام)',f2:'فحص مجاني للسيرة الذاتية بنتيجة من 100',f3:'سيرة جديدة من £3 وتحسين LinkedIn بـ £5',f4:'تالا، جاهزة للإجابة عن أسئلتك',other:'English'}
+      f_h:'ماذا تحصل عليه',f1:'وظائف تطابق سيرتك كل صباح (تجربة مجانية 3 أيام)',f2:'فحص مجاني للسيرة الذاتية بنتيجة من 100',f3:'سيرة جديدة من £3 وتحسين LinkedIn بـ £5',f4:'تالا، جاهزة للإجابة عن أسئلتك',home:'Gear Radar',home_foot:'العودة إلى الصفحة الرئيسية لـ Gear Radar',other:'English'}
   };
   var q = new URLSearchParams(location.search), lang;
   try { lang = localStorage.getItem('tala_lang'); } catch (e) {}
@@ -122,6 +128,7 @@ html[dir="rtl"] .lang{padding:9px 16px 9px 30px;background-position:left 13px ce
     document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = T[lang][el.getAttribute('data-t')]; });
     var ls = document.getElementById('langSelect'); ls.value = lang; ls.setAttribute('aria-label', lang === 'ar' ? 'اللغة' : 'Language');
+    ['homeLink','homeFoot'].forEach(function (id) { document.getElementById(id).href = lang === 'ar' ? '/?lang=ar' : '/?lang=en'; });
   }
   document.getElementById('langSelect').addEventListener('change', function () { lang = this.value === 'ar' ? 'ar' : 'en'; try { localStorage.setItem('tala_lang', lang); } catch (e) {} apply(); });
 
