@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tala: Job Search & CV</title>
+<meta name="description" content="Daily job matches, a free CV checker, CV rewrites and LinkedIn makeovers, with Tala from Gear Radar.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#15171C">
+<link rel="manifest" href="/app/manifest.webmanifest">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/app/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tala">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171C; --paper:#F7F5F0; --card:#FFFFFF; --line:#E6E2D8; --muted:#5E5A52;
+  --orange:#FF8A50; --orange-ink:#B84A14; --soft:#FFF1E8; --yellow:#FACC15;
+  --free:#1F7A4D; --free-bg:#E3F3EA; --paid:#B84A14; --paid-bg:#FDE9DD;
+  --f-body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-brand:"Sora", "Inter", system-ui, sans-serif;
+  --nav-h:64px;
+}
+html[lang="ar"]{ --f-body:"Cairo", "Segoe UI", Tahoma, sans-serif; --f-brand:"Cairo", "Sora", sans-serif; }
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+button{font-family:inherit;font-size:inherit;color:inherit}
+[hidden]{display:none!important}
+.top{position:sticky;top:0;z-index:20;background:var(--ink);color:#F5F5F4;padding:calc(env(safe-area-inset-top,0px) + 12px) max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:10px}
+.top img{width:30px;height:30px}
+.top b{font-family:var(--f-brand);font-size:17px}
+.top small{display:block;color:#A8A29E;font-size:12px;line-height:1.2}
+.top .sp{flex:1}
+main{max-width:560px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-right,0px)) calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 24px) max(16px,env(safe-area-inset-left,0px))}
+.view{display:flex;flex-direction:column;gap:14px}
+h1{font-family:var(--f-brand);font-size:22px;line-height:1.3;margin:4px 0 0}
+h2{font-family:var(--f-brand);font-size:17px;margin:6px 0 0}
+p{margin:0}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;text-decoration:none}
+a.card:active,.tile:active{transform:scale(.99)}
+.card.hi{background:var(--soft);border-color:transparent}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;text-decoration:none;min-height:118px}
+.tile img{width:30px;height:30px}
+.tile b{font-size:15px;line-height:1.3}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 9px;white-space:nowrap;align-self:flex-start}
+.t-free{background:var(--free-bg);color:var(--free)}
+.t-paid{background:var(--paid-bg);color:var(--paid)}
+.t-ex{background:#EEE;color:#555}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:13px 14px;background:var(--orange);color:#1a0d05;font-weight:700;text-align:center;text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);font-weight:600}
+.btn.dark{background:var(--ink);color:#fff}
+.btn:focus-visible,.choice:focus-visible,.nav button:focus-visible,.tile:focus-visible,.card:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.choice{width:100%;text-align:start;border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:15px 16px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:12px}
+.choice img{width:28px;height:28px}
+.choice[aria-pressed="true"]{border-color:var(--orange);background:var(--soft)}
+.job .score{font-family:var(--f-brand);font-weight:800;color:var(--free);font-size:15px}
+.blur{filter:blur(3px);opacity:.55;pointer-events:none;user-select:none}
+label{font-weight:600;font-size:14px}
+select,input[type=text]{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px;font:inherit;background:#fff;color:var(--ink)}
+select:focus,input:focus{outline:none;border-color:var(--orange)}
+.field{display:flex;flex-direction:column;gap:6px}
+.price{font-family:var(--f-brand);font-weight:800;white-space:nowrap}
+.meter{height:7px;border-radius:7px;background:var(--line);overflow:hidden}.meter span{display:block;height:100%;background:var(--orange)}
+.list{display:flex;flex-direction:column;gap:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.list > *{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);text-decoration:none;background:none;border-inline:0;border-top:0;width:100%;text-align:start;cursor:pointer}
+.list > *:last-child{border-bottom:0}
+.chev{color:var(--muted)}
+html[dir="rtl"] .chev{transform:scaleX(-1);display:inline-block}
+/* chat */
+.chat{display:flex;flex-direction:column;gap:10px;min-height:calc(100vh - 260px)}
+.msg{max-width:86%;padding:10px 13px;border-radius:16px;font-size:14.5px;line-height:1.55;overflow-wrap:anywhere;white-space:pre-line}
+.msg a{color:#1d4ed8;text-decoration:underline}
+.bot{background:#fff;border:1px solid var(--line);align-self:flex-start;border-end-start-radius:4px}
+.me{background:var(--ink);color:#fff;align-self:flex-end;border-end-end-radius:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--orange);background:#fff;border-radius:999px;padding:7px 12px;font-size:13.5px;cursor:pointer}
+.typing{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;gap:4px}
+.typing i{width:7px;height:7px;border-radius:50%;background:#A8A29E;animation:b 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.composer{position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));background:var(--paper);border-top:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));z-index:15}
+.composer form{max-width:560px;margin:0 auto;display:flex;gap:8px;align-items:flex-end}
+.composer textarea{flex:1;resize:none;border:1.5px solid var(--line);border-radius:14px;padding:11px 12px;font:inherit;min-height:44px;max-height:110px;background:#fff;color:var(--ink)}
+.composer textarea:focus{outline:none;border-color:var(--orange)}
+.composer button{width:46px;height:44px;border:0;border-radius:14px;background:var(--orange);display:grid;place-items:center;cursor:pointer;flex:none}
+.composer button:disabled{opacity:.5}
+.composer svg{width:20px;height:20px}
+html[dir="rtl"] .composer svg{transform:scaleX(-1)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.view-tala main{padding-bottom:calc(var(--nav-h) + 90px)}
+/* nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:0 max(4px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(4px,env(safe-area-inset-left,0px))}
+.nav div{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);height:var(--nav-h)}
+.nav button{border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;color:var(--muted);cursor:pointer;padding:0}
+.nav svg{width:22px;height:22px}
+.nav button[aria-current="page"]{color:var(--orange-ink);font-weight:700}
+/* welcome */
+.welcome{position:fixed;inset:0;z-index:50;background:var(--paper);overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 32px) max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 24px) max(20px,env(safe-area-inset-left,0px))}
+.welcome .in{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.welcome .logo{width:64px;height:64px}
+.welcome h1{font-size:26px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img src="/images/brand/tala-dark.svg" alt="" width="30" height="30">
+  <div><b data-t="appName">Tala</b><small data-t="tagline">Your job search, in one place</small></div>
+  <span class="sp"></span>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section class="view" id="v-home">
+    <h1 id="hello"></h1>
+    <a class="card hi" id="goalCard" href="#"></a>
+    <a class="card" href="#" data-go="jobs">
+      <div class="row"><b data-t="h_jobs">Jobs that match you</b><span class="tag t-paid" data-t="trial3">3-day free trial</span></div>
+      <p class="muted small" data-t="h_jobs_sub">New jobs every morning, each scored against your CV, with tailored CV points.</p>
+    </a>
+    <h2 data-t="free_tools">Free tools</h2>
+    <div class="grid">
+      <a class="tile" href="/cv-checker.html" data-href-ar="/cv-checker-ar.html"><img src="/images/brand/cv-checker-dark.svg" alt=""><span class="tag t-free" data-t="free">Free</span><b data-t="cvcheck">CV Checker</b><span class="muted small" data-t="cvcheck_sub">Score out of 100</span></a>
+      <a class="tile" href="/career-finder.html" data-href-ar="/career-finder-ar.html"><img src="/images/brand/career-finder-dark.svg" alt=""><span class="tag t-free" data-t="free">Free</span><b data-t="career">Career Finder</b><span class="muted small" data-t="career_sub">5 quick questions</span></a>
+    </div>
+    <h2 data-t="cv_services">CV and LinkedIn</h2>
+    <div class="grid">
+      <a class="tile" href="/polishly.html#order"><img src="/images/brand/polishly-dark.svg" alt=""><span class="tag t-paid">£3</span><b>Polishly</b><span class="muted small" data-t="pol_sub">A new CV, PDF and Word</span></a>
+      <a class="tile" href="/linkedin-makeover.html" data-href-ar="/linkedin-makeover-ar.html"><img src="/images/brand/linkedin-makeover-dark.svg" alt=""><span class="tag t-paid">£5</span><b>LinkedIn Makeover</b><span class="muted small" data-t="li_sub">A stronger profile</span></a>
+    </div>
+    <a class="card" href="#" data-go="tala">
+      <div class="row"><b data-t="ask_tala">Ask Tala anything</b><span class="chev">›</span></div>
+      <p class="muted small" data-t="ask_tala_sub">Not sure where to start? Tala will help you choose.</p>
+    </a>
+  </section>
+
+  <!-- JOBS -->
+  <section class="view" id="v-jobs" hidden>
+    <div id="locForm" class="view" hidden>
+      <h1 data-t="loc_title">Where do you want to work?</h1>
+      <p class="muted" data-t="loc_sub">We use this to show you the right jobs. You can change it any time.</p>
+      <div class="field"><label for="country" data-t="country">Country</label>
+        <select id="country">
+          <option value="uk" data-t="c_uk">United Kingdom</option>
+          <option value="us" data-t="c_us">United States</option>
+          <option value="ca" data-t="c_ca">Canada</option>
+          <option value="ae" data-t="c_ae">United Arab Emirates</option>
+          <option value="sa" data-t="c_sa">Saudi Arabia</option>
+          <option value="qa" data-t="c_qa">Qatar</option>
+          <option value="remote" data-t="c_remote">Remote only</option>
+        </select></div>
+      <div class="field"><label for="city" data-t="city">City</label><input type="text" id="city" autocomplete="address-level2" data-tp="city_ph" placeholder="e.g. London"></div>
+      <div class="field"><label for="title" data-t="jobtitle">Job you are looking for</label><input type="text" id="title" data-tp="title_ph" placeholder="e.g. Customer Service"></div>
+      <button class="btn" type="button" id="saveLoc" data-t="show_jobs">Show jobs</button>
+    </div>
+    <div id="jobList" class="view" hidden>
+      <div class="row"><h1 data-t="jobs_title">Jobs for you</h1><button class="btn ghost" type="button" id="editLoc" style="width:auto;padding:8px 12px" data-t="change">Change</button></div>
+      <p class="muted small" id="locLine"></p>
+      <div id="jobs" class="view"></div>
+      <div class="card hi">
+        <b data-t="want_all">Want every matching job, every day?</b>
+        <p class="muted small" data-t="want_all_sub">JobRadar checks job sites every day and sends you the best matches, each with a match score and tailored CV points.</p>
+        <a class="btn" id="trialBtn" href="/signup.html?service=butler&plan=basic&addons=jobs&billing=monthly" data-t="start_trial">Start the 3-day free trial</a>
+        <p class="muted small" data-t="trial_note">Card needed, nothing charged today. Then £17 a month (Tala £7 + JobRadar £10). We remind you a day before. Cancel any time.</p>
+        <a class="btn ghost" id="emailBtn" href="/signup.html?plan=jobradar&billing=monthly" data-t="by_email">Jobs by email only, £5 a month</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section class="view" id="v-cv" hidden>
+    <h1 data-t="cv_title">Your CV</h1>
+    <a class="card hi" href="/cv-checker.html" data-href-ar="/cv-checker-ar.html">
+      <div class="row"><b data-t="cvcheck_long">Check your CV for free</b><span class="tag t-free" data-t="free">Free</span></div>
+      <p class="muted small" data-t="cvcheck_long_sub">10 checks and a score out of 100 in 30 seconds. Your CV stays on your phone.</p>
+    </a>
+    <a class="card" href="/polishly.html?plan=cv_basic#order">
+      <div class="row"><b>Polishly</b><span class="price">£3</span></div>
+      <p class="muted small" data-t="pol_long">A full rewrite that passes job-site filters. PDF and Word, 12 designs, 2 free edits.</p>
+    </a>
+    <a class="card" href="/polishly.html?plan=cv_plus#order">
+      <div class="row"><b>Polishly Plus</b><span class="price">£5</span></div>
+      <p class="muted small" data-t="plus_long">Everything in Polishly, tailored to one job advert, plus a cover letter.</p>
+    </a>
+    <a class="card" href="/polishly.html?plan=cv_linkedin#order">
+      <div class="row"><b>LinkedIn Makeover</b><span class="price">£5</span></div>
+      <p class="muted small" data-t="li_long">A new headline, About section, experience and skills, ready to copy into LinkedIn.</p>
+    </a>
+    <p class="muted small" data-t="member_note">Tala subscribers pay £1 for Polishly and £2 for Plus. Send /cv to Tala.</p>
+  </section>
+
+  <!-- TALA -->
+  <section class="view" id="v-tala" hidden>
+    <div class="chat" id="chat" aria-live="polite"></div>
+  </section>
+
+  <!-- ACCOUNT -->
+  <section class="view" id="v-account" hidden>
+    <h1 data-t="acc_title">My account</h1>
+    <div class="card hi" id="installCard" hidden>
+      <b data-t="install">Install the Tala app</b>
+      <p class="muted small" id="installSub" data-t="install_sub">Add Tala to your home screen for one-tap access.</p>
+      <button class="btn" type="button" id="installBtn" data-t="install_btn">Install</button>
+    </div>
+    <h2 data-t="subscribed">Already with Tala?</h2>
+    <div class="list">
+      <a href="https://t.me/GearRadarAssistantBot" target="_blank" rel="noopener"><span data-t="open_tg">Open Tala in Telegram</span><span class="chev">›</span></a>
+      <a href="https://wa.me/447442309417" target="_blank" rel="noopener"><span data-t="open_wa">Open Tala in WhatsApp</span><span class="chev">›</span></a>
+    </div>
+    <p class="muted small" data-t="manage_note">To change your job titles or cities, or to cancel, just tell Tala in your chat.</p>
+    <h2 data-t="settings">Settings</h2>
+    <div class="list">
+      <button type="button" id="langBtn"><span data-t="language">Language</span><span class="muted" id="langNow"></span></button>
+      <button type="button" id="locBtn"><span data-t="job_loc">Job search location</span><span class="muted" id="locNow"></span></button>
+    </div>
+    <h2 data-t="help">Help</h2>
+    <div class="list">
+      <a href="/privacy.html"><span data-t="privacy">Privacy notice</span><span class="chev">›</span></a>
+      <a href="/terms.html"><span data-t="terms">Terms</span><span class="chev">›</span></a>
+      <a href="/"><span data-t="site">Gear Radar website</span><span class="chev">›</span></a>
+    </div>
+    <p class="muted small"><span data-t="contact">Questions?</span> info@gearradar.co.uk</p>
+  </section>
+</main>
+
+<div class="composer" id="composer" hidden>
+  <form id="chatForm">
+    <input class="hp" name="website" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <textarea id="chatIn" rows="1" maxlength="800" data-tp="type_msg" placeholder="Type your message…" aria-label="Message"></textarea>
+    <button type="submit" id="chatSend" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</div>
+
+<nav class="nav" aria-label="Main">
+  <div>
+    <button type="button" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span data-t="n_home">Home</span></button>
+    <button type="button" data-tab="jobs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg><span data-t="n_jobs">Jobs</span></button>
+    <button type="button" data-tab="cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span data-t="n_cv">CV</span></button>
+    <button type="button" data-tab="tala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg><span data-t="n_tala">Tala</span></button>
+    <button type="button" data-tab="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span data-t="n_account">Account</span></button>
+  </div>
+</nav>
+
+<div class="welcome" id="welcome" hidden>
+  <div class="in">
+    <img class="logo" src="/images/brand/tala-dark.svg" alt="" width="64" height="64">
+    <h1 data-t="w_title">Welcome. What would you like to do today?</h1>
+    <p class="muted" data-t="w_sub">Pick one and we will set up the app around it.</p>
+    <button class="choice" type="button" data-goal="job"><img src="/images/brand/jobradar-dark.svg" alt=""><span data-t="g_job">I'm looking for a job</span></button>
+    <button class="choice" type="button" data-goal="cv"><img src="/images/brand/polishly-dark.svg" alt=""><span data-t="g_cv">I want a better CV</span></button>
+    <button class="choice" type="button" data-goal="career"><img src="/images/brand/career-finder-dark.svg" alt=""><span data-t="g_career">I'm not sure which job suits me</span></button>
+    <button class="choice" type="button" data-goal="linkedin"><img src="/images/brand/linkedin-makeover-dark.svg" alt=""><span data-t="g_li">I want a better LinkedIn profile</span></button>
+    <button class="btn" type="button" id="wGo" disabled data-t="continue">Continue</button>
+    <p class="muted small" style="text-align:center" data-t="w_note">No sign-up and no card needed.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var T = {
+    en: {
+      appName:'Tala', tagline:'Your job search, in one place',
+      morning:'Good morning', afternoon:'Good afternoon', evening:'Good evening',
+      h_jobs:'Jobs that match you', trial3:'3-day free trial', h_jobs_sub:'New jobs every morning, each scored against your CV, with tailored CV points.',
+      free_tools:'Free tools', free:'Free', cvcheck:'CV Checker', cvcheck_sub:'Score out of 100', career:'Career Finder', career_sub:'5 quick questions',
+      cv_services:'CV and LinkedIn', pol_sub:'A new CV, PDF and Word', li_sub:'A stronger profile',
+      ask_tala:'Ask Tala anything', ask_tala_sub:'Not sure where to start? Tala will help you choose.',
+      loc_title:'Where do you want to work?', loc_sub:'We use this to show you the right jobs. You can change it any time.',
+      country:'Country', city:'City', city_ph:'e.g. London', jobtitle:'Job you are looking for', title_ph:'e.g. Customer Service', show_jobs:'Show jobs',
+      c_uk:'United Kingdom', c_us:'United States', c_ca:'Canada', c_ae:'United Arab Emirates', c_sa:'Saudi Arabia', c_qa:'Qatar', c_remote:'Remote only',
+      jobs_title:'Jobs for you', change:'Change', example:'Example', loc_line:'Examples of the jobs JobRadar sends for {t} in {c}.',
+      want_all:'Want every matching job, every day?', want_all_sub:'JobRadar checks job sites every day and sends you the best matches, each with a match score and tailored CV points.',
+      start_trial:'Start the 3-day free trial', trial_note:'Card needed, nothing charged today. Then £17 a month (Tala £7 + JobRadar £10). We remind you a day before. Cancel any time.',
+      by_email:'Jobs by email only, £5 a month',
+      cv_title:'Your CV', cvcheck_long:'Check your CV for free', cvcheck_long_sub:'10 checks and a score out of 100 in 30 seconds. Your CV stays on your phone.',
+      pol_long:'A full rewrite that passes job-site filters. PDF and Word, 12 designs, 2 free edits.', plus_long:'Everything in Polishly, tailored to one job advert, plus a cover letter.',
+      li_long:'A new headline, About section, experience and skills, ready to copy into LinkedIn.', member_note:'Tala subscribers pay £1 for Polishly and £2 for Plus. Send /cv to Tala.',
+      acc_title:'My account', install:'Install the Tala app', install_sub:'Add Tala to your home screen for one-tap access.', install_btn:'Install',
+      install_ios:'On iPhone: tap Share, then "Add to Home Screen".',
+      subscribed:'Already with Tala?', open_tg:'Open Tala in Telegram', open_wa:'Open Tala in WhatsApp', manage_note:'To change your job titles or cities, or to cancel, just tell Tala in your chat.',
+      settings:'Settings', language:'Language', job_loc:'Job search location', not_set:'Not set', help:'Help', privacy:'Privacy notice', terms:'Terms', site:'Gear Radar website', contact:'Questions?',
+      n_home:'Home', n_jobs:'Jobs', n_cv:'CV', n_tala:'Tala', n_account:'Account',
+      w_title:'Welcome. What would you like to do today?', w_sub:'Pick one and we will set up the app around it.',
+      g_job:"I'm looking for a job", g_cv:'I want a better CV', g_career:"I'm not sure which job suits me", g_li:'I want a better LinkedIn profile',
+      continue:'Continue', w_note:'No sign-up and no card needed.',
+      goal_job:['Find your next job','Tell us where you want to work and see the kind of jobs we find for you.'],
+      goal_cv:['Start with a free CV check','See your score in 30 seconds, then fix the gaps with Polishly.'],
+      goal_career:['Find the jobs that suit you','Answer 5 quick questions and get 4 career directions by email. Free.'],
+      goal_linkedin:['Make your LinkedIn stand out','A new headline, About section and experience, ready to copy. £5.'],
+      type_msg:'Type your message…',
+      hello:"Hi! I'm Tala from Gear Radar 👋 I can help with your job search: daily job matches, your CV, or your LinkedIn profile. What do you need?",
+      chips:['How does JobRadar work?','Check my CV','Prices','Free trial'],
+      err:'Sorry, something went wrong. Please try again, or message us on WhatsApp.'
+    },
+    ar: {
+      appName:'تالا', tagline:'بحثك عن عمل في مكان واحد',
+      morning:'صباح الخير', afternoon:'مساء الخير', evening:'مساء الخير',
+      h_jobs:'وظائف تناسبك', trial3:'تجربة مجانية 3 أيام', h_jobs_sub:'وظائف جديدة كل صباح، لكل وظيفة نسبة تطابق مع سيرتك ونقاط مخصّصة للسيرة.',
+      free_tools:'أدوات مجانية', free:'مجاني', cvcheck:'فحص السيرة', cvcheck_sub:'نتيجة من 100', career:'اكتشف مسارك', career_sub:'5 أسئلة سريعة',
+      cv_services:'السيرة الذاتية و LinkedIn', pol_sub:'سيرة جديدة PDF وWord', li_sub:'ملف أقوى',
+      ask_tala:'اسأل تالا', ask_tala_sub:'لا تعرف من أين تبدأ؟ تالا تساعدك في الاختيار.',
+      loc_title:'أين تريد أن تعمل؟', loc_sub:'نستخدم هذا لنعرض لك الوظائف المناسبة، ويمكنك تغييره في أي وقت.',
+      country:'البلد', city:'المدينة', city_ph:'مثلاً: لندن', jobtitle:'الوظيفة التي تبحث عنها', title_ph:'مثلاً: Customer Service', show_jobs:'اعرض الوظائف',
+      c_uk:'المملكة المتحدة', c_us:'الولايات المتحدة', c_ca:'كندا', c_ae:'الإمارات', c_sa:'السعودية', c_qa:'قطر', c_remote:'عن بُعد فقط',
+      jobs_title:'وظائف لك', change:'تغيير', example:'مثال', loc_line:'أمثلة على الوظائف التي يرسلها JobRadar لوظيفة {t} في {c}.',
+      want_all:'تريد كل الوظائف المطابقة يومياً؟', want_all_sub:'يبحث JobRadar في مواقع التوظيف كل يوم ويرسل لك أفضل الوظائف، لكل واحدة نسبة تطابق ونقاط مخصّصة لسيرتك.',
+      start_trial:'ابدأ التجربة المجانية 3 أيام', trial_note:'تحتاج بطاقة، ولا يُخصم شيء اليوم. بعدها £17 شهرياً (تالا £7 + JobRadar £10). نذكّرك قبلها بيوم، ويمكنك الإلغاء في أي وقت.',
+      by_email:'الوظائف بالبريد فقط بـ £5 شهرياً',
+      cv_title:'سيرتك الذاتية', cvcheck_long:'افحص سيرتك مجاناً', cvcheck_long_sub:'10 فحوصات ونتيجة من 100 خلال 30 ثانية، وسيرتك لا تغادر جوالك.',
+      pol_long:'إعادة كتابة كاملة تتجاوز فلاتر مواقع التوظيف. PDF وWord، 12 تصميماً، وتعديلان مجاناً.', plus_long:'كل ما في Polishly، مخصّصة لإعلان وظيفة واحد، مع خطاب تقديم.',
+      li_long:'عنوان جديد ونبذة وخبرات ومهارات، جاهزة للنسخ إلى LinkedIn.', member_note:'مشتركو تالا يدفعون £1 لـ Polishly و£2 لـ Plus. أرسل /cv إلى تالا.',
+      acc_title:'حسابي', install:'ثبّت تطبيق تالا', install_sub:'أضف تالا إلى الشاشة الرئيسية لتفتحها بضغطة واحدة.', install_btn:'تثبيت',
+      install_ios:'على الآيفون: اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية».',
+      subscribed:'مشترك مع تالا؟', open_tg:'افتح تالا في تيليجرام', open_wa:'افتح تالا في واتساب', manage_note:'لتغيير الوظائف أو المدن، أو للإلغاء، أخبر تالا في محادثتك.',
+      settings:'الإعدادات', language:'اللغة', job_loc:'مكان البحث عن عمل', not_set:'غير محدد', help:'المساعدة', privacy:'سياسة الخصوصية', terms:'الشروط', site:'موقع Gear Radar', contact:'لديك سؤال؟',
+      n_home:'الرئيسية', n_jobs:'الوظائف', n_cv:'السيرة', n_tala:'تالا', n_account:'حسابي',
+      w_title:'أهلاً بك. بماذا نبدأ اليوم؟', w_sub:'اختر هدفك وسنرتّب لك التطبيق حسبه.',
+      g_job:'أبحث عن وظيفة', g_cv:'أريد سيرة ذاتية أفضل', g_career:'لا أعرف أي وظيفة تناسبني', g_li:'أريد ملف LinkedIn أفضل',
+      continue:'متابعة', w_note:'بدون تسجيل وبدون بطاقة.',
+      goal_job:['ابحث عن وظيفتك القادمة','أخبرنا أين تريد أن تعمل وشاهد نوع الوظائف التي نجدها لك.'],
+      goal_cv:['ابدأ بفحص مجاني لسيرتك','اعرف نتيجتك خلال 30 ثانية، ثم أصلح النواقص مع Polishly.'],
+      goal_career:['اكتشف الوظائف التي تناسبك','أجب عن 5 أسئلة سريعة واحصل على 4 مسارات مهنية بالبريد. مجاناً.'],
+      goal_linkedin:['اجعل ملفك في LinkedIn مميزاً','عنوان جديد ونبذة وخبرات جاهزة للنسخ. £5.'],
+      type_msg:'اكتب رسالتك…',
+      hello:'مرحباً! أنا تالا من Gear Radar 👋 أستطيع مساعدتك في بحثك عن عمل: وظائف مطابقة كل يوم، أو سيرتك الذاتية، أو ملفك في LinkedIn. بماذا أساعدك؟',
+      chips:['كيف يعمل JobRadar؟','افحصي سيرتي','الأسعار','التجربة المجانية'],
+      err:'عذراً، حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب.'
+    }
+  };
+
+  function get(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function set(k,v){ try { localStorage.setItem(k,v); } catch (e) {} }
+  var params = new URLSearchParams(location.search);
+  var lang = get('tala_lang') || params.get('lang') || ((navigator.language || 'en').slice(0,2) === 'ar' ? 'ar' : 'en');
+  if (lang !== 'ar') lang = 'en';
+  function t(k){ return T[lang][k]; }
+
+  function applyLang(){
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-t]').forEach(function (el) { var v = t(el.getAttribute('data-t')); if (typeof v === 'string') el.textContent = v; });
+    document.querySelectorAll('[data-tp]').forEach(function (el) { el.placeholder = t(el.getAttribute('data-tp')); });
+    document.querySelectorAll('[data-href-ar]').forEach(function (el) {
+      if (!el.dataset.hrefEn) el.dataset.hrefEn = el.getAttribute('href');
+      el.setAttribute('href', lang === 'ar' ? el.dataset.hrefAr : el.dataset.hrefEn);
+    });
+    var langQ = lang === 'ar' ? '&lang=ar' : '';
+    document.getElementById('trialBtn').href = '/signup.html?service=butler&plan=basic&addons=jobs&billing=monthly' + langQ;
+    document.getElementById('emailBtn').href = '/signup.html?plan=jobradar&billing=monthly' + langQ;
+    document.getElementById('langNow').textContent = lang === 'ar' ? 'العربية' : 'English';
+    var h = new Date().getHours();
+    document.getElementById('hello').textContent = h < 12 ? t('morning') : (h < 18 ? t('afternoon') : t('evening'));
+    renderGoal(); renderLoc(); renderChat();
+  }
+
+  /* goal card */
+  var GOALS = { job:{go:'jobs'}, cv:{href:'/cv-checker.html', ar:'/cv-checker-ar.html'}, career:{href:'/career-finder.html', ar:'/career-finder-ar.html'}, linkedin:{href:'/linkedin-makeover.html', ar:'/linkedin-makeover-ar.html'} };
+  function renderGoal(){
+    var g = get('tala_goal') || 'job'; var conf = GOALS[g] || GOALS.job; var txt = t('goal_' + g) || t('goal_job');
+    var c = document.getElementById('goalCard');
+    c.innerHTML = '<div class="row"><b></b><span class="chev">›</span></div><p class="muted small"></p>';
+    c.querySelector('b').textContent = txt[0]; c.querySelector('p').textContent = txt[1];
+    c.removeAttribute('data-go');
+    if (conf.go) { c.setAttribute('href', '#'); c.setAttribute('data-go', conf.go); }
+    else c.setAttribute('href', lang === 'ar' ? conf.ar : conf.href);
+  }
+
+  /* tabs */
+  var TABS = ['home','jobs','cv','tala','account'];
+  function show(tab){
+    if (TABS.indexOf(tab) === -1) tab = 'home';
+    TABS.forEach(function (x) { document.getElementById('v-' + x).hidden = x !== tab; });
+    document.querySelectorAll('.nav button').forEach(function (b) { if (b.dataset.tab === tab) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+    document.getElementById('composer').hidden = tab !== 'tala';
+    document.body.classList.toggle('view-tala', tab === 'tala');
+    if (tab === 'jobs') renderLoc();
+    if (tab === 'tala') { var ch = document.getElementById('chat'); window.scrollTo(0, document.body.scrollHeight); }
+    else window.scrollTo(0,0);
+    try { history.replaceState(null, '', tab === 'home' ? location.pathname : location.pathname + '?tab=' + tab); } catch (e) {}
+    track('app-tab-' + tab);
+  }
+  document.querySelectorAll('.nav button').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
+  document.addEventListener('click', function (e) { var a = e.target.closest('[data-go]'); if (a) { e.preventDefault(); show(a.getAttribute('data-go')); } });
+
+  /* jobs */
+  var SAMPLE = {
+    uk:{cur:'£', jobs:[['Customer Service Advisor','Retail','24,500',86],['Receptionist','Hotel','23,000',79],['Admin Assistant','Healthcare','25,100',74],['Sales Assistant','Pharmacy','22,800',71]]},
+    us:{cur:'$', jobs:[['Customer Service Representative','Retail','38,000',85],['Front Desk Agent','Hotel','36,500',78],['Office Assistant','Healthcare','39,000',73],['Retail Associate','Pharmacy','34,000',70]]},
+    ca:{cur:'C$', jobs:[['Customer Service Representative','Telecoms','42,000',84],['Receptionist','Hotel','40,000',78],['Administrative Assistant','Banking','45,000',74],['Sales Associate','Pharmacy','38,000',70]]},
+    gulf:{cur:'', jobs:[['Customer Service Agent','Aviation','',85],['Guest Relations Executive','Hotel','',79],['Administrative Coordinator','Retail','',74],['Sales Executive','Retail','',71]]}
+  };
+  function renderLoc(){
+    var loc = null; try { loc = JSON.parse(get('tala_loc') || 'null'); } catch (e) {}
+    document.getElementById('locNow').textContent = loc ? (loc.city || countryName(loc.country)) : t('not_set');
+    var form = document.getElementById('locForm'), list = document.getElementById('jobList');
+    if (!loc) { form.hidden = false; list.hidden = true; return; }
+    form.hidden = true; list.hidden = false;
+    var where = loc.city || countryName(loc.country);
+    document.getElementById('locLine').textContent = t('loc_line').replace('{t}', loc.title || 'Customer Service').replace('{c}', where);
+    var key = ['uk','us','ca'].indexOf(loc.country) !== -1 ? loc.country : 'gulf';
+    var s = SAMPLE[key], box = document.getElementById('jobs'); box.innerHTML = '';
+    s.jobs.forEach(function (j, i) {
+      var d = document.createElement('div'); d.className = 'card job' + (i > 1 ? ' blur' : '');
+      if (i > 1) d.setAttribute('aria-hidden','true');
+      d.innerHTML = '<div class="row"><b></b><span class="score"></span></div><p class="muted small"></p><span class="tag t-ex"></span>';
+      d.querySelector('b').textContent = j[0]; d.querySelector('.score').textContent = j[3] + '%';
+      var pp = d.querySelector('p'); pp.textContent = j[1] + ' · ' + where; if (j[2]) { pp.appendChild(document.createTextNode(' · ')); var bd = document.createElement('bdi'); bd.textContent = s.cur + j[2]; pp.appendChild(bd); }
+      d.querySelector('.tag').textContent = t('example');
+      box.appendChild(d);
+    });
+  }
+  function countryName(c){ return t('c_' + c) || ''; }
+  function openLocForm(){
+    var loc = null; try { loc = JSON.parse(get('tala_loc') || 'null'); } catch (e) {}
+    if (loc) { document.getElementById('country').value = loc.country; document.getElementById('city').value = loc.city || ''; document.getElementById('title').value = loc.title || ''; }
+    document.getElementById('locForm').hidden = false; document.getElementById('jobList').hidden = true;
+  }
+  document.getElementById('saveLoc').addEventListener('click', function () {
+    var loc = { country: document.getElementById('country').value, city: document.getElementById('city').value.trim().slice(0,60), title: document.getElementById('title').value.trim().slice(0,60) };
+    set('tala_loc', JSON.stringify(loc)); track('app-location-set'); renderLoc();
+  });
+  document.getElementById('editLoc').addEventListener('click', openLocForm);
+  document.getElementById('locBtn').addEventListener('click', function () { show('jobs'); openLocForm(); });
+  document.getElementById('langBtn').addEventListener('click', function () { lang = lang === 'ar' ? 'en' : 'ar'; set('tala_lang', lang); applyLang(); });
+
+  /* Tala chat: same endpoint and session format as /chat.js */
+  var ENDPOINT = 'https://kamtyler.app.n8n.cloud/webhook/gearradar-chat';
+  var msgs = []; try { msgs = JSON.parse(sessionStorage.getItem('tala_app_log') || '[]') || []; } catch (e) { msgs = []; }
+  function saveMsgs(){ try { sessionStorage.setItem('tala_app_log', JSON.stringify(msgs.slice(-40))); } catch (e) {} }
+  function sessionId(){
+    var s = get('gr_chat_session');
+    if (!/^9\d{17}$/.test(s || '')) {
+      var bytes = null; try { bytes = crypto.getRandomValues(new Uint8Array(17)); } catch (e) {}
+      s = '9'; for (var i = 0; i < 17; i++) s += String((bytes ? bytes[i] : Math.floor(Math.random()*256)) % 10);
+      set('gr_chat_session', s);
+    }
+    return s;
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function fmt(s){ var h = esc(s); h = h.replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>'); return h.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'); }
+  function bubble(role, text){ var d = document.createElement('div'); d.className = 'msg ' + (role === 'me' ? 'me' : 'bot'); d.innerHTML = fmt(text); document.getElementById('chat').appendChild(d); }
+  function renderChat(){
+    var c = document.getElementById('chat'); c.innerHTML = '';
+    bubble('bot', t('hello'));
+    if (!msgs.length) {
+      var ch = document.createElement('div'); ch.className = 'chips';
+      t('chips').forEach(function (x) { var b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = x; b.addEventListener('click', function () { send(x); }); ch.appendChild(b); });
+      c.appendChild(ch);
+    }
+    msgs.forEach(function (m) { bubble(m.r, m.t); });
+  }
+  var busy = false, input = document.getElementById('chatIn'), sendBtn = document.getElementById('chatSend');
+  function send(text){
+    text = String(text || '').replace(/\s+/g,' ').trim().slice(0,800);
+    if (!text || busy) return;
+    busy = true; sendBtn.disabled = true;
+    var c = document.querySelector('#chat .chips'); if (c) c.remove();
+    msgs.push({r:'me', t:text}); saveMsgs(); bubble('me', text);
+    input.value = ''; input.style.height = '';
+    var ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>'; document.getElementById('chat').appendChild(ty);
+    window.scrollTo(0, document.body.scrollHeight);
+    var ctrl = null, timer = null; try { ctrl = new AbortController(); timer = setTimeout(function () { ctrl.abort(); }, 45000); } catch (e) {}
+    fetch(ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ session: sessionId(), text: text, lang: lang, page: '/app/', website: document.getElementById('hp').value }),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.ok || !j.reply) throw new Error('bad');
+      msgs.push({r:'bot', t:j.reply}); saveMsgs(); ty.remove(); bubble('bot', j.reply);
+    }).catch(function () { ty.remove(); bubble('bot', t('err')); })
+    .then(function () { if (timer) clearTimeout(timer); busy = false; sendBtn.disabled = false; window.scrollTo(0, document.body.scrollHeight); });
+    track('app-chat-send');
+  }
+  document.getElementById('chatForm').addEventListener('submit', function (e) { e.preventDefault(); send(input.value); });
+  input.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(input.value); } });
+  input.addEventListener('input', function () { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 110) + 'px'; });
+
+  /* welcome (once) */
+  var picked = null;
+  document.querySelectorAll('.choice').forEach(function (b) {
+    b.addEventListener('click', function () {
+      picked = b.dataset.goal;
+      document.querySelectorAll('.choice').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      document.getElementById('wGo').disabled = false;
+    });
+  });
+  document.getElementById('wGo').addEventListener('click', function () {
+    if (!picked) return;
+    set('tala_goal', picked); set('tala_welcomed', '1'); track('app-goal-' + picked);
+    document.getElementById('welcome').hidden = true; renderGoal();
+    show(picked === 'job' ? 'jobs' : (picked === 'cv' || picked === 'linkedin' ? 'cv' : 'home'));
+  });
+
+  /* install */
+  var deferred = null;
+  var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; if (!standalone) document.getElementById('installCard').hidden = false; });
+  document.getElementById('installBtn').addEventListener('click', function () {
+    if (!deferred) return; deferred.prompt(); deferred.userChoice.then(function (r) { track('app-install-' + r.outcome); deferred = null; document.getElementById('installCard').hidden = true; });
+  });
+  if (!standalone && /iphone|ipad|ipod/i.test(navigator.userAgent)) {
+    document.getElementById('installCard').hidden = false; document.getElementById('installBtn').hidden = true;
+    document.getElementById('installSub').removeAttribute('data-t'); document.getElementById('installSub').setAttribute('data-t','install_ios');
+  }
+
+  /* GoatCounter (cookieless), same account as the site */
+  function track(name){ try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} }
+
+  applyLang();
+  if (!get('tala_welcomed')) document.getElementById('welcome').hidden = false;
+  show(params.get('tab') || 'home');
+
+  if ('serviceWorker' in navigator) window.addEventListener('load', function () { navigator.serviceWorker.register('/app/sw.js', { scope: '/app/' }).catch(function () {}); });
+})();
+</script>
+<script data-goatcounter="https://gear-radar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
