@@ -42,12 +42,15 @@ ol li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:
 .qr img{width:220px;height:220px;max-width:100%;background:#fff;border-radius:16px;padding:10px;border:1px solid var(--line)}
 .feat{display:grid;gap:8px;margin:0;padding:0;list-style:none}
 .feat li{display:flex;gap:10px}.feat li::before{content:"✓";color:#1F7A4D;font-weight:800}
-.lang{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);inset-inline-end:16px;background:none;border:1px solid #3a3d45;color:#F5F5F4;border-radius:999px;padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
+.lang{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);inset-inline-end:16px;border:1px solid rgba(232,236,244,.25);color:#F5F5F4;border-radius:999px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'Cairo','Inter',sans-serif;appearance:none;-webkit-appearance:none;padding:9px 30px 9px 16px;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 13px center}
+.lang:hover{border-color:#FF8A50}
+html[dir="rtl"] .lang{padding:9px 16px 9px 30px;background-position:left 13px center}
+.lang option{color:#15171C;background:#fff}
 </style>
 </head>
 <body>
 <header class="hero" style="position:relative">
-  <button class="lang" type="button" id="langBtn">العربية</button>
+  <select class="lang" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="ar">AR</option></select>
   <img src="/app/icons/icon-192.png" alt="Tala" width="84" height="84">
   <h1 data-t="title">Get the Tala app</h1>
   <p data-t="sub">Daily job matches, a free CV checker and CV services, in one app. Free to install.</p>
@@ -118,9 +121,9 @@ ol li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:
   function apply(){
     document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = T[lang][el.getAttribute('data-t')]; });
-    document.getElementById('langBtn').textContent = T[lang].other;
+    var ls = document.getElementById('langSelect'); ls.value = lang; ls.setAttribute('aria-label', lang === 'ar' ? 'اللغة' : 'Language');
   }
-  document.getElementById('langBtn').addEventListener('click', function () { lang = lang === 'ar' ? 'en' : 'ar'; try { localStorage.setItem('tala_lang', lang); } catch (e) {} apply(); });
+  document.getElementById('langSelect').addEventListener('change', function () { lang = this.value === 'ar' ? 'ar' : 'en'; try { localStorage.setItem('tala_lang', lang); } catch (e) {} apply(); });
 
   var ua = navigator.userAgent || '';
   var isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
