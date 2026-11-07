@@ -65,6 +65,16 @@
     + '.tala-bar .tb-t{flex:1;min-width:0;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
     + '.tala-bar .tb-home{width:40px;height:40px;flex:none;border-radius:12px;overflow:hidden;display:block}'
     + '.tala-bar .tb-home img{width:100%;height:100%;display:block}';
+  /* dark appearance follows the app setting (Settings > Appearance): the light page is inverted, photos and logos are turned back */
+  var dark = false;
+  try { var tp = localStorage.getItem('tala_theme') || 'auto'; dark = tp === 'dark' || (tp === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches); } catch (e) {}
+  if (dark) {
+    document.documentElement.classList.add('tala-dark');
+    css += 'html.tala-dark{filter:invert(1) hue-rotate(180deg);background:#F5F6F8 !important;color-scheme:light}'
+      + 'html.tala-dark img, html.tala-dark video, html.tala-dark picture, html.tala-dark iframe, html.tala-dark canvas{filter:invert(1) hue-rotate(180deg)}'
+      + 'html.tala-dark .gr-cc{box-shadow:none !important}';
+    var tc = document.querySelector('meta[name="theme-color"]'); if (tc) tc.setAttribute('content', '#0A0907');
+  }
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   function build() {
