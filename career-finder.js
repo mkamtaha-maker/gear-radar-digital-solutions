@@ -7,7 +7,7 @@
   var err = document.getElementById('cfErr'), out = document.getElementById('cfResult');
   function $(id){ return document.getElementById(id); }
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-  function ev(path, title){ try { if (window.goatcounter && goatcounter.count) goatcounter.count({path: path + (AR ? '-ar' : T.lang === 'de' ? '-de' : T.lang === 'es' ? '-es' : ''), title: title, event: true}); } catch (x) {} }
+  function ev(path, title){ try { if (window.goatcounter && goatcounter.count) goatcounter.count({path: path + (AR ? '-ar' : T.lang === 'de' ? '-de' : T.lang === 'es' ? '-es' : T.lang === 'fr' ? '-fr' : ''), title: title, event: true}); } catch (x) {} }
   function ga(name, p){ try { if (window.grConsent) grConsent.track(name, p); } catch (x) {} }
 
   function render(r, email){
@@ -42,7 +42,7 @@
     err.textContent = '';
     var wants = [].slice.call(form.querySelectorAll('input[name=wants]:checked')).map(function(i){ return i.value; });
     var p = {
-      language: T.lang === 'ar' || T.lang === 'de' || T.lang === 'es' ? T.lang : 'en',
+      language: T.lang === 'ar' || T.lang === 'de' || T.lang === 'es' || T.lang === 'fr' ? T.lang : 'en',
       current_role: $('cf_role').value.trim(), years: $('cf_years').value,
       tasks: $('cf_tasks').value.trim(), enjoy: $('cf_enjoy').value.trim(), background: $('cf_bg').value.trim(),
       wants: wants, country: $('cf_country').value.trim(),
