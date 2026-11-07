@@ -1,6 +1,6 @@
 /* Free CV checker. Everything runs in the visitor's browser: the CV is never uploaded. */
 (function(){
-  var T = window.CVC_T, AR = document.documentElement.lang === 'ar', DEP = document.documentElement.lang === 'de', ESP = document.documentElement.lang === 'es';
+  var T = window.CVC_T, AR = document.documentElement.lang === 'ar', DEP = document.documentElement.lang === 'de', ESP = document.documentElement.lang === 'es', FRP = document.documentElement.lang === 'fr';
   var $ = function(id){ return document.getElementById(id); };
   var cvBox = $('cvText'), jobBox = $('jobText'), out = $('cvcResult'), fileIn = $('cvFile'), fileMsg = $('fileMsg');
 
@@ -108,9 +108,31 @@
     w.forEach(function(x){ if (/^(y|el|la|los|las|del|en|con|para|por|una|desde|hasta|actualidad|actualmente|que|más|año|años)$/.test(x)) es++; else if (/^(and|the|with|for|of|to|in|on|at|from|by|an|present)$/.test(x)) en++; });
     return es > 8 && es > en;
   }
-  function cvLang(t){ return isGerman(t) ? 'de' : isSpanish(t) ? 'es' : ''; }
-  var RULES = {de: DE_RULES, es: ES_RULES};
-  function words(t){ return (t.toLowerCase().match(/[a-zäöüßñáéíóú][a-zäöüßñáéíóú+#.\-']*[a-zäöüßñáéíóú+#]|[a-zäöüßñáéíóú]/g) || []); }
+
+  /* French CVs: own verbs, headings, clichés and stop words. Picked from the CV text, not the page. */
+  var FR_RULES = {
+    verbs: 'piloté,dirigé,géré,encadré,managé,coordonné,organisé,augmenté,accru,réduit,diminué,développé,créé,conçu,lancé,négocié,formé,supervisé,optimisé,amélioré,atteint,dépassé,réalisé,planifié,analysé,vendu,conseillé,élaboré,automatisé,déployé,instauré,fidélisé,recruté,restructuré,mis en place,mis en œuvre,piloter,diriger,gérer,encadrer,coordonner,développer,négocier,pilotage,encadrement,coordination,mise en place,mise en œuvre,négociation,supervision,optimisation,planification,élaboration,lancement,augmentation,réduction,déploiement,création,conception,refonte,recrutement'.split(','),
+    weak: ['en charge de','en charge du','en charge des','chargé de la','chargé du','chargée de la','chargée du','participation à','participation au','aide à la','aide au','assistance à','mes missions','mes tâches','missions principales','esprit d\'équipe','travail en équipe','dynamique','motivé','motivée','polyvalent','polyvalente','rigoureux','rigoureuse','passionné','passionnée','sérieux','sérieuse','force de proposition','capacité d\'adaptation','références sur demande','références disponibles','madame, monsieur'],
+    personal: [['date of birth',/(date de naissance|né le|née le|né\(e\) le)/i],['age',/(^|[^a-z])âge\s*:?\s*\d|\b\d{2}\s?ans\b(?!\s*d)/i],['marital status',/(situation familiale|situation de famille|\bmarié(e)?\b|\bcélibataire\b|\bdivorcé(e)?\b|\bpacsé(e)?\b)/i],['nationality',/nationalité/i],['religion',/\breligion\b/i],['gender',/(\bsexe\s*:|\bgenre\s*:)/i],['passport number',/(passeport|sécurité sociale|\bn° ss\b)/i]],
+    sections: [
+      ['profile', /^\s*(profil professionnel|profil|résumé|à propos|objectif professionnel|objectif|présentation)(?![a-zäöüßñáéíóúàâçèêëîïôûùÿœ])/im],
+      ['experience', /^\s*(expériences? professionnelles?|expériences?|parcours professionnel|historique professionnel|stages?)(?![a-zäöüßñáéíóúàâçèêëîïôûùÿœ])/im],
+      ['education', /^\s*(formations?|diplômes?|études|cursus|scolarité)(?![a-zäöüßñáéíóúàâçèêëîïôûùÿœ])/im],
+      ['skills', /^\s*(compétences( techniques| clés)?|savoir-faire|aptitudes|connaissances|informatique|langues|skills)(?![a-zäöüßñáéíóúàâçèêëîïôûùÿœ])/im]
+    ],
+    units: /\b\d+\s?(k€|m€|millions?|salariés|personnes|collaborateurs|clients|projets|magasins|boutiques|agences|sites|patients|lits|utilisateurs|membres|adhérents|équipes?)\b/i,
+    present: /\b(aujourd.hui|actuellement|en cours|présent)\b|à ce jour/i,
+    pronouns: /(^|[\s.,;(])(je|moi|mon|ma|mes)(?=[\s.,;)'])|(^|[\s.,;(])j['’](?=[a-zàâéèêîôû])/gi,
+    stop: 'le,la,les,l,un,une,des,du,de,d,et,ou,mais,si,à,au,aux,en,dans,sur,sous,avec,pour,par,sans,chez,entre,jusqu,depuis,vers,comme,que,qu,qui,quoi,est,sont,était,être,sera,a,ont,avoir,il,elle,ils,elles,on,se,sa,son,ses,leur,leurs,vous,votre,vos,nous,notre,nos,ce,cet,cette,ces,dont,où,quand,comment,tout,tous,toute,toutes,chaque,plus,moins,très,ne,pas,non,seulement,aussi,déjà,autre,autres,même,ainsi,entreprise,société,équipe,équipes,poste,postes,travail,travailler,offre,offres,proposons,recherchons,recherche,candidat,candidate,candidats,profil,missions,mission,requis,expérience,expériences,connaissances,compétences,souhaitée,souhaité,apprécié,appréciée,indispensable,minimum,ans,an,année,années,mois,temps,plein,partiel,contrat,cdi,cdd,intérim,salaire,brut,annuel,rémunération,horaires,prise,immédiate,lieu,télétravail,hybride,avantages,congés,tickets,restaurant,mutuelle,bon,bonne,bonnes,bons,haut,haute,niveau,capacité,personne,personnes,domaine,secteur,processus,recrutement,postuler,postulez,envoyer,envoyez,cv,merci,h/f,f/h,sas,sarl,sa,etc'.split(',')
+  };
+  function isFrench(t){
+    var w = t.toLowerCase().match(/[a-zàâçéèêëîïôûùüÿœ]+/g) || [], fr = 0, en = 0;
+    w.forEach(function(x){ if (/^(et|le|les|des|du|avec|pour|une|depuis|chez|dans|au|aux|sur|aujourd|actuellement|ans)$/.test(x)) fr++; else if (/^(and|the|with|for|of|to|in|on|at|from|by|an|present)$/.test(x)) en++; });
+    return fr > 8 && fr > en;
+  }
+  function cvLang(t){ return isGerman(t) ? 'de' : isFrench(t) ? 'fr' : isSpanish(t) ? 'es' : ''; }
+  var RULES = {de: DE_RULES, es: ES_RULES, fr: FR_RULES};
+  function words(t){ return (t.toLowerCase().match(/[a-zäöüßñáéíóúàâçèêëîïôûùÿœ][a-zäöüßñáéíóúàâçèêëîïôûùÿœ+#.\-']*[a-zäöüßñáéíóúàâçèêëîïôûùÿœ+#]|[a-zäöüßñáéíóúàâçèêëîïôûùÿœ]/g) || []); }
   function count(re, t){ var m = t.match(re); return m ? m.length : 0; }
 
   function check(cv){
@@ -150,7 +172,7 @@
 
     // 5. Action verbs (10)
     var vset = {}, vc = 0;
-    VERBS_.forEach(function(v){ var n = count(new RegExp('(^|[^a-zäöüßñáéíóú])' + v.replace(/ /g, '\\s') + '(?![a-zäöüßñáéíóú])', 'gi'), cv); if (n){ vc += n; vset[v] = 1; } });
+    VERBS_.forEach(function(v){ var n = count(new RegExp('(^|[^a-zäöüßñáéíóúàâçèêëîïôûùÿœ])' + v.replace(/ /g, '\\s') + '(?![a-zäöüßñáéíóúàâçèêëîïôûùÿœ])', 'gi'), cv); if (n){ vc += n; vset[v] = 1; } });
     var vk = Object.keys(vset).length, vp = vk >= 8 ? 10 : vk >= 4 ? 6 : vk >= 1 ? 2 : 0;
     add('verbs', vp, 10, vp === 10 ? 'ok' : (vp >= 6 ? 'warn' : 'bad'), T.foundN.replace('{n}', vk) + (vk ? ': ' + Object.keys(vset).slice(0, 8).join(', ') : ''));
 
@@ -217,7 +239,8 @@
     if ((cv.match(/\S+/g) || []).length < 60){ fileMsg.textContent = T.tooShort; cvBox.focus(); return; }
     if (/[؀-ۿ]/.test(cv) && !/[a-z]{3,}/i.test(cv.slice(0, 400))){ fileMsg.textContent = T.arabicCv; }
     else if (T.germanCv && isGerman(cv)) { fileMsg.textContent = T.germanCv; }
-    else if (T.spanishCv && !isGerman(cv) && isSpanish(cv)) { fileMsg.textContent = T.spanishCv; }
+    else if (T.frenchCv && cvLang(cv) === 'fr') { fileMsg.textContent = T.frenchCv; }
+    else if (T.spanishCv && cvLang(cv) === 'es') { fileMsg.textContent = T.spanishCv; }
     var r = check(cv), job = jobBox.value.trim(), m = job.length > 80 ? jobMatch(cv, job) : null;
     var band = r.score >= 80 ? 'good' : r.score >= 60 ? 'mid' : 'low';
     var h = '<div class="res-top ' + band + '"><div class="ring" style="--p:' + r.score + '"><b>' + r.score + '</b><small>/100</small></div><div><h3>' + T['band_' + band] + '</h3><p>' + T['bandTxt_' + band] + '</p></div></div>';
@@ -236,8 +259,8 @@
     h += T.ctaHtml.replace('{score}', r.score);
     out.innerHTML = h; out.hidden = false;
     out.scrollIntoView({behavior: 'smooth', block: 'start'});
-    if (window.grConsent && grConsent.track) grConsent.track('cv_check', {score: r.score, job_match: m ? m.pct : -1, lang: AR ? 'ar' : (DEP ? 'de' : ESP ? 'es' : 'en'), cv_lang: r.cvlang || 'other'});
-    try { if (window.goatcounter && goatcounter.count) goatcounter.count({path: 'cv-check-done' + (AR ? '-ar' : DEP ? '-de' : ESP ? '-es' : ''), title: 'CV check done', event: true}); } catch (x) {}
+    if (window.grConsent && grConsent.track) grConsent.track('cv_check', {score: r.score, job_match: m ? m.pct : -1, lang: AR ? 'ar' : (DEP ? 'de' : ESP ? 'es' : FRP ? 'fr' : 'en'), cv_lang: r.cvlang || 'other'});
+    try { if (window.goatcounter && goatcounter.count) goatcounter.count({path: 'cv-check-done' + (AR ? '-ar' : DEP ? '-de' : ESP ? '-es' : FRP ? '-fr' : ''), title: 'CV check done', event: true}); } catch (x) {}
   });
   out.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a[data-cta]');
