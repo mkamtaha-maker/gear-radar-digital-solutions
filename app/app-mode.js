@@ -7,14 +7,15 @@
   function ar() { return (document.documentElement.lang || '').slice(0, 2) === 'ar'; }
   function de() { return (document.documentElement.lang || '').slice(0, 2) === 'de'; }
   function es() { return (document.documentElement.lang || '').slice(0, 2) === 'es'; }
+  function fr() { return (document.documentElement.lang || '').slice(0, 2) === 'fr'; }
   var TITLES = {
-    'cv-checker': ['CV Checker', 'فحص السيرة', 'Lebenslauf-Check', 'Revisión de CV'], 'cv-wallet': ['CVs Wallet', 'محفظة السير', 'CVs Wallet', 'CVs Wallet'], 'career-finder': ['Career Finder', 'اكتشف مسارك', 'Career Finder', 'Career Finder'],
-    'linkedin-makeover': ['LinkedIn Makeover', 'LinkedIn Makeover', 'LinkedIn-Makeover', 'LinkedIn Makeover'], 'polishly': ['Polishly', 'Polishly', 'Polishly', 'Polishly'],
-    'signup': ['Sign up', 'الاشتراك', 'Anmelden', 'Registro'], 'privacy': ['Privacy notice', 'سياسة الخصوصية', 'Datenschutz', 'Privacidad'], 'terms': ['Terms', 'الشروط', 'AGB', 'Términos'], 'impressum': ['Impressum', 'Impressum', 'Impressum', 'Aviso legal']
+    'cv-checker': ['CV Checker', 'فحص السيرة', 'Lebenslauf-Check', 'Revisión de CV', 'Analyse de CV'], 'cv-wallet': ['CVs Wallet', 'محفظة السير', 'CVs Wallet', 'CVs Wallet', 'CVs Wallet'], 'career-finder': ['Career Finder', 'اكتشف مسارك', 'Career Finder', 'Career Finder', 'Career Finder'],
+    'linkedin-makeover': ['LinkedIn Makeover', 'LinkedIn Makeover', 'LinkedIn-Makeover', 'LinkedIn Makeover', 'LinkedIn Makeover'], 'polishly': ['Polishly', 'Polishly', 'Polishly', 'Polishly', 'Polishly'],
+    'signup': ['Sign up', 'الاشتراك', 'Anmelden', 'Registro', 'Inscription'], 'privacy': ['Privacy notice', 'سياسة الخصوصية', 'Datenschutz', 'Privacidad', 'Confidentialité'], 'terms': ['Terms', 'الشروط', 'AGB', 'Términos', 'Conditions'], 'impressum': ['Impressum', 'Impressum', 'Impressum', 'Aviso legal', 'Mentions légales']
   };
   function title() {
-    var k = location.pathname.replace(/^\/|\.html$/g, '').replace(/-(ar|de|es)$/, '');
-    var t = TITLES[k]; if (t) return ar() ? t[1] : (de() ? t[2] : (es() ? t[3] : t[0]));
+    var k = location.pathname.replace(/^\/|\.html$/g, '').replace(/-(ar|de|es|fr)$/, '');
+    var t = TITLES[k]; if (t) return ar() ? t[1] : (de() ? t[2] : (es() ? t[3] : (fr() ? t[4] : t[0])));
     return (document.title || '').split(/[|·–-]/)[0].trim();
   }
 
@@ -87,7 +88,7 @@
       + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>'
       + '<span class="tb-t"></span>'
       + '<a href="/app/" class="tb-home"><img src="/app/icons/icon-192.png" alt="Tala"></a>';
-    function labels() { bar.querySelector('.tb-back').setAttribute('aria-label', ar() ? 'رجوع' : (de() ? 'Zurück' : (es() ? 'Atrás' : 'Back'))); bar.querySelector('.tb-t').textContent = title(); }
+    function labels() { bar.querySelector('.tb-back').setAttribute('aria-label', ar() ? 'رجوع' : (de() ? 'Zurück' : (es() ? 'Atrás' : (fr() ? 'Retour' : 'Back')))); bar.querySelector('.tb-t').textContent = title(); }
     labels();
     try { new MutationObserver(labels).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); } catch (e) {}
     bar.querySelector('.tb-back').addEventListener('click', function () {
