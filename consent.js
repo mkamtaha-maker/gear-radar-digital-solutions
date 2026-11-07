@@ -16,7 +16,12 @@
   try { if (!ar && (/[?&]lang=ar\b/.test(location.search) || localStorage.getItem('gr_lang') === 'ar')) ar = true; } catch (e) {}
   var de = !ar && (document.documentElement.lang || '').toLowerCase().indexOf('de') === 0;
   try { if (!ar && !de && (/[?&]lang=de\b/.test(location.search) || localStorage.getItem('gr_lang') === 'de')) de = true; } catch (e) {}
-  var T = de ? {
+  var es = !ar && !de && (document.documentElement.lang || '').toLowerCase().indexOf('es') === 0;
+  try { if (!ar && !de && !es && (/[?&]lang=es\b/.test(location.search) || localStorage.getItem('gr_lang') === 'es')) es = true; } catch (e) {}
+  var T = es ? {
+    text: 'Solo usamos cookies con tu permiso: Google Analytics y Google Ads las usan para ver cómo nos encuentran los visitantes y medir nuestros anuncios, y el código de socio de un enlace de socio se recuerda durante 60 días. Los ajustes básicos, como el idioma y la moneda, se guardan siempre.',
+    yes: 'Aceptar', no: 'Rechazar', more: 'Privacidad y cookies'
+  } : de ? {
     text: 'Wir verwenden Cookies nur mit Ihrer Erlaubnis: Google Analytics und Google Ads nutzen sie, um zu sehen, wie Besucher uns finden, und um unsere Werbung zu messen; ein Partnercode aus einem Partnerlink wird 60 Tage gespeichert. Notwendige Einstellungen wie Sprache und Währung werden immer gespeichert.',
     yes: 'Akzeptieren', no: 'Ablehnen', more: 'Datenschutz & Cookies'
   } : ar ? {
@@ -30,7 +35,7 @@
   /* inside the Tala app: one short line instead of the full notice */
   var inApp = false;
   try { inApp = /[?&]app=1\b/.test(location.search) || sessionStorage.getItem('tala_app') === '1' || (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) {}
-  if (inApp) T.text = de ? 'Wir verwenden Cookies für Statistik und Werbung nur mit Ihrer Erlaubnis.' : ar ? 'نستخدم الكوكيز للإحصاءات والإعلانات بإذنك فقط.' : 'We use cookies for analytics and ads, only with your permission.';
+  if (inApp) T.text = es ? 'Solo usamos cookies para estadísticas y anuncios con tu permiso.' : de ? 'Wir verwenden Cookies für Statistik und Werbung nur mit Ihrer Erlaubnis.' : ar ? 'نستخدم الكوكيز للإحصاءات والإعلانات بإذنك فقط.' : 'We use cookies for analytics and ads, only with your permission.';
 
   function read(){
     try {
@@ -90,7 +95,7 @@
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-label', T.more);
     box.dir = ar ? 'rtl' : 'ltr';
-    box.innerHTML = '<p>' + T.text + ' <a href="' + (de ? 'privacy.html#de' : 'privacy.html#cookies') + '">' + T.more + '</a></p>' +
+    box.innerHTML = '<p>' + T.text + ' <a href="' + (es ? 'privacy.html#es' : de ? 'privacy.html#de' : 'privacy.html#cookies') + '">' + T.more + '</a></p>' +
       '<div class="gr-cc-b"><button type="button" data-c="no">' + T.no + '</button><button type="button" data-c="yes">' + T.yes + '</button></div>';
     box.appendChild(css);
     box.addEventListener('click', function(e){ var c = e.target.getAttribute && e.target.getAttribute('data-c'); if (c) decide(c); });
