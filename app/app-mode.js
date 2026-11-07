@@ -47,11 +47,13 @@
     + '.hero .wrap{grid-template-columns:1fr !important}'
     + '.hero .pchip b{color:#0F1115 !important}'
     + 'body main.container{margin-top:0 !important}'
-    /* cookie notice as a light bottom sheet */
-    + '.gr-cc{background:#fff !important;color:#0F1115 !important;border:1px solid #E7E9ED;box-shadow:0 10px 40px rgba(16,24,40,.18) !important;border-radius:20px !important;font:13px/1.5 var(--tapp-f) !important;padding:14px 16px !important;bottom:calc(env(safe-area-inset-bottom,0px) + 12px) !important}'
-    + '.gr-cc p{margin:0 0 10px !important}'
-    + '.gr-cc a{color:#C2410C !important}'
-    + '.gr-cc button{border:0 !important;border-radius:12px !important;padding:10px 14px !important;font:700 14px var(--tapp-f) !important;background:#F0F1F4 !important;color:#0F1115 !important}'
+    /* cookie notice: compact one-row light sheet */
+    + '.gr-cc{display:flex !important;align-items:center;gap:10px;background:#fff !important;color:#0F1115 !important;border:1px solid #E7E9ED;box-shadow:0 8px 30px rgba(16,24,40,.16) !important;border-radius:16px !important;font:12.5px/1.45 var(--tapp-f) !important;padding:10px 10px 10px 14px !important;left:12px !important;right:12px !important;bottom:calc(env(safe-area-inset-bottom,0px) + 10px) !important}'
+    + 'html[dir="rtl"] .gr-cc, .gr-cc[dir="rtl"]{padding:10px 14px 10px 10px !important}'
+    + '.gr-cc p{margin:0 !important;flex:1;min-width:0}'
+    + '.gr-cc a{color:#6B7280 !important;text-decoration:underline}'
+    + '.gr-cc .gr-cc-b{flex:none;gap:6px !important;flex-wrap:nowrap !important}'
+    + '.gr-cc button{flex:none !important;border:0 !important;border-radius:10px !important;padding:8px 12px !important;font:700 13px var(--tapp-f) !important;background:#F0F1F4 !important;color:#0F1115 !important}'
     + '.gr-cc button:last-child{background:#FF7A3D !important;color:#1A0B03 !important}'
     /* app bar */
     + '.tala-bar{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:8px;background:rgba(245,246,248,.9);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);color:#0F1115;border-bottom:1px solid #E7E9ED;'
