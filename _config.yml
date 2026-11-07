@@ -1,0 +1,3 @@
+# GitHub Pages: serve /.well-known (Android app link) and keep the Android source out of the site.
+include: [".well-known"]
+exclude: ["android-app"]
