@@ -6,7 +6,7 @@
   if (window.__talaAppMode) return; window.__talaAppMode = true;
   function ar() { return (document.documentElement.lang || '').slice(0, 2) === 'ar'; }
   var TITLES = {
-    'cv-checker': ['CV Checker', 'فحص السيرة'], 'career-finder': ['Career Finder', 'اكتشف مسارك'],
+    'cv-checker': ['CV Checker', 'فحص السيرة'], 'cv-wallet': ['CVs Wallet', 'محفظة السير'], 'career-finder': ['Career Finder', 'اكتشف مسارك'],
     'linkedin-makeover': ['LinkedIn Makeover', 'LinkedIn Makeover'], 'polishly': ['Polishly', 'Polishly'],
     'signup': ['Sign up', 'الاشتراك'], 'privacy': ['Privacy notice', 'سياسة الخصوصية'], 'terms': ['Terms', 'الشروط']
   };
