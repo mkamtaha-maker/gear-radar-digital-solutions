@@ -1,9 +1,9 @@
-/* German / Spanish view for pages that only have English + Arabic built in (work, galleries).
+/* German / Spanish / French view for pages that only have English + Arabic built in (work, galleries).
    The page keeps running in English; this swaps the visible English text for German
-   using window.DE_SWAP / window.ES_SWAP = { map: {en: de}, rx: [[regex source, replacement]], skip: 'css selector' }.
+   using window.DE_SWAP / window.ES_SWAP / window.FR_SWAP = { map: {en: de}, rx: [[regex source, replacement]], skip: 'css selector' }.
    Load it in <head> (before the page's own scripts) so it can read the saved language first. */
 (function () {
-  var CFG = { de: window.DE_SWAP, es: window.ES_SWAP }, C = { map: {} }, MAP = {}, RX = [], L = '';
+  var CFG = { de: window.DE_SWAP, es: window.ES_SWAP, fr: window.FR_SWAP }, C = { map: {} }, MAP = {}, RX = [], L = '';
   Object.keys(CFG).forEach(function (k) { if (!CFG[k]) delete CFG[k]; });
   function use(l) { L = l; C = CFG[l] || { map: {} }; MAP = C.map || {}; RX = (C.rx || []).map(function (r) { return [new RegExp(r[0]), r[1]]; }); }
   var want = '';
