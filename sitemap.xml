@@ -141,6 +141,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.gearradar.co.uk/cv-checker.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.gearradar.co.uk/cv-checker-ar.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.gearradar.co.uk/cv-checker-de.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gearradar.co.uk/cv-checker.html"/>
   </url>
   <url>
@@ -149,6 +150,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.gearradar.co.uk/cv-checker.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.gearradar.co.uk/cv-checker-ar.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.gearradar.co.uk/cv-checker-de.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gearradar.co.uk/cv-checker.html"/>
   </url>
   <url>
@@ -276,5 +278,14 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.gearradar.co.uk/career-finder-ar.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://www.gearradar.co.uk/career-finder-de.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gearradar.co.uk/career-finder.html"/>
+  </url>
+  <url>
+    <loc>https://www.gearradar.co.uk/cv-checker-de.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gearradar.co.uk/cv-checker.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.gearradar.co.uk/cv-checker-ar.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.gearradar.co.uk/cv-checker-de.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gearradar.co.uk/cv-checker.html"/>
   </url>
 </urlset>

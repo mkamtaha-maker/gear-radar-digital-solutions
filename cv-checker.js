@@ -1,6 +1,6 @@
 /* Free CV checker. Everything runs in the visitor's browser: the CV is never uploaded. */
 (function(){
-  var T = window.CVC_T, AR = document.documentElement.lang === 'ar';
+  var T = window.CVC_T, AR = document.documentElement.lang === 'ar', DEP = document.documentElement.lang === 'de';
   var $ = function(id){ return document.getElementById(id); };
   var cvBox = $('cvText'), jobBox = $('jobText'), out = $('cvcResult'), fileIn = $('cvFile'), fileMsg = $('fileMsg');
 
@@ -65,37 +65,60 @@
   var STOP = ('a,an,the,and,or,but,if,of,to,in,on,at,for,with,by,from,as,is,are,was,were,be,been,being,will,would,can,could,should,may,might,must,shall,you,your,we,our,us,they,their,them,he,she,it,its,this,that,these,those,who,what,which,when,where,how,all,any,both,each,few,more,most,other,some,such,no,not,only,own,same,so,than,too,very,just,also,about,into,over,under,up,down,out,off,again,further,then,once,here,there,why,do,does,did,doing,have,has,had,having,i,me,my,am,per,via,etc,within,across,including,include,includes,ensure,ensuring,able,ability,role,job,work,working,candidate,candidates,applicant,applicants,company,team,teams,join,looking,seeking,opportunity,opportunities,apply,application,salary,hours,week,weeks,day,days,month,months,year,years,full,part,time,permanent,temporary,contract,location,based,benefits,benefit,pension,holiday,holidays,annual,leave,offer,offers,new,well,good,great,excellent,strong,essential,desirable,required,requirements,requirement,preferred,plus,experience,experienced,skills,skill,knowledge,understanding,minimum,least,must,need,needs,needed,make,making,help,helping,use,using,used,within,etc,e.g,ie,eg,uk,london,hybrid,remote,office,days,please,click,below,above,successful,responsibilities,responsibility,key,main,duties,duty,provide,providing,support,supporting,environment,range,variety,levels,level,high,highly,based,role,roles,position,positions,hire,hiring,recruitment,agency,employer,equal,diverse,diversity,inclusive,inclusion,disability,apply,today,now,via,£,k').split(',');
   var STOPSET = {}; STOP.forEach(function(w){ STOPSET[w] = 1; });
 
-  function words(t){ return (t.toLowerCase().match(/[a-z][a-z+#.\-']*[a-z+#]|[a-z]/g) || []); }
+  /* German CVs (Lebenslauf): own verbs, headings, clichés and stop words. Picked from the CV text, not the page. */
+  var DE_RULES = {
+    verbs: 'geleitet,geführt,verantwortet,gesteigert,gesenkt,reduziert,entwickelt,eingeführt,aufgebaut,organisiert,koordiniert,umgesetzt,optimiert,verhandelt,geschult,betreut,erstellt,realisiert,durchgeführt,implementiert,analysiert,konzipiert,gewonnen,erreicht,verbessert,ausgebaut,gestaltet,geplant,gesteuert,eingearbeitet,beraten,verkauft,akquiriert,präsentiert,automatisiert,migriert,standardisiert,etabliert,überwacht,abgeschlossen,leitung,führung,steuerung,steigerung,senkung,reduzierung,entwicklung,einführung,aufbau,koordination,umsetzung,optimierung,planung,betreuung,schulung,durchführung,erstellung,konzeption,beratung,akquise,verhandlung,implementierung'.split(','),
+    weak: ['zuständig für','mitarbeit bei','unterstützung bei','mithilfe bei','aufgaben waren','zu meinen aufgaben','teamfähig','teamplayer','belastbar','flexibel','zuverlässig','motiviert','kommunikationsstark','ehrgeizig','engagiert','dynamisch','leidenschaftlich','referenzen auf anfrage','sehr geehrte'],
+    personal: [['date of birth',/\b(geburtsdatum|geboren am|geb\.)/i],['age',/\balter\s*:\s*\d/i],['marital status',/\b(familienstand|verheiratet|ledig|geschieden)\b/i],['nationality',/\b(staatsangehörigkeit|nationalität)\b/i],['religion',/\b(religion|konfession)\b/i],['gender',/\bgeschlecht\s*:/i],['passport number',/\b(passnummer|reisepassnummer)\b/i]],
+    sections: [
+      ['profile', /^\s*(profil|kurzprofil|berufsprofil|über mich|zusammenfassung|persönliches profil)\b/im],
+      ['experience', /^\s*(berufserfahrung|beruflicher werdegang|berufliche erfahrung|berufspraxis|werdegang|praktische erfahrung|praktika)\b/im],
+      ['education', /^\s*(ausbildung|bildungsweg|bildung|schulbildung|studium|aus- und weiterbildung|weiterbildung|qualifikationen)\b/im],
+      ['skills', /^\s*(kenntnisse|fähigkeiten|kompetenzen|fachkenntnisse|edv-kenntnisse|it-kenntnisse|sprachkenntnisse|besondere kenntnisse|skills)\b/im]
+    ],
+    units: /\b\d+\s?(tsd|mio|mitarbeiter(innen)?|kunden|projekte|filialen|standorte|patienten|betten|nutzer|mitglieder|teams?)\b/i,
+    present: /\b(heute|aktuell|derzeit|seit)\b/i,
+    pronouns: /(^|[\s.,;(])(ich|mich|mir|mein|meine|meinen|meinem|meiner)(?=[\s.,;)'])/gi,
+    stop: 'der,die,das,den,dem,des,ein,eine,einen,einem,einer,eines,und,oder,aber,wenn,von,zu,zur,zum,im,in,an,am,auf,für,mit,bei,aus,als,ist,sind,war,waren,wird,werden,wurde,sein,haben,hat,hatte,kann,können,soll,sollen,muss,müssen,sie,ihr,ihre,ihren,ihrem,wir,uns,unser,unsere,unseren,unserem,es,sich,dies,diese,dieser,dieses,wer,was,wie,wo,alle,jede,jeder,mehr,nicht,nur,auch,sehr,so,um,über,unter,nach,vor,durch,gegen,ohne,bis,ab,bzw,sowie,sowohl,zwischen,innerhalb,bereich,bereichen,aufgaben,aufgabe,profil,stelle,position,unternehmen,team,teams,arbeit,arbeiten,bewerbung,bewerben,gehalt,vollzeit,teilzeit,unbefristet,befristet,standort,homeoffice,remote,hybrid,benefits,urlaub,erfahrung,erfahrungen,kenntnisse,fähigkeiten,gute,guten,sehr,idealerweise,wünschenswert,erforderlich,abgeschlossene,abgeschlossenes,mindestens,jahre,jahren,neue,neuen,wir,bieten,bietet,freuen,ihre,ihr,m/w/d,w/m/d,m,w,d,gmbh,ag,heute,jetzt,online,senden,bitte,du,dein,deine,dich,dir,euch'.split(',')
+  };
+  function isGerman(t){
+    var w = t.toLowerCase().match(/[a-zäöüß]+/g) || [], de = 0, en = 0;
+    w.forEach(function(x){ if (/^(und|der|die|das|mit|für|bei|von|im|auf|zur|zum|sowie|bis|seit|heute|des|eine|einer|einem)$/.test(x)) de++; else if (/^(and|the|with|for|of|to|in|on|at|from|by|an|present)$/.test(x)) en++; });
+    return de > 8 && de > en;
+  }
+  function words(t){ return (t.toLowerCase().match(/[a-zäöüß][a-zäöüß+#.\-']*[a-zäöüß+#]|[a-zäöüß]/g) || []); }
   function count(re, t){ var m = t.match(re); return m ? m.length : 0; }
 
   function check(cv){
+    var G = isGerman(cv) ? DE_RULES : null;
+    var VERBS_ = G ? G.verbs : VERBS, WEAK_ = G ? G.weak : WEAK, PERSONAL_ = G ? G.personal : PERSONAL, SECTIONS_ = G ? G.sections : SECTIONS;
     var low = cv.toLowerCase(), lines = cv.split(/\n/).map(function(l){ return l.trim(); }).filter(Boolean);
     var wc = (cv.match(/\S+/g) || []).length, res = [], score = 0;
     function add(key, pts, max, status, detail){ score += pts; res.push({k:key, pts:pts, max:max, s:status, d:detail || ''}); }
 
     // 1. Contact details (15)
-    var email = /[\w.+\-]+@[\w\-]+\.[\w.\-]+/.test(cv), phone = /(\+?\d[\d\s\-().]{8,}\d)/.test(cv), li = /linkedin\.com\//i.test(cv);
+    var email = /[\w.+\-]+@[\w\-]+\.[\w.\-]+/.test(cv), phone = /(\+?\d[\d\s\-().]{8,}\d)/.test(cv), li = /linkedin\.com\/|xing\.com\//i.test(cv);
     var c = (email ? 7 : 0) + (phone ? 6 : 0) + (li ? 2 : 0), miss = [];
     if (!email) miss.push(T.w_email); if (!phone) miss.push(T.w_phone); if (!li) miss.push('LinkedIn');
     add('contact', c, 15, c >= 13 ? 'ok' : (c >= 7 ? 'warn' : 'bad'), miss.length ? T.missing + ' ' + miss.join(', ') : '');
 
     // 2. Length (10)
     var pages = +cvBox.dataset.pages || 0, lp = 0, ls;
-    if (wc >= 350 && wc <= 900 && (!pages || pages <= 2)) { lp = 10; ls = 'ok'; }
-    else if (wc >= 200 && wc <= 1200 && (!pages || pages <= 3)) { lp = 5; ls = 'warn'; }
+    if (wc >= (G ? 250 : 350) && wc <= 900 && (!pages || pages <= 2)) { lp = 10; ls = 'ok'; }
+    else if (wc >= (G ? 150 : 200) && wc <= 1200 && (!pages || pages <= 3)) { lp = 5; ls = 'warn'; }
     else { lp = 0; ls = 'bad'; }
     add('length', lp, 10, ls, T.wordsN.replace('{n}', wc) + (pages ? ' · ' + T.pagesN.replace('{n}', pages) : ''));
 
     // 3. Sections (20)
     var have = [], lack = [];
-    SECTIONS.forEach(function(s){ (s[1].test(cv) ? have : lack).push(T['sec_' + s[0]]); });
+    SECTIONS_.forEach(function(s){ (s[1].test(cv) ? have : lack).push(T['sec_' + s[0]]); });
     var sp = have.length * 5;
     add('sections', sp, 20, sp === 20 ? 'ok' : (sp >= 10 ? 'warn' : 'bad'), lack.length ? T.missing + ' ' + lack.join(', ') : '');
 
     // 4. Measurable results (15)
     var nums = 0;
     lines.forEach(function(l){
-      if (/\b(19|20)\d{2}\b/.test(l) && !/[%£$€]|\b\d+\s?(k|m|people|staff|clients|customers|users|projects|sites|stores|patients|beds|members)\b/i.test(l)) return;
+      if (/\b(19|20)\d{2}\b/.test(l) && !/[%£$€]|\b\d+\s?(k|m|people|staff|clients|customers|users|projects|sites|stores|patients|beds|members)\b/i.test(l) && !(G && G.units.test(l))) return;
       if (/\d/.test(l) && /[%£$€]|\b\d+(\.\d+)?\s?(k|m|x)?\b/i.test(l)) nums++;
     });
     var np = nums >= 6 ? 15 : nums >= 3 ? 9 : nums >= 1 ? 4 : 0;
@@ -103,28 +126,28 @@
 
     // 5. Action verbs (10)
     var vset = {}, vc = 0;
-    VERBS.forEach(function(v){ var n = count(new RegExp('\\b' + v.replace(' ', '\\s') + '\\b', 'gi'), cv); if (n){ vc += n; vset[v] = 1; } });
+    VERBS_.forEach(function(v){ var n = count(new RegExp('(^|[^a-zäöüß])' + v.replace(' ', '\\s') + '(?![a-zäöüß])', 'gi'), cv); if (n){ vc += n; vset[v] = 1; } });
     var vk = Object.keys(vset).length, vp = vk >= 8 ? 10 : vk >= 4 ? 6 : vk >= 1 ? 2 : 0;
     add('verbs', vp, 10, vp === 10 ? 'ok' : (vp >= 6 ? 'warn' : 'bad'), T.foundN.replace('{n}', vk) + (vk ? ': ' + Object.keys(vset).slice(0, 8).join(', ') : ''));
 
     // 6. Clichés and weak phrases (10)
-    var weak = WEAK.filter(function(w){ return low.indexOf(w) > -1; });
+    var weak = WEAK_.filter(function(w){ return low.indexOf(w) > -1; });
     weak = weak.filter(function(w){ return !weak.some(function(o){ return o !== w && o.indexOf(w) > -1; }); });
     var wp = Math.max(0, 10 - weak.length * 3);
     add('weak', wp, 10, weak.length === 0 ? 'ok' : (wp >= 4 ? 'warn' : 'bad'), weak.length ? T.found + ' "' + weak.slice(0, 5).join('", "') + '"' : '');
 
     // 7. Personal pronouns (5)
-    var pr = count(/(^|[\s.,;(])(i|me|my|myself)(?=[\s.,;)'])/gi, cv);
+    var pr = count(G ? G.pronouns : /(^|[\s.,;(])(i|me|my|myself)(?=[\s.,;)'])/gi, cv);
     var pp = pr <= 2 ? 5 : pr <= 6 ? 2 : 0;
     add('pronouns', pp, 5, pp === 5 ? 'ok' : (pp ? 'warn' : 'bad'), T.foundN.replace('{n}', pr));
 
     // 8. Personal details employers don't need (5)
-    var pers = PERSONAL.filter(function(p){ return p[1].test(cv); }).map(function(p){ return T['p_' + p[0].replace(/ /g, '_')] || p[0]; });
-    var ppts = pers.length === 0 ? 5 : pers.length === 1 ? 2 : 0;
+    var pers = PERSONAL_.filter(function(p){ return p[1].test(cv); }).map(function(p){ return T['p_' + p[0].replace(/ /g, '_')] || p[0]; });
+    var ppts = pers.length === 0 ? 5 : G ? 3 : pers.length === 1 ? 2 : 0;
     add('personal', ppts, 5, ppts === 5 ? 'ok' : (ppts ? 'warn' : 'bad'), pers.length ? T.found + ' ' + pers.join(', ') : '');
 
     // 9. Dates on roles (5)
-    var years = count(/\b(19[89]\d|20[0-3]\d)\b/g, cv), present = /\b(present|current|now|to date)\b/i.test(cv);
+    var years = count(/\b(19[89]\d|20[0-3]\d)\b/g, cv), present = /\b(present|current|now|to date)\b/i.test(cv) || !!(G && G.present.test(cv));
     var dp = years >= 3 ? 5 : years >= 1 ? 2 : 0;
     add('dates', dp, 5, dp === 5 ? 'ok' : (dp ? 'warn' : 'bad'), T.foundN.replace('{n}', years) + (present ? ' · ' + T.presentOk : ''));
 
@@ -134,15 +157,18 @@
     var rp = longL === 0 ? 5 : longL <= 2 ? 3 : 0;
     add('read', rp, 5, rp === 5 ? 'ok' : (rp ? 'warn' : 'bad'), T.longN.replace('{n}', longL) + ' · ' + T.bulletsN.replace('{n}', bullets));
 
-    return {score: Math.round(score), items: res, wc: wc};
+    return {score: Math.round(score), items: res, wc: wc, de: !!G};
   }
 
   function jobMatch(cv, job){
+    var SS = STOPSET;
+    if (isGerman(job)) { SS = {}; STOP.concat(DE_RULES.stop).forEach(function(w){ SS[w] = 1; }); }
+    var STOPSET_ = SS;
     var jw = words(job), freq = {}, cvLow = ' ' + words(cv).join(' ') + ' ';
-    jw.forEach(function(w){ w = w.replace(/[.']+$/, ''); if (w.length < 3 || STOPSET[w] || /^\d/.test(w)) return; freq[w] = (freq[w] || 0) + 1; });
+    jw.forEach(function(w){ w = w.replace(/[.']+$/, ''); if (w.length < 3 || STOPSET_[w] || /^\d/.test(w)) return; freq[w] = (freq[w] || 0) + 1; });
     for (var i = 0; i < jw.length - 1; i++){
       var a = jw[i], b = jw[i + 1];
-      if (STOPSET[a] || STOPSET[b] || a.length < 3 || b.length < 3) continue;
+      if (STOPSET_[a] || STOPSET_[b] || a.length < 3 || b.length < 3) continue;
       var bg = a + ' ' + b; freq[bg] = (freq[bg] || 0) + 1.5;
     }
     var keys = Object.keys(freq).filter(function(k){ return freq[k] >= 2 || k.indexOf(' ') < 0 && /[+#]|^[a-z]{2,5}$/.test(k) && job.indexOf(k.toUpperCase()) > -1; });
@@ -165,13 +191,14 @@
     var cv = cvBox.value.trim();
     if ((cv.match(/\S+/g) || []).length < 60){ fileMsg.textContent = T.tooShort; cvBox.focus(); return; }
     if (/[؀-ۿ]/.test(cv) && !/[a-z]{3,}/i.test(cv.slice(0, 400))){ fileMsg.textContent = T.arabicCv; }
+    else if (T.germanCv && isGerman(cv)) { fileMsg.textContent = T.germanCv; }
     var r = check(cv), job = jobBox.value.trim(), m = job.length > 80 ? jobMatch(cv, job) : null;
     var band = r.score >= 80 ? 'good' : r.score >= 60 ? 'mid' : 'low';
     var h = '<div class="res-top ' + band + '"><div class="ring" style="--p:' + r.score + '"><b>' + r.score + '</b><small>/100</small></div><div><h3>' + T['band_' + band] + '</h3><p>' + T['bandTxt_' + band] + '</p></div></div>';
     h += '<ul class="checks">';
     r.items.slice().sort(function(a, b){ return (a.pts / a.max) - (b.pts / b.max); }).forEach(function(it){
       h += '<li class="' + it.s + '">' + icon(it.s) + '<div><b>' + T['t_' + it.k] + ' <span class="pts">' + it.pts + '/' + it.max + '</span></b>' +
-           (it.d ? '<small class="det">' + esc(it.d) + '</small>' : '') + (it.s !== 'ok' ? '<p>' + T['tip_' + it.k] + '</p>' : '') + '</div></li>';
+           (it.d ? '<small class="det">' + esc(it.d) + '</small>' : '') + (it.s !== 'ok' ? '<p>' + ((r.de && T['detip_' + it.k]) || T['tip_' + it.k]) + '</p>' : '') + '</div></li>';
     });
     h += '</ul>';
     if (m){
@@ -183,8 +210,8 @@
     h += T.ctaHtml.replace('{score}', r.score);
     out.innerHTML = h; out.hidden = false;
     out.scrollIntoView({behavior: 'smooth', block: 'start'});
-    if (window.grConsent && grConsent.track) grConsent.track('cv_check', {score: r.score, job_match: m ? m.pct : -1, lang: AR ? 'ar' : 'en'});
-    try { if (window.goatcounter && goatcounter.count) goatcounter.count({path: 'cv-check-done' + (AR ? '-ar' : ''), title: 'CV check done', event: true}); } catch (x) {}
+    if (window.grConsent && grConsent.track) grConsent.track('cv_check', {score: r.score, job_match: m ? m.pct : -1, lang: AR ? 'ar' : (DEP ? 'de' : 'en'), cv_lang: r.de ? 'de' : 'other'});
+    try { if (window.goatcounter && goatcounter.count) goatcounter.count({path: 'cv-check-done' + (AR ? '-ar' : DEP ? '-de' : ''), title: 'CV check done', event: true}); } catch (x) {}
   });
   out.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a[data-cta]');
