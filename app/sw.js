@@ -1,7 +1,7 @@
 // Tala app service worker: keeps the app shell available offline.
 // Network first for pages, so site updates show at once.
-var CACHE = 'tala-app-v11';
-var SHELL = ['/app/', '/app/manifest.webmanifest', '/app/icons/icon-192.png', '/app/icons/icon-512.png', '/images/brand/tala-dark.svg'];
+var CACHE = 'tala-app-v12';
+var SHELL = ['/app/', '/app/manifest.webmanifest', '/app/icons/icon-192.png', '/app/icons/icon-512.png', '/images/brand/tala-dark.svg', '/images/qr/tala-share-qr.png'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));

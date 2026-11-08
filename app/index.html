@@ -175,6 +175,13 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
 .acct .sub{display:block;color:var(--muted);font-size:13px;line-height:1.45}
 .item.danger b{color:#DC2626}
 :root[data-theme="dark"] .item.danger b{color:#F87171}
+.share-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:22px 20px}
+.share-card h2{margin:6px 0 0;font-size:21px;font-weight:800}
+.share-card p{margin:0;max-width:34ch}
+.qr-box{background:#fff;border-radius:22px;padding:10px;box-shadow:0 0 0 1px var(--line)}
+.qr-box img{display:block;width:min(64vw,240px);height:auto}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn.soft{background:var(--brand-soft);color:var(--brand-ink)}
 .sheet-bg{position:fixed;inset:0;z-index:70;background:rgba(10,12,16,.45);display:flex;align-items:flex-end;justify-content:center}
 .sheet{width:100%;max-width:560px;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 20px calc(env(safe-area-inset-bottom,0px) + 22px);display:flex;flex-direction:column;gap:12px;max-height:92vh;overflow-y:auto}
 .sheet .grab{width:40px;height:5px;border-radius:3px;background:var(--line);align-self:center;margin-bottom:6px}
@@ -227,6 +234,30 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
         <a class="item" href="/cv-checker.html" data-ar="/cv-checker-ar.html" data-de="/cv-checker-de.html" data-es="/cv-checker-es.html" data-fr="/cv-checker-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 13l2 2 4-4"/><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></span><span class="tx"><b data-t="cvcheck">CV Checker</b><span class="sub" data-t="cvcheck_sub">A score out of 100 in 30 seconds</span></span><span class="chip free" data-t="free">Free</span></a>
         <a class="item" href="/career-finder.html" data-ar="/career-finder-ar.html" data-de="/career-finder-de.html" data-es="/career-finder-es.html" data-fr="/career-finder-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><span class="tx"><b data-t="career">Career Finder</b><span class="sub" data-t="career_sub">5 questions, 4 career directions</span></span><span class="chip free" data-t="free">Free</span></a>
         <a class="item" href="/cv-wallet.html" data-ar="/cv-wallet-ar.html" data-de="/cv-wallet-de.html" data-es="/cv-wallet-es.html" data-fr="/cv-wallet-fr.html"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M7 6V4.5A1.5 1.5 0 0 1 8.5 3h7A1.5 1.5 0 0 1 17 4.5V6"/><path d="M16 13h2"/></svg></span><span class="tx"><b data-t="cw">CVs Wallet</b><span class="sub" data-t="cw_sub">Keep up to 5 CVs in one safe place</span></span><span class="chip free" data-t="free">Free</span></a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <a class="card item" id="inviteCard" href="#" data-go="share"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M21 14v.01M14 21h3M20 17v4h1"/></svg></span><span class="tx"><b data-t="inv_t">Invite a friend</b><span class="sub" data-t="inv_sub">Show them a QR code to scan, or send the link</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- SHARE -->
+  <section class="view" id="v-share" hidden>
+    <div class="card share-card">
+      <div class="qr-box"><img src="/images/qr/tala-share-qr.png" width="240" height="240" alt="QR code: gearradar.co.uk/get" id="shareQr"></div>
+      <h2 data-t="sh_h">Scan to get Tala</h2>
+      <p class="muted small" data-t="sh_p">Ask your friend to point their phone camera at this code. Tala opens in a few seconds, no sign-up needed.</p>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><h2 data-t="sh_or">Or send the link</h2></div>
+      <div class="card">
+        <div class="item" style="cursor:default"><span class="ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span><span class="tx"><b dir="ltr" style="text-align:start">gearradar.co.uk/get</b></span></div>
+      </div>
+      <button class="btn" type="button" id="shLinkBtn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span data-t="sh_share">Share the link</span></button>
+      <div class="row2">
+        <button class="btn soft" type="button" id="shCopyBtn" data-t="sh_copy">Copy link</button>
+        <button class="btn soft" type="button" id="shSaveBtn" data-t="sh_save">Save QR image</button>
       </div>
     </div>
   </section>
@@ -447,7 +478,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       s_jobs:'Job search', job_loc:'Location and job', not_set:'Not set yet', my_goal:'My goal',
       goal_names:{job:"Looking for a job", cv:'A better CV', career:'Finding the right career', linkedin:'A better LinkedIn profile'},
       subscribed:'Already subscribed?', open_tg:'Tala on Telegram', open_wa:'Tala on WhatsApp', manage_note:'To change your jobs or cities, or to cancel, just tell Tala in your chat.',
-      s_app:'App', share:'Share Tala with a friend', share_text:'Tala helps you find jobs that match your CV, check your CV for free and improve it. Get the app:', copied:'Link copied',
+      s_app:'App', share:'Share Tala with a friend', share_text:'Tala helps you find jobs that match your CV, check your CV for free and improve it. Get the app:', copied:'Link copied', sh_t:'Share Tala', sh_s:'Invite a friend', sh_h:'Scan to get Tala', sh_p:'Ask your friend to point their phone camera at this code. Tala opens in a few seconds, no sign-up needed.', sh_or:'Or send the link', sh_share:'Share the link', sh_copy:'Copy link', sh_save:'Save QR image', inv_t:'Invite a friend', inv_sub:'Show them a QR code to scan, or send the link', 
       update:'Update the app', update_sub:'Get the latest version now', updating:'Updating…', updated:'You have the latest version',
       help:'Help', privacy:'Privacy notice', terms:'Terms', contact:'Contact us',
       n_home:'Home', n_jobs:'Jobs', n_cv:'CV', n_tala:'Tala', n_settings:'Settings',
@@ -487,7 +518,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       s_jobs:'البحث عن عمل', job_loc:'المكان والوظيفة', not_set:'لم يُحدَّد بعد', my_goal:'هدفي',
       goal_names:{job:'أبحث عن وظيفة', cv:'سيرة ذاتية أفضل', career:'اكتشاف المسار المناسب', linkedin:'ملف LinkedIn أفضل'},
       subscribed:'مشترك بالفعل؟', open_tg:'تالا في تيليجرام', open_wa:'تالا في واتساب', manage_note:'لتغيير الوظائف أو المدن، أو للإلغاء، أخبر تالا في محادثتك.',
-      s_app:'التطبيق', share:'شارك تالا مع صديق', share_text:'تالا تساعدك في إيجاد وظائف تطابق سيرتك، وفحص سيرتك مجاناً وتحسينها. حمّل التطبيق:', copied:'تم نسخ الرابط',
+      s_app:'التطبيق', share:'شارك تالا مع صديق', share_text:'تالا تساعدك في إيجاد وظائف تطابق سيرتك، وفحص سيرتك مجاناً وتحسينها. حمّل التطبيق:', copied:'تم نسخ الرابط', sh_t:'شارك تالا', sh_s:'ادعُ صديقاً', sh_h:'امسح الرمز لتحميل تالا', sh_p:'اطلب من صديقك أن يوجّه كاميرا هاتفه إلى هذا الرمز. يفتح تطبيق تالا خلال ثوانٍ، دون الحاجة إلى تسجيل.', sh_or:'أو أرسل له الرابط', sh_share:'شارك الرابط', sh_copy:'انسخ الرابط', sh_save:'احفظ صورة الرمز', inv_t:'ادعُ صديقاً', inv_sub:'اعرض له رمز QR ليمسحه، أو أرسل له الرابط', 
       update:'تحديث التطبيق', update_sub:'احصل على آخر نسخة الآن', updating:'جارٍ التحديث…', updated:'لديك آخر نسخة',
       help:'المساعدة', privacy:'سياسة الخصوصية', terms:'الشروط', contact:'تواصل معنا',
       n_home:'الرئيسية', n_jobs:'الوظائف', n_cv:'السيرة', n_tala:'تالا', n_settings:'الإعدادات',
@@ -527,7 +558,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       s_jobs:'Jobsuche', job_loc:'Ort und Job', not_set:'Noch nicht festgelegt', my_goal:'Mein Ziel',
       goal_names:{job:'Ich suche einen Job', cv:'Ein besserer Lebenslauf', career:'Den passenden Beruf finden', linkedin:'Ein besseres LinkedIn-Profil'},
       subscribed:'Schon abonniert?', open_tg:'Tala auf Telegram', open_wa:'Tala auf WhatsApp', manage_note:'Um Jobs oder Städte zu ändern oder zu kündigen, schreiben Sie es Tala einfach im Chat.',
-      s_app:'App', share:'Tala mit Freunden teilen', share_text:'Tala hilft Ihnen, Jobs passend zu Ihrem Lebenslauf zu finden, den Lebenslauf kostenlos zu prüfen und zu verbessern. Zur App:', copied:'Link kopiert',
+      s_app:'App', share:'Tala mit Freunden teilen', share_text:'Tala hilft Ihnen, Jobs passend zu Ihrem Lebenslauf zu finden, den Lebenslauf kostenlos zu prüfen und zu verbessern. Zur App:', copied:'Link kopiert', sh_t:'Tala teilen', sh_s:'Freunde einladen', sh_h:'Scannen und Tala holen', sh_p:'Ihr Freund richtet einfach die Handykamera auf diesen Code. Tala öffnet sich in wenigen Sekunden, ohne Anmeldung.', sh_or:'Oder den Link senden', sh_share:'Link teilen', sh_copy:'Link kopieren', sh_save:'QR-Bild speichern', inv_t:'Freunde einladen', inv_sub:'QR-Code zum Scannen zeigen oder den Link senden', 
       update:'App aktualisieren', update_sub:'Jetzt die neueste Version holen', updating:'Wird aktualisiert…', updated:'Sie haben die neueste Version',
       help:'Hilfe', privacy:'Datenschutz', terms:'AGB', contact:'Kontakt', impressum:'Impressum',
       n_home:'Start', n_jobs:'Jobs', n_cv:'Lebenslauf', n_tala:'Tala', n_settings:'Einstellungen',
@@ -567,7 +598,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       s_jobs:'Búsqueda de empleo', job_loc:'Lugar y empleo', not_set:'Sin definir', my_goal:'Mi objetivo',
       goal_names:{job:'Busco empleo', cv:'Un CV mejor', career:'Encontrar el trabajo adecuado', linkedin:'Un perfil de LinkedIn mejor'},
       subscribed:'¿Ya tienes suscripción?', open_tg:'Tala en Telegram', open_wa:'Tala en WhatsApp', manage_note:'Para cambiar empleos o ciudades, o para cancelar, solo díselo a Tala en el chat.',
-      s_app:'App', share:'Comparte Tala con tus amigos', share_text:'Tala te ayuda a encontrar empleos que encajan con tu CV y a revisar y mejorar tu CV gratis. Descarga la app:', copied:'Enlace copiado',
+      s_app:'App', share:'Comparte Tala con tus amigos', share_text:'Tala te ayuda a encontrar empleos que encajan con tu CV y a revisar y mejorar tu CV gratis. Descarga la app:', copied:'Enlace copiado', sh_t:'Comparte Tala', sh_s:'Invita a un amigo', sh_h:'Escanea para obtener Tala', sh_p:'Pide a tu amigo que apunte la cámara del móvil a este código. Tala se abre en unos segundos, sin registro.', sh_or:'O envíale el enlace', sh_share:'Compartir enlace', sh_copy:'Copiar enlace', sh_save:'Guardar imagen QR', inv_t:'Invita a un amigo', inv_sub:'Muéstrale un código QR o envíale el enlace', 
       update:'Actualizar la app', update_sub:'Consigue la última versión ahora', updating:'Actualizando…', updated:'Tienes la última versión',
       help:'Ayuda', privacy:'Privacidad', terms:'Términos', contact:'Contacto', impressum:'Aviso legal',
       n_home:'Inicio', n_jobs:'Empleos', n_cv:'CV', n_tala:'Tala', n_settings:'Ajustes',
@@ -607,7 +638,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
       s_jobs:'Recherche d\'emploi', job_loc:'Lieu et poste', not_set:'Non défini', my_goal:'Mon objectif',
       goal_names:{job:'Je cherche un emploi', cv:'Un meilleur CV', career:'Trouver le bon métier', linkedin:'Un meilleur profil LinkedIn'},
       subscribed:'Déjà abonné ?', open_tg:'Tala sur Telegram', open_wa:'Tala sur WhatsApp', manage_note:'Pour changer de postes ou de villes, ou pour résilier, dites-le simplement à Tala dans le chat.',
-      s_app:'Application', share:'Partagez Tala avec vos amis', share_text:'Tala vous aide à trouver des offres qui correspondent à votre CV, et à analyser et améliorer votre CV gratuitement. Téléchargez l\'application :', copied:'Lien copié',
+      s_app:'Application', share:'Partagez Tala avec vos amis', share_text:'Tala vous aide à trouver des offres qui correspondent à votre CV, et à analyser et améliorer votre CV gratuitement. Téléchargez l\'application :', copied:'Lien copié', sh_t:'Partager Tala', sh_s:'Inviter un ami', sh_h:'Scannez pour obtenir Tala', sh_p:'Demandez à votre ami de pointer l\'appareil photo de son téléphone vers ce code. Tala s\'ouvre en quelques secondes, sans inscription.', sh_or:'Ou envoyez-lui le lien', sh_share:'Partager le lien', sh_copy:'Copier le lien', sh_save:'Enregistrer le QR', inv_t:'Inviter un ami', inv_sub:'Montrez-lui un code QR ou envoyez le lien', 
       update:'Mettre à jour l\'application', update_sub:'Obtenez la dernière version maintenant', updating:'Mise à jour…', updated:'Vous avez la dernière version',
       help:'Aide', privacy:'Confidentialité', terms:'Conditions', contact:'Contact', impressum:'Mentions légales',
       n_home:'Accueil', n_jobs:'Offres', n_cv:'CV', n_tala:'Tala', n_settings:'Réglages',
@@ -690,7 +721,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
 
   function renderBar(){
     var h = new Date().getHours();
-    var map = { home:[t('welcome_back'), h < 12 ? t('morning') : (h < 18 ? t('afternoon') : t('evening'))], jobs:[t('s_jobs'), t('t_jobs')], cv:[t('s_cv'), t('t_cv')], tala:[t('s_tala'), t('t_tala')], settings:[t('s_settings'), t('t_settings')] };
+    var map = { home:[t('welcome_back'), h < 12 ? t('morning') : (h < 18 ? t('afternoon') : t('evening'))], jobs:[t('s_jobs'), t('t_jobs')], cv:[t('s_cv'), t('t_cv')], tala:[t('s_tala'), t('t_tala')], settings:[t('s_settings'), t('t_settings')], share:[t('sh_s'), t('sh_t')] };
     var m = map[tab] || map.home;
     if (tab === 'jobs') m[0] = 'JobRadar';
     document.getElementById('barSub').textContent = m[0]; document.getElementById('barTitle').textContent = m[1];
@@ -707,7 +738,7 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
     if (conf.go) { c.setAttribute('href', '#'); c.setAttribute('data-go', conf.go); } else c.setAttribute('href', conf[lang] || conf.href);
   }
 
-  var TABS = ['home','jobs','cv','tala','settings'], tabHist = [];
+  var TABS = ['home','jobs','cv','tala','settings','share'], tabHist = [];
   function show(x, isBack){
     if (x === 'account') x = 'settings';
     if (TABS.indexOf(x) === -1) x = 'home';
@@ -819,11 +850,26 @@ html[dir=rtl] .w-back svg{transform:scaleX(-1)}
 
   /* settings actions */
   function toast(msg){ var el = document.getElementById('toast'); el.textContent = msg; el.hidden = false; clearTimeout(toast.tm); toast.tm = setTimeout(function () { el.hidden = true; }, 2400); }
-  document.getElementById('shareBtn').addEventListener('click', function () {
-    var url = 'https://www.gearradar.co.uk/get?src=share';
+  document.getElementById('shareBtn').addEventListener('click', function () { show('share'); });
+  var SHARE_URL = 'https://www.gearradar.co.uk/get?src=share';
+  function copyLink(){
+    try { navigator.clipboard.writeText(t('share_text') + ' ' + SHARE_URL).then(function () { toast(t('copied')); }, function () { toast(SHARE_URL); }); } catch (e) { toast(SHARE_URL); }
+  }
+  document.getElementById('shLinkBtn').addEventListener('click', function () {
     track('app-share');
-    if (navigator.share) { navigator.share({ title: 'Tala', text: t('share_text'), url: url }).catch(function () {}); return; }
-    try { navigator.clipboard.writeText(t('share_text') + ' ' + url).then(function () { toast(t('copied')); }, function () { toast(url); }); } catch (e) { toast(url); }
+    if (navigator.share) { navigator.share({ title: 'Tala', text: t('share_text'), url: SHARE_URL }).catch(function () {}); return; }
+    copyLink();
+  });
+  document.getElementById('shCopyBtn').addEventListener('click', function () { track('app-share-copy'); copyLink(); });
+  document.getElementById('shSaveBtn').addEventListener('click', function () {
+    track('app-share-qr-save');
+    var src = document.getElementById('shareQr').src;
+    function dl(){ var a = document.createElement('a'); a.href = src; a.download = 'tala-qr.png'; document.body.appendChild(a); a.click(); a.remove(); }
+    fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
+      var f; try { f = new File([b], 'tala-qr.png', { type: 'image/png' }); } catch (e) {}
+      if (f && navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], title: 'Tala', text: t('share_text') + ' ' + SHARE_URL }).catch(function () {});
+      dl();
+    }).catch(dl);
   });
   document.getElementById('updBtn').addEventListener('click', function () {
     document.getElementById('updNow').textContent = t('updating'); track('app-update');
