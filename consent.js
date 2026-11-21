@@ -136,3 +136,8 @@
     }
   } catch (e) {}
 })();
+
+/* Temporary pause until January 2027 (see pause.js). */
+(function () {
+  try { var s = document.createElement('script'); s.src = '/pause.js?v=1'; s.defer = true; document.head.appendChild(s); } catch (e) {}
+})();
